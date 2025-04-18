@@ -309,35 +309,42 @@ export default function Home() {
                   country: "United States",
                   image: "/placeholder.svg?height=200&width=300",
                   universities: "1,000+ Universities",
+                  slug: "usa",
                 },
                 {
                   country: "United Kingdom",
                   image: "/placeholder.svg?height=200&width=300",
                   universities: "150+ Universities",
+                  slug: "uk",
                 },
                 {
                   country: "Canada",
                   image: "/placeholder.svg?height=200&width=300",
                   universities: "100+ Universities",
+                  slug: "canada",
                 },
                 {
                   country: "Australia",
                   image: "/placeholder.svg?height=200&width=300",
                   universities: "40+ Universities",
+                  slug: "australia",
                 },
                 {
                   country: "New Zealand",
                   image: "/placeholder.svg?height=200&width=300",
                   universities: "8+ Universities",
+                  slug: "new-zealand",
                 },
                 {
                   country: "Germany",
                   image: "/placeholder.svg?height=200&width=300",
                   universities: "400+ Universities",
+                  slug: "germany",
                 },
               ].map((destination, index) => (
-                <div
+                <Link
                   key={index}
+                  href={`/destinations/${destination.slug}`}
                   className="group relative overflow-hidden rounded-lg shadow-lg"
                 >
                   <Image
@@ -352,7 +359,7 @@ export default function Home() {
                     <h3 className="text-xl font-bold">{destination.country}</h3>
                     <p className="text-sm">{destination.universities}</p>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
             <div className="flex justify-center">
@@ -433,7 +440,7 @@ export default function Home() {
             <div className="flex justify-center">
               <Button
                 variant="outline"
-                className="border-white text-blue-800 hover:bg-blue-800 hover:text-white"
+                className="border-white text-white hover:bg-white hover:text-blue-800"
               >
                 View More Success Stories
               </Button>
