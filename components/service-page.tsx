@@ -44,7 +44,7 @@ interface ServicePageProps {
   data: ServiceData;
 }
 
-export function ServicePage({ data }: ServicePageProps) {
+export default function ServicePage({ data }: ServicePageProps) {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />

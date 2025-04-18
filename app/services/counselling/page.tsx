@@ -1,4 +1,4 @@
-import { ServicePage } from "@/components/service-page";
+import ServicePage from "@/components/service-page";
 import { Users } from "lucide-react";
 
 const counsellingData = {

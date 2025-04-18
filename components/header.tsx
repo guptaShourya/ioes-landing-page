@@ -1,8 +1,13 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 export function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // State to track menu visibility
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white">
       <div className="container flex h-16 items-center justify-between">
@@ -57,7 +62,12 @@ export function Header() {
           <Button size="sm" className="hidden md:flex">
             Get Started
           </Button>
-          <Button variant="ghost" size="icon" className="md:hidden">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden"
+            onClick={() => setIsMenuOpen(!isMenuOpen)} // Toggle menu visibility
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -78,6 +88,49 @@ export function Header() {
           </Button>
         </div>
       </div>
+
+      {/* Dropdown Menu for Smaller Screens */}
+      {isMenuOpen && (
+        <div className="md:hidden bg-white border-t">
+          <nav className="flex flex-col gap-4 p-4">
+            <Link
+              href="/#about"
+              className="text-sm font-medium hover:text-primary"
+              onClick={() => setIsMenuOpen(false)} // Close menu on click
+            >
+              About Us
+            </Link>
+            <Link
+              href="/services"
+              className="text-sm font-medium hover:text-primary"
+              onClick={() => setIsMenuOpen(false)} // Close menu on click
+            >
+              Services
+            </Link>
+            <Link
+              href="/#destinations"
+              className="text-sm font-medium hover:text-primary"
+              onClick={() => setIsMenuOpen(false)} // Close menu on click
+            >
+              Destinations
+            </Link>
+            <Link
+              href="/#testimonials"
+              className="text-sm font-medium hover:text-primary"
+              onClick={() => setIsMenuOpen(false)} // Close menu on click
+            >
+              Success Stories
+            </Link>
+            <Link
+              href="/#contact"
+              className="text-sm font-medium hover:text-primary"
+              onClick={() => setIsMenuOpen(false)} // Close menu on click
+            >
+              Contact
+            </Link>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }
