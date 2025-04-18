@@ -7,7 +7,10 @@ import {
   Award,
   ChevronRight,
   CheckCircle2,
+  Heart,
+  Home,
 } from "lucide-react";
+import Link from "next/link";
 import { Header } from "./header";
 import { Footer } from "./footer";
 
@@ -378,6 +381,73 @@ export function DestinationPage({ data }: DestinationPageProps) {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Country-Specific Partners Section */}
+        <section className="w-full py-12 md:py-24 bg-gray-50">
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="space-y-2">
+                <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
+                  Our Partners
+                </div>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                  Partners in {data.name}
+                </h2>
+                <p className="max-w-[700px] text-gray-500 md:text-xl/relaxed">
+                  We have established partnerships with leading organizations in{" "}
+                  {data.name} to provide comprehensive support for your
+                  education journey.
+                </p>
+              </div>
+            </div>
+            <div className="mx-auto grid max-w-5xl gap-8 py-12 md:grid-cols-3">
+              <Link
+                href="/services/loan"
+                className="flex flex-col items-center space-y-4 rounded-lg border bg-white p-6 shadow-sm transition-all hover:shadow-md"
+              >
+                <CreditCard className="h-12 w-12 text-blue-800" />
+                <h3 className="text-xl font-bold">Loan Partners</h3>
+                <p className="text-center text-gray-500">
+                  Access to education loans with competitive interest rates
+                  through our financial partners in {data.name}.
+                </p>
+                <Button variant="link" className="mt-auto text-blue-800">
+                  View Loan Partners <ChevronRight className="ml-1 h-4 w-4" />
+                </Button>
+              </Link>
+              <Link
+                href="/services/health-insurance"
+                className="flex flex-col items-center space-y-4 rounded-lg border bg-white p-6 shadow-sm transition-all hover:shadow-md"
+              >
+                <Heart className="h-12 w-12 text-blue-800" />
+                <h3 className="text-xl font-bold">Health Insurance</h3>
+                <p className="text-center text-gray-500">
+                  Comprehensive health insurance plans through our trusted
+                  insurance partners in {data.name}.
+                </p>
+                <Button variant="link" className="mt-auto text-blue-800">
+                  View Insurance Partners{" "}
+                  <ChevronRight className="ml-1 h-4 w-4" />
+                </Button>
+              </Link>
+              <Link
+                href="/services/accommodation"
+                className="flex flex-col items-center space-y-4 rounded-lg border bg-white p-6 shadow-sm transition-all hover:shadow-md"
+              >
+                <Home className="h-12 w-12 text-blue-800" />
+                <h3 className="text-xl font-bold">Accommodation</h3>
+                <p className="text-center text-gray-500">
+                  Find suitable and affordable accommodation options through our
+                  housing partners in {data.name}.
+                </p>
+                <Button variant="link" className="mt-auto text-blue-800">
+                  View Accommodation Partners{" "}
+                  <ChevronRight className="ml-1 h-4 w-4" />
+                </Button>
+              </Link>
             </div>
           </div>
         </section>

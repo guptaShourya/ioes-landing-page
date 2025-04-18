@@ -212,6 +212,14 @@ export default function Home() {
                 </div>
               ))}
             </div>
+            <div className="flex justify-center mt-8">
+              <Button asChild className="bg-blue-800 hover:bg-blue-900">
+                <Link href="/services">
+                  Explore All Services
+                  <ChevronRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
           </div>
         </section>
 
