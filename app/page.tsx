@@ -1,8 +1,8 @@
-import Image from "next/image"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import {
   GraduationCap,
   MapPin,
@@ -15,7 +15,7 @@ import {
   Users,
   Building,
   Award,
-} from "lucide-react"
+} from "lucide-react";
 
 export default function Home() {
   return (
@@ -35,19 +35,34 @@ export default function Home() {
             </Link>
           </div>
           <nav className="hidden md:flex gap-6">
-            <Link href="#about" className="text-sm font-medium hover:text-primary">
+            <Link
+              href="#about"
+              className="text-sm font-medium hover:text-primary"
+            >
               About Us
             </Link>
-            <Link href="#services" className="text-sm font-medium hover:text-primary">
+            <Link
+              href="#services"
+              className="text-sm font-medium hover:text-primary"
+            >
               Services
             </Link>
-            <Link href="#destinations" className="text-sm font-medium hover:text-primary">
+            <Link
+              href="#destinations"
+              className="text-sm font-medium hover:text-primary"
+            >
               Destinations
             </Link>
-            <Link href="#testimonials" className="text-sm font-medium hover:text-primary">
+            <Link
+              href="#testimonials"
+              className="text-sm font-medium hover:text-primary"
+            >
               Success Stories
             </Link>
-            <Link href="#contact" className="text-sm font-medium hover:text-primary">
+            <Link
+              href="#contact"
+              className="text-sm font-medium hover:text-primary"
+            >
               Contact
             </Link>
           </nav>
@@ -90,8 +105,8 @@ export default function Home() {
                     Your Global Education Journey Starts Here
                   </h1>
                   <p className="max-w-[600px] text-gray-500 md:text-xl">
-                    Expert guidance for students aspiring to study abroad. Transform your educational dreams into
-                    reality with IOES.
+                    Expert guidance for students aspiring to study abroad.
+                    Transform your educational dreams into reality with IOES.
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
@@ -105,11 +120,15 @@ export default function Home() {
                 <div className="flex items-center gap-4 pt-4">
                   <div className="flex -space-x-2">
                     {[1, 2, 3, 4].map((i) => (
-                      <div key={i} className="inline-block h-8 w-8 rounded-full bg-gray-200 ring-2 ring-white" />
+                      <div
+                        key={i}
+                        className="inline-block h-8 w-8 rounded-full bg-gray-200 ring-2 ring-white"
+                      />
                     ))}
                   </div>
                   <p className="text-sm text-gray-500">
-                    Trusted by <span className="font-medium">2,000+</span> students
+                    Trusted by <span className="font-medium">2,000+</span>{" "}
+                    students
                   </p>
                 </div>
               </div>
@@ -128,11 +147,16 @@ export default function Home() {
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">About IOES</div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Your Trusted Education Partner</h2>
+                <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
+                  About IOES
+                </div>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                  Your Trusted Education Partner
+                </h2>
                 <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  IOES is a premier overseas education consultancy based in Delhi, helping students achieve their dreams
-                  of studying abroad since 2010.
+                  IOES is a premier overseas education consultancy based in
+                  Delhi, helping students achieve their dreams of studying
+                  abroad since 2010.
                 </p>
               </div>
             </div>
@@ -153,8 +177,8 @@ export default function Home() {
                     <div className="grid gap-1">
                       <h3 className="text-xl font-bold">Expert Counselors</h3>
                       <p className="text-gray-500">
-                        Our team of experienced counselors provides personalized guidance tailored to your academic
-                        goals.
+                        Our team of experienced counselors provides personalized
+                        guidance tailored to your academic goals.
                       </p>
                     </div>
                   </li>
@@ -163,9 +187,12 @@ export default function Home() {
                       <Building className="h-5 w-5" />
                     </div>
                     <div className="grid gap-1">
-                      <h3 className="text-xl font-bold">University Partnerships</h3>
+                      <h3 className="text-xl font-bold">
+                        University Partnerships
+                      </h3>
                       <p className="text-gray-500">
-                        We have partnerships with top universities worldwide, ensuring you get the best opportunities.
+                        We have partnerships with top universities worldwide,
+                        ensuring you get the best opportunities.
                       </p>
                     </div>
                   </li>
@@ -176,8 +203,8 @@ export default function Home() {
                     <div className="grid gap-1">
                       <h3 className="text-xl font-bold">Proven Success</h3>
                       <p className="text-gray-500">
-                        With thousands of successful placements, we have a track record of turning aspirations into
-                        achievements.
+                        With thousands of successful placements, we have a track
+                        record of turning aspirations into achievements.
                       </p>
                     </div>
                   </li>
@@ -187,15 +214,22 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="services" className="w-full py-12 md:py-24 lg:py-32 bg-gray-50">
+        <section
+          id="services"
+          className="w-full py-12 md:py-24 lg:py-32 bg-gray-50"
+        >
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">Our Services</div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Comprehensive Support</h2>
+                <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
+                  Our Services
+                </div>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                  Comprehensive Support
+                </h2>
                 <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  From university selection to visa approval, we guide you through every step of your international
-                  education journey.
+                  From university selection to visa approval, we guide you
+                  through every step of your international education journey.
                 </p>
               </div>
             </div>
@@ -204,32 +238,38 @@ export default function Home() {
                 {
                   icon: <GraduationCap className="h-10 w-10" />,
                   title: "University Selection",
-                  description: "Personalized recommendations based on your academic profile and career goals.",
+                  description:
+                    "Personalized recommendations based on your academic profile and career goals.",
                 },
                 {
                   icon: <CheckCircle2 className="h-10 w-10" />,
                   title: "Application Assistance",
-                  description: "Expert guidance on preparing compelling applications for your target universities.",
+                  description:
+                    "Expert guidance on preparing compelling applications for your target universities.",
                 },
                 {
                   icon: <Globe className="h-10 w-10" />,
                   title: "Visa Guidance",
-                  description: "Step-by-step support for visa application process with high success rates.",
+                  description:
+                    "Step-by-step support for visa application process with high success rates.",
                 },
                 {
                   icon: <Users className="h-10 w-10" />,
                   title: "Pre-Departure Briefing",
-                  description: "Comprehensive orientation to prepare you for life and studies abroad.",
+                  description:
+                    "Comprehensive orientation to prepare you for life and studies abroad.",
                 },
                 {
                   icon: <Building className="h-10 w-10" />,
                   title: "Accommodation Support",
-                  description: "Assistance in finding suitable and affordable accommodation options.",
+                  description:
+                    "Assistance in finding suitable and affordable accommodation options.",
                 },
                 {
                   icon: <Award className="h-10 w-10" />,
                   title: "Scholarship Guidance",
-                  description: "Information and application support for various scholarship opportunities.",
+                  description:
+                    "Information and application support for various scholarship opportunities.",
                 },
               ].map((service, index) => (
                 <div
@@ -238,7 +278,9 @@ export default function Home() {
                 >
                   <div className="text-blue-800">{service.icon}</div>
                   <h3 className="text-xl font-bold">{service.title}</h3>
-                  <p className="text-center text-gray-500">{service.description}</p>
+                  <p className="text-center text-gray-500">
+                    {service.description}
+                  </p>
                 </div>
               ))}
             </div>
@@ -252,9 +294,12 @@ export default function Home() {
                 <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
                   Study Destinations
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Global Education Opportunities</h2>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                  Global Education Opportunities
+                </h2>
                 <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Explore top study destinations with world-class universities and diverse cultural experiences.
+                  Explore top study destinations with world-class universities
+                  and diverse cultural experiences.
                 </p>
               </div>
             </div>
@@ -291,7 +336,10 @@ export default function Home() {
                   universities: "400+ Universities",
                 },
               ].map((destination, index) => (
-                <div key={index} className="group relative overflow-hidden rounded-lg shadow-lg">
+                <div
+                  key={index}
+                  className="group relative overflow-hidden rounded-lg shadow-lg"
+                >
                   <Image
                     src={destination.image || "/placeholder.svg"}
                     alt={destination.country}
@@ -316,14 +364,22 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="testimonials" className="w-full py-12 md:py-24 lg:py-32 bg-blue-800 text-white">
+        <section
+          id="testimonials"
+          className="w-full py-12 md:py-24 lg:py-32 bg-blue-800 text-white"
+        >
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-white/10 px-3 py-1 text-sm">Success Stories</div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Hear From Our Students</h2>
+                <div className="inline-block rounded-lg bg-white/10 px-3 py-1 text-sm">
+                  Success Stories
+                </div>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                  Hear From Our Students
+                </h2>
                 <p className="max-w-[900px] text-white/80 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Real experiences from students who achieved their dreams with IOES guidance.
+                  Real experiences from students who achieved their dreams with
+                  IOES guidance.
                 </p>
               </div>
             </div>
@@ -351,7 +407,10 @@ export default function Home() {
                     "From university selection to scholarship applications, IOES provided comprehensive support that made my journey to Australia smooth and successful.",
                 },
               ].map((testimonial, index) => (
-                <div key={index} className="flex flex-col items-center space-y-4 rounded-lg bg-white/10 p-6">
+                <div
+                  key={index}
+                  className="flex flex-col items-center space-y-4 rounded-lg bg-white/10 p-6"
+                >
                   <Image
                     src={testimonial.image || "/placeholder.svg"}
                     alt={testimonial.name}
@@ -363,14 +422,19 @@ export default function Home() {
                     <p className="text-white/90">"{testimonial.testimonial}"</p>
                     <div>
                       <h3 className="font-bold">{testimonial.name}</h3>
-                      <p className="text-sm text-white/70">{testimonial.university}</p>
+                      <p className="text-sm text-white/70">
+                        {testimonial.university}
+                      </p>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
             <div className="flex justify-center">
-              <Button variant="outline" className="border-white text-white hover:bg-white hover:text-blue-800">
+              <Button
+                variant="outline"
+                className="border-white text-blue-800 hover:bg-blue-800 hover:text-white"
+              >
                 View More Success Stories
               </Button>
             </div>
@@ -389,8 +453,8 @@ export default function Home() {
                     Your Future, Our Priority
                   </h2>
                   <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed">
-                    We're committed to helping you achieve your educational goals with personalized guidance and
-                    support.
+                    We're committed to helping you achieve your educational
+                    goals with personalized guidance and support.
                   </p>
                 </div>
                 <ul className="grid gap-4">
@@ -408,7 +472,9 @@ export default function Home() {
                   ))}
                 </ul>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                  <Button className="bg-blue-800 hover:bg-blue-900">Book a Consultation</Button>
+                  <Button className="bg-blue-800 hover:bg-blue-900">
+                    Book a Consultation
+                  </Button>
                 </div>
               </div>
               <div className="flex items-center justify-center">
@@ -428,10 +494,15 @@ export default function Home() {
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">Get in Touch</div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Start Your Journey Today</h2>
+                <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
+                  Get in Touch
+                </div>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                  Start Your Journey Today
+                </h2>
                 <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Contact us for a free consultation and take the first step towards your international education.
+                  Contact us for a free consultation and take the first step
+                  towards your international education.
                 </p>
               </div>
             </div>
@@ -441,7 +512,9 @@ export default function Home() {
                   <MapPin className="h-6 w-6 text-blue-800" />
                   <div>
                     <h3 className="font-bold">Visit Us</h3>
-                    <p className="text-gray-500">123 Education Street, Delhi, India</p>
+                    <p className="text-gray-500">
+                      123 Education Street, Delhi, India
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
@@ -462,23 +535,34 @@ export default function Home() {
                   <Clock className="h-6 w-6 text-blue-800" />
                   <div>
                     <h3 className="font-bold">Office Hours</h3>
-                    <p className="text-gray-500">Monday - Saturday: 10:00 AM - 6:00 PM</p>
+                    <p className="text-gray-500">
+                      Monday - Saturday: 10:00 AM - 6:00 PM
+                    </p>
                   </div>
                 </div>
                 <div className="rounded-xl bg-gray-50 p-6">
                   <h3 className="mb-4 font-bold">Follow Us</h3>
                   <div className="flex gap-4">
-                    {["Facebook", "Instagram", "Twitter", "LinkedIn"].map((social, index) => (
-                      <Button key={index} variant="outline" size="icon" className="h-10 w-10 rounded-full">
-                        <span className="sr-only">{social}</span>
-                        <div className="h-5 w-5 rounded-full bg-gray-300" />
-                      </Button>
-                    ))}
+                    {["Facebook", "Instagram", "Twitter", "LinkedIn"].map(
+                      (social, index) => (
+                        <Button
+                          key={index}
+                          variant="outline"
+                          size="icon"
+                          className="h-10 w-10 rounded-full"
+                        >
+                          <span className="sr-only">{social}</span>
+                          <div className="h-5 w-5 rounded-full bg-gray-300" />
+                        </Button>
+                      )
+                    )}
                   </div>
                 </div>
               </div>
               <div className="rounded-xl border bg-white p-6 shadow-sm">
-                <h3 className="mb-4 text-xl font-bold">Request a Free Consultation</h3>
+                <h3 className="mb-4 text-xl font-bold">
+                  Request a Free Consultation
+                </h3>
                 <form className="space-y-4">
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div className="space-y-2">
@@ -488,7 +572,10 @@ export default function Home() {
                       >
                         First Name
                       </label>
-                      <Input id="first-name" placeholder="Enter your first name" />
+                      <Input
+                        id="first-name"
+                        placeholder="Enter your first name"
+                      />
                     </div>
                     <div className="space-y-2">
                       <label
@@ -497,7 +584,10 @@ export default function Home() {
                       >
                         Last Name
                       </label>
-                      <Input id="last-name" placeholder="Enter your last name" />
+                      <Input
+                        id="last-name"
+                        placeholder="Enter your last name"
+                      />
                     </div>
                   </div>
                   <div className="space-y-2">
@@ -507,7 +597,11 @@ export default function Home() {
                     >
                       Email
                     </label>
-                    <Input id="email" type="email" placeholder="Enter your email" />
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="Enter your email"
+                    />
                   </div>
                   <div className="space-y-2">
                     <label
@@ -546,9 +640,15 @@ export default function Home() {
                     >
                       Message
                     </label>
-                    <Textarea id="message" placeholder="Tell us about your study plans and requirements" />
+                    <Textarea
+                      id="message"
+                      placeholder="Tell us about your study plans and requirements"
+                    />
                   </div>
-                  <Button type="submit" className="w-full bg-blue-800 hover:bg-blue-900">
+                  <Button
+                    type="submit"
+                    className="w-full bg-blue-800 hover:bg-blue-900"
+                  >
                     Submit Request
                   </Button>
                 </form>
@@ -571,16 +671,24 @@ export default function Home() {
               <span className="text-xl font-bold tracking-tight">IOES</span>
             </Link>
             <p className="text-sm text-gray-500">
-              Institute of Overseas Education Services (IOES) is a premier education consultancy helping students
-              achieve their dreams of studying abroad.
+              Institute of Overseas Education Services (IOES) is a premier
+              education consultancy helping students achieve their dreams of
+              studying abroad.
             </p>
             <div className="flex gap-4">
-              {["Facebook", "Instagram", "Twitter", "LinkedIn"].map((social, index) => (
-                <Button key={index} variant="ghost" size="icon" className="h-8 w-8">
-                  <span className="sr-only">{social}</span>
-                  <div className="h-4 w-4 rounded-full bg-gray-300" />
-                </Button>
-              ))}
+              {["Facebook", "Instagram", "Twitter", "LinkedIn"].map(
+                (social, index) => (
+                  <Button
+                    key={index}
+                    variant="ghost"
+                    size="icon"
+                    className="h-8 w-8"
+                  >
+                    <span className="sr-only">{social}</span>
+                    <div className="h-4 w-4 rounded-full bg-gray-300" />
+                  </Button>
+                )
+              )}
             </div>
           </div>
           <div className="space-y-4">
@@ -677,15 +785,26 @@ export default function Home() {
         </div>
         <div className="container mt-8 border-t pt-8 px-4 md:px-6">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-            <p className="text-xs text-gray-500">&copy; {new Date().getFullYear()} IOES. All rights reserved.</p>
+            <p className="text-xs text-gray-500">
+              &copy; {new Date().getFullYear()} IOES. All rights reserved.
+            </p>
             <nav className="flex gap-4 sm:gap-6">
-              <Link href="#" className="text-xs text-gray-500 hover:underline underline-offset-4">
+              <Link
+                href="#"
+                className="text-xs text-gray-500 hover:underline underline-offset-4"
+              >
                 Privacy Policy
               </Link>
-              <Link href="#" className="text-xs text-gray-500 hover:underline underline-offset-4">
+              <Link
+                href="#"
+                className="text-xs text-gray-500 hover:underline underline-offset-4"
+              >
                 Terms of Service
               </Link>
-              <Link href="#" className="text-xs text-gray-500 hover:underline underline-offset-4">
+              <Link
+                href="#"
+                className="text-xs text-gray-500 hover:underline underline-offset-4"
+              >
                 Cookie Policy
               </Link>
             </nav>
@@ -693,5 +812,5 @@ export default function Home() {
         </div>
       </footer>
     </div>
-  )
+  );
 }
