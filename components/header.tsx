@@ -1,23 +1,6 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { ChevronDown } from "lucide-react";
-
-const services = [
-  { name: "Counselling", href: "/services/counselling" },
-  { name: "University Selection", href: "/services/university-selection" },
-  { name: "Financial Guidance", href: "/services/financial-guidance" },
-  { name: "Loan Assistance", href: "/services/loan" },
-  { name: "Visa Service", href: "/services/visa" },
-  { name: "Health Insurance", href: "/services/health-insurance" },
-  { name: "Accommodation", href: "/services/accommodation" },
-];
 
 export function Header() {
   return (
@@ -42,30 +25,12 @@ export function Header() {
           >
             About Us
           </Link>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <button className="flex items-center gap-1 text-sm font-medium hover:text-primary">
-                Services <ChevronDown className="h-4 w-4" />
-              </button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="center" className="w-56">
-              {services.map((service) => (
-                <DropdownMenuItem key={service.name} asChild>
-                  <Link href={service.href} className="cursor-pointer">
-                    {service.name}
-                  </Link>
-                </DropdownMenuItem>
-              ))}
-              <DropdownMenuItem asChild>
-                <Link
-                  href="/services"
-                  className="cursor-pointer font-medium text-blue-800"
-                >
-                  View All Services
-                </Link>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <Link
+            href="/services"
+            className="text-sm font-medium hover:text-primary"
+          >
+            Services
+          </Link>
           <Link
             href="/#destinations"
             className="text-sm font-medium hover:text-primary"

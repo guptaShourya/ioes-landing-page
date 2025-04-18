@@ -328,7 +328,7 @@ export function ServicePage({ data }: ServicePageProps) {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="border-white text-white hover:bg-white/20"
+                  className="bg-white text-blue-800 hover:bg-white/90"
                 >
                   Explore Other Services
                 </Button>
