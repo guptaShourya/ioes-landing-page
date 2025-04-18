@@ -24,7 +24,7 @@ const countryData: Record<string, DestinationData> = {
     overview:
       "The United States is home to some of the world's most prestigious universities, offering a diverse range of programs and unparalleled research opportunities. With a flexible education system, students can customize their academic journey while experiencing American campus life and culture.",
     image: "/placeholder.svg?height=500&width=800",
-    flag: "/placeholder.svg?height=30&width=50",
+    flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/US.svg",
     reasons: [
       {
         title: "World-Class Education",
@@ -103,8 +103,8 @@ const countryData: Record<string, DestinationData> = {
     slug: "uk",
     overview:
       "The United Kingdom offers a rich academic tradition with some of the world's oldest and most prestigious universities. Known for shorter, more intensive degree programs, the UK provides high-quality education that is globally recognized and respected.",
-    image: "/placeholder.svg?height=500&width=800",
-    flag: "/placeholder.svg?height=30&width=50",
+    image: "/UKDestinationBG.jpg",
+    flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/GB.svg",
     reasons: [
       {
         title: "Prestigious Education",
