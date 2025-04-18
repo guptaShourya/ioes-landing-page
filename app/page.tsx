@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Header } from "@/components/header";
 import {
   GraduationCap,
   MapPin,
@@ -16,85 +17,12 @@ import {
   Building,
   Award,
 } from "lucide-react";
+import { Footer } from "@/components/footer";
 
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="sticky top-0 z-50 w-full border-b bg-white">
-        <div className="container flex h-16 items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Link href="/" className="flex items-center gap-2">
-              <Image
-                src="/placeholder.svg?height=40&width=40"
-                alt="IOES Logo"
-                width={40}
-                height={40}
-                className="rounded"
-              />
-              <span className="text-xl font-bold tracking-tight">IOES</span>
-            </Link>
-          </div>
-          <nav className="hidden md:flex gap-6">
-            <Link
-              href="#about"
-              className="text-sm font-medium hover:text-primary"
-            >
-              About Us
-            </Link>
-            <Link
-              href="#services"
-              className="text-sm font-medium hover:text-primary"
-            >
-              Services
-            </Link>
-            <Link
-              href="#destinations"
-              className="text-sm font-medium hover:text-primary"
-            >
-              Destinations
-            </Link>
-            <Link
-              href="#testimonials"
-              className="text-sm font-medium hover:text-primary"
-            >
-              Success Stories
-            </Link>
-            <Link
-              href="#contact"
-              className="text-sm font-medium hover:text-primary"
-            >
-              Contact
-            </Link>
-          </nav>
-          <div className="flex items-center gap-4">
-            <Button variant="outline" size="sm" className="hidden md:flex">
-              Login
-            </Button>
-            <Button size="sm" className="hidden md:flex">
-              Get Started
-            </Button>
-            <Button variant="ghost" size="icon" className="md:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-6 w-6"
-              >
-                <line x1="4" x2="20" y1="12" y2="12" />
-                <line x1="4" x2="20" y1="6" y2="6" />
-                <line x1="4" x2="20" y1="18" y2="18" />
-              </svg>
-              <span className="sr-only">Toggle menu</span>
-            </Button>
-          </div>
-        </div>
-      </header>
+      <Header />
       <main className="flex-1">
         <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-r from-blue-50 to-indigo-50">
           <div className="container px-4 md:px-6">
@@ -440,7 +368,7 @@ export default function Home() {
             <div className="flex justify-center">
               <Button
                 variant="outline"
-                className="border-white text-white hover:bg-white hover:text-blue-800"
+                className="border-white text-blue-800 hover:bg-blue-800 hover:text-white"
               >
                 View More Success Stories
               </Button>
@@ -664,160 +592,7 @@ export default function Home() {
           </div>
         </section>
       </main>
-      <footer className="w-full border-t bg-gray-50 py-12">
-        <div className="container grid gap-8 px-4 md:px-6 lg:grid-cols-4">
-          <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-2">
-              <Image
-                src="/placeholder.svg?height=40&width=40"
-                alt="IOES Logo"
-                width={40}
-                height={40}
-                className="rounded"
-              />
-              <span className="text-xl font-bold tracking-tight">IOES</span>
-            </Link>
-            <p className="text-sm text-gray-500">
-              Institute of Overseas Education Services (IOES) is a premier
-              education consultancy helping students achieve their dreams of
-              studying abroad.
-            </p>
-            <div className="flex gap-4">
-              {["Facebook", "Instagram", "Twitter", "LinkedIn"].map(
-                (social, index) => (
-                  <Button
-                    key={index}
-                    variant="ghost"
-                    size="icon"
-                    className="h-8 w-8"
-                  >
-                    <span className="sr-only">{social}</span>
-                    <div className="h-4 w-4 rounded-full bg-gray-300" />
-                  </Button>
-                )
-              )}
-            </div>
-          </div>
-          <div className="space-y-4">
-            <h3 className="text-lg font-bold">Quick Links</h3>
-            <ul className="space-y-2 text-sm text-gray-500">
-              <li>
-                <Link href="#" className="hover:text-blue-800">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="#about" className="hover:text-blue-800">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="#services" className="hover:text-blue-800">
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link href="#destinations" className="hover:text-blue-800">
-                  Study Destinations
-                </Link>
-              </li>
-              <li>
-                <Link href="#testimonials" className="hover:text-blue-800">
-                  Success Stories
-                </Link>
-              </li>
-              <li>
-                <Link href="#contact" className="hover:text-blue-800">
-                  Contact Us
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div className="space-y-4">
-            <h3 className="text-lg font-bold">Study Destinations</h3>
-            <ul className="space-y-2 text-sm text-gray-500">
-              <li>
-                <Link href="#" className="hover:text-blue-800">
-                  United States
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-blue-800">
-                  United Kingdom
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-blue-800">
-                  Canada
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-blue-800">
-                  Australia
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-blue-800">
-                  New Zealand
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-blue-800">
-                  Germany
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div className="space-y-4">
-            <h3 className="text-lg font-bold">Contact Information</h3>
-            <ul className="space-y-2 text-sm text-gray-500">
-              <li className="flex items-start gap-2">
-                <MapPin className="h-4 w-4 text-blue-800" />
-                <span>123 Education Street, Delhi, India</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Phone className="h-4 w-4 text-blue-800" />
-                <span>+91 98765 43210</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Mail className="h-4 w-4 text-blue-800" />
-                <span>info@ioes.in</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Clock className="h-4 w-4 text-blue-800" />
-                <span>Monday - Saturday: 10:00 AM - 6:00 PM</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className="container mt-8 border-t pt-8 px-4 md:px-6">
-          <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-            <p className="text-xs text-gray-500">
-              &copy; {new Date().getFullYear()} IOES. All rights reserved.
-            </p>
-            <nav className="flex gap-4 sm:gap-6">
-              <Link
-                href="#"
-                className="text-xs text-gray-500 hover:underline underline-offset-4"
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                href="#"
-                className="text-xs text-gray-500 hover:underline underline-offset-4"
-              >
-                Terms of Service
-              </Link>
-              <Link
-                href="#"
-                className="text-xs text-gray-500 hover:underline underline-offset-4"
-              >
-                Cookie Policy
-              </Link>
-            </nav>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
