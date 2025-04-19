@@ -1,4 +1,4 @@
-import { ServicePage } from "@/components/service-page";
+import ServicePage from "@/components/service-page";
 import { CreditCard } from "lucide-react";
 
 const loanData = {

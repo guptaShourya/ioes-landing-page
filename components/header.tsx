@@ -91,7 +91,7 @@ export function Header() {
 
       {/* Dropdown Menu for Smaller Screens */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white border-t">
+        <div className="absolute top-full left-0 w-full bg-white border-t shadow-md z-40">
           <nav className="flex flex-col gap-4 p-4">
             <Link
               href="/#about"
