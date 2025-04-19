@@ -58,8 +58,13 @@ export function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/#destinations" className="hover:text-blue-800">
-                Study Destinations
+              <Link href="/study-abroad" className="hover:text-blue-800">
+                Study Abroad
+              </Link>
+            </li>
+            <li>
+              <Link href="/scholarships" className="hover:text-blue-800">
+                Scholarships
               </Link>
             </li>
             <li>

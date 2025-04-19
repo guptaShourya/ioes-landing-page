@@ -49,13 +49,13 @@ export function Header() {
             Scholarships
           </Link>
           <Link
-            href="/#testimonials"
+            href="/success-stories"
             className="text-sm font-medium hover:text-primary"
           >
             Success Stories
           </Link>
           <Link
-            href="/#contact"
+            href="/`contact"
             className="text-sm font-medium hover:text-primary"
           >
             Contact
