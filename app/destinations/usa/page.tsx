@@ -6,11 +6,11 @@ import {
   Landmark,
   BookOpen,
   Building,
+  Briefcase,
   Lightbulb,
   Heart,
+  Book,
   DollarSign,
-  Users,
-  Briefcase,
 } from "lucide-react";
 
 const usaData: DestinationData = {
@@ -48,7 +48,7 @@ const usaData: DestinationData = {
     },
     { name: "Computer Science", icon: <Lightbulb className="h-6 w-6" /> },
     { name: "Medicine & Healthcare", icon: <Heart className="h-6 w-6" /> },
-    { name: "Arts & Humanities", icon: <Users className="h-6 w-6" /> },
+    { name: "Arts & Humanities", icon: <Book className="h-6 w-6" /> },
     { name: "Natural Sciences", icon: <Globe className="h-6 w-6" /> },
   ],
   visa: {
@@ -81,6 +81,72 @@ const usaData: DestinationData = {
       "Many US universities offer generous scholarships to international students based on academic merit, leadership potential, and financial need. Our counselors can help you identify and apply for scholarships that match your profile.",
     image: "/placeholder.svg?height=200&width=300",
   },
+  universities: [
+    {
+      name: "Harvard University",
+      location: "Cambridge, Massachusetts",
+      description:
+        "One of the most prestigious universities in the world, known for its excellence in law, business, and medicine.",
+      image: "/placeholder.svg?height=100&width=100&query=Harvard University",
+    },
+    {
+      name: "Stanford University",
+      location: "Stanford, California",
+      description:
+        "A leader in innovation and entrepreneurship, Stanford excels in engineering, computer science, and business.",
+      image: "/placeholder.svg?height=100&width=100&query=Stanford University",
+    },
+    {
+      name: "Massachusetts Institute of Technology (MIT)",
+      location: "Cambridge, Massachusetts",
+      description:
+        "Renowned for its cutting-edge research and programs in engineering, technology, and sciences.",
+      image: "/placeholder.svg?height=100&width=100&query=MIT University",
+    },
+    {
+      name: "University of California, Berkeley",
+      location: "Berkeley, California",
+      description:
+        "Known for its strong emphasis on research and innovation, Berkeley is a top choice for science and engineering.",
+      image: "/placeholder.svg?height=100&width=100&query=UC Berkeley",
+    },
+    {
+      name: "University of Chicago",
+      location: "Chicago, Illinois",
+      description:
+        "A world leader in economics, social sciences, and law, with a strong focus on critical thinking and research.",
+      image:
+        "/placeholder.svg?height=100&width=100&query=University of Chicago",
+    },
+  ],
+  admissionRequirements: {
+    undergraduate: [
+      "Completed high school with strong academic performance (GPA 3.0 or higher)",
+      "Standardized test scores: SAT/ACT (optional for some universities)",
+      "English proficiency: TOEFL (80-100), IELTS (6.5-7.0), or equivalent",
+      "Personal statement or essay",
+      "Letters of recommendation",
+      "Extracurricular activities and leadership roles",
+    ],
+    postgraduate: [
+      "Bachelor's degree with a strong academic record (GPA 3.0 or higher)",
+      "Standardized test scores: GRE/GMAT (required for some programs)",
+      "English proficiency: TOEFL (90-100), IELTS (6.5-7.5), or equivalent",
+      "Statement of purpose (SOP)",
+      "Letters of recommendation",
+      "Work experience (for MBA and professional programs)",
+    ],
+  },
+  intakes: {
+    primary: ["August/September (Fall Intake)"],
+    secondary: ["January (Spring Intake)"],
+    applicationDeadlines: {
+      undergraduate:
+        "Early decision: November; Regular decision: January-March",
+      postgraduate:
+        "Varies by program, typically 6-12 months before the intended start date",
+    },
+  },
   careers: {
     title: "Global Career Pathways",
     description:
@@ -94,6 +160,6 @@ const usaData: DestinationData = {
   },
 };
 
-export default function usaPage() {
+export default function USAPage() {
   return <DestinationPage data={usaData} />;
 }
