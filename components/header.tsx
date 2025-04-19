@@ -43,6 +43,12 @@ export function Header() {
             Study Abroad
           </Link>
           <Link
+            href="/scholarships"
+            className="text-sm font-medium hover:text-primary"
+          >
+            Scholarships
+          </Link>
+          <Link
             href="/#testimonials"
             className="text-sm font-medium hover:text-primary"
           >
