@@ -1,3 +1,5 @@
+"use client";
+
 import type React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,6 +14,8 @@ import {
   Users,
 } from "lucide-react";
 import { Footer } from "./footer";
+import { usePopup } from "@/hooks/use-popup";
+import { CounselingFormPopup } from "./counselling-form-popup";
 
 export interface ScholarshipType {
   title: string;
@@ -60,6 +64,8 @@ interface ScholarshipCountryPageProps {
 }
 
 export function ScholarshipCountryPage({ data }: ScholarshipCountryPageProps) {
+  const { isOpen, openPopup, closePopup } = usePopup();
+
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
@@ -100,15 +106,15 @@ export function ScholarshipCountryPage({ data }: ScholarshipCountryPageProps) {
               <Button
                 size="lg"
                 className="bg-white text-blue-800 hover:bg-white/90"
+                onClick={openPopup}
               >
                 Find {data.country} Scholarships
               </Button>
               <Button
-                variant="outline"
                 size="lg"
-                className="border-white text-white hover:bg-white/20"
+                className="border-white text-white bg-indigo-800 hover:text-indigo-800 hover:bg-white"
               >
-                Get Application Support
+                <Link href="/contact">Get Application Support</Link>
               </Button>
             </div>
           </div>
@@ -131,7 +137,10 @@ export function ScholarshipCountryPage({ data }: ScholarshipCountryPageProps) {
                   </div>
                 </div>
                 <div className="pt-4">
-                  <Button className="bg-blue-800 hover:bg-blue-900">
+                  <Button
+                    className="bg-blue-800 hover:bg-blue-900"
+                    onClick={openPopup}
+                  >
                     Explore All {data.country} Scholarships
                     <ChevronRight className="ml-2 h-4 w-4" />
                   </Button>
@@ -228,7 +237,7 @@ export function ScholarshipCountryPage({ data }: ScholarshipCountryPageProps) {
                           <span className="text-sm font-medium text-gray-500">
                             Provider:
                           </span>
-                          <span className="font-medium">
+                          <span className="font-medium text-align:right">
                             {scholarship.provider}
                           </span>
                         </div>
@@ -236,7 +245,7 @@ export function ScholarshipCountryPage({ data }: ScholarshipCountryPageProps) {
                           <span className="text-sm font-medium text-gray-500">
                             Amount:
                           </span>
-                          <span className="font-medium">
+                          <span className="font-medium text-align:right">
                             {scholarship.amount}
                           </span>
                         </div>
@@ -244,7 +253,7 @@ export function ScholarshipCountryPage({ data }: ScholarshipCountryPageProps) {
                           <span className="text-sm font-medium text-gray-500">
                             Deadline:
                           </span>
-                          <span className="font-medium">
+                          <span className="font-medium text-align:right">
                             {scholarship.deadline}
                           </span>
                         </div>
@@ -312,7 +321,7 @@ export function ScholarshipCountryPage({ data }: ScholarshipCountryPageProps) {
                           <span className="text-sm font-medium text-gray-500">
                             Provider:
                           </span>
-                          <span className="font-medium">
+                          <span className="font-medium text-align:right">
                             {scholarship.provider}
                           </span>
                         </div>
@@ -320,7 +329,7 @@ export function ScholarshipCountryPage({ data }: ScholarshipCountryPageProps) {
                           <span className="text-sm font-medium text-gray-500">
                             Amount:
                           </span>
-                          <span className="font-medium">
+                          <span className="font-medium text-align:right">
                             {scholarship.amount}
                           </span>
                         </div>
@@ -328,7 +337,7 @@ export function ScholarshipCountryPage({ data }: ScholarshipCountryPageProps) {
                           <span className="text-sm font-medium text-gray-500">
                             Deadline:
                           </span>
-                          <span className="font-medium">
+                          <span className="font-medium text-align:right">
                             {scholarship.deadline}
                           </span>
                         </div>
@@ -396,7 +405,7 @@ export function ScholarshipCountryPage({ data }: ScholarshipCountryPageProps) {
                           <span className="text-sm font-medium text-gray-500">
                             Provider:
                           </span>
-                          <span className="font-medium">
+                          <span className="font-medium text-align:right">
                             {scholarship.provider}
                           </span>
                         </div>
@@ -404,7 +413,7 @@ export function ScholarshipCountryPage({ data }: ScholarshipCountryPageProps) {
                           <span className="text-sm font-medium text-gray-500">
                             Amount:
                           </span>
-                          <span className="font-medium">
+                          <span className="font-medium text-align:right">
                             {scholarship.amount}
                           </span>
                         </div>
@@ -412,7 +421,7 @@ export function ScholarshipCountryPage({ data }: ScholarshipCountryPageProps) {
                           <span className="text-sm font-medium text-gray-500">
                             Deadline:
                           </span>
-                          <span className="font-medium">
+                          <span className="font-medium text-align:right">
                             {scholarship.deadline}
                           </span>
                         </div>
@@ -586,11 +595,6 @@ export function ScholarshipCountryPage({ data }: ScholarshipCountryPageProps) {
                     </span>
                   </li>
                 </ul>
-                <div className="pt-4">
-                  <Button className="bg-white text-blue-800 hover:bg-white/90">
-                    Get {data.country} Scholarship Guidance
-                  </Button>
-                </div>
               </div>
               <div className="flex items-center justify-center">
                 <Image
@@ -624,13 +628,14 @@ export function ScholarshipCountryPage({ data }: ScholarshipCountryPageProps) {
                 <Button
                   size="lg"
                   className="bg-white text-blue-800 hover:bg-white/90"
+                  onClick={openPopup}
                 >
                   Book a Scholarship Consultation
                 </Button>
                 <Button
                   variant="outline"
                   size="lg"
-                  className="border-white text-white hover:bg-white/20"
+                  className="border-white text-white bg-indigo-800 hover:text-indigo-800 hover:bg-white"
                 >
                   Download {data.country} Scholarship Guide
                 </Button>
@@ -639,6 +644,7 @@ export function ScholarshipCountryPage({ data }: ScholarshipCountryPageProps) {
           </div>
         </section>
       </main>
+      <CounselingFormPopup isOpen={isOpen} onClose={closePopup} />
 
       <Footer />
     </div>

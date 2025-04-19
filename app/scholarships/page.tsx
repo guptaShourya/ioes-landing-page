@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -19,6 +21,8 @@ import {
   Briefcase,
 } from "lucide-react";
 import { Footer } from "@/components/footer";
+import { usePopup } from "@/hooks/use-popup";
+import { CounselingFormPopup } from "@/components/counselling-form-popup";
 
 const scholarshipTypes = [
   {
@@ -237,6 +241,8 @@ const applicationSteps = [
 ];
 
 export default function ScholarshipsPage() {
+  const { isOpen, openPopup, closePopup } = usePopup();
+
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
@@ -267,15 +273,15 @@ export default function ScholarshipsPage() {
               <Button
                 size="lg"
                 className="bg-white text-blue-800 hover:bg-white/90"
+                onClick={openPopup}
               >
                 Find Scholarships
               </Button>
               <Button
-                variant="outline"
                 size="lg"
-                className="border-white text-white hover:bg-white/20"
+                className="border-white text-white bg-indigo-800 hover:text-indigo-800 hover:bg-white"
               >
-                Get Application Support
+                <Link href="/contact">Get Application Support</Link>
               </Button>
             </div>
           </div>
@@ -474,12 +480,6 @@ export default function ScholarshipsPage() {
                     </tbody>
                   </table>
                 </div>
-              </div>
-              <div className="mt-6 text-center">
-                <Button className="bg-blue-800 hover:bg-blue-900">
-                  View All Scholarships
-                  <ChevronRight className="ml-2 h-4 w-4" />
-                </Button>
               </div>
             </div>
           </div>
@@ -687,11 +687,6 @@ export default function ScholarshipsPage() {
                     </span>
                   </li>
                 </ul>
-                <div className="pt-4">
-                  <Button className="bg-white text-blue-800 hover:bg-white/90">
-                    Get Scholarship Guidance
-                  </Button>
-                </div>
               </div>
               <div className="flex items-center justify-center">
                 <Image
@@ -724,13 +719,14 @@ export default function ScholarshipsPage() {
                 <Button
                   size="lg"
                   className="bg-white text-blue-800 hover:bg-white/90"
+                  onClick={openPopup}
                 >
                   Book a Scholarship Consultation
                 </Button>
                 <Button
                   variant="outline"
                   size="lg"
-                  className="border-white text-white hover:bg-white/20"
+                  className="border-white text-white bg-indigo-800 hover:text-indigo-800 hover:bg-white"
                 >
                   Download Scholarship Guide
                 </Button>
@@ -739,6 +735,7 @@ export default function ScholarshipsPage() {
           </div>
         </section>
       </main>
+      <CounselingFormPopup isOpen={isOpen} onClose={closePopup} />
 
       <Footer />
     </div>
