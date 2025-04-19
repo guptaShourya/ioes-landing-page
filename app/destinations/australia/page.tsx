@@ -9,6 +9,8 @@ import {
   Briefcase,
   Lightbulb,
   Heart,
+  Book,
+  Hotel,
 } from "lucide-react";
 
 const australiaData: DestinationData = {
@@ -16,8 +18,8 @@ const australiaData: DestinationData = {
   slug: "australia",
   overview:
     "Australia offers a world-class education system with innovative teaching approaches in a stunning natural environment. Known for its friendly, laid-back culture and high quality of life, Australia provides international students with excellent academic opportunities, cultural diversity, and post-study work rights, making it an increasingly popular destination for Indian students.",
-  image: "/placeholder.svg?height=500&width=800",
-  flag: "/placeholder.svg?height=30&width=50",
+  image: "/UKDestinationBG.jpg",
+  flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/AU.svg",
   reasons: [
     {
       title: "World-Class Education",
@@ -47,7 +49,10 @@ const australiaData: DestinationData = {
     { name: "Business & Management", icon: <Building className="h-6 w-6" /> },
     { name: "Healthcare & Medicine", icon: <Heart className="h-6 w-6" /> },
     { name: "Environmental Studies", icon: <Globe className="h-6 w-6" /> },
-    { name: "Creative Arts & Design", icon: <BookOpen className="h-6 w-6" /> },
+    {
+      name: "Creative Arts & Design",
+      icon: <BookOpen className="h-6 w-6" />,
+    },
   ],
   visa: {
     title: "Student Visa (Subclass 500)",
@@ -86,42 +91,43 @@ const australiaData: DestinationData = {
       location: "Melbourne, Victoria",
       description:
         "Australia's leading university with exceptional strength in medicine, engineering, and humanities.",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "/placeholder.svg?height=100&width=100&query=Melbourne University",
     },
     {
       name: "University of Sydney",
       location: "Sydney, New South Wales",
       description:
         "Historic institution known for research excellence and beautiful campus in Australia's largest city.",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "/placeholder.svg?height=100&width=100&query=Sydney University",
     },
     {
       name: "Australian National University",
       location: "Canberra, Australian Capital Territory",
       description:
         "Research-intensive university with strong connections to government and policy development.",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "/placeholder.svg?height=100&width=100&query=ANU University",
     },
     {
       name: "University of Queensland",
       location: "Brisbane, Queensland",
       description:
         "Leading institution for life sciences, agriculture, and environmental studies.",
-      image: "/placeholder.svg?height=100&width=100",
+      image:
+        "/placeholder.svg?height=100&width=100&query=Queensland University",
     },
     {
       name: "Monash University",
       location: "Melbourne, Victoria",
       description:
         "Innovative university with global outlook and strength in pharmacy, engineering, and business.",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "/placeholder.svg?height=100&width=100&query=Monash University",
     },
     {
       name: "University of New South Wales",
       location: "Sydney, New South Wales",
       description:
         "Known for excellence in engineering, technology, and business with strong industry connections.",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "/placeholder.svg?height=100&width=100&query=UNSW University",
     },
   ],
   admissionRequirements: {
@@ -151,16 +157,17 @@ const australiaData: DestinationData = {
         "Varies by university and program, generally 3-6 months before intended start date",
     },
   },
-  workOpportunities: {
-    duringStudy:
-      "Up to 40 hours per fortnight during academic sessions, unlimited during scheduled breaks",
-    afterGraduation:
-      "Post-Study Work visa for 2-4 years depending on qualification level and location of study",
-    careerProspects:
-      "Strong opportunities in healthcare, engineering, IT, education, and hospitality sectors",
+  careers: {
+    title: "Graduate Route Visa",
+    description:
+      "The Graduate Route allows international students to stay in the UK for 2 years after graduation (3 years for PhD graduates) to work or look for work, providing valuable international experience.",
+    industries: [
+      { name: "Healthcare", icon: <Heart className="h-6 w-6" /> },
+      { name: "Technology", icon: <Lightbulb className="h-6 w-6" /> },
+      { name: "Education", icon: <Book className="h-6 w-6" /> },
+      { name: "Hospitality Sectors", icon: <Hotel className="h-6 w-6" /> },
+    ],
   },
-  pathwayToResidency:
-    "Australia offers pathways to permanent residency through skilled migration programs. Graduates can apply for permanent residency through the General Skilled Migration program if their occupation is on the skilled occupation list. Studying in regional areas provides additional immigration advantages.",
 };
 
 export default function AustraliaPage() {

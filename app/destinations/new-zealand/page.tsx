@@ -9,6 +9,8 @@ import {
   Briefcase,
   Lightbulb,
   Heart,
+  Shovel,
+  Plane,
 } from "lucide-react";
 
 const newZealandData: DestinationData = {
@@ -17,7 +19,7 @@ const newZealandData: DestinationData = {
   overview:
     "New Zealand offers a high-quality education system with a focus on practical, hands-on learning in a breathtaking natural environment. Known for its safe, welcoming society and excellent quality of life, New Zealand provides international students with innovative teaching approaches, personalized attention, and post-study work opportunities in a country that values work-life balance.",
   image: "/placeholder.svg?height=500&width=800",
-  flag: "/placeholder.svg?height=30&width=50",
+  flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/NZ.svg",
   reasons: [
     {
       title: "Quality Education",
@@ -150,16 +152,17 @@ const newZealandData: DestinationData = {
         "Varies by university and program, generally 3-6 months before intended start date",
     },
   },
-  workOpportunities: {
-    duringStudy:
-      "Up to 20 hours per week during academic sessions, full-time during scheduled breaks",
-    afterGraduation:
-      "Post-study work visa for 1-3 years depending on qualification level and location of study",
-    careerProspects:
-      "Strong opportunities in agriculture, tourism, healthcare, IT, and engineering sectors",
+  careers: {
+    title: "Graduate Route Visa",
+    description:
+      "The Graduate Route allows international students to stay in the UK for 2 years after graduation (3 years for PhD graduates) to work or look for work, providing valuable international experience.",
+    industries: [
+      { name: "Agriculture", icon: <Shovel className="h-6 w-6" /> },
+      { name: "Technology", icon: <Lightbulb className="h-6 w-6" /> },
+      { name: "Tourism", icon: <Plane className="h-6 w-6" /> },
+      { name: "Healthcare", icon: <Heart className="h-6 w-6" /> },
+    ],
   },
-  pathwayToResidency:
-    "New Zealand offers pathways to permanent residency through the Skilled Migrant Category. Graduates can apply for permanent residency if their occupation is on the skill shortage list and they meet other criteria. Study experience in New Zealand adds points to the residency application.",
 };
 
 export default function NewZealandPage() {

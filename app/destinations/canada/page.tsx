@@ -9,6 +9,7 @@ import {
   Briefcase,
   Lightbulb,
   Heart,
+  Shovel,
 } from "lucide-react";
 
 const canadaData: DestinationData = {
@@ -17,7 +18,7 @@ const canadaData: DestinationData = {
   overview:
     "Canada offers world-class education with a welcoming, multicultural environment and affordable tuition compared to many other English-speaking destinations. Known for its high quality of life, safety, and post-graduation work opportunities, Canada has become a top choice for international students seeking both academic excellence and future career prospects.",
   image: "/placeholder.svg?height=500&width=800",
-  flag: "/placeholder.svg?height=30&width=50",
+  flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/CA.svg",
   reasons: [
     {
       title: "Quality Education",
@@ -150,16 +151,17 @@ const canadaData: DestinationData = {
         "Varies by university and program, generally 6-12 months before intended start date",
     },
   },
-  workOpportunities: {
-    duringStudy:
-      "Up to 20 hours per week during academic sessions, full-time during scheduled breaks",
-    afterGraduation:
-      "Post-Graduation Work Permit (PGWP) allowing work for up to 3 years, depending on study program length",
-    careerProspects:
-      "Strong opportunities in technology, healthcare, engineering, natural resources, and business sectors",
+  careers: {
+    title: "Graduate Route Visa",
+    description:
+      "The Graduate Route allows international students to stay in the UK for 2 years after graduation (3 years for PhD graduates) to work or look for work, providing valuable international experience.",
+    industries: [
+      { name: "Engineering", icon: <Lightbulb className="h-6 w-6" /> },
+      { name: "Healthcare", icon: <Heart className="h-6 w-6" /> },
+      { name: "Business Sectors", icon: <Briefcase className="h-6 w-6" /> },
+      { name: "Natural Resources", icon: <Shovel className="h-6 w-6" /> },
+    ],
   },
-  pathwayToResidency:
-    "Canada offers clear pathways to permanent residency for international students through programs like Express Entry and Provincial Nominee Programs. Study experience, Canadian work experience, and language proficiency contribute significantly to immigration eligibility.",
 };
 
 export default function CanadaPage() {

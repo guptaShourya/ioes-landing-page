@@ -9,6 +9,9 @@ import {
   Briefcase,
   Lightbulb,
   Heart,
+  Car,
+  Factory,
+  Beaker,
 } from "lucide-react";
 
 const germanyData: DestinationData = {
@@ -17,7 +20,7 @@ const germanyData: DestinationData = {
   overview:
     "Germany offers world-class education with little to no tuition fees at public universities, making it an exceptionally affordable study destination. Known for its engineering excellence, innovative research, and strong economy, Germany provides international students with high-quality education, diverse cultural experiences, and excellent career opportunities in the heart of Europe.",
   image: "/placeholder.svg?height=500&width=800",
-  flag: "/placeholder.svg?height=30&width=50",
+  flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/DE.svg",
   reasons: [
     {
       title: "Tuition-Free Education",
@@ -151,15 +154,17 @@ const germanyData: DestinationData = {
         "Varies by program, generally 3-6 months before semester start",
     },
   },
-  workOpportunities: {
-    duringStudy: "Up to 120 full days or 240 half days per year",
-    afterGraduation:
-      "18-month residence permit to seek employment; can be extended into a work permit once a job is found",
-    careerProspects:
-      "Strong opportunities in engineering, IT, automotive, manufacturing, and research sectors",
+  careers: {
+    title: "Graduate Route Visa",
+    description:
+      "The Graduate Route allows international students to stay in the UK for 2 years after graduation (3 years for PhD graduates) to work or look for work, providing valuable international experience.",
+    industries: [
+      { name: "Automotive", icon: <Car className="h-6 w-6" /> },
+      { name: "Manufacturing", icon: <Factory className="h-6 w-6" /> },
+      { name: "Engineering", icon: <Lightbulb className="h-6 w-6" /> },
+      { name: "Research Sectors", icon: <Beaker className="h-6 w-6" /> },
+    ],
   },
-  pathwayToResidency:
-    "Germany offers pathways to permanent residency for international graduates. After working for 24 months with a German degree, graduates can apply for permanent residency. Proficiency in German language and integration into German society are important factors for successful residency applications.",
 };
 
 export default function GermanyPage() {

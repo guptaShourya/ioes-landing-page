@@ -55,7 +55,7 @@ export function Header() {
             Success Stories
           </Link>
           <Link
-            href="/`contact"
+            href="/contact"
             className="text-sm font-medium hover:text-primary"
           >
             Contact
