@@ -1,3 +1,5 @@
+"use client";
+
 import type React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,16 +9,15 @@ import {
   CreditCard,
   Award,
   ChevronRight,
-  MapPin,
   Clock,
   CheckCircle2,
-  Phone,
-  Mail,
   Heart,
   Home,
 } from "lucide-react";
 import { Header } from "./header";
 import { Footer } from "./footer";
+import { CounselingFormPopup } from "./counselling-form-popup";
+import { usePopup } from "@/hooks/use-popup";
 
 // Define the types for our data structure
 export interface DestinationData {
@@ -87,6 +88,8 @@ interface DestinationPageProps {
 }
 
 export function DestinationPage({ data }: DestinationPageProps) {
+  const { isOpen, openPopup, closePopup } = usePopup();
+
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
@@ -125,6 +128,7 @@ export function DestinationPage({ data }: DestinationPageProps) {
               <Button
                 size="lg"
                 className="bg-blue-800 hover:bg-blue-900 hover:shadow-md"
+                onClick={openPopup}
               >
                 Get Free Counselling
               </Button>
@@ -133,7 +137,9 @@ export function DestinationPage({ data }: DestinationPageProps) {
                 size="lg"
                 className="border-white text-blue-800 bg-white hover:bg-blue-900 hover:text-white"
               >
-                Explore Programs
+                <Link href={`/destinations/${data.slug}/programs`}>
+                  Explore Programs
+                </Link>
               </Button>
             </div>
           </div>
@@ -204,10 +210,12 @@ export function DestinationPage({ data }: DestinationPageProps) {
               ))}
             </div>
             <div className="flex justify-center">
-              <Button className="bg-blue-800 hover:bg-blue-900">
-                Explore All Programs
-                <ChevronRight className="ml-2 h-4 w-4" />
-              </Button>
+              <Link href={`/destinations/${data.slug}/programs`}>
+                <Button className="bg-blue-800 hover:bg-blue-900">
+                  Explore Programs
+                  <ChevronRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
             </div>
           </div>
         </section>
@@ -237,9 +245,12 @@ export function DestinationPage({ data }: DestinationPageProps) {
                   ))}
                 </ul>
                 <div className="pt-4">
-                  <Button className="bg-blue-800 hover:bg-blue-900">
-                    Get Visa Assistance
-                  </Button>
+                  <Link href="/contact">
+                    <Button className="bg-blue-800 hover:bg-blue-900">
+                      Get Visa Assistance
+                      <ChevronRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
                 </div>
               </div>
               <div className="flex items-center justify-center">
@@ -320,7 +331,9 @@ export function DestinationPage({ data }: DestinationPageProps) {
                   className="my-4 rounded-lg object-cover"
                 />
                 <Button variant="outline" className="w-full">
-                  Learn More About Lifestyle
+                  <Link href={`/destinations/${data.slug}/culture`}>
+                    Learn More About Lifestyle
+                  </Link>
                 </Button>
               </div>
 
@@ -341,7 +354,9 @@ export function DestinationPage({ data }: DestinationPageProps) {
                   className="my-4 rounded-lg object-cover"
                 />
                 <Button variant="outline" className="w-full">
-                  Learn More About Costs
+                  <Link href={`/destinations/${data.slug}/cost`}>
+                    Learn More About Cost of Living
+                  </Link>
                 </Button>
               </div>
 
@@ -362,7 +377,9 @@ export function DestinationPage({ data }: DestinationPageProps) {
                   className="my-4 rounded-lg object-cover"
                 />
                 <Button variant="outline" className="w-full">
-                  Learn More About Scholarships
+                  <Link href={`/scholarships/${data.slug}`}>
+                    Learn More About Scholarships
+                  </Link>
                 </Button>
               </div>
             </div>
@@ -391,7 +408,7 @@ export function DestinationPage({ data }: DestinationPageProps) {
                 {data.universities.map((university, index) => (
                   <div
                     key={index}
-                    className="flex flex-col space-y-4 rounded-lg border bg-white p-6 shadow-sm transition-all hover:shadow-md"
+                    className="flex flex-col space-y-4 justify-between rounded-lg border bg-white p-6 shadow-sm transition-all hover:shadow-md"
                   >
                     <div className="flex items-center gap-4">
                       <Image
@@ -436,9 +453,12 @@ export function DestinationPage({ data }: DestinationPageProps) {
                   </p>
                 </div>
                 <div className="pt-4">
-                  <Button className="bg-blue-800 hover:bg-blue-900">
-                    Learn More About Career Options
-                  </Button>
+                  <Link href={`/destinations/${data.slug}/careers`}>
+                    <Button className="bg-blue-800 hover:bg-blue-900">
+                      Explore Career Options
+                      <ChevronRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
@@ -554,7 +574,7 @@ export function DestinationPage({ data }: DestinationPageProps) {
                             {data.intakes.secondary.map((intake, index) => (
                               <li
                                 key={index}
-                                className="flex items-center gap-2 ml-4"
+                                className="flex items-center gap-2"
                               >
                                 <Clock className="h-5 w-5 text-blue-800" />
                                 <span>{intake}</span>
@@ -676,13 +696,14 @@ export function DestinationPage({ data }: DestinationPageProps) {
                 <Button
                   size="lg"
                   className="bg-white text-blue-800 hover:bg-white/90"
+                  onClick={openPopup}
                 >
                   Book a Free Consultation
                 </Button>
                 <Button
                   variant="outline"
                   size="lg"
-                  className="border-white text-white hover:bg-white/20"
+                  className="border-white text-white bg-blue-800 hover:bg-white hover:text-blue-800"
                 >
                   Download Country Guide
                 </Button>
@@ -691,6 +712,7 @@ export function DestinationPage({ data }: DestinationPageProps) {
           </div>
         </section>
       </main>
+      <CounselingFormPopup isOpen={isOpen} onClose={closePopup} />
 
       <Footer />
     </div>
