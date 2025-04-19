@@ -131,7 +131,7 @@ export default function ServicesPage() {
                 <Link
                   key={service.slug}
                   href={`/services/${service.slug}`}
-                  className="flex flex-col items-center space-y-4 rounded-lg border bg-white p-6 shadow-sm transition-all hover:shadow-md"
+                  className="flex flex-col justify-between items-center space-y-4 rounded-lg border bg-white p-6 shadow-sm transition-all hover:shadow-md"
                 >
                   <div className="text-blue-800">{service.icon}</div>
                   <h3 className="text-xl font-bold">{service.name}</h3>

@@ -1,10 +1,14 @@
+"use client";
+
 import type React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Header } from "@/components/header";
-import { CheckCircle2, MapPin, Phone, Mail, Clock } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import { Footer } from "./footer";
+import { CounselingFormPopup } from "./counselling-form-popup";
+import { usePopup } from "@/hooks/use-popup";
 
 export interface ServicePartner {
   name: string;
@@ -45,6 +49,8 @@ interface ServicePageProps {
 }
 
 export default function ServicePage({ data }: ServicePageProps) {
+  const { isOpen, openPopup, closePopup } = usePopup();
+
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
@@ -67,7 +73,11 @@ export default function ServicePage({ data }: ServicePageProps) {
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                  <Button size="lg" className="bg-blue-800 hover:bg-blue-900">
+                  <Button
+                    size="lg"
+                    className="bg-blue-800 hover:bg-blue-900"
+                    onClick={openPopup}
+                  >
                     Get Free Consultation
                   </Button>
                   <Button variant="outline" size="lg">
@@ -155,56 +165,60 @@ export default function ServicePage({ data }: ServicePageProps) {
         </section>
 
         {/* Partners Section */}
-        <section className="w-full py-12 md:py-24 bg-white">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
-                  Our Partners
+        {data.globalPartners && data.globalPartners.length > 0 && (
+          <section className="w-full py-12 md:py-24 bg-white">
+            <div className="container px-4 md:px-6">
+              <div className="flex flex-col items-center justify-center space-y-4 text-center">
+                <div className="space-y-2">
+                  <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
+                    Our Partners
+                  </div>
+                  <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                    Global Partners
+                  </h2>
+                  <p className="max-w-[700px] text-gray-500 md:text-xl/relaxed">
+                    We collaborate with leading organizations worldwide to
+                    provide you with the best services.
+                  </p>
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-                  Global Partners
-                </h2>
-                <p className="max-w-[700px] text-gray-500 md:text-xl/relaxed">
-                  We collaborate with leading organizations worldwide to provide
-                  you with the best services.
-                </p>
+              </div>
+              <div className="mx-auto grid max-w-5xl gap-8 py-12 md:grid-cols-2 lg:grid-cols-3">
+                {data.globalPartners.map((partner, index) => (
+                  <div
+                    key={index}
+                    className="flex flex-col justify-evenly items-center space-y-4 rounded-lg border p-6 shadow-sm"
+                  >
+                    <Image
+                      src={
+                        partner.logo || "/placeholder.svg?height=80&width=160"
+                      }
+                      alt={partner.name}
+                      width={160}
+                      height={80}
+                      className="h-20 object-contain"
+                    />
+                    <h3 className="text-xl font-bold">{partner.name}</h3>
+                    <p className="text-center text-gray-500">
+                      {partner.description}
+                    </p>
+                    <Button variant="outline" asChild>
+                      <Link
+                        href={partner.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Visit Website
+                      </Link>
+                    </Button>
+                  </div>
+                ))}
               </div>
             </div>
-            <div className="mx-auto grid max-w-5xl gap-8 py-12 md:grid-cols-2 lg:grid-cols-3">
-              {data.globalPartners.map((partner, index) => (
-                <div
-                  key={index}
-                  className="flex flex-col items-center space-y-4 rounded-lg border p-6 shadow-sm"
-                >
-                  <Image
-                    src={partner.logo || "/placeholder.svg?height=80&width=160"}
-                    alt={partner.name}
-                    width={160}
-                    height={80}
-                    className="h-20 object-contain"
-                  />
-                  <h3 className="text-xl font-bold">{partner.name}</h3>
-                  <p className="text-center text-gray-500">
-                    {partner.description}
-                  </p>
-                  <Button variant="outline" asChild>
-                    <Link
-                      href={partner.website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Visit Website
-                    </Link>
-                  </Button>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         {/* Country-Specific Partners Section */}
-        {data.countryPartners.length > 0 && (
+        {/* {data.countryPartners.length > 0 && (
           <section className="w-full py-12 md:py-24 bg-gray-50">
             <div className="container px-4 md:px-6">
               <div className="flex flex-col items-center justify-center space-y-4 text-center">
@@ -273,7 +287,7 @@ export default function ServicePage({ data }: ServicePageProps) {
               </div>
             </div>
           </section>
-        )}
+        )} */}
 
         {/* FAQs Section */}
         <section className="w-full py-12 md:py-24 bg-white">
@@ -322,21 +336,23 @@ export default function ServicePage({ data }: ServicePageProps) {
                 <Button
                   size="lg"
                   className="bg-white text-blue-800 hover:bg-white/90"
+                  onClick={openPopup}
                 >
                   Book a Free Consultation
                 </Button>
                 <Button
                   variant="outline"
                   size="lg"
-                  className="bg-white text-blue-800 hover:bg-white/90"
+                  className="text-white bg-blue-800 hover:bg-white hover:text-blue-800"
                 >
-                  Explore Other Services
+                  <Link href="/services">Explore Other Services</Link>
                 </Button>
               </div>
             </div>
           </div>
         </section>
       </main>
+      <CounselingFormPopup isOpen={isOpen} onClose={closePopup} />
 
       <Footer />
     </div>
