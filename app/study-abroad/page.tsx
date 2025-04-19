@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -20,6 +22,8 @@ import {
   Home,
 } from "lucide-react";
 import { Footer } from "@/components/footer";
+import { usePopup } from "@/hooks/use-popup";
+import { CounselingFormPopup } from "@/components/counselling-form-popup";
 
 const destinations = [
   {
@@ -122,6 +126,8 @@ const faqs = [
 ];
 
 export default function StudyAbroadPage() {
+  const { isOpen, openPopup, closePopup } = usePopup();
+
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
@@ -150,17 +156,20 @@ export default function StudyAbroadPage() {
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <Button
+                variant="outline"
                 size="lg"
                 className="bg-white text-indigo-900 hover:bg-white/90"
+                onClick={openPopup}
               >
-                Explore Destinations
+                Get Free Counseling
               </Button>
               <Button
-                variant="outline"
                 size="lg"
                 className="border-white text-white bg-indigo-800 hover:bg-white hover:text-indigo-800"
               >
-                Get Free Counseling
+                <Link href="/study-abroad#destinations">
+                  Explore Destinations
+                </Link>
               </Button>
             </div>
           </div>
@@ -561,7 +570,7 @@ export default function StudyAbroadPage() {
         </section>
 
         {/* Destinations Section */}
-        <section className="w-full py-12 md:py-24 bg-white">
+        <section className="w-full py-12 md:py-24 bg-white" id="destinations">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
@@ -612,7 +621,10 @@ export default function StudyAbroadPage() {
               ))}
             </div>
             <div className="flex justify-center">
-              <Button className="bg-blue-800 hover:bg-blue-900">
+              <Button
+                className="bg-blue-800 hover:bg-blue-900"
+                onClick={openPopup}
+              >
                 Get Expert Guidance
                 <ChevronRight className="ml-2 h-4 w-4" />
               </Button>
@@ -689,7 +701,7 @@ export default function StudyAbroadPage() {
                 variant="outline"
                 className="border-white text-blue-800 hover:bg-white hover:text-blue-800"
               >
-                View More Success Stories
+                <Link href="/success-stories">View More Success Stories</Link>
               </Button>
             </div>
           </div>
@@ -725,7 +737,7 @@ export default function StudyAbroadPage() {
             </div>
             <div className="flex justify-center">
               <Button className="bg-blue-800 hover:bg-blue-900">
-                Ask a Question
+                <Link href="/contact">Have More Questions?</Link>
                 <ChevronRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
@@ -750,6 +762,7 @@ export default function StudyAbroadPage() {
                 <Button
                   size="lg"
                   className="bg-white text-blue-800 hover:bg-white/90"
+                  onClick={openPopup}
                 >
                   Book a Free Consultation
                 </Button>
@@ -765,6 +778,7 @@ export default function StudyAbroadPage() {
           </div>
         </section>
       </main>
+      <CounselingFormPopup isOpen={isOpen} onClose={closePopup} />
 
       <Footer />
     </div>
