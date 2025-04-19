@@ -300,7 +300,7 @@ export default function Home() {
             </div>
             <div className="flex justify-center">
               <Button className="bg-blue-800 hover:bg-blue-900">
-                Explore All Destinations
+                <Link href="/study-abroad">Learn More</Link>
                 <ChevronRight className="ml-2 h-4 w-4" />
               </Button>
             </div>

@@ -37,10 +37,10 @@ export function Header() {
             Services
           </Link>
           <Link
-            href="/#destinations"
+            href="/study-abroad"
             className="text-sm font-medium hover:text-primary"
           >
-            Destinations
+            Study Abroad
           </Link>
           <Link
             href="/#testimonials"
@@ -108,11 +108,11 @@ export function Header() {
               Services
             </Link>
             <Link
-              href="/#destinations"
+              href="/study-abroad"
               className="text-sm font-medium hover:text-primary"
               onClick={() => setIsMenuOpen(false)} // Close menu on click
             >
-              Destinations
+              Study Abroad
             </Link>
             <Link
               href="/#testimonials"
