@@ -418,38 +418,6 @@ export default function ContactPage() {
             </div>
           </div>
         </section>
-
-        {/* CTA Section */}
-        <section className="w-full py-12 md:py-24 bg-blue-800 text-white">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-                  Ready to Start Your Journey?
-                </h2>
-                <p className="max-w-[700px] text-white/80 md:text-xl/relaxed">
-                  Contact us today for a free consultation and take the first
-                  step towards your international education.
-                </p>
-              </div>
-              <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                <Button
-                  size="lg"
-                  className="bg-white text-blue-800 hover:bg-white/90"
-                >
-                  Book a Free Consultation
-                </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="border-white text-white hover:bg-white/20"
-                >
-                  Explore Study Destinations
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
       </main>
 
       <Footer />

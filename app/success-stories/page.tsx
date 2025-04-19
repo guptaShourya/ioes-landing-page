@@ -1,12 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Header } from "@/components/header";
 import {
-  MapPin,
-  Phone,
-  Mail,
-  Clock,
   ChevronRight,
   Quote,
   GraduationCap,
@@ -15,6 +13,8 @@ import {
   Star,
 } from "lucide-react";
 import { Footer } from "@/components/footer";
+import { CounselingFormPopup } from "@/components/counselling-form-popup";
+import { usePopup } from "@/hooks/use-popup";
 
 const featuredStories = [
   {
@@ -127,6 +127,8 @@ const statistics = [
 ];
 
 export default function SuccessStoriesPage() {
+  const { isOpen, openPopup, closePopup } = usePopup();
+
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
@@ -158,12 +160,13 @@ export default function SuccessStoriesPage() {
                 size="lg"
                 className="bg-white text-blue-800 hover:bg-white/90"
               >
-                Start Your Success Story
+                <Link href="/contact">Start Your Success Story</Link>
               </Button>
               <Button
                 variant="outline"
                 size="lg"
-                className="border-white text-white hover:bg-white/20"
+                className="border-white text-white bg-indigo-800 hover:text-indigo-800 hover:bg-white"
+                onClick={openPopup}
               >
                 Book a Consultation
               </Button>
@@ -302,12 +305,6 @@ export default function SuccessStoriesPage() {
                 </div>
               ))}
             </div>
-            <div className="flex justify-center">
-              <Button className="bg-blue-800 hover:bg-blue-900">
-                View More Testimonials
-                <ChevronRight className="ml-2 h-4 w-4" />
-              </Button>
-            </div>
           </div>
         </section>
 
@@ -376,7 +373,12 @@ export default function SuccessStoriesPage() {
             </div>
             <div className="flex justify-center">
               <Button className="bg-blue-800 hover:bg-blue-900">
-                View All Videos
+                <Link
+                  href="https://www.youtube.com/@inspireoverseaaseducation"
+                  target="_blank"
+                >
+                  View All Videos
+                </Link>
                 <ChevronRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
@@ -486,21 +488,23 @@ export default function SuccessStoriesPage() {
                 <Button
                   size="lg"
                   className="bg-white text-blue-800 hover:bg-white/90"
+                  onClick={openPopup}
                 >
                   Book a Free Consultation
                 </Button>
                 <Button
                   variant="outline"
                   size="lg"
-                  className="border-white text-white hover:bg-white/20"
+                  className="border-white text-white bg-indigo-800 hover:text-indigo-800 hover:bg-white"
                 >
-                  Explore Study Destinations
+                  <Link href="/study-abroad">Explore Study Destinations</Link>
                 </Button>
               </div>
             </div>
           </div>
         </section>
       </main>
+      <CounselingFormPopup isOpen={isOpen} onClose={closePopup} />
 
       <Footer />
     </div>
