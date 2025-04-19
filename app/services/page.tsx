@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -13,6 +15,8 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { Footer } from "@/components/footer";
+import { usePopup } from "@/hooks/use-popup";
+import { CounselingFormPopup } from "@/components/counselling-form-popup";
 
 const services = [
   {
@@ -67,6 +71,8 @@ const services = [
 ];
 
 export default function ServicesPage() {
+  const { isOpen, openPopup, closePopup } = usePopup();
+
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
@@ -90,7 +96,11 @@ export default function ServicesPage() {
                 </p>
               </div>
               <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                <Button size="lg" className="bg-blue-800 hover:bg-blue-900">
+                <Button
+                  size="lg"
+                  className="bg-blue-800 hover:bg-blue-900"
+                  onClick={openPopup}
+                >
                   Get Free Consultation
                 </Button>
               </div>
@@ -284,21 +294,23 @@ export default function ServicesPage() {
                 <Button
                   size="lg"
                   className="bg-white text-blue-800 hover:bg-white/90"
+                  onClick={openPopup}
                 >
                   Book a Free Consultation
                 </Button>
                 <Button
                   variant="outline"
                   size="lg"
-                  className="border-white text-white hover:bg-white/20"
+                  className="border-white text-white bg-blue-800 hover:bg-white hover:text-blue-800"
                 >
-                  Explore Study Destinations
+                  <Link href="/study-abroad">Explore Study Destinations</Link>
                 </Button>
               </div>
             </div>
           </div>
         </section>
       </main>
+      <CounselingFormPopup isOpen={isOpen} onClose={closePopup} />
 
       <Footer />
     </div>
