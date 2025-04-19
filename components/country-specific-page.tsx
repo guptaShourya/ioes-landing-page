@@ -1,10 +1,13 @@
+"use client";
+
 import type React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Header } from "@/components/header";
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { Footer } from "./footer";
+import { usePopup } from "@/hooks/use-popup";
+import { CounselingFormPopup } from "./counselling-form-popup";
 
 export interface CountrySpecificPageProps {
   country: string;
@@ -36,6 +39,7 @@ export function CountrySpecificPage({
     cost: "Cost of Living",
     programs: "Study Programs",
     careers: "Career Options",
+    scholarships: "Scholarships",
   };
 
   const pageTypeDescriptions = {
@@ -44,6 +48,7 @@ export function CountrySpecificPage({
     programs: `Explore the diverse academic programs and educational opportunities available in ${country}.`,
     careers: `Learn about career prospects and post-study work opportunities for international students in ${country}.`,
   };
+  const { isOpen, openPopup, closePopup } = usePopup();
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -83,15 +88,17 @@ export function CountrySpecificPage({
               <Button
                 size="lg"
                 className="bg-white text-blue-800 hover:bg-white/90"
+                onClick={openPopup}
               >
                 Get Free Counseling
               </Button>
               <Button
-                variant="outline"
                 size="lg"
-                className="border-white text-white hover:bg-white/20"
+                className="border-white text-white bg-indigo-800 hover:text-indigo-800 hover:bg-white"
               >
-                Explore Other Aspects
+                <Link href={`/destinations/${slug}/${pageType}#more-aspects`}>
+                  Explore Other Aspects
+                </Link>
               </Button>
             </div>
           </div>
@@ -153,7 +160,7 @@ export function CountrySpecificPage({
         </section>
 
         {/* Related Pages Section */}
-        <section className="w-full py-12 md:py-24 bg-gray-50">
+        <section className="w-full py-12 md:py-24 bg-gray-50" id="more-aspects">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
@@ -170,12 +177,16 @@ export function CountrySpecificPage({
               </div>
             </div>
             <div className="mx-auto grid max-w-5xl gap-8 py-12 md:grid-cols-2 lg:grid-cols-4">
-              {["culture", "cost", "programs", "careers"]
+              {["culture", "cost", "programs", "careers", "scholarships"]
                 .filter((type) => type !== pageType)
                 .map((type, index) => (
                   <Link
                     key={index}
-                    href={`/destinations/${slug}/${type}`}
+                    href={
+                      type != "scholarships"
+                        ? `/destinations/${slug}/${type}`
+                        : `/scholarships/${slug}`
+                    }
                     className="group relative overflow-hidden rounded-lg shadow-lg"
                   >
                     <Image
@@ -195,6 +206,17 @@ export function CountrySpecificPage({
                     </div>
                   </Link>
                 ))}
+            </div>
+            <div className="flex justify-center">
+              <Button
+                variant="outline"
+                size="lg"
+                className="border-white text-white bg-blue-800 hover:text-white hover:bg-blue-800"
+              >
+                <Link href={`/study-abroad#destinations`}>
+                  Explore Other Destinations
+                </Link>
+              </Button>
             </div>
           </div>
         </section>
@@ -216,13 +238,14 @@ export function CountrySpecificPage({
                 <Button
                   size="lg"
                   className="bg-white text-blue-800 hover:bg-white/90"
+                  onClick={openPopup}
                 >
                   Book a Free Consultation
                 </Button>
                 <Button
                   variant="outline"
                   size="lg"
-                  className="border-white text-white hover:bg-white/20"
+                  className="border-white text-white bg-blue-800 hover:bg-white hover:text-blue-800"
                 >
                   Download {country} Guide
                 </Button>
@@ -231,6 +254,7 @@ export function CountrySpecificPage({
           </div>
         </section>
       </main>
+      <CounselingFormPopup isOpen={isOpen} onClose={closePopup} />
 
       <Footer />
     </div>
