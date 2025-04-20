@@ -109,7 +109,12 @@ export default function ContactPage() {
                       size="icon"
                       className="rounded-full"
                     >
-                      <Facebook className="h-5 w-5" />
+                      <Link
+                        href="https://www.facebook.com/www.ioes.in/"
+                        target="_blank"
+                      >
+                        <Facebook className="h-5 w-5" />
+                      </Link>
                       <span className="sr-only">Facebook</span>
                     </Button>
                     <Button
@@ -117,7 +122,12 @@ export default function ContactPage() {
                       size="icon"
                       className="rounded-full"
                     >
-                      <Instagram className="h-5 w-5" />
+                      <Link
+                        href="https://www.instagram.com/ioes.in/"
+                        target="_blank"
+                      >
+                        <Instagram className="h-5 w-5" />
+                      </Link>
                       <span className="sr-only">Instagram</span>
                     </Button>
                     <Button
@@ -125,7 +135,12 @@ export default function ContactPage() {
                       size="icon"
                       className="rounded-full"
                     >
-                      <Youtube className="h-5 w-5" />
+                      <Link
+                        href="https://www.youtube.com/@inspireoverseaaseducation"
+                        target="_blank"
+                      >
+                        <Youtube className="h-5 w-5" />
+                      </Link>
                       <span className="sr-only">Youtube</span>
                     </Button>
                     <Button
@@ -133,7 +148,12 @@ export default function ContactPage() {
                       size="icon"
                       className="rounded-full"
                     >
-                      <Linkedin className="h-5 w-5" />
+                      <Link
+                        href="https://www.linkedin.com/company/inspire-overseaas-education-services/"
+                        target="_blank"
+                      >
+                        <Linkedin className="h-5 w-5" />
+                      </Link>
                       <span className="sr-only">LinkedIn</span>
                     </Button>
                   </div>

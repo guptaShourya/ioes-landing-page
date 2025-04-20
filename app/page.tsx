@@ -39,6 +39,16 @@ export default function Home() {
     Youtube: <Youtube className="h-5 w-5" />,
     LinkedIn: <Linkedin className="h-5 w-5" />,
   };
+  const links: Record<
+    "Facebook" | "Instagram" | "Youtube" | "LinkedIn",
+    string
+  > = {
+    Facebook: "https://www.facebook.com/www.ioes.in/",
+    Instagram: "https://www.instagram.com/ioes.in/",
+    Youtube: "https://www.youtube.com/@inspireoverseaaseducation",
+    LinkedIn:
+      "https://www.linkedin.com/company/inspire-overseaas-education-services/",
+  };
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -524,7 +534,12 @@ export default function Home() {
                         size="icon"
                         className="h-10 w-10 rounded-full mr-3"
                       >
-                        {icons[social as keyof typeof icons]}
+                        <Link
+                          href={links[social as keyof typeof links]}
+                          target="_blank"
+                        >
+                          {icons[social as keyof typeof icons]}
+                        </Link>
                       </Button>
                     )
                   )}

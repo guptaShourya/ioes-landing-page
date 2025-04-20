@@ -23,6 +23,16 @@ export function Footer() {
     Youtube: <Youtube className="h-5 w-5" />,
     LinkedIn: <Linkedin className="h-5 w-5" />,
   };
+  const links: Record<
+    "Facebook" | "Instagram" | "Youtube" | "LinkedIn",
+    string
+  > = {
+    Facebook: "https://www.facebook.com/www.ioes.in/",
+    Instagram: "https://www.instagram.com/ioes.in/",
+    Youtube: "https://www.youtube.com/@inspireoverseaaseducation",
+    LinkedIn:
+      "https://www.linkedin.com/company/inspire-overseaas-education-services/",
+  };
   return (
     <footer className="w-full border-t bg-gray-50 py-12">
       <div className="container grid gap-8 px-4 md:px-6 lg:grid-cols-4">
@@ -51,7 +61,14 @@ export function Footer() {
                   size="icon"
                   className="h-8 w-8"
                 >
-                  {icons[social as keyof typeof icons]}
+                  <Link
+                    href={links[social as keyof typeof links]}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center h-full w-full"
+                  >
+                    {icons[social as keyof typeof icons]}
+                  </Link>
                 </Button>
               )
             )}
