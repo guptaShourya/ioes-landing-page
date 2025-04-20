@@ -20,13 +20,26 @@ import {
   Building,
   Award,
   Youtube,
+  Facebook,
+  Instagram,
+  Linkedin,
 } from "lucide-react";
 import { Footer } from "@/components/footer";
 import { usePopup } from "@/hooks/use-popup";
 import { CounselingFormPopup } from "@/components/counselling-form-popup";
+import { JSX } from "react";
 
 export default function Home() {
   const { isOpen, openPopup, closePopup } = usePopup();
+  const icons: Record<
+    "Facebook" | "Instagram" | "Youtube" | "LinkedIn",
+    JSX.Element
+  > = {
+    Facebook: <Facebook className="h-5 w-5" />,
+    Instagram: <Instagram className="h-5 w-5" />,
+    Youtube: <Youtube className="h-5 w-5" />,
+    LinkedIn: <Linkedin className="h-5 w-5" />,
+  };
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -500,31 +513,18 @@ export default function Home() {
                 </div>
                 <div className="rounded-xl bg-gray-50 p-6">
                   <h3 className="mb-4 font-bold">Follow Us</h3>
-                  <div className="flex gap-4">
-                    {["Facebook", "Instagram", "Youtube", "LinkedIn"].map(
-                      (social, index) => (
-                        <Button
-                          key={index}
-                          variant="outline"
-                          size="icon"
-                          className="h-10 w-10 rounded-full"
-                        >
-                          <Link
-                            href={`https://www.${social.toLowerCase()}.com/ioes`}
-                            target="_blank"
-                          >
-                            <Image
-                              src={`/social/${social.toLowerCase()}.svg`}
-                              alt={social}
-                              width={24}
-                              height={24}
-                              className="h-6 w-6"
-                            />
-                          </Link>
-                        </Button>
-                      )
-                    )}
-                  </div>
+                  {["Facebook", "Instagram", "Youtube", "LinkedIn"].map(
+                    (social) => (
+                      <Button
+                        key={social}
+                        variant="outline"
+                        size="icon"
+                        className="h-10 w-10 rounded-full mr-3"
+                      >
+                        {icons[social as keyof typeof icons]}
+                      </Button>
+                    )
+                  )}
                 </div>
               </div>
               <div className="rounded-xl border bg-white p-6 shadow-sm">

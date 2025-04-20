@@ -1,9 +1,28 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { MapPin, Clock, Phone, Mail } from "lucide-react";
+import {
+  MapPin,
+  Clock,
+  Phone,
+  Mail,
+  Facebook,
+  Instagram,
+  Youtube,
+  Linkedin,
+} from "lucide-react";
+import { JSX } from "react";
 
 export function Footer() {
+  const icons: Record<
+    "Facebook" | "Instagram" | "Youtube" | "LinkedIn",
+    JSX.Element
+  > = {
+    Facebook: <Facebook className="h-5 w-5" />,
+    Instagram: <Instagram className="h-5 w-5" />,
+    Youtube: <Youtube className="h-5 w-5" />,
+    LinkedIn: <Linkedin className="h-5 w-5" />,
+  };
   return (
     <footer className="w-full border-t bg-gray-50 py-12">
       <div className="container grid gap-8 px-4 md:px-6 lg:grid-cols-4">
@@ -32,13 +51,7 @@ export function Footer() {
                   size="icon"
                   className="h-8 w-8"
                 >
-                  <Image
-                    src={`/social/${social.toLowerCase()}.svg`}
-                    alt={social}
-                    width={24}
-                    height={24}
-                    className="h-6 w-6"
-                  />
+                  {icons[social as keyof typeof icons]}
                 </Button>
               )
             )}

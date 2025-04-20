@@ -17,6 +17,7 @@ import {
   MessageSquare,
   Users,
   Building,
+  Youtube,
 } from "lucide-react";
 import { Footer } from "@/components/footer";
 
@@ -124,8 +125,8 @@ export default function ContactPage() {
                       size="icon"
                       className="rounded-full"
                     >
-                      <Twitter className="h-5 w-5" />
-                      <span className="sr-only">Twitter</span>
+                      <Youtube className="h-5 w-5" />
+                      <span className="sr-only">Youtube</span>
                     </Button>
                     <Button
                       variant="outline"

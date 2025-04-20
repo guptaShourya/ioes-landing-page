@@ -138,7 +138,7 @@ export default function SuccessStoriesPage() {
         <section className="relative">
           <div className="absolute inset-0">
             <Image
-              src="/placeholder.svg?height=600&width=1200"
+              src="/success-stories-cover.webp"
               alt="Students celebrating graduation"
               fill
               className="object-cover"
@@ -440,12 +440,36 @@ export default function SuccessStoriesPage() {
             </div>
             <div className="mx-auto grid max-w-5xl gap-8 py-12 md:grid-cols-2 lg:grid-cols-3">
               {[
-                { country: "United States", count: "1,500+ Students" },
-                { country: "United Kingdom", count: "1,200+ Students" },
-                { country: "Canada", count: "900+ Students" },
-                { country: "Australia", count: "700+ Students" },
-                { country: "New Zealand", count: "300+ Students" },
-                { country: "Germany", count: "400+ Students" },
+                {
+                  country: "United States",
+                  count: "1,500+ Students",
+                  flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/US.svg",
+                },
+                {
+                  country: "United Kingdom",
+                  count: "1,200+ Students",
+                  flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/GB.svg",
+                },
+                {
+                  country: "Canada",
+                  count: "900+ Students",
+                  flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/CA.svg",
+                },
+                {
+                  country: "Australia",
+                  count: "700+ Students",
+                  flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/AU.svg",
+                },
+                {
+                  country: "New Zealand",
+                  count: "300+ Students",
+                  flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/NZ.svg",
+                },
+                {
+                  country: "Germany",
+                  count: "400+ Students",
+                  flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/DE.svg",
+                },
               ].map((destination, index) => (
                 <div
                   key={index}
@@ -453,7 +477,7 @@ export default function SuccessStoriesPage() {
                 >
                   <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 text-blue-800">
                     <Image
-                      src="/placeholder.svg?height=30&width=50"
+                      src={destination.flag}
                       alt={`${destination.country} flag`}
                       width={30}
                       height={20}
