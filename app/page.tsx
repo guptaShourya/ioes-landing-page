@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Header } from "@/components/header";
+import { SocialIcon } from "react-social-icons/component";
 import {
   GraduationCap,
   MapPin,
@@ -18,6 +19,7 @@ import {
   Users,
   Building,
   Award,
+  Youtube,
 } from "lucide-react";
 import { Footer } from "@/components/footer";
 import { usePopup } from "@/hooks/use-popup";
@@ -71,7 +73,7 @@ export default function Home() {
                 </div>
               </div>
               <Image
-                src="/placeholder.svg?height=550&width=550"
+                src="/lp1.webp"
                 width={550}
                 height={550}
                 alt="Students studying abroad"
@@ -253,37 +255,37 @@ export default function Home() {
               {[
                 {
                   country: "United States",
-                  image: "/placeholder.svg?height=200&width=300",
+                  image: "/cover/usa.webp",
                   universities: "1,000+ Universities",
                   slug: "usa",
                 },
                 {
                   country: "United Kingdom",
-                  image: "/placeholder.svg?height=200&width=300",
+                  image: "/cover/uk.webp",
                   universities: "150+ Universities",
                   slug: "uk",
                 },
                 {
                   country: "Canada",
-                  image: "/placeholder.svg?height=200&width=300",
+                  image: "/cover/canada.webp",
                   universities: "100+ Universities",
                   slug: "canada",
                 },
                 {
                   country: "Australia",
-                  image: "/placeholder.svg?height=200&width=300",
+                  image: "/cover/australia.webp",
                   universities: "40+ Universities",
                   slug: "australia",
                 },
                 {
                   country: "New Zealand",
-                  image: "/placeholder.svg?height=200&width=300",
+                  image: "/cover/new-zealand.webp",
                   universities: "8+ Universities",
                   slug: "new-zealand",
                 },
                 {
                   country: "Germany",
-                  image: "/placeholder.svg?height=200&width=300",
+                  image: "/cover/germany.webp",
                   universities: "400+ Universities",
                   slug: "germany",
                 },
@@ -435,7 +437,7 @@ export default function Home() {
               </div>
               <div className="flex items-center justify-center">
                 <Image
-                  src="/placeholder.svg?height=400&width=500"
+                  src="/students-celebrating-graduation.webp"
                   width={500}
                   height={400}
                   alt="Students celebrating graduation"
@@ -499,7 +501,7 @@ export default function Home() {
                 <div className="rounded-xl bg-gray-50 p-6">
                   <h3 className="mb-4 font-bold">Follow Us</h3>
                   <div className="flex gap-4">
-                    {["Facebook", "Instagram", "Twitter", "LinkedIn"].map(
+                    {["Facebook", "Instagram", "Youtube", "LinkedIn"].map(
                       (social, index) => (
                         <Button
                           key={index}
@@ -507,8 +509,18 @@ export default function Home() {
                           size="icon"
                           className="h-10 w-10 rounded-full"
                         >
-                          <span className="sr-only">{social}</span>
-                          <div className="h-5 w-5 rounded-full bg-gray-300" />
+                          <Link
+                            href={`https://www.${social.toLowerCase()}.com/ioes`}
+                            target="_blank"
+                          >
+                            <Image
+                              src={`/social/${social.toLowerCase()}.svg`}
+                              alt={social}
+                              width={24}
+                              height={24}
+                              className="h-6 w-6"
+                            />
+                          </Link>
                         </Button>
                       )
                     )}

@@ -10,7 +10,7 @@ export function Footer() {
         <div className="space-y-4">
           <Link href="/" className="flex items-center gap-2">
             <Image
-              src="/placeholder.svg?height=40&width=40"
+              src="/ioeslogo.webp"
               alt="IOES Logo"
               width={40}
               height={40}
@@ -24,7 +24,7 @@ export function Footer() {
             studying abroad.
           </p>
           <div className="flex gap-4">
-            {["Facebook", "Instagram", "Twitter", "LinkedIn"].map(
+            {["Facebook", "Instagram", "Youtube", "LinkedIn"].map(
               (social, index) => (
                 <Button
                   key={index}
@@ -32,8 +32,13 @@ export function Footer() {
                   size="icon"
                   className="h-8 w-8"
                 >
-                  <span className="sr-only">{social}</span>
-                  <div className="h-4 w-4 rounded-full bg-gray-300" />
+                  <Image
+                    src={`/social/${social.toLowerCase()}.svg`}
+                    alt={social}
+                    width={24}
+                    height={24}
+                    className="h-6 w-6"
+                  />
                 </Button>
               )
             )}
