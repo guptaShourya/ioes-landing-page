@@ -18,7 +18,7 @@ const australiaData: DestinationData = {
   slug: "australia",
   overview:
     "Australia offers a world-class education system with innovative teaching approaches in a stunning natural environment. Known for its friendly, laid-back culture and high quality of life, Australia provides international students with excellent academic opportunities, cultural diversity, and post-study work rights, making it an increasingly popular destination for Indian students.",
-  image: "/UKDestinationBG.jpg",
+  image: "/cover/australia.webp",
   flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/AU.svg",
   reasons: [
     {

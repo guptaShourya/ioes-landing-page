@@ -19,7 +19,7 @@ const germanyData: DestinationData = {
   slug: "germany",
   overview:
     "Germany offers world-class education with little to no tuition fees at public universities, making it an exceptionally affordable study destination. Known for its engineering excellence, innovative research, and strong economy, Germany provides international students with high-quality education, diverse cultural experiences, and excellent career opportunities in the heart of Europe.",
-  image: "/placeholder.svg?height=500&width=800",
+  image: "/cover/germany.webp",
   flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/DE.svg",
   reasons: [
     {

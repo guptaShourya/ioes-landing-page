@@ -18,7 +18,7 @@ const newZealandData: DestinationData = {
   slug: "new-zealand",
   overview:
     "New Zealand offers a high-quality education system with a focus on practical, hands-on learning in a breathtaking natural environment. Known for its safe, welcoming society and excellent quality of life, New Zealand provides international students with innovative teaching approaches, personalized attention, and post-study work opportunities in a country that values work-life balance.",
-  image: "/placeholder.svg?height=500&width=800",
+  image: "/cover/new-zealand.webp",
   flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/NZ.svg",
   reasons: [
     {

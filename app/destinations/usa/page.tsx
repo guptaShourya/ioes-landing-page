@@ -18,7 +18,7 @@ const usaData: DestinationData = {
   slug: "usa",
   overview:
     "The United States is home to some of the world's most prestigious universities, offering a diverse range of programs and unparalleled research opportunities. With a flexible education system, students can customize their academic journey while experiencing American campus life and culture.",
-  image: "/placeholder.svg?height=500&width=800",
+  image: "/cover/usa.webp",
   flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/US.svg",
   reasons: [
     {

@@ -17,7 +17,7 @@ const canadaData: DestinationData = {
   slug: "canada",
   overview:
     "Canada offers world-class education with a welcoming, multicultural environment and affordable tuition compared to many other English-speaking destinations. Known for its high quality of life, safety, and post-graduation work opportunities, Canada has become a top choice for international students seeking both academic excellence and future career prospects.",
-  image: "/placeholder.svg?height=500&width=800",
+  image: "/cover/canada.webp",
   flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/CA.svg",
   reasons: [
     {

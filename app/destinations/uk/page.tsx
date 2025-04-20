@@ -19,7 +19,7 @@ const ukData: DestinationData = {
   slug: "uk",
   overview:
     "The United Kingdom offers a rich academic tradition with some of the world's oldest and most prestigious universities. Known for shorter, more intensive degree programs, the UK provides high-quality education that is globally recognized and respected.",
-  image: "/UKDestinationBG.jpg",
+  image: "/cover/uk.webp",
   flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/GB.svg",
   reasons: [
     {
