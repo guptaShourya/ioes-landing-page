@@ -72,8 +72,12 @@ export default function Home() {
                 </div>
                 <div className="flex items-center gap-4 pt-4">
                   <div className="flex -space-x-2">
-                    {[1, 2, 3, 4].map((i) => (
-                      <div
+                    {[1, 3, 2, 4].map((i) => (
+                      <Image
+                        src={`/avatars/${i}.png`}
+                        alt="user"
+                        width={6}
+                        height={6}
                         key={i}
                         className="inline-block h-8 w-8 rounded-full bg-gray-200 ring-2 ring-white"
                       />
