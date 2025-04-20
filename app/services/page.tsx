@@ -199,7 +199,7 @@ export default function ServicesPage() {
               </div>
               <div className="flex items-center justify-center">
                 <Image
-                  src="/placeholder.svg?height=400&width=500"
+                  src="/student-recieving-guidance.webp"
                   width={500}
                   height={400}
                   alt="Students receiving guidance"
