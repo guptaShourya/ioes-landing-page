@@ -18,13 +18,12 @@ export function Header() {
           <div className="flex items-center gap-2">
             <Link href="/" className="flex items-center gap-2">
               <Image
-                src="/placeholder.svg?height=40&width=40"
+                src="/ioeslogo.webp"
                 alt="IOES Logo"
-                width={40}
-                height={40}
+                width={60}
+                height={60}
                 className="rounded"
               />
-              <span className="text-xl font-bold tracking-tight">IOES</span>
             </Link>
           </div>
           <nav className="hidden md:flex gap-6">
