@@ -29,7 +29,7 @@ export function Header() {
           </div>
           <nav className="hidden md:flex gap-6">
             <Link
-              href="/#about"
+              href="/about"
               className="text-sm font-medium hover:text-primary"
             >
               About Us
