@@ -28,7 +28,6 @@ import { CounselingFormPopup } from "@/components/counselling-form-popup";
 const destinations = [
   {
     country: "United States",
-    image: "/placeholder.svg?height=200&width=300",
     universities: "1,000+ Universities",
     slug: "usa",
     averageTuition: "$20,000 - $50,000 per year",
@@ -37,7 +36,6 @@ const destinations = [
   },
   {
     country: "United Kingdom",
-    image: "/placeholder.svg?height=200&width=300",
     universities: "150+ Universities",
     slug: "uk",
     averageTuition: "£10,000 - £38,000 per year",
@@ -46,7 +44,6 @@ const destinations = [
   },
   {
     country: "Canada",
-    image: "/placeholder.svg?height=200&width=300",
     universities: "100+ Universities",
     slug: "canada",
     averageTuition: "CAD 20,000 - CAD 30,000 per year",
@@ -55,7 +52,6 @@ const destinations = [
   },
   {
     country: "Australia",
-    image: "/placeholder.svg?height=200&width=300",
     universities: "40+ Universities",
     slug: "australia",
     averageTuition: "AUD 20,000 - AUD 45,000 per year",
@@ -64,7 +60,6 @@ const destinations = [
   },
   {
     country: "New Zealand",
-    image: "/placeholder.svg?height=200&width=300",
     universities: "8+ Universities",
     slug: "new-zealand",
     averageTuition: "NZD 22,000 - NZD 32,000 per year",
@@ -73,7 +68,6 @@ const destinations = [
   },
   {
     country: "Germany",
-    image: "/placeholder.svg?height=200&width=300",
     universities: "400+ Universities",
     slug: "germany",
     averageTuition: "€0 - €3,000 per year (mostly free)",
@@ -137,7 +131,7 @@ export default function StudyAbroadPage() {
         <section className="relative">
           <div className="absolute inset-0">
             <Image
-              src="/placeholder.svg?height=600&width=1200"
+              src="/study-abroad-cover.webp"
               alt="Students studying abroad"
               fill
               className="object-cover"
@@ -449,11 +443,11 @@ export default function StudyAbroadPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/placeholder.svg?height=600&width=600"
+                  src="/ioes-counseling-session.webp"
                   alt="IOES counseling session"
                   width={600}
                   height={600}
-                  className="rounded-xl object-cover"
+                  className="rounded-xl object-cover max-h-[600px] w-full h-auto"
                 />
                 <div className="absolute -bottom-6 -left-6 rounded-lg bg-white p-6 shadow-lg md:w-72">
                   <div className="flex items-center gap-4">
@@ -595,7 +589,7 @@ export default function StudyAbroadPage() {
                   className="group relative overflow-hidden rounded-lg shadow-lg"
                 >
                   <Image
-                    src={destination.image || "/placeholder.svg"}
+                    src={`/cover/${destination.slug}.webp`}
                     alt={destination.country}
                     width={300}
                     height={200}
