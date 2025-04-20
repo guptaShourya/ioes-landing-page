@@ -362,9 +362,9 @@ export default function ScholarshipsPage() {
               </div>
               <div className="flex items-center justify-center">
                 <Image
-                  src="/placeholder.svg?height=500&width=500"
-                  width={500}
-                  height={500}
+                  src="/indian-student.webp"
+                  width={600}
+                  height={600}
                   alt="Indian students receiving scholarships"
                   className="rounded-xl object-cover"
                 />
