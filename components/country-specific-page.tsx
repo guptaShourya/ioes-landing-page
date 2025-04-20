@@ -13,7 +13,6 @@ export interface CountrySpecificPageProps {
   country: string;
   slug: string;
   flag: string;
-  heroImage: string;
   pageType: "culture" | "cost" | "programs" | "careers";
   content: {
     title: string;
@@ -30,7 +29,7 @@ export function CountrySpecificPage({
   country,
   slug,
   flag,
-  heroImage,
+
   pageType,
   content,
 }: CountrySpecificPageProps) {
@@ -59,7 +58,11 @@ export function CountrySpecificPage({
         <section className="relative">
           <div className="absolute inset-0">
             <Image
-              src={heroImage || "/placeholder.svg?height=600&width=1200"}
+              src={
+                pageType != "careers"
+                  ? `/${pageType}/${slug}-${pageType}.webp`
+                  : `/programs/${slug}-programs.webp`
+              }
               alt={`${pageTypeLabels[pageType]} in ${country}`}
               fill
               className="object-cover"
@@ -177,7 +180,7 @@ export function CountrySpecificPage({
               </div>
             </div>
             <div className="mx-auto grid max-w-5xl gap-8 py-12 md:grid-cols-2 lg:grid-cols-4">
-              {["culture", "cost", "programs", "careers", "scholarships"]
+              {["programs", "culture", "cost", "scholarships", "careers"]
                 .filter((type) => type !== pageType)
                 .map((type, index) => (
                   <Link
@@ -190,7 +193,11 @@ export function CountrySpecificPage({
                     className="group relative overflow-hidden rounded-lg shadow-lg"
                   >
                     <Image
-                      src="/placeholder.svg?height=200&width=300"
+                      src={
+                        type != "careers"
+                          ? `/${type}/${slug}-${type}.webp`
+                          : `/programs/${slug}-programs.webp`
+                      }
                       alt={`${country} ${
                         pageTypeLabels[type as keyof typeof pageTypeLabels]
                       }`}

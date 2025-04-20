@@ -323,14 +323,15 @@ export function DestinationPage({ data }: DestinationPageProps) {
                 <p className="flex-1 text-gray-500">
                   {data.lifestyle.description}
                 </p>
-                <Image
-                  src={data.lifestyle.image || "/placeholder.svg"}
-                  alt={`Lifestyle in ${data.name}`}
-                  width={300}
-                  height={200}
-                  className="my-4 rounded-lg object-cover"
-                />
-                <Button variant="outline" className="w-full">
+                <div className="relative w-full h-[200px] overflow-hidden rounded-lg">
+                  <Image
+                    src={`/culture/${data.slug}-culture.webp`}
+                    alt={`Lifestyle in ${data.name}`}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <Button variant="outline" className="w-full mt-2">
                   <Link href={`/destinations/${data.slug}/culture`}>
                     Learn More About Lifestyle
                   </Link>
@@ -346,13 +347,14 @@ export function DestinationPage({ data }: DestinationPageProps) {
                 <p className="flex-1 text-gray-500">
                   {data.costOfLiving.description}
                 </p>
-                <Image
-                  src={data.costOfLiving.image || "/placeholder.svg"}
-                  alt={`Cost of living in ${data.name}`}
-                  width={300}
-                  height={200}
-                  className="my-4 rounded-lg object-cover"
-                />
+                <div className="relative w-full h-[200px] overflow-hidden rounded-lg">
+                  <Image
+                    src={`/cost/${data.slug}-cost.webp`}
+                    alt={`Cost of living in ${data.name}`}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
                 <Button variant="outline" className="w-full">
                   <Link href={`/destinations/${data.slug}/cost`}>
                     Learn More About Cost of Living
@@ -369,13 +371,14 @@ export function DestinationPage({ data }: DestinationPageProps) {
                 <p className="flex-1 text-gray-500">
                   {data.scholarships.description}
                 </p>
-                <Image
-                  src={data.scholarships.image || "/placeholder.svg"}
-                  alt={`Scholarships for studying in ${data.name}`}
-                  width={300}
-                  height={200}
-                  className="my-4 rounded-lg object-cover"
-                />
+                <div className="relative w-full h-[200px] overflow-hidden rounded-lg">
+                  <Image
+                    src={`/scholarships/${data.slug}-scholarships.webp`}
+                    alt={`Scholarship in ${data.name}`}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
                 <Button variant="outline" className="w-full">
                   <Link href={`/scholarships/${data.slug}`}>
                     Learn More About Scholarships

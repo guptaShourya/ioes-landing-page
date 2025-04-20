@@ -14,8 +14,7 @@ import {
 const ukScholarshipData = {
   country: "United Kingdom",
   slug: "uk",
-  flag: "/placeholder.svg?height=30&width=50",
-  heroImage: "/placeholder.svg?height=600&width=1200",
+  flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/GB.svg",
   overview:
     "The United Kingdom offers numerous prestigious scholarship opportunities for Indian students, making it an attractive destination for higher education. From the renowned Chevening Scholarships to the Commonwealth Scholarships and various university-specific awards, the UK provides substantial financial support options. These scholarships often cover tuition fees, living expenses, travel costs, and other allowances. With the UK's shorter degree programs (typically one year for Master's), scholarships can make studying in the UK both academically rewarding and financially viable for Indian students.",
   scholarshipTypes: [

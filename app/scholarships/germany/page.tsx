@@ -14,8 +14,7 @@ import {
 const germanyScholarshipData = {
   country: "Germany",
   slug: "germany",
-  flag: "/placeholder.svg?height=30&width=50",
-  heroImage: "/placeholder.svg?height=600&width=1200",
+  flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/DE.svg",
   overview:
     "Germany offers numerous scholarships for international students, making it an attractive destination for Indian students seeking financial support. With its tuition-free public universities, world-class education system, and strong economy, Germany provides excellent value for scholarship recipients from India who wish to pursue undergraduate, graduate, or research studies.",
   scholarshipTypes: [

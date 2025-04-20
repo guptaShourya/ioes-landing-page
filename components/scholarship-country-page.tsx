@@ -49,7 +49,6 @@ export interface CountryScholarshipData {
   country: string;
   slug: string;
   flag: string;
-  heroImage: string;
   overview: string;
   scholarshipTypes: ScholarshipType[];
   governmentScholarships: Scholarship[];
@@ -75,7 +74,10 @@ export function ScholarshipCountryPage({ data }: ScholarshipCountryPageProps) {
         <section className="relative">
           <div className="absolute inset-0">
             <Image
-              src={data.heroImage || "/placeholder.svg?height=600&width=1200"}
+              src={
+                `/scholarships/${data.slug}-scholarships.webp` ||
+                "/placeholder.svg?height=600&width=1200"
+              }
               alt={`Scholarships in ${data.country}`}
               fill
               className="object-cover"

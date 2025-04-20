@@ -174,8 +174,7 @@ export default function CanadaCulturePage() {
     <CountrySpecificPage
       country="Canada"
       slug="canada"
-      flag="/placeholder.svg?height=30&width=50"
-      heroImage="/placeholder.svg?height=600&width=1200"
+      flag="https://purecatamphetamine.github.io/country-flag-icons/3x2/CA.svg"
       pageType="culture"
       content={canadaCultureContent}
     />

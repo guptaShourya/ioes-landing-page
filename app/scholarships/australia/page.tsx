@@ -14,8 +14,7 @@ import {
 const australiaScholarshipData = {
   country: "Australia",
   slug: "australia",
-  flag: "/placeholder.svg?height=30&width=50",
-  heroImage: "/placeholder.svg?height=600&width=1200",
+  flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/AU.svg",
   overview:
     "Australia offers numerous scholarships for international students, making it an attractive destination for Indian students seeking financial support. With its world-class education system, innovative research opportunities, and high quality of life, Australia provides excellent value for scholarship recipients from India.",
   scholarshipTypes: [

@@ -251,8 +251,7 @@ export default function UKStudyProgramsPage() {
     <CountrySpecificPage
       country="United Kingdom"
       slug="uk"
-      flag="/placeholder.svg?height=30&width=50"
-      heroImage="/placeholder.svg?height=600&width=1200"
+      flag="https://purecatamphetamine.github.io/country-flag-icons/3x2/GB.svg"
       pageType="programs"
       content={ukStudyProgramsContent}
     />

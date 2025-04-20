@@ -15,8 +15,7 @@ import {
 const usaScholarshipData = {
   country: "United States",
   slug: "usa",
-  flag: "/placeholder.svg?height=30&width=50",
-  heroImage: "/placeholder.svg?height=600&width=1200",
+  flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/US.svg",
   overview:
     "The United States offers a wide range of scholarship opportunities for Indian students, making it one of the most financially accessible destinations despite its high tuition costs. From prestigious Fulbright fellowships to university-specific funding, the US scholarship landscape is diverse and substantial. Many scholarships cover not just tuition but also living expenses, health insurance, and travel costs. With proper guidance and preparation, Indian students have excellent chances of securing significant financial support for their US education journey.",
   scholarshipTypes: [

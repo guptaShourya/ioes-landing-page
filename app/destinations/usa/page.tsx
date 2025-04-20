@@ -67,13 +67,13 @@ const usaData: DestinationData = {
     title: "American Campus Life",
     description:
       "Experience the vibrant campus culture with numerous clubs, sports, and social activities. American universities offer a holistic education that extends beyond the classroom.",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/culture/usa-culture.webp",
   },
   costOfLiving: {
     title: "Affordable to Premium Options",
     description:
       "Cost of living varies significantly across the US, from affordable small towns to premium metropolitan areas. On average, students should budget $10,000-$25,000 per year for living expenses, depending on the location.",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/cost/usa-cost.webp",
   },
   scholarships: {
     title: "Merit & Need-Based Funding",

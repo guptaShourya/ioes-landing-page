@@ -14,8 +14,7 @@ import {
 const canadaScholarshipData = {
   country: "Canada",
   slug: "canada",
-  flag: "/placeholder.svg?height=30&width=50",
-  heroImage: "/placeholder.svg?height=600&width=1200",
+  flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/CA.svg",
   overview:
     "Canada offers a wide range of scholarships for international students, making it an attractive destination for Indian students seeking financial support for their education. With its high-quality education system, multicultural environment, and post-graduation work opportunities, Canada provides excellent value for scholarship recipients.",
   scholarshipTypes: [

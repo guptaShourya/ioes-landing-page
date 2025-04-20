@@ -250,8 +250,7 @@ export default function AustraliaStudyProgramsPage() {
     <CountrySpecificPage
       country="Australia"
       slug="australia"
-      flag="/placeholder.svg?height=30&width=50"
-      heroImage="/placeholder.svg?height=600&width=1200"
+      flag="https://purecatamphetamine.github.io/country-flag-icons/3x2/AU.svg"
       pageType="programs"
       content={australiaStudyProgramsContent}
     />

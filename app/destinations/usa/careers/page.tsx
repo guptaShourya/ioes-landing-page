@@ -213,9 +213,8 @@ export default function USCareerOptionsPage() {
   return (
     <CountrySpecificPage
       country="United States"
-      slug="united-states"
-      flag="/placeholder.svg?height=30&width=50"
-      heroImage="/placeholder.svg?height=600&width=1200"
+      slug="usa"
+      flag="https://purecatamphetamine.github.io/country-flag-icons/3x2/US.svg"
       pageType="careers"
       content={usCareerOptionsContent}
     />

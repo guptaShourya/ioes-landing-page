@@ -276,9 +276,8 @@ export default function UKCareerOptionsPage() {
   return (
     <CountrySpecificPage
       country="United Kingdom"
-      slug="united-kingdom"
-      flag="/placeholder.svg?height=30&width=50"
-      heroImage="/placeholder.svg?height=600&width=1200"
+      slug="uk"
+      flag="https://purecatamphetamine.github.io/country-flag-icons/3x2/GB.svg"
       pageType="careers"
       content={ukCareerOptionsContent}
     />
