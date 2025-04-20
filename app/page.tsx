@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Header } from "@/components/header";
-import { SocialIcon } from "react-social-icons/component";
 import {
   GraduationCap,
   MapPin,
@@ -119,7 +118,7 @@ export default function Home() {
             </div>
             <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-2 lg:gap-12">
               <Image
-                src="/placeholder.svg?height=400&width=400"
+                src="/ioes-student-partner.webp"
                 width={400}
                 height={400}
                 alt="IOES Office"
