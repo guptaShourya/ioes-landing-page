@@ -19,9 +19,9 @@ export function Footer() {
             <span className="text-xl font-bold tracking-tight">IOES</span>
           </Link>
           <p className="text-sm text-gray-500">
-            Institute of Overseas Education Services (IOES) is a premier
-            education consultancy helping students achieve their dreams of
-            studying abroad.
+            Inspire Overseaas Education Services (IOES) is a premier education
+            consultancy helping students achieve their dreams of studying
+            abroad.
           </p>
           <div className="flex gap-4">
             {["Facebook", "Instagram", "Youtube", "LinkedIn"].map(
