@@ -8,7 +8,6 @@ import {
   Award,
   BookOpen,
   Building,
-  ChevronRight,
   Clock,
   Compass,
   DollarSign,
@@ -120,43 +119,41 @@ const topScholarships = [
 const destinations = [
   {
     country: "United States",
-    image: "/placeholder.svg?height=200&width=300",
-    flag: "/placeholder.svg?height=30&width=50",
+    flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/US.svg",
     slug: "usa",
     scholarshipCount: "1,000+ scholarships",
   },
   {
     country: "United Kingdom",
-    image: "/placeholder.svg?height=200&width=300",
-    flag: "/placeholder.svg?height=30&width=50",
+    flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/GB.svg",
+
     slug: "uk",
     scholarshipCount: "500+ scholarships",
   },
   {
     country: "Canada",
-    image: "/placeholder.svg?height=200&width=300",
-    flag: "/placeholder.svg?height=30&width=50",
+    flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/CA.svg",
     slug: "canada",
     scholarshipCount: "400+ scholarships",
   },
   {
     country: "Australia",
-    image: "/placeholder.svg?height=200&width=300",
-    flag: "/placeholder.svg?height=30&width=50",
+    flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/AU.svg",
+
     slug: "australia",
     scholarshipCount: "300+ scholarships",
   },
   {
     country: "Germany",
-    image: "/placeholder.svg?height=200&width=300",
-    flag: "/placeholder.svg?height=30&width=50",
+    flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/DE.svg",
+
     slug: "germany",
     scholarshipCount: "250+ scholarships",
   },
   {
     country: "New Zealand",
-    image: "/placeholder.svg?height=200&width=300",
-    flag: "/placeholder.svg?height=30&width=50",
+    flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/NZ.svg",
+
     slug: "new-zealand",
     scholarshipCount: "100+ scholarships",
   },
@@ -252,7 +249,7 @@ export default function ScholarshipsPage() {
         <section className="relative">
           <div className="absolute inset-0">
             <Image
-              src="/placeholder.svg?height=600&width=1200"
+              src="/scholarships-cover.webp"
               alt="Students receiving scholarships"
               fill
               className="object-cover"
@@ -595,7 +592,7 @@ export default function ScholarshipsPage() {
                   className="group relative overflow-hidden rounded-lg shadow-lg"
                 >
                   <Image
-                    src={destination.image || "/placeholder.svg"}
+                    src={`/cover/${destination.slug}.webp`}
                     alt={destination.country}
                     width={300}
                     height={200}
@@ -690,7 +687,7 @@ export default function ScholarshipsPage() {
               </div>
               <div className="flex items-center justify-center">
                 <Image
-                  src="/placeholder.svg?height=400&width=500"
+                  src="/scholarship-ioes-help.webp"
                   width={500}
                   height={400}
                   alt="IOES scholarship counseling session"
