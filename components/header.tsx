@@ -100,7 +100,7 @@ export function Header() {
           <div className="absolute top-full left-0 w-full bg-white border-t shadow-md z-40">
             <nav className="flex flex-col gap-4 p-4">
               <Link
-                href="/#about"
+                href="/about"
                 className="text-sm font-medium hover:text-primary"
                 onClick={() => setIsMenuOpen(false)} // Close menu on click
               >
@@ -121,14 +121,14 @@ export function Header() {
                 Study Abroad
               </Link>
               <Link
-                href="/#testimonials"
+                href="/success-stories"
                 className="text-sm font-medium hover:text-primary"
                 onClick={() => setIsMenuOpen(false)} // Close menu on click
               >
                 Success Stories
               </Link>
               <Link
-                href="/#contact"
+                href="/contact"
                 className="text-sm font-medium hover:text-primary"
                 onClick={() => setIsMenuOpen(false)} // Close menu on click
               >
