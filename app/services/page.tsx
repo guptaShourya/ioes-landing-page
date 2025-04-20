@@ -79,7 +79,40 @@ export default function ServicesPage() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-r from-blue-50 to-indigo-50">
+        <section className="relative">
+          <div className="absolute inset-0">
+            <Image
+              src="/our-services-hero-cover.webp"
+              alt="IOES Services"
+              fill
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-black/50" />
+          </div>
+          <div className="container relative space-y-2 flex min-h-[400px] flex-col items-center justify-center px-4 py-24 text-center text-white md:px-6">
+            <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
+              Comprehensive Support
+            </div>
+            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
+              Our Services
+            </h1>
+            <p className="mt-4 max-w-[700px] text-lg text-white/90 md:text-xl">
+              From application to arrival, we provide end-to-end support to make
+              your international education journey smooth and successful.
+            </p>
+            <div className="flex flex-col gap-2 min-[400px]:flex-row">
+              <Button
+                size="lg"
+                className="bg-blue-800 hover:bg-blue-900"
+                onClick={openPopup}
+              >
+                Get Free Consultation
+              </Button>
+            </div>
+          </div>
+        </section>
+        {/* <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-r from-blue-50 to-indigo-50">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
@@ -106,7 +139,7 @@ export default function ServicesPage() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Services Overview Section */}
         <section className="w-full py-12 md:py-24 bg-white">
