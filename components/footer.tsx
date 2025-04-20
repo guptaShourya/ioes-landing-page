@@ -162,8 +162,11 @@ export function Footer() {
           <h3 className="text-lg font-bold">Contact Information</h3>
           <ul className="space-y-2 text-sm text-gray-500">
             <li className="flex items-start gap-2">
-              <MapPin className="h-4 w-4 text-blue-800" />
-              <span>123 Education Street, Delhi, India</span>
+              <MapPin className="h-[3em] w-[3em] text-blue-800" />
+              <span className="text-gray-500">
+                3rd floor, Plot No. 12B/58, B-59, Rd Number 203, Parmanand
+                Colony Pocket 8, Block B, Sector 12 Dwarka, 110075
+              </span>
             </li>
             <li className="flex items-start gap-2">
               <Phone className="h-4 w-4 text-blue-800" />

@@ -53,11 +53,12 @@ export default function ContactPage() {
                     <div>
                       <h3 className="font-bold">Visit Our Office</h3>
                       <p className="text-gray-500">
-                        123 Education Street, Delhi, India
+                        3rd floor, Plot No. 12B/58, B-59, Rd Number 203,
                       </p>
                       <p className="text-gray-500">
-                        Landmark: Near Central Metro Station
+                        Parmanand Colony Pocket 8, Block B, Sector 12 Dwarka,
                       </p>
+                      <p className="text-gray-500">Delhi, 110075</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
