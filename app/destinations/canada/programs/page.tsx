@@ -36,7 +36,7 @@ const canadaStudyProgramsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/business-2.webp",
     },
     {
       title: "Engineering",
@@ -70,7 +70,7 @@ const canadaStudyProgramsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/engineering-2.webp",
     },
     {
       title: "Law",
@@ -103,7 +103,7 @@ const canadaStudyProgramsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/law-2.webp",
     },
     {
       title: "Medicine & Healthcare",
@@ -138,7 +138,7 @@ const canadaStudyProgramsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/medical-2.webp",
     },
     {
       title: "Arts & Design",
@@ -170,7 +170,7 @@ const canadaStudyProgramsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/art-2.webp",
     },
     {
       title: "Sciences",
@@ -203,7 +203,7 @@ const canadaStudyProgramsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/research-5.webp",
     },
     {
       title: "Computer Science & Information Technology",
@@ -238,7 +238,7 @@ const canadaStudyProgramsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/it-2.webp",
     },
   ],
 };

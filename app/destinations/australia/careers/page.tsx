@@ -38,7 +38,7 @@ const australiaCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/mining.webp",
     },
     {
       title: "Healthcare & Medical Research",
@@ -74,7 +74,7 @@ const australiaCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/research-5.webp",
     },
     {
       title: "Technology & Innovation",
@@ -108,7 +108,7 @@ const australiaCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/it-5.webp",
     },
     {
       title: "Renewable Energy & Sustainability",
@@ -143,7 +143,7 @@ const australiaCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/sustainability-2.webp",
     },
     {
       title: "Agriculture & Food Production",
@@ -179,7 +179,7 @@ const australiaCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/agribusiness.webp",
     },
     {
       title: "Education & Research",
@@ -215,7 +215,7 @@ const australiaCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/academic-2.webp",
     },
     {
       title: "Financial Services",
@@ -252,7 +252,7 @@ const australiaCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/business-2.webp",
     },
   ],
 };

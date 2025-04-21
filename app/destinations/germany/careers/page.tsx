@@ -30,7 +30,7 @@ const germanyCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/engineering-1.webp",
     },
     {
       title: "Information Technology & Digital Innovation",
@@ -58,7 +58,7 @@ const germanyCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/it-4.webp",
     },
     {
       title: "Healthcare & Life Sciences",
@@ -85,7 +85,7 @@ const germanyCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/medical-2.webp",
     },
     {
       title: "Finance & Business Services",
@@ -112,7 +112,7 @@ const germanyCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/business-3.webp",
     },
     {
       title: "Renewable Energy & Sustainability",
@@ -139,7 +139,7 @@ const germanyCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/sustainability-2.webp",
     },
     {
       title: "Academic Research & Higher Education",
@@ -165,7 +165,7 @@ const germanyCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/academic.webp",
     },
     {
       title: "Logistics & Automotive Industry",
@@ -192,7 +192,7 @@ const germanyCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/logistics.webp",
     },
   ],
 };

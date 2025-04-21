@@ -38,7 +38,7 @@ const ukCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/business-3.webp",
     },
     {
       title: "Healthcare & Life Sciences",
@@ -75,7 +75,7 @@ const ukCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/medical-1.webp",
     },
     {
       title: "Technology & Digital Economy",
@@ -112,7 +112,7 @@ const ukCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/it-2.webp",
     },
     {
       title: "Creative Industries",
@@ -150,7 +150,7 @@ const ukCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/art-1.webp",
     },
     {
       title: "Engineering & Advanced Manufacturing",
@@ -189,7 +189,7 @@ const ukCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/engineering-1.webp",
     },
     {
       title: "Education & Research",
@@ -227,7 +227,7 @@ const ukCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/research-2.webp",
     },
     {
       title: "Sustainable Development & Green Economy",
@@ -267,7 +267,7 @@ const ukCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/sustainability-2.webp",
     },
   ],
 };

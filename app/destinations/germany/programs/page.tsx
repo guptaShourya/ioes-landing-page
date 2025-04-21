@@ -37,7 +37,7 @@ const germanyStudyProgramsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/business-3.webp",
     },
     {
       title: "Engineering",
@@ -72,7 +72,7 @@ const germanyStudyProgramsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/engineering-1.webp",
     },
     {
       title: "Law",
@@ -107,7 +107,7 @@ const germanyStudyProgramsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/law-3.webp",
     },
     {
       title: "Medicine & Healthcare",
@@ -142,7 +142,7 @@ const germanyStudyProgramsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/medical-1.webp",
     },
     {
       title: "Arts & Design",
@@ -177,7 +177,7 @@ const germanyStudyProgramsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/art-3.webp",
     },
     {
       title: "Sciences",
@@ -211,7 +211,7 @@ const germanyStudyProgramsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/research-3.webp",
     },
     {
       title: "Computer Science & Information Technology",
@@ -246,7 +246,7 @@ const germanyStudyProgramsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/it-3.webp",
     },
   ],
 };

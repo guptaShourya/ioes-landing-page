@@ -35,7 +35,7 @@ const usCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/it-3.webp",
     },
     {
       title: "Healthcare & Biomedical Sciences",
@@ -65,7 +65,7 @@ const usCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/medical-2.webp",
     },
     {
       title: "Finance & Business Services",
@@ -93,7 +93,7 @@ const usCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/business-1.webp",
     },
     {
       title: "Engineering & Infrastructure",
@@ -119,7 +119,7 @@ const usCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/engineering-3.webp",
     },
     {
       title: "Creative & Media Industries",
@@ -147,7 +147,7 @@ const usCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/art-3.webp",
     },
     {
       title: "Education & Research",
@@ -176,7 +176,7 @@ const usCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/research-3.webp",
     },
     {
       title: "Sustainability & Environmental Sciences",
@@ -204,7 +204,7 @@ const usCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/sustainability.webp",
     },
   ],
 };

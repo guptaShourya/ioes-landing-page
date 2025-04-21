@@ -127,12 +127,12 @@ export function CountrySpecificPage({
               {content.sections.map((section, index) => (
                 <div
                   key={index}
-                  className={`flex flex-col gap-8 md:flex-row ${
+                  className={`flex flex-col items-center justify-center gap-8 md:gap-16 md:items-stretch md:flex-row ${
                     index % 2 === 1 ? "md:flex-row-reverse" : ""
                   }`}
                 >
                   {section.image && (
-                    <div className="md:w-2/5">
+                    <div className="w-full md:w-2/5 flex justify-center items-center">
                       <div className="relative h-[300px] w-full overflow-hidden rounded-xl">
                         <Image
                           src={
@@ -148,7 +148,7 @@ export function CountrySpecificPage({
                   )}
                   <div
                     className={`flex flex-col justify-center space-y-4 ${
-                      section.image ? "md:w-3/5" : "w-full"
+                      section.image ? "w-full md:w-3/5" : "w-full"
                     }`}
                   >
                     <h3 className="text-2xl font-bold">{section.title}</h3>

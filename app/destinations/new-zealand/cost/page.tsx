@@ -32,7 +32,7 @@ const newZealandCostContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/programs/budget.webp",
     },
     {
       title: "Tuition Fees",
@@ -59,7 +59,7 @@ const newZealandCostContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/programs/academic.webp",
     },
     {
       title: "Accommodation",
@@ -86,7 +86,7 @@ const newZealandCostContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/programs/accommodation.webp",
     },
     {
       title: "Food and Groceries",
@@ -112,7 +112,7 @@ const newZealandCostContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/programs/groceries.webp",
     },
     {
       title: "Transportation",
@@ -137,7 +137,7 @@ const newZealandCostContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/programs/transportation.webp",
     },
     {
       title: "Health Insurance",
@@ -162,7 +162,7 @@ const newZealandCostContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/programs/insurance.webp",
     },
   ],
 };

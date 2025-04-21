@@ -150,7 +150,7 @@ export function ScholarshipCountryPage({ data }: ScholarshipCountryPageProps) {
               </div>
               <div className="flex items-center justify-center">
                 <Image
-                  src="/placeholder.svg?height=400&width=500"
+                  src="/indian-student.webp"
                   width={500}
                   height={400}
                   alt={`Students in ${data.country}`}
@@ -600,7 +600,7 @@ export function ScholarshipCountryPage({ data }: ScholarshipCountryPageProps) {
               </div>
               <div className="flex items-center justify-center">
                 <Image
-                  src="/placeholder.svg?height=400&width=500"
+                  src="/scholarship-ioes-help.webp"
                   width={500}
                   height={400}
                   alt="IOES scholarship counseling session"

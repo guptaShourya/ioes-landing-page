@@ -1,14 +1,4 @@
 import { CountrySpecificPage } from "@/components/country-specific-page";
-import {
-  Home,
-  GraduationCap,
-  Utensils,
-  Bus,
-  Heart,
-  Wifi,
-  CreditCard,
-  DollarSign,
-} from "lucide-react";
 
 const ukCostContent = {
   title: "Understanding the Cost of Living in the UK",
@@ -43,7 +33,7 @@ const ukCostContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/programs/budget.webp",
     },
     {
       title: "Tuition Fees",
@@ -70,7 +60,7 @@ const ukCostContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/programs/academic.webp",
     },
     {
       title: "Accommodation",
@@ -97,7 +87,7 @@ const ukCostContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/programs/accommodation.webp",
     },
     {
       title: "Food and Groceries",
@@ -122,7 +112,7 @@ const ukCostContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/programs/groceries.webp",
     },
     {
       title: "Transportation",
@@ -148,7 +138,7 @@ const ukCostContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/programs/transportation.webp",
     },
     {
       title: "Healthcare",
@@ -173,7 +163,7 @@ const ukCostContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/programs/medical-3.webp",
     },
   ],
 };

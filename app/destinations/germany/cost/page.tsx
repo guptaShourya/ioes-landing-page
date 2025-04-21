@@ -32,7 +32,7 @@ const germanyCostContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/budget.webp",
     },
     {
       title: "Tuition Fees",
@@ -59,7 +59,7 @@ const germanyCostContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/academic.webp",
     },
     {
       title: "Accommodation",
@@ -86,7 +86,7 @@ const germanyCostContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/accommodation.webp",
     },
     {
       title: "Food and Groceries",
@@ -113,7 +113,7 @@ const germanyCostContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/groceries.webp",
     },
     {
       title: "Transportation",
@@ -141,7 +141,7 @@ const germanyCostContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/transportation.webp",
     },
     {
       title: "Health Insurance",
@@ -165,7 +165,7 @@ const germanyCostContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/insurance.webp",
     },
   ],
 };

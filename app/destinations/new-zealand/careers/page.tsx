@@ -36,7 +36,7 @@ const newZealandCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/it-1.webp",
     },
     {
       title: "Healthcare & Biomedical Sciences",
@@ -68,7 +68,7 @@ const newZealandCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/medical-3.webp",
     },
     {
       title: "Environmental Management & Sustainability",
@@ -102,7 +102,7 @@ const newZealandCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/sustainability.webp",
     },
     {
       title: "Agribusiness & Food Innovation",
@@ -136,7 +136,7 @@ const newZealandCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/agribusiness.webp",
     },
     {
       title: "Tourism & Hospitality Management",
@@ -171,7 +171,7 @@ const newZealandCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/hospitality.webp",
     },
     {
       title: "Creative Industries & Media",
@@ -206,7 +206,7 @@ const newZealandCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/art-6.webp",
     },
     {
       title: "Construction & Infrastructure",
@@ -241,7 +241,7 @@ const newZealandCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/engineering-2.webp",
     },
   ],
 };

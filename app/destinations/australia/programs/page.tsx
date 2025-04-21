@@ -35,7 +35,7 @@ const australiaStudyProgramsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/business-1.webp",
     },
     {
       title: "Engineering",
@@ -69,7 +69,7 @@ const australiaStudyProgramsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/engineering-3.webp",
     },
     {
       title: "Law",
@@ -102,7 +102,7 @@ const australiaStudyProgramsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/law-1.webp",
     },
     {
       title: "Medicine & Healthcare",
@@ -136,7 +136,7 @@ const australiaStudyProgramsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/medical-3.webp",
     },
     {
       title: "Arts & Design",
@@ -171,7 +171,7 @@ const australiaStudyProgramsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/art-1.webp",
     },
     {
       title: "Sciences",
@@ -207,7 +207,7 @@ const australiaStudyProgramsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/research-6.webp",
     },
     {
       title: "Computer Science & Information Technology",
@@ -240,7 +240,7 @@ const australiaStudyProgramsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/it-1.webp",
     },
   ],
 };

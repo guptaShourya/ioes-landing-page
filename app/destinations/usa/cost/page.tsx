@@ -32,7 +32,7 @@ const usaCostContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/budget.webp",
     },
     {
       title: "Accommodation Costs",
@@ -61,7 +61,7 @@ const usaCostContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/accommodation.webp",
     },
     {
       title: "Food and Dining",
@@ -89,7 +89,7 @@ const usaCostContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/groceries.webp",
     },
     {
       title: "Transportation",
@@ -117,7 +117,7 @@ const usaCostContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/transportation.webp",
     },
     {
       title: "Health Insurance and Medical Costs",
@@ -144,7 +144,7 @@ const usaCostContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/insurance.webp",
     },
     {
       title: "Books and Academic Supplies",
@@ -172,7 +172,7 @@ const usaCostContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/books.webp",
     },
     {
       title: "Personal Expenses and Entertainment",
@@ -200,7 +200,7 @@ const usaCostContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/entertainment.webp",
     },
   ],
 };

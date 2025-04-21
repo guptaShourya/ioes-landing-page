@@ -6,6 +6,27 @@ const australiaCostContent = {
     "Plan your budget effectively with our comprehensive guide to living expenses for Indian students in Australia, from tuition fees to daily costs.",
   sections: [
     {
+      title: "Overview of Expenses",
+      content: (
+        <>
+          <p>
+            Living in Australia as an international student involves various
+            expenses, including tuition fees, accommodation, food,
+            transportation, health insurance, and personal costs. On average,
+            students should budget between AUD 20,000 and AUD 30,000 per year
+            for living expenses, depending on their location and lifestyle.
+          </p>
+          <p>
+            Major cities like Sydney and Melbourne tend to be more expensive,
+            while regional areas offer more affordable options. Understanding
+            these costs will help you plan your finances effectively and make
+            the most of your time in Australia.
+          </p>
+        </>
+      ),
+      image: "/programs/budget.webp",
+    },
+    {
       title: "Tuition Fees",
       content: (
         <>
@@ -28,7 +49,7 @@ const australiaCostContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/academic.webp",
     },
     {
       title: "Accommodation",
@@ -54,7 +75,7 @@ const australiaCostContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/accommodation.webp",
     },
     {
       title: "Food and Groceries",
@@ -78,7 +99,7 @@ const australiaCostContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/groceries.webp",
     },
     {
       title: "Transportation",
@@ -101,7 +122,7 @@ const australiaCostContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/transportation.webp",
     },
     {
       title: "Health Insurance",
@@ -124,7 +145,7 @@ const australiaCostContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/insurance.webp",
     },
     {
       title: "Entertainment and Personal Expenses",
@@ -150,7 +171,7 @@ const australiaCostContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/entertainment.webp",
     },
   ],
 };

@@ -31,7 +31,7 @@ const usaCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/culture/usa-campus-life.webp",
     },
     {
       title: "Cultural Diversity and Inclusion",
@@ -58,7 +58,7 @@ const usaCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/culture/usa-inclusion.webp",
     },
     {
       title: "Sports and Recreation",
@@ -87,7 +87,7 @@ const usaCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/culture/usa-sports.webp",
     },
     {
       title: "Food and Dining Culture",
@@ -116,7 +116,7 @@ const usaCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/culture/usa-food.webp",
     },
     {
       title: "Holidays and Traditions",
@@ -144,7 +144,7 @@ const usaCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/culture/usa-festivals.webp",
     },
     {
       title: "Travel and Exploration",
@@ -173,7 +173,7 @@ const usaCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/culture/usa-travel.webp",
     },
   ],
 };

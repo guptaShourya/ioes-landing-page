@@ -36,7 +36,7 @@ const usaStudyProgramsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/usa-business.webp",
     },
     {
       title: "Engineering",
@@ -68,7 +68,7 @@ const usaStudyProgramsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/engineering-1.webp",
     },
     {
       title: "Law",
@@ -101,7 +101,7 @@ const usaStudyProgramsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/law-1.webp",
     },
     {
       title: "Medicine & Healthcare",
@@ -133,7 +133,7 @@ const usaStudyProgramsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/medical-2.webp",
     },
     {
       title: "Arts & Design",
@@ -167,7 +167,7 @@ const usaStudyProgramsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/art-6.webp",
     },
     {
       title: "Sciences",
@@ -202,7 +202,7 @@ const usaStudyProgramsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/research-1.webp",
     },
     {
       title: "Computer Science & Information Technology",
@@ -235,7 +235,7 @@ const usaStudyProgramsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/it-6.webp",
     },
   ],
 };

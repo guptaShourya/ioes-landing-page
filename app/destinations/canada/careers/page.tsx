@@ -38,7 +38,7 @@ const canadaCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/it-3.webp",
     },
     {
       title: "Healthcare & Medical Sciences",
@@ -73,7 +73,7 @@ const canadaCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/medical-3.webp",
     },
     {
       title: "Natural Resources & Clean Energy",
@@ -111,7 +111,7 @@ const canadaCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/sustainability.webp",
     },
     {
       title: "Financial Services",
@@ -149,7 +149,7 @@ const canadaCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/business-3.webp",
     },
     {
       title: "Advanced Manufacturing & Engineering",
@@ -189,7 +189,7 @@ const canadaCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/engineering-3.webp",
     },
     {
       title: "Construction & Infrastructure",
@@ -227,7 +227,7 @@ const canadaCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/engineering-2.webp",
     },
     {
       title: "Education & Research",
@@ -266,7 +266,7 @@ const canadaCareerOptionsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/academic.webp",
     },
   ],
 };

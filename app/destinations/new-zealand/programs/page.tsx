@@ -36,7 +36,7 @@ const newZealandStudyProgramsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/business-2.webp",
     },
     {
       title: "Engineering",
@@ -70,7 +70,7 @@ const newZealandStudyProgramsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/engineering-3.webp",
     },
     {
       title: "Law",
@@ -103,7 +103,7 @@ const newZealandStudyProgramsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/law-2.webp",
     },
     {
       title: "Medicine & Healthcare",
@@ -136,7 +136,7 @@ const newZealandStudyProgramsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/medical-3.webp",
     },
     {
       title: "Arts & Design",
@@ -170,7 +170,7 @@ const newZealandStudyProgramsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/art-4.webp",
     },
     {
       title: "Sciences",
@@ -205,7 +205,7 @@ const newZealandStudyProgramsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/research-4.webp",
     },
     {
       title: "Computer Science & Information Technology",
@@ -239,7 +239,7 @@ const newZealandStudyProgramsContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/programs/it-4.webp",
     },
   ],
 };
