@@ -28,6 +28,7 @@ export function CounselingFormPopup({
     preferredDestination: "",
     studyLevel: "",
     message: "",
+    time: "",
   });
 
   const handleChange = (
@@ -43,13 +44,28 @@ export function CounselingFormPopup({
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (formStep < 3) {
       setFormStep(formStep + 1);
     } else {
+      setFormData((prev) => ({
+        ...prev,
+        time: Date().toLocaleString(),
+      }));
       // Here you would typically send the data to your backend
-      console.log("Form submitted:", formData);
+      const response = await fetch("https://sheetdb.io/api/v1/ez70ogw0dbzib", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ data: formData }), // key `data` is mandatory
+      });
+      if (!response.ok) {
+        console.error("Error submitting form data");
+        alert(
+          "There was an error submitting your form. Please try again or Contact Us."
+        );
+        return;
+      }
       setFormSubmitted(true);
     }
   };
@@ -70,6 +86,7 @@ export function CounselingFormPopup({
       preferredDestination: "",
       studyLevel: "",
       message: "",
+      time: "",
     });
   };
 
