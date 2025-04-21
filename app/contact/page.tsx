@@ -1,3 +1,7 @@
+"use client";
+
+import type React from "react";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -12,7 +16,6 @@ import {
   Globe,
   Facebook,
   Instagram,
-  Twitter,
   Linkedin,
   MessageSquare,
   Users,
@@ -20,11 +23,128 @@ import {
   Youtube,
 } from "lucide-react";
 import { Footer } from "@/components/footer";
+import contact from "../../data/contact.json";
+import { useState } from "react";
+import { AlertToast } from "@/components/ui/alert-toast";
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    inquiryType: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [alert, setAlert] = useState<{
+    show: boolean;
+    variant: "success" | "error";
+    message: string;
+    description?: string;
+  }>({
+    show: false,
+    variant: "success",
+    message: "",
+    description: "",
+  });
+
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = event.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const { name, value } = event.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      // Handle form submission logic here
+      const response = await fetch("https://sheetdb.io/api/v1/1kz4nka53rvpu", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ data: formData }), // key `data` is mandatory
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log("Form submitted successfully:", result);
+
+        // Show success alert
+        setAlert({
+          show: true,
+          variant: "success",
+          message: "Message Sent Successfully!",
+          description:
+            "Thank you for reaching out. Our team will contact you within 24-48 hours.",
+        });
+
+        // Reset form
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          inquiryType: "",
+          message: "",
+        });
+      } else {
+        // Show error alert
+        setAlert({
+          show: true,
+          variant: "error",
+          message: "Submission Failed",
+          description:
+            "Please call our office at " +
+            contact.primaryNumber +
+            " for immediate assistance.",
+        });
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+
+      // Show error alert
+      setAlert({
+        show: true,
+        variant: "error",
+        message: "Something went wrong",
+        description:
+          "Please call our office at " +
+          contact.primaryNumber +
+          " for immediate assistance.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
+
+      {alert.show && (
+        <AlertToast
+          variant={alert.variant}
+          message={alert.message}
+          description={alert.description}
+          position="top"
+          duration={5000}
+          onClose={() => setAlert({ ...alert, show: false })}
+        />
+      )}
 
       <main className="flex-1">
         {/* Hero Section */}
@@ -68,7 +188,7 @@ export default function ContactPage() {
                     <div>
                       <h3 className="font-bold">Call Us</h3>
                       <p className="text-gray-500">
-                        +91 98765 43210 (General Inquiries)
+                        {contact.primaryNumber} (General Inquiries)
                       </p>
                       <p className="text-gray-500">
                         +91 98765 43211 (Admissions)
@@ -163,7 +283,7 @@ export default function ContactPage() {
               <div className="flex items-center justify-center">
                 <div className="rounded-xl border bg-white p-6 shadow-sm w-full">
                   <h3 className="mb-4 text-xl font-bold">Send Us a Message</h3>
-                  <form className="space-y-4">
+                  <form className="space-y-4" onSubmit={handleSubmit}>
                     <div className="grid gap-4 sm:grid-cols-2">
                       <div className="space-y-2">
                         <label
@@ -175,6 +295,10 @@ export default function ContactPage() {
                         <Input
                           id="first-name"
                           placeholder="Enter your first name"
+                          name="firstName"
+                          value={formData.firstName}
+                          onChange={handleChange}
+                          required
                         />
                       </div>
                       <div className="space-y-2">
@@ -187,6 +311,10 @@ export default function ContactPage() {
                         <Input
                           id="last-name"
                           placeholder="Enter your last name"
+                          name="lastName"
+                          value={formData.lastName}
+                          onChange={handleChange}
+                          required
                         />
                       </div>
                     </div>
@@ -201,6 +329,10 @@ export default function ContactPage() {
                         id="email"
                         type="email"
                         placeholder="Enter your email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
                       />
                     </div>
                     <div className="space-y-2">
@@ -210,7 +342,14 @@ export default function ContactPage() {
                       >
                         Phone
                       </label>
-                      <Input id="phone" placeholder="Enter your phone number" />
+                      <Input
+                        id="phone"
+                        placeholder="Enter your phone number"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        required
+                      />
                     </div>
                     <div className="space-y-2">
                       <label
@@ -222,6 +361,10 @@ export default function ContactPage() {
                       <select
                         id="inquiry-type"
                         className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                        name="inquiryType"
+                        value={formData.inquiryType}
+                        onChange={handleSelectChange}
+                        required
                       >
                         <option value="">Select inquiry type</option>
                         <option value="general">General Information</option>
@@ -244,13 +387,18 @@ export default function ContactPage() {
                         id="message"
                         placeholder="Enter your message"
                         rows={4}
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        required
                       />
                     </div>
                     <Button
                       type="submit"
                       className="w-full bg-blue-800 hover:bg-blue-900"
+                      disabled={isSubmitting}
                     >
-                      Send Message
+                      {isSubmitting ? "Sending..." : "Send Message"}
                     </Button>
                   </form>
                 </div>
@@ -290,7 +438,7 @@ export default function ContactPage() {
                 <div className="grid gap-4 p-6 md:grid-cols-3">
                   <div className="flex items-start gap-2">
                     <MapPin className="h-5 w-5 text-blue-800" />
-                    <span>123 Education Street, Delhi, India</span>
+                    <span>{contact.address}</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <Globe className="h-5 w-5 text-blue-800" />

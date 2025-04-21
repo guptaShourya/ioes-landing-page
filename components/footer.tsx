@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import contact from "../data/contact.json";
 import { Button } from "@/components/ui/button";
 import {
   MapPin,
@@ -163,14 +164,11 @@ export function Footer() {
           <ul className="space-y-2 text-sm text-gray-500">
             <li className="flex items-start gap-2">
               <MapPin className="h-[3em] w-[3em] text-blue-800" />
-              <span className="text-gray-500">
-                3rd floor, Plot No. 12B/58, B-59, Rd Number 203, Parmanand
-                Colony Pocket 8, Block B, Sector 12 Dwarka, 110075
-              </span>
+              <span className="text-gray-500">{contact.address}</span>
             </li>
             <li className="flex items-start gap-2">
               <Phone className="h-4 w-4 text-blue-800" />
-              <span>+91 98765 43210</span>
+              <span>{contact.primaryNumber}</span>
             </li>
             <li className="flex items-start gap-2">
               <Mail className="h-4 w-4 text-blue-800" />

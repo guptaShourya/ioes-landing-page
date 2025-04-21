@@ -27,6 +27,7 @@ import { Footer } from "@/components/footer";
 import { usePopup } from "@/hooks/use-popup";
 import { CounselingFormPopup } from "@/components/counselling-form-popup";
 import { JSX } from "react";
+import contact from "../data/contact.json";
 
 export default function Home() {
   const { isOpen, openPopup, closePopup } = usePopup();
@@ -496,9 +497,7 @@ export default function Home() {
                   <MapPin className="h-6 w-6 text-blue-800" />
                   <div>
                     <h3 className="font-bold">Visit Us</h3>
-                    <p className="text-gray-500">
-                      123 Education Street, Delhi, India
-                    </p>
+                    <p className="text-gray-500">{contact.address}</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
