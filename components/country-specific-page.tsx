@@ -58,11 +58,7 @@ export function CountrySpecificPage({
         <section className="relative">
           <div className="absolute inset-0">
             <Image
-              src={
-                pageType != "careers"
-                  ? `/${pageType}/${slug}-${pageType}.webp`
-                  : `/programs/${slug}-programs.webp`
-              }
+              src={`/${pageType}/${slug}-${pageType}.webp`}
               alt={`${pageTypeLabels[pageType]} in ${country}`}
               fill
               className="object-cover"
@@ -193,11 +189,7 @@ export function CountrySpecificPage({
                     className="group relative overflow-hidden rounded-lg shadow-lg"
                   >
                     <Image
-                      src={
-                        type != "careers"
-                          ? `/${type}/${slug}-${type}.webp`
-                          : `/programs/${slug}-programs.webp`
-                      }
+                      src={`/${type}/${slug}-${type}.webp`}
                       alt={`${country} ${
                         pageTypeLabels[type as keyof typeof pageTypeLabels]
                       }`}
