@@ -33,7 +33,7 @@ const ukCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/diversity.webp",
     },
     {
       title: "British Traditions",
@@ -63,7 +63,7 @@ const ukCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/gb-tradition.webp",
     },
     {
       title: "Academic Culture",
@@ -90,7 +90,7 @@ const ukCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/programs/academic.webp",
     },
     {
       title: "Social Life",
@@ -117,7 +117,7 @@ const ukCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/outdoor-cafe.webp",
     },
     {
       title: "Food and Dining",
@@ -144,7 +144,7 @@ const ukCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/food.webp",
     },
     {
       title: "Arts and Entertainment",
@@ -165,7 +165,7 @@ const ukCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/entertainment.webp",
     },
     {
       title: "Seasonal Activities and Events",
@@ -189,7 +189,7 @@ const ukCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/gb-easter.webp",
     },
     {
       title: "Student Life",
@@ -209,7 +209,7 @@ const ukCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/student-life.webp",
     },
   ],
 };

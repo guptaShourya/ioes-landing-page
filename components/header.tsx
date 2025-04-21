@@ -121,6 +121,13 @@ export function Header() {
                 Study Abroad
               </Link>
               <Link
+                href="/scholarships"
+                className="text-sm font-medium hover:text-primary"
+                onClick={() => setIsMenuOpen(false)} // Close menu on click
+              >
+                Scholarships
+              </Link>
+              <Link
                 href="/success-stories"
                 className="text-sm font-medium hover:text-primary"
                 onClick={() => setIsMenuOpen(false)} // Close menu on click

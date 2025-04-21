@@ -29,7 +29,7 @@ const canadaCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/diversity.webp",
     },
     {
       title: "Campus Life and Community",
@@ -57,7 +57,7 @@ const canadaCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/student-life.webp",
     },
     {
       title: "Outdoor Lifestyle",
@@ -84,7 +84,7 @@ const canadaCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/outdoor-cafe.webp",
     },
     {
       title: "Canadian Values and Social Norms",
@@ -109,7 +109,7 @@ const canadaCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/ca-values.webp",
     },
     {
       title: "Food and Dining Culture",
@@ -136,7 +136,7 @@ const canadaCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/food.webp",
     },
     {
       title: "Arts, Entertainment, and Nightlife",
@@ -164,7 +164,7 @@ const canadaCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/entertainment.webp",
     },
   ],
 };

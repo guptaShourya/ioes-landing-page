@@ -32,7 +32,7 @@ const newZealandCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/diversity.webp",
     },
     {
       title: "Māori Culture",
@@ -60,7 +60,7 @@ const newZealandCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/maori.webp",
     },
     {
       title: "Outdoor Lifestyle",
@@ -87,7 +87,7 @@ const newZealandCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/outdoor-cafe.webp",
     },
     {
       title: "Relaxed Social Atmosphere",
@@ -113,7 +113,7 @@ const newZealandCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/social-atm.webp",
     },
     {
       title: "Food and Dining",
@@ -140,7 +140,7 @@ const newZealandCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/food.webp",
     },
     {
       title: "Arts and Entertainment",
@@ -166,7 +166,7 @@ const newZealandCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/entertainment.webp",
     },
     {
       title: "Sports and Recreation",
@@ -193,7 +193,7 @@ const newZealandCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/cricket.webp",
     },
     {
       title: "Student Life",
@@ -222,7 +222,7 @@ const newZealandCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/student-life.webp",
     },
   ],
 };

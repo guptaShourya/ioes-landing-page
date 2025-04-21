@@ -31,7 +31,7 @@ const germanyCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/de-culture.webp",
     },
     {
       title: "Academic Culture",
@@ -58,7 +58,7 @@ const germanyCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/programs/academic.webp",
     },
     {
       title: "Daily Life and Routine",
@@ -84,7 +84,7 @@ const germanyCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/de-routine.webp",
     },
     {
       title: "Food and Dining",
@@ -113,7 +113,7 @@ const germanyCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/food.webp",
     },
     {
       title: "Social Life and Recreation",
@@ -140,7 +140,7 @@ const germanyCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/de-social.webp",
     },
     {
       title: "Festivals and Events",
@@ -167,7 +167,7 @@ const germanyCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/de-festival.webp",
     },
   ],
 };

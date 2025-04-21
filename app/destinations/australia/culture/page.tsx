@@ -30,7 +30,7 @@ const australiaCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/diversity.webp",
     },
     {
       title: "Laid-back Lifestyle",
@@ -56,7 +56,7 @@ const australiaCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/social-atm.webp",
     },
     {
       title: "Outdoor Living",
@@ -82,7 +82,7 @@ const australiaCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/outdoor-cafe.webp",
     },
     {
       title: "Sports Culture",
@@ -109,7 +109,7 @@ const australiaCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/cricket.webp",
     },
     {
       title: "Food and Dining Culture",
@@ -136,7 +136,7 @@ const australiaCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/food.webp",
     },
     {
       title: "Festivals and Events",
@@ -163,7 +163,7 @@ const australiaCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/au-culture.webp",
     },
     {
       title: "Student Life",
@@ -191,7 +191,7 @@ const australiaCultureContent = {
           </p>
         </>
       ),
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/student-life.webp",
     },
   ],
 };
