@@ -18,9 +18,9 @@ export function Header() {
           <div className="flex items-center gap-2">
             <Link href="/" className="flex items-center gap-2">
               <Image
-                src="/ioeslogo.webp"
+                src="/logo.png"
                 alt="IOES Logo"
-                width={60}
+                width={100}
                 height={60}
                 className="rounded"
               />
