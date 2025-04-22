@@ -7,63 +7,118 @@ import { Button } from "@/components/ui/button";
 import { usePopup } from "@/hooks/use-popup";
 import { CounselingFormPopup } from "./counselling-form-popup";
 
+const STUDY_ABROAD_COUNTRIES = [
+  { name: "Why Study Abroad?", href: "/study-abroad" },
+  { name: "USA", href: "/destinations/usa" },
+  { name: "UK", href: "/destinations/uk" },
+  { name: "Canada", href: "/destinations/canada" },
+  { name: "Australia", href: "/destinations/australia" },
+  { name: "New Zealand", href: "/destinations/new-zealand" },
+  { name: "Germany", href: "/destinations/germany" },
+];
+
+const SCHOLARSHIP_COUNTRIES = [
+  { name: "Overview", href: "/scholarships" },
+  { name: "USA", href: "/scholarships/usa" },
+  { name: "UK", href: "/scholarships/uk" },
+  { name: "Canada", href: "/scholarships/canada" },
+  { name: "Australia", href: "/scholarships/australia" },
+  { name: "New Zealand", href: "/scholarships/new-zealand" },
+  { name: "Germany", href: "/scholarships/germany" },
+];
+
 export function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // State to track menu visibility
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { isOpen, openPopup, closePopup } = usePopup();
 
   return (
     <>
       <header className="sticky top-0 z-50 w-full border-b bg-white">
         <div className="container flex h-16 items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Link href="/" className="flex items-center gap-2">
-              <Image
-                src="/logo.png"
-                alt="IOES Logo"
-                width={100}
-                height={60}
-                className="rounded"
-              />
-            </Link>
-          </div>
-          <nav className="hidden md:flex gap-6">
+          <Link href="/" className="flex items-center gap-2">
+            <Image
+              src="/logo.png"
+              alt="IOES Logo"
+              width={100}
+              height={60}
+              className="rounded"
+            />
+          </Link>
+
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex gap-6 items-center text-base font-semibold text-gray-800">
             <Link
               href="/about"
-              className="text-sm font-medium hover:text-primary"
+              className="group relative hover:text-primary transition"
             >
               About Us
+              <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full" />
             </Link>
+
             <Link
               href="/services"
-              className="text-sm font-medium hover:text-primary"
+              className="group relative hover:text-primary transition"
             >
               Services
+              <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full" />
             </Link>
-            <Link
-              href="/study-abroad"
-              className="text-sm font-medium hover:text-primary"
-            >
-              Study Abroad
-            </Link>
-            <Link
-              href="/scholarships"
-              className="text-sm font-medium hover:text-primary"
-            >
-              Scholarships
-            </Link>
+
+            {/* Study Abroad with dropdown */}
+            <div className="relative group">
+              <span className="cursor-pointer hover:text-primary transition group">
+                Study Abroad
+                <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full" />
+              </span>
+              <div className="absolute left-0 mt-2 w-48 rounded-lg border bg-white p-2 shadow-lg opacity-0 group-hover:opacity-100 group-hover:translate-y-0 -translate-y-2 transition-all duration-300 ease-in-out z-50">
+                {STUDY_ABROAD_COUNTRIES.map((country) => (
+                  <Link
+                    key={country.href}
+                    href={country.href}
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded"
+                  >
+                    {country.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Scholarships with dropdown */}
+            <div className="relative group">
+              <span className="cursor-pointer hover:text-primary transition group">
+                Scholarships
+                <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full" />
+              </span>
+              <div className="absolute left-0 mt-2 w-48 rounded-lg border bg-white p-2 shadow-lg opacity-0 group-hover:opacity-100 group-hover:translate-y-0 -translate-y-2 transition-all duration-300 ease-in-out z-50">
+                {SCHOLARSHIP_COUNTRIES.map((country) => (
+                  <Link
+                    key={country.href}
+                    href={country.href}
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded"
+                  >
+                    {country.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
             <Link
               href="/success-stories"
-              className="text-sm font-medium hover:text-primary"
+              className="group relative hover:text-primary transition"
             >
               Success Stories
+              <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full" />
             </Link>
+
             <Link
               href="/contact"
-              className="text-sm font-medium hover:text-primary"
+              className="group relative hover:text-primary transition"
             >
               Contact
+              <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full" />
             </Link>
           </nav>
+
+          {/* Buttons */}
           <div className="flex items-center gap-4">
             <Button size="sm" className="hidden md:flex" onClick={openPopup}>
               Get Started
@@ -72,13 +127,13 @@ export function Header() {
               variant="ghost"
               size="icon"
               className="md:hidden"
-              onClick={() => setIsMenuOpen(!isMenuOpen)} // Toggle menu visibility
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
+              {/* Hamburger icon */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="24"
-                viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
@@ -86,58 +141,57 @@ export function Header() {
                 strokeLinejoin="round"
                 className="h-6 w-6"
               >
-                <line x1="4" x2="20" y1="12" y2="12" />
                 <line x1="4" x2="20" y1="6" y2="6" />
+                <line x1="4" x2="20" y1="12" y2="12" />
                 <line x1="4" x2="20" y1="18" y2="18" />
               </svg>
-              <span className="sr-only">Toggle menu</span>
             </Button>
           </div>
         </div>
 
-        {/* Dropdown Menu for Smaller Screens */}
+        {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="absolute top-full left-0 w-full bg-white border-t shadow-md z-40">
             <nav className="flex flex-col gap-4 p-4">
               <Link
                 href="/about"
                 className="text-sm font-medium hover:text-primary"
-                onClick={() => setIsMenuOpen(false)} // Close menu on click
+                onClick={() => setIsMenuOpen(false)}
               >
                 About Us
               </Link>
               <Link
                 href="/services"
                 className="text-sm font-medium hover:text-primary"
-                onClick={() => setIsMenuOpen(false)} // Close menu on click
+                onClick={() => setIsMenuOpen(false)}
               >
                 Services
               </Link>
               <Link
                 href="/study-abroad"
                 className="text-sm font-medium hover:text-primary"
-                onClick={() => setIsMenuOpen(false)} // Close menu on click
+                onClick={() => setIsMenuOpen(false)}
               >
                 Study Abroad
               </Link>
               <Link
                 href="/scholarships"
                 className="text-sm font-medium hover:text-primary"
-                onClick={() => setIsMenuOpen(false)} // Close menu on click
+                onClick={() => setIsMenuOpen(false)}
               >
                 Scholarships
               </Link>
               <Link
                 href="/success-stories"
                 className="text-sm font-medium hover:text-primary"
-                onClick={() => setIsMenuOpen(false)} // Close menu on click
+                onClick={() => setIsMenuOpen(false)}
               >
                 Success Stories
               </Link>
               <Link
                 href="/contact"
                 className="text-sm font-medium hover:text-primary"
-                onClick={() => setIsMenuOpen(false)} // Close menu on click
+                onClick={() => setIsMenuOpen(false)}
               >
                 Contact
               </Link>
