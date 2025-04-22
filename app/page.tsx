@@ -123,7 +123,7 @@ export default function Home() {
                 <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                   IOES is a premier overseas education consultancy based in
                   Delhi, helping students achieve their dreams of studying
-                  abroad since 2010.
+                  abroad since 2019.
                 </p>
               </div>
             </div>

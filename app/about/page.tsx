@@ -148,7 +148,7 @@ export default function AboutPage() {
                         Expanding Our Reach
                       </h3>
                       <p className="text-gray-700">
-                        By 2010, we had expanded to multiple cities across India
+                        By 2019, we had expanded to multiple cities across India
                         and established partnerships with over 200 universities
                         worldwide, becoming a trusted name in overseas education
                         consultancy.
