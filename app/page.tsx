@@ -28,6 +28,7 @@ import { usePopup } from "@/hooks/use-popup";
 import { CounselingFormPopup } from "@/components/counselling-form-popup";
 import { JSX } from "react";
 import contact from "../data/contact.json";
+import reviews from "../data/reviews.json";
 
 export default function Home() {
   const { isOpen, openPopup, closePopup } = usePopup();
@@ -366,32 +367,10 @@ export default function Home() {
               </div>
             </div>
             <div className="mx-auto grid max-w-5xl gap-8 py-12 md:grid-cols-2 lg:grid-cols-3">
-              {[
-                {
-                  name: "Rahul Sharma",
-                  university: "Harvard University, USA",
-                  image: "/placeholder.svg?height=100&width=100",
-                  testimonial:
-                    "IOES made my dream of studying at Harvard a reality. Their counselors guided me through every step of the application process.",
-                },
-                {
-                  name: "Priya Patel",
-                  university: "University of Toronto, Canada",
-                  image: "/placeholder.svg?height=100&width=100",
-                  testimonial:
-                    "The visa guidance from IOES was exceptional. They prepared me thoroughly for the interview, which helped me secure my student visa without any issues.",
-                },
-                {
-                  name: "Arjun Singh",
-                  university: "University of Melbourne, Australia",
-                  image: "/placeholder.svg?height=100&width=100",
-                  testimonial:
-                    "From university selection to scholarship applications, IOES provided comprehensive support that made my journey to Australia smooth and successful.",
-                },
-              ].map((testimonial, index) => (
+              {reviews["landing-page"].map((testimonial, index) => (
                 <div
                   key={index}
-                  className="flex flex-col items-center space-y-4 rounded-lg bg-white/10 p-6"
+                  className="flex flex-col items-center space-y-4 rounded-lg bg-white/10 p-6 h-full"
                 >
                   <Image
                     src={testimonial.image || "/placeholder.svg"}
@@ -400,9 +379,9 @@ export default function Home() {
                     height={100}
                     className="h-20 w-20 rounded-full object-cover"
                   />
-                  <div className="space-y-2 text-center">
-                    <p className="text-white/90">"{testimonial.testimonial}"</p>
-                    <div>
+                  <div className="flex flex-col items-center space-y-2 text-center flex-1 justify-between">
+                    <p className="text-white/90">"{testimonial.review}"</p>
+                    <div className="flex flex-col items-center mt-auto">
                       <h3 className="font-bold">{testimonial.name}</h3>
                       <p className="text-sm text-white/70">
                         {testimonial.university}
@@ -504,7 +483,7 @@ export default function Home() {
                   <Phone className="h-6 w-6 text-blue-800" />
                   <div>
                     <h3 className="font-bold">Call Us</h3>
-                    <p className="text-gray-500">+91 98765 43210</p>
+                    <p className="text-gray-500">{contact.primaryNumber}</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">

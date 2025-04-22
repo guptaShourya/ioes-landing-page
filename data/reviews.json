@@ -1,0 +1,25 @@
+{
+  "landing-page": [
+    {
+      "name": "Simran Mehta",
+      "course": "Master of HR Management & Organisation",
+      "university": "University of Nottingham, UK",
+      "image": "/testimonials/simran-mehta.png",
+      "review": "I had a very great experience with IOES. Varun Sir and Rohit were very helpful and supportive. I couldn’t ask for better support I got from them. The advice I got from them was a huge help when it came down to applications and visa process. IOES has really helped me and the team takes proactive efforts to help whatsoever."
+    },
+    {
+      "name": "Chaitanya Ambike",
+      "course": "Bachelor of Mathematis (Advanced)",
+      "university": "University of Wollongong, Australia",
+      "image": "/testimonials/chaitanya-ambike.png",
+      "review": "Very professional and helpful staff. Received the 100% Vice-Chancellor Leadership Scholarship through the guidance of Mr. Varun Gupta. I was also able to secure an 8.5 band in IELTS on coaching from IOES. I would highly recommend IOES to anyone looking to study abroad."
+    },
+    {
+      "name": "Anmol Huda",
+      "course": "Bachelor of Science (Information Technology)",
+      "university": "Fairleigh Dickinson University, Candada",
+      "image": "/testimonials/anmol-huda.png",
+      "review": "IOES made my study abroad journey seamless. Their expert guidance helped me choose the right university and navigate the visa process effortlessly. Thanks to their support, I secured admission to a top university and felt confident throughout. Highly recommend their services!"
+    }
+  ]
+}
