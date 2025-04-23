@@ -15,93 +15,11 @@ import {
 import { Footer } from "@/components/footer";
 import { CounselingFormPopup } from "@/components/counselling-form-popup";
 import { usePopup } from "@/hooks/use-popup";
+import reviews from "../../data/reviews.json";
 
-const featuredStories = [
-  {
-    name: "Rahul Sharma",
-    image: "/placeholder.svg?height=400&width=400",
-    university: "Harvard University",
-    country: "USA",
-    program: "Master of Business Administration",
-    year: "2022",
-    quote:
-      "IOES transformed my dream of studying at Harvard into reality. Their counselors provided personalized guidance throughout my application journey, from selecting the right program to preparing for interviews. Their scholarship assistance helped me secure substantial funding, making my Harvard education financially viable.",
-    achievement: "Secured $80,000 scholarship and internship at Goldman Sachs",
-  },
-  {
-    name: "Priya Patel",
-    image: "/placeholder.svg?height=400&width=400",
-    university: "University of Oxford",
-    country: "UK",
-    program: "MSc in Computer Science",
-    year: "2021",
-    quote:
-      "The comprehensive support from IOES was instrumental in my journey to Oxford. Their expertise in UK university applications and visa processes ensured a smooth transition. The pre-departure orientation prepared me well for life in the UK, and their continuous support even after arrival made a significant difference.",
-    achievement: "Published research paper in leading computer science journal",
-  },
-  {
-    name: "Arjun Singh",
-    image: "/placeholder.svg?height=400&width=400",
-    university: "University of Toronto",
-    country: "Canada",
-    program: "PhD in Biomedical Engineering",
-    year: "2020",
-    quote:
-      "IOES's guidance was exceptional from start to finish. Their in-depth knowledge of Canadian universities and immigration processes was invaluable. They helped me identify the perfect program aligned with my research interests and connected me with alumni who provided insider perspectives. Their scholarship guidance helped me secure full funding.",
-    achievement: "Received prestigious research grant worth CAD 50,000",
-  },
-];
+const featuredStories = reviews["success-stories-main"];
 
-const testimonials = [
-  {
-    name: "Ananya Desai",
-    image: "/placeholder.svg?height=100&width=100",
-    university: "University of Melbourne, Australia",
-    program: "Master of Public Health",
-    quote:
-      "IOES made my Australian education journey seamless. Their guidance on university selection and visa application was spot-on.",
-  },
-  {
-    name: "Vikram Mehta",
-    image: "/placeholder.svg?height=100&width=100",
-    university: "Technical University of Munich, Germany",
-    program: "MS in Mechanical Engineering",
-    quote:
-      "Studying in Germany seemed daunting until IOES stepped in. Their expertise in German university applications and language requirements was invaluable.",
-  },
-  {
-    name: "Neha Sharma",
-    image: "/placeholder.svg?height=100&width=100",
-    university: "University of British Columbia, Canada",
-    program: "Master of Education",
-    quote:
-      "The scholarship guidance from IOES helped me secure substantial funding for my studies in Canada. Their personalized approach made all the difference.",
-  },
-  {
-    name: "Karan Malhotra",
-    image: "/placeholder.svg?height=100&width=100",
-    university: "Imperial College London, UK",
-    program: "MSc in Finance",
-    quote:
-      "IOES's counselors understood exactly what top UK universities look for in applications. Their strategic guidance helped me get into my dream program.",
-  },
-  {
-    name: "Sanya Gupta",
-    image: "/placeholder.svg?height=100&width=100",
-    university: "Stanford University, USA",
-    program: "MS in Computer Science",
-    quote:
-      "From SOP reviews to interview preparation, IOES provided comprehensive support that was crucial for my Stanford admission.",
-  },
-  {
-    name: "Rohan Kapoor",
-    image: "/placeholder.svg?height=100&width=100",
-    university: "University of Auckland, New Zealand",
-    program: "Master of Engineering Management",
-    quote:
-      "IOES's expertise in New Zealand education system and post-study work opportunities helped me make informed decisions about my future.",
-  },
-];
+const testimonials = reviews["success-stories-cards"];
 
 const statistics = [
   {
@@ -217,7 +135,7 @@ export default function SuccessStoriesPage() {
               {featuredStories.map((story, index) => (
                 <div
                   key={index}
-                  className={`flex flex-col gap-8 md:flex-row ${
+                  className={`flex flex-col gap-8 md:flex-row items-center ${
                     index % 2 === 1 ? "md:flex-row-reverse" : ""
                   }`}
                 >
@@ -239,23 +157,27 @@ export default function SuccessStoriesPage() {
                     <h3 className="text-2xl font-bold">{story.name}</h3>
                     <div className="space-y-1 text-gray-500">
                       <p>
-                        <span className="font-medium">{story.program}</span>,{" "}
+                        <span className="font-medium">{story.course}</span>,{" "}
                         {story.university}
                       </p>
                       <p>
                         {story.country}, Class of {story.year}
                       </p>
                     </div>
-                    <p className="italic text-gray-600">"{story.quote}"</p>
-                    <div className="rounded-lg bg-blue-50 p-4">
-                      <p className="font-medium text-blue-800">
-                        Achievement: {story.achievement}
-                      </p>
-                    </div>
-                    <Button className="w-fit bg-blue-800 hover:bg-blue-900">
+                    <p className="italic text-gray-600">"{story.review}"</p>
+                    {story.achievement != "" ? (
+                      <div className="rounded-lg bg-blue-50 p-4">
+                        <p className="font-medium text-blue-800">
+                          Achievement: {story.achievement}
+                        </p>
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                    {/* <Button className="w-fit bg-blue-800 hover:bg-blue-900">
                       Read Full Story
                       <ChevronRight className="ml-2 h-4 w-4" />
-                    </Button>
+                    </Button> */}
                   </div>
                 </div>
               ))}
@@ -293,12 +215,12 @@ export default function SuccessStoriesPage() {
                     height={100}
                     className="h-20 w-20 rounded-full object-cover"
                   />
-                  <div className="space-y-2 text-center">
-                    <p className="text-gray-500">"{testimonial.quote}"</p>
+                  <div className="space-y-2 text-center flex-col">
+                    <p className="text-gray-500">"{testimonial.review}"</p>
                     <div>
                       <h3 className="font-bold">{testimonial.name}</h3>
                       <p className="text-sm text-gray-500">
-                        {testimonial.program}, {testimonial.university}
+                        {testimonial.course}, {testimonial.university}
                       </p>
                     </div>
                   </div>
