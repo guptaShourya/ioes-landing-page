@@ -39,7 +39,7 @@ export function Header() {
             <Image
               src="/logo.png"
               alt="IOES Logo"
-              width={100}
+              width={110}
               height={60}
               className="rounded"
             />

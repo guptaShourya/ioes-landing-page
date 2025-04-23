@@ -42,11 +42,11 @@ export function Footer() {
             <Image
               src="/ioeslogo.webp"
               alt="IOES Logo"
-              width={40}
-              height={40}
+              width={120}
+              height={100}
               className="rounded"
             />
-            <span className="text-xl font-bold tracking-tight">IOES</span>
+            {/* <span className="text-xl font-bold tracking-tight">IOES</span> */}
           </Link>
           <p className="text-sm text-gray-500">
             Inspire Overseaas Education Services (IOES) is a premier education
