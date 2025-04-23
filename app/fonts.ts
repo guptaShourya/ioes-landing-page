@@ -25,22 +25,22 @@ export const satoshi = localFont({
 export const nibpro = localFont({
   src: [
     {
-      path: "../public/fonts/Nibpro-Light.woff2",
+      path: "../public/fonts/NibPro-Light.woff2",
       weight: "300",
       style: "normal",
     },
     {
-      path: "../public/fonts/Nibpro-Regular.woff2",
+      path: "../public/fonts/NibPro-Regular.woff2",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../public/fonts/Nibpro-Bold.woff2",
+      path: "../public/fonts/NibPro-Bold.woff2",
       weight: "700",
       style: "normal",
     },
     {
-      path: "../public/fonts/Nibpro-Italic.woff2",
+      path: "../public/fonts/NibPro-Italic.woff2",
       weight: "400",
       style: "italic",
     },
