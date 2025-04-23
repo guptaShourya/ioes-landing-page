@@ -46,7 +46,7 @@ export function Header() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex gap-6 items-center text-base font-semibold text-gray-800">
+          <nav className="hidden md:flex gap-6 items-center text-base font-satoshi font-medium text-gray-800">
             <Link
               href="/about"
               className="group relative hover:text-primary transition"
@@ -152,7 +152,7 @@ export function Header() {
         {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="absolute top-full left-0 w-full bg-white border-t shadow-md z-40">
-            <nav className="flex flex-col gap-4 p-4">
+            <nav className="flex flex-col gap-4 p-4 font-satoshi">
               <Link
                 href="/about"
                 className="text-sm font-medium hover:text-primary"

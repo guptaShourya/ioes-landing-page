@@ -1,0 +1,70 @@
+{
+  "events": [
+    {
+      "id": "event-1",
+      "title": "USA Education Fair 2023",
+      "date": "2023-11-15",
+      "time": "10:00 AM - 4:00 PM",
+      "location": "Hotel Taj Palace, New Delhi",
+      "description": "Meet representatives from top US universities and get on-spot admission offers with scholarship opportunities.",
+      "image": "/events/usa-fair.jpg",
+      "featured": true,
+      "registrationLink": "/events/usa-education-fair"
+    },
+    {
+      "id": "event-2",
+      "title": "UK Universities Webinar",
+      "date": "2023-11-20",
+      "time": "6:00 PM - 7:30 PM",
+      "location": "Online (Zoom)",
+      "description": "Learn about admission requirements, application process, and scholarship opportunities at UK universities.",
+      "image": "/events/uk-webinar.jpg",
+      "featured": true,
+      "registrationLink": "/events/uk-universities-webinar"
+    },
+    {
+      "id": "event-3",
+      "title": "Scholarship Workshop",
+      "date": "2023-11-25",
+      "time": "11:00 AM - 1:00 PM",
+      "location": "IOES Office, Connaught Place",
+      "description": "Hands-on workshop on finding and applying for international scholarships with high success rates.",
+      "image": "/events/scholarship-workshop.jpg",
+      "featured": false,
+      "registrationLink": "/events/scholarship-workshop"
+    },
+    {
+      "id": "event-4",
+      "title": "Canada Study Visa Seminar",
+      "date": "2023-12-05",
+      "time": "3:00 PM - 5:00 PM",
+      "location": "Hotel Leela, Gurugram",
+      "description": "Expert guidance on Canada study visa application process, documentation, and interview preparation.",
+      "image": "/events/canada-visa.jpg",
+      "featured": true,
+      "registrationLink": "/events/canada-study-visa-seminar"
+    },
+    {
+      "id": "event-5",
+      "title": "Australia & New Zealand Info Session",
+      "date": "2023-12-10",
+      "time": "4:00 PM - 6:00 PM",
+      "location": "IOES Office, Connaught Place",
+      "description": "Comprehensive information session on study opportunities in Australia and New Zealand.",
+      "image": "/events/aus-nz-session.jpg",
+      "featured": false,
+      "registrationLink": "/events/australia-newzealand-info-session"
+    },
+    {
+      "id": "event-6",
+      "title": "IELTS Preparation Workshop",
+      "date": "2023-12-15",
+      "time": "10:00 AM - 1:00 PM",
+      "location": "IOES Office, Connaught Place",
+      "description": "Intensive workshop covering all sections of IELTS with tips and strategies to achieve a high score.",
+      "image": "/events/ielts-workshop.jpg",
+      "featured": false,
+      "registrationLink": "/events/ielts-preparation-workshop"
+    }
+  ]
+}

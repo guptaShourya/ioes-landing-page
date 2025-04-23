@@ -32,6 +32,8 @@ import reviews from "../data/reviews.json";
 import { motion } from "framer-motion";
 import { UniversityCarousel } from "@/components/university-carousel";
 import { ApplicationTimeline } from "@/components/application-timeline";
+import { FloatingCountryChips } from "@/components/floating-country-chips";
+import { UpcomingEventsSection } from "@/components/upcoming-events-section";
 
 export default function Home() {
   const { isOpen, openPopup, closePopup } = usePopup();
@@ -60,7 +62,14 @@ export default function Home() {
       <Header />
       <main className="flex-1">
         {/* Hero Section - Updated with vibrant gradient */}
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-r from-purple-50 via-indigo-50 to-blue-50">
+        <section
+          className="w-full py-12 md:py-24 lg:py-32"
+          style={{
+            backgroundColor: "#102324",
+            backgroundImage:
+              "radial-gradient(circle farthest-corner at 140% -10%, #2d737b 10%, #102324 100%)",
+          }}
+        >
           <div className="container px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-[1fr_500px] lg:gap-12 xl:grid-cols-[1fr_550px]">
               <div className="flex flex-col justify-center space-y-4">
@@ -69,7 +78,7 @@ export default function Home() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
-                    className="text-3xl font-bold tracking-tighter text-purple-900 sm:text-5xl xl:text-6xl/none"
+                    className="text-3xl font-satoshi tracking-tighter text-white font-normal sm:text-5xl xl:text-6xl/none"
                   >
                     Your Global Education Journey Starts Here
                   </motion.h1>
@@ -77,7 +86,7 @@ export default function Home() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
-                    className="max-w-[600px] text-gray-600 md:text-xl"
+                    className="max-w-[600px] font-nibpro text-white md:text-xl font-light"
                   >
                     Expert guidance for students aspiring to study abroad.
                     Transform your educational dreams into reality with IOES.
@@ -91,7 +100,7 @@ export default function Home() {
                 >
                   <Button
                     size="lg"
-                    className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-md"
+                    className="px-4 py-2 font-satoshi font-medium text-white rounded-md bg-gradient-to-r from-[#ED4746] to-[#FF8A50] hover:opacity-90 transition-opacity"
                     onClick={openPopup}
                   >
                     Free Consultation
@@ -99,7 +108,7 @@ export default function Home() {
                   <Button
                     variant="outline"
                     size="lg"
-                    className="border-purple-600 text-purple-700 hover:bg-purple-50"
+                    className="font-satoshi border-orange-600 text-[#102324] hover:bg-orange"
                   >
                     <Link href="/study-abroad">Explore Programs</Link>
                   </Button>
@@ -128,7 +137,7 @@ export default function Home() {
                       </motion.div>
                     ))}
                   </div>
-                  <p className="text-sm text-gray-600">
+                  <p className="font-nibpro font-medium text-normal text-gray-600">
                     Trusted by{" "}
                     <span className="font-medium text-purple-700">2,000+</span>{" "}
                     students
@@ -139,6 +148,7 @@ export default function Home() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.7 }}
+                // className="w-full relative"
                 className="w-full"
               >
                 <Image
@@ -148,6 +158,7 @@ export default function Home() {
                   alt="Students studying abroad"
                   className="mx-auto aspect-square rounded-xl object-cover sm:w-full lg:order-last shadow-lg"
                 />
+                {/* <FloatingCountryChips /> */}
               </motion.div>
             </div>
           </div>
@@ -546,6 +557,8 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <UpcomingEventsSection />
 
         {/* Why Choose Us Section - Updated with fresh colors */}
         <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-r from-teal-50 to-cyan-50">

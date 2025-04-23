@@ -1,6 +1,7 @@
 import type React from "react";
 import "@/app/globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { satoshi, nibpro } from "./fonts";
 
 export const metadata = {
   title: "IOES - Inspire Overseass Education Services",
@@ -15,7 +16,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${satoshi.variable} ${nibpro.variable}`}
+    >
       <head />
       <body>
         <ThemeProvider

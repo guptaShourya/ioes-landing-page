@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config = {
   darkMode: ["class"],
@@ -19,6 +19,10 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        satoshi: ["var(--font-satoshi)"],
+        nibpro: ["var(--font-nibpro)"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -76,6 +80,6 @@ const config = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;
