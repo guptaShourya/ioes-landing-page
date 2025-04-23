@@ -78,10 +78,38 @@ export default function Home() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
-                    className="text-3xl font-satoshi tracking-tighter text-white font-normal sm:text-5xl xl:text-6xl/none"
+                    className="text-4xl font-satoshi tracking-tighter text-white font-normal sm:text-5xl xl:text-6xl/none"
                   >
-                    Your Global Education Journey Starts Here
+                    Your{" "}
+                    <span className="relative inline-block m-2">
+                      {/* QUOTES for medium and above */}
+                      <Image
+                        src="/quote-up.svg"
+                        alt="Opening Quote"
+                        width={36}
+                        height={36}
+                        className="absolute -top-3 -left-4 w-6 h-6 hidden sm:block"
+                      />
+                      Global
+                      <Image
+                        src="/quote-up.svg"
+                        alt="Closing Quote"
+                        width={36}
+                        height={36}
+                        className="absolute rotate-180 -top-3 -right-7 w-6 h-6 hidden sm:block"
+                      />
+                      {/* UNDERLINE for small screens only */}
+                      <Image
+                        src="/underline.svg"
+                        alt="Underline"
+                        width={100}
+                        height={10}
+                        className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 block sm:hidden"
+                      />
+                    </span>{" "}
+                    Education Journey Starts Here
                   </motion.h1>
+
                   <motion.p
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -92,6 +120,7 @@ export default function Home() {
                     Transform your educational dreams into reality with IOES.
                   </motion.p>
                 </div>
+
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
