@@ -83,7 +83,7 @@ export default function Home() {
                     Your{" "}
                     <span
                       style={{ fontStyle: "italic", fontWeight: "lighter" }}
-                      className="relative font-nibpro inline-block m-2"
+                      className="relative font-nibpro inline-block m-2 opacity-60"
                     >
                       Global
                       {/* UNDERLINE always visible */}
@@ -125,7 +125,7 @@ export default function Home() {
                   <Button
                     variant="outline"
                     size="lg"
-                    className="font-satoshi border-orange-600 text-[#102324] hover:bg-orange"
+                    className="font-satoshi font-light border-white text-white bg-transparent"
                   >
                     <Link href="/study-abroad">Explore Programs</Link>
                   </Button>
