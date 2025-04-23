@@ -81,30 +81,18 @@ export default function Home() {
                     className="text-4xl font-satoshi tracking-tighter text-white font-normal sm:text-5xl xl:text-6xl/none"
                   >
                     Your{" "}
-                    <span className="relative inline-block m-2">
-                      {/* QUOTES for medium and above */}
-                      <Image
-                        src="/quote-up.svg"
-                        alt="Opening Quote"
-                        width={36}
-                        height={36}
-                        className="absolute -top-3 -left-4 w-6 h-6 hidden sm:block"
-                      />
+                    <span
+                      style={{ fontStyle: "italic", fontWeight: "lighter" }}
+                      className="relative font-nibpro inline-block m-2"
+                    >
                       Global
-                      <Image
-                        src="/quote-up.svg"
-                        alt="Closing Quote"
-                        width={36}
-                        height={36}
-                        className="absolute rotate-180 -top-3 -right-7 w-6 h-6 hidden sm:block"
-                      />
-                      {/* UNDERLINE for small screens only */}
+                      {/* UNDERLINE always visible */}
                       <Image
                         src="/underline.svg"
                         alt="Underline"
-                        width={100}
+                        width={140}
                         height={10}
-                        className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 block sm:hidden"
+                        className="absolute -bottom-2 left-1/2 transform -translate-x-1/2"
                       />
                     </span>{" "}
                     Education Journey Starts Here
