@@ -37,7 +37,7 @@ export function Header() {
         <div className="container flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
             <Image
-              src="/image.png"
+              src="/image-coffee.png"
               alt="IOES Logo"
               width={120}
               height={60}
