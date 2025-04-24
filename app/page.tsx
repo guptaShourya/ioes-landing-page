@@ -32,7 +32,6 @@ import reviews from "../data/reviews.json";
 import { motion } from "framer-motion";
 import { UniversityCarousel } from "@/components/university-carousel";
 import { ApplicationTimeline } from "@/components/application-timeline";
-import { FloatingCountryChips } from "@/components/floating-country-chips";
 import { UpcomingEventsSection } from "@/components/upcoming-events-section";
 
 export default function Home() {
