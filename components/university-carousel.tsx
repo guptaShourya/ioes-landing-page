@@ -46,7 +46,7 @@ export function UniversityCarousel() {
       } else if (window.innerWidth < 1024) {
         setItemsPerPage(3);
       } else {
-        setItemsPerPage(5);
+        setItemsPerPage(4);
       }
     }
   }, []);
@@ -83,7 +83,7 @@ export function UniversityCarousel() {
       <div className="flex items-center justify-between">
         <div className="mx-auto flex w-full max-w-5xl items-center justify-center px-12">
           <AnimatePresence mode="wait">
-            <div className="flex w-full items-center justify-around gap-4 md:gap-8">
+            <div className="flex w-full items-center justify-around gap-4 md:gap-12">
               {visibleLogos.map((university, index) => (
                 <motion.div
                   key={`${university.name}-${index}-${currentIndex}`}
@@ -93,7 +93,7 @@ export function UniversityCarousel() {
                   transition={{ duration: 0.3, delay: index * 0.1 }}
                   className="flex flex-col items-center justify-center"
                 >
-                  <div className="relative h-16 w-32 overflow-hidden rounded-lg bg-white p-2 shadow-md transition-all duration-300 hover:shadow-lg sm:h-20 sm:w-40">
+                  <div className="relative h-24 w-48 overflow-hidden rounded-lg bg-white p-2 shadow-md transition-all duration-300 hover:shadow-lg sm:h-40 sm:w-40">
                     <Image
                       src={university.logo || "/placeholder.svg"}
                       alt={university.name}

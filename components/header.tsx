@@ -33,7 +33,7 @@ export function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full border-b bg-white">
+      <header className="sticky top-0 z-50 w-full border-b bg-[#f0ebe6]">
         <div className="container flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
             <Image
@@ -52,7 +52,7 @@ export function Header() {
               className="group relative hover:text-primary transition"
             >
               About Us
-              <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full" />
+              <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-[#ed4746] transition-all duration-300 group-hover:w-full" />
             </Link>
 
             <Link
@@ -60,14 +60,14 @@ export function Header() {
               className="group relative hover:text-primary transition"
             >
               Services
-              <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full" />
+              <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-[#ed4746] transition-all duration-300 group-hover:w-full" />
             </Link>
 
             {/* Study Abroad with dropdown */}
             <div className="relative group">
               <span className="cursor-pointer hover:text-primary transition group">
                 Study Abroad
-                <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full" />
+                <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-[#ed4746] transition-all duration-300 group-hover:w-full" />
               </span>
               <div className="absolute left-0 mt-2 w-48 rounded-lg border bg-white p-2 shadow-lg opacity-0 group-hover:opacity-100 group-hover:translate-y-0 -translate-y-2 transition-all duration-300 ease-in-out z-50">
                 {STUDY_ABROAD_COUNTRIES.map((country) => (
@@ -86,7 +86,7 @@ export function Header() {
             <div className="relative group">
               <span className="cursor-pointer hover:text-primary transition group">
                 Scholarships
-                <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full" />
+                <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-[#ed4746] transition-all duration-300 group-hover:w-full" />
               </span>
               <div className="absolute left-0 mt-2 w-48 rounded-lg border bg-white p-2 shadow-lg opacity-0 group-hover:opacity-100 group-hover:translate-y-0 -translate-y-2 transition-all duration-300 ease-in-out z-50">
                 {SCHOLARSHIP_COUNTRIES.map((country) => (
@@ -106,7 +106,7 @@ export function Header() {
               className="group relative hover:text-primary transition"
             >
               Success Stories
-              <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full" />
+              <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-[#ed4746] transition-all duration-300 group-hover:w-full" />
             </Link>
 
             <Link
@@ -114,13 +114,17 @@ export function Header() {
               className="group relative hover:text-primary transition"
             >
               Contact
-              <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full" />
+              <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-[#ed4746] transition-all duration-300 group-hover:w-full" />
             </Link>
           </nav>
 
           {/* Buttons */}
           <div className="flex items-center gap-4">
-            <Button size="sm" className="hidden md:flex" onClick={openPopup}>
+            <Button
+              size="sm"
+              className="hidden md:flex bg-[#ED4746]"
+              onClick={openPopup}
+            >
               Get Started
             </Button>
             <Button
@@ -151,7 +155,7 @@ export function Header() {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="absolute top-full left-0 w-full bg-white border-t shadow-md z-40">
+          <div className="absolute top-full left-0 w-full bg-[#f0ebe6] border-t shadow-md z-40">
             <nav className="flex flex-col gap-4 p-4 font-satoshi">
               <Link
                 href="/about"

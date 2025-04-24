@@ -102,7 +102,7 @@ export default function Home() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
-                    className="max-w-[600px] font-nibpro text-white md:text-xl font-light"
+                    className="max-w-[600px] text-white md:text-xl font-light"
                   >
                     Expert guidance for students aspiring to study abroad.
                     Transform your educational dreams into reality with IOES.
@@ -154,9 +154,9 @@ export default function Home() {
                       </motion.div>
                     ))}
                   </div>
-                  <p className="font-nibpro font-medium text-normal text-gray-600">
+                  <p className="font-nibpro font-medium text-normal text-white">
                     Trusted by{" "}
-                    <span className="font-medium text-purple-700">2,000+</span>{" "}
+                    <span className="font-medium text-[#ed4746]">2,000+</span>{" "}
                     students
                   </p>
                 </motion.div>
@@ -182,20 +182,22 @@ export default function Home() {
         </section>
 
         {/* University Partners Carousel - New Section */}
-        <section className="w-full py-12 bg-white">
+        <section className="w-full py-12 bg-[#f0ebe6]">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <div className="inline-block rounded-lg bg-purple-100 px-3 py-1 text-sm text-purple-800">
                   Our University Partners
                 </div>
-                <h2 className="text-2xl font-bold tracking-tighter text-gray-900 sm:text-3xl">
+                <h2 className="text-3xl font-bold tracking-tighter text-gray-900 sm:text-5xl">
                   Partnered with Leading Global Universities
                 </h2>
-                <p className="max-w-[700px] text-gray-500 md:text-lg">
-                  We collaborate with prestigious institutions worldwide to
-                  provide you with the best educational opportunities.
-                </p>
+                <div className="w-full flex justify-center">
+                  <p className="max-w-[700px] text-gray-500 md:text-lg">
+                    We collaborate with prestigious institutions worldwide to
+                    provide you with the best educational opportunities.
+                  </p>
+                </div>
               </div>
             </div>
             <UniversityCarousel />
