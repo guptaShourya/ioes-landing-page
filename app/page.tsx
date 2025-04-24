@@ -506,7 +506,7 @@ export default function Home() {
               ))}
             </div>
             <div className="flex justify-center">
-              <Button className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-md">
+              <Button className="bg-[#ED4746] hover:bg-[#ED4746]/80 text-white shadow-md">
                 <Link href="/study-abroad">Learn More</Link>
                 <ChevronRight className="ml-2 h-4 w-4" />
               </Button>
