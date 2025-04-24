@@ -58,9 +58,9 @@ export default function Home() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col overflow-x-hidden">
+    <div className="flex min-h-screen flex-col">
       <Header />
-      <main className="flex-1">
+      <main className="flex-1 overflow-x-hidden">
         {/* Hero Section - Updated with vibrant gradient */}
         <section
           className="w-full py-12 md:py-24 lg:py-32"
@@ -73,12 +73,12 @@ export default function Home() {
           <div className="container px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-[1fr_500px] lg:gap-12 xl:grid-cols-[1fr_550px]">
               <div className="flex flex-col justify-center space-y-4">
-                <div className="space-y-2">
+                <div className="space-y-6">
                   <motion.h1
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
-                    className="text-4xl font-satoshi tracking-tighter text-white font-normal sm:text-5xl xl:text-6xl/none"
+                    className="text-4xl font-satoshi tracking-tighter text-white font-normal sm:text-7xl"
                   >
                     Your{" "}
                     <span
@@ -117,7 +117,8 @@ export default function Home() {
                 >
                   <Button
                     size="lg"
-                    className="px-4 py-2 font-satoshi font-medium text-white rounded-md bg-gradient-to-r from-[#ED4746] to-[#FF8A50] hover:opacity-90 transition-opacity"
+                    // className="px-4 py-2 font-satoshi font-medium text-white rounded-md bg-gradient-to-r from-[#ED4746] to-[#FF8A50] hover:opacity-90 transition-opacity"
+                    className="px-4 py-2 font-satoshi font-medium text-white rounded-md bg-[#ED4746] hover:opacity-80 hover:bg-[#ED4746] transition-opacity"
                     onClick={openPopup}
                   >
                     Free Consultation
@@ -186,10 +187,10 @@ export default function Home() {
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-purple-100 px-3 py-1 text-sm text-purple-800">
+                <div className="inline-block rounded-lg bg-purple-100 px-3 py-1 text-sm text-purple-800 font-nibpro">
                   Our University Partners
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter text-gray-900 sm:text-5xl">
+                <h2 className="text-3xl font-normal tracking-tighter text-gray-900 sm:text-6xl">
                   Partnered with Leading Global Universities
                 </h2>
                 <div className="w-full flex justify-center">
@@ -212,10 +213,10 @@ export default function Home() {
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-teal-100 px-3 py-1 text-sm text-teal-800">
+                <div className="inline-block rounded-lg bg-teal-100 px-3 py-1 text-sm text-teal-800 font-nibpro">
                   About IOES
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter text-gray-900 sm:text-5xl">
+                <h2 className="text-3xl font-normal tracking-tighter text-gray-900 sm:text-6xl">
                   Your Trusted Education Partner
                 </h2>
                 <p className="max-w-[900px] text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
@@ -297,10 +298,10 @@ export default function Home() {
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-emerald-100 px-3 py-1 text-sm text-emerald-800">
+                <div className="inline-block rounded-lg bg-emerald-100 px-3 py-1 text-sm text-emerald-800 font-nibpro">
                   Application Process
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter text-gray-900 sm:text-4xl">
+                <h2 className="text-3xl font-normal tracking-tighter text-gray-900 sm:text-6xl">
                   Your Path to International Education
                 </h2>
                 <p className="max-w-[900px] text-gray-600 md:text-lg">
@@ -321,10 +322,10 @@ export default function Home() {
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-amber-100 px-3 py-1 text-sm text-amber-800">
+                <div className="inline-block rounded-lg bg-amber-100 px-3 py-1 text-sm text-amber-800 font-nibpro">
                   Our Services
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter text-gray-900 sm:text-5xl">
+                <h2 className="text-3xl font-normal tracking-tighter text-gray-900 sm:text-6xl">
                   Comprehensive Support
                 </h2>
                 <p className="max-w-[900px] text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
@@ -402,7 +403,7 @@ export default function Home() {
             <div className="flex justify-center mt-8">
               <Button
                 asChild
-                className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-md"
+                className="bg-[#ED4746] hover:bg-[#ED4746] text-white shadow-md"
               >
                 <Link href="/services">
                   Explore All Services
@@ -421,10 +422,10 @@ export default function Home() {
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-indigo-100 px-3 py-1 text-sm text-indigo-800">
+                <div className="inline-block rounded-lg bg-indigo-100 px-3 py-1 text-sm text-indigo-800 font-nibpro">
                   Study Destinations
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter text-gray-900 sm:text-5xl">
+                <h2 className="text-3xl font-normal tracking-tighter text-gray-900 sm:text-6xl">
                   Global Education Opportunities
                 </h2>
                 <p className="max-w-[900px] text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
@@ -491,7 +492,7 @@ export default function Home() {
                       height={200}
                       className="h-[200px] w-full object-cover transition-transform duration-300 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-indigo-900/90 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                     <div className="absolute bottom-0 w-full p-4 text-white">
                       <h3 className="text-xl font-bold">
                         {destination.country}
@@ -516,15 +517,21 @@ export default function Home() {
         {/* Testimonials Section - Updated with deeper colors */}
         <section
           id="testimonials"
-          className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-r from-purple-900 to-indigo-900 text-white"
+          style={{
+            backgroundColor: "#102324",
+            backgroundImage:
+              "radial-gradient(circle farthest-corner at 140% -10%, #2d737b 10%, #102324 100%)",
+          }}
+          className="w-full py-12 md:py-24 lg:py-32 text-white"
+          // className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-r from-purple-900 to-indigo-900 text-white"
         >
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-white/10 px-3 py-1 text-sm">
+                <div className="inline-block rounded-lg bg-white/10 px-3 py-1 text-sm font-nibpro">
                   Success Stories
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                <h2 className="text-3xl font-normal tracking-tighter sm:text-6xl">
                   Hear From Our Students
                 </h2>
                 <p className="max-w-[900px] text-white/80 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
@@ -541,9 +548,9 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="flex flex-col items-center space-y-4 rounded-lg bg-white/10 p-6 h-full backdrop-blur-sm hover:bg-white/15 transition-colors duration-300"
+                  className="flex flex-col items-center space-y-6 rounded-lg bg-white/10 p-6 h-full backdrop-blur-sm hover:bg-white/15 transition-colors duration-300"
                 >
-                  <div className="h-20 w-20 overflow-hidden rounded-full border-2 border-purple-300">
+                  <div className="h-20 w-20 overflow-hidden rounded-full border-2 border-[#FBDADA]">
                     <Image
                       src={testimonial.image || "/placeholder.svg"}
                       alt={testimonial.name}
@@ -558,7 +565,7 @@ export default function Home() {
                     </p>
                     <div className="flex flex-col items-center mt-auto">
                       <h3 className="font-bold">{testimonial.name}</h3>
-                      <p className="text-sm text-purple-200">
+                      <p className="text-sm text-[#ED4746] font-nibpro font-medium">
                         {testimonial.university}
                       </p>
                     </div>
@@ -567,10 +574,7 @@ export default function Home() {
               ))}
             </div>
             <div className="flex justify-center">
-              <Button
-                variant="outline"
-                className="border-purple-300 text-purple-900 hover:bg-white hover:text-purple-900 transition-colors duration-300"
-              >
+              <Button className="text-white bg-[#ED4746]">
                 <Link href="/success-stories">View More Success Stories</Link>
               </Button>
             </div>
@@ -585,10 +589,10 @@ export default function Home() {
             <div className="grid gap-6 lg:grid-cols-2 lg:gap-12">
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
-                  <div className="inline-block rounded-lg bg-teal-100 px-3 py-1 text-sm text-teal-800">
+                  <div className="inline-block rounded-lg bg-teal-100 px-3 py-1 text-sm text-teal-800 font-nibpro">
                     Why Choose IOES
                   </div>
-                  <h2 className="text-3xl font-bold tracking-tighter text-gray-900 sm:text-4xl md:text-5xl">
+                  <h2 className="text-3xl font-normal tracking-tighter text-gray-900 sm:text-6xl">
                     Your Future, Our Priority
                   </h2>
                   <p className="max-w-[600px] text-gray-600 md:text-xl/relaxed">
@@ -659,10 +663,10 @@ export default function Home() {
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-rose-100 px-3 py-1 text-sm text-rose-800">
+                <div className="inline-block rounded-lg bg-rose-100 px-3 py-1 text-sm text-rose-800 font-nibpro">
                   Get in Touch
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter text-gray-900 sm:text-5xl">
+                <h2 className="text-3xl font-normal tracking-tighter text-gray-900 sm:text-6xl">
                   Start Your Journey Today
                 </h2>
                 <p className="max-w-[900px] text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">

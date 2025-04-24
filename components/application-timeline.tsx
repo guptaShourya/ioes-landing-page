@@ -147,7 +147,7 @@ export function ApplicationTimeline() {
 
   return (
     <div
-      className="w-full"
+      className="w-full flex flex-col md:gap-8"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -155,14 +155,14 @@ export function ApplicationTimeline() {
         {/* Navigation Arrows */}
         <button
           onClick={goToPreviousStep}
-          className="absolute left-0 top-4 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 md:left-4"
+          className="absolute left-0 top-4 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-[#f0ebe6] text-gray-600 hover:bg-[#f0ebe6] md:left-4"
           aria-label="Previous step"
         >
-          <ChevronLeft className="h-5 w-5" />
+          <ChevronLeft className="h-5 w-5" style={{ color: "#ED4746" }} />
         </button>
 
         {/* Timeline Steps */}
-        <div className="flex items-center justify-center px-10 md:px-6">
+        <div className="flex items-center justify-center px-10 md:px-6 gap-10">
           {visibleSteps.map((index) => (
             <div key={index} className="relative flex flex-col items-center">
               {/* Connector Line */}
@@ -185,7 +185,7 @@ export function ApplicationTimeline() {
                   setActiveStep(index);
                   setIsPaused(true);
                 }}
-                className={`relative z-10 flex h-8 w-8 md:h-12 md:w-12 items-center justify-center rounded-full ${
+                className={`relative z-10 flex h-12 w-12 md:h-16 md:w-16 items-center justify-center rounded-full ${
                   index === activeStep
                     ? "bg-gradient-to-r from-teal-500 to-emerald-500 text-white shadow-lg"
                     : index < activeStep
@@ -194,7 +194,7 @@ export function ApplicationTimeline() {
                 } transition-all duration-300 mx-2 md:mx-4`}
               >
                 {steps[index].icon}
-                <span className="absolute -bottom-6 whitespace-nowrap text-[10px] md:text-xs font-medium">
+                <span className="absolute -bottom-6 whitespace-nowrap text-[10px] font-nibpro md:text-xs font-medium font-nibpro">
                   {window.innerWidth > 640 ? `Step ${index + 1}` : ""}
                 </span>
               </motion.button>
@@ -204,10 +204,10 @@ export function ApplicationTimeline() {
 
         <button
           onClick={goToNextStep}
-          className="absolute right-0 top-4 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 md:right-4"
+          className="absolute right-0 top-4 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-[#f0ebe6] text-gray-600 hover:bg-[#f0ebe6] md:right-4"
           aria-label="Next step"
         >
-          <ChevronRight className="h-5 w-5" />
+          <ChevronRight className="h-5 w-5" style={{ color: "#ED4746" }} />
         </button>
       </div>
 

@@ -37,11 +37,11 @@ export function Header() {
         <div className="container flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
             <Image
-              src="/logo.png"
+              src="/image.png"
               alt="IOES Logo"
-              width={110}
+              width={120}
               height={60}
-              className="rounded"
+              className="rounded color-white"
             />
           </Link>
 
