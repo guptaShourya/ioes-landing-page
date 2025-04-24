@@ -24,14 +24,14 @@ export function UpcomingEventsSection() {
   };
 
   return (
-    <section className="w-full py-12 md:py-24 bg-gradient-to-r from-indigo-50 to-purple-50">
+    <section className="w-full py-12 md:py-24 bg-gradient-to-b from-white to-[#f0ebe6]">
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
             <div className="inline-block rounded-lg bg-indigo-100 px-3 py-1 text-sm text-indigo-800 font-nibpro">
               Upcoming Events
             </div>
-            <h2 className="text-3xl font-normal tracking-tighter text-gray-900 sm:text-6xl">
+            <h2 className="text-4xl font-normal tracking-tighter text-gray-900 sm:text-6xl">
               Join Us at Our Events
             </h2>
             <p className="max-w-[900px] text-gray-600 md:text-lg">
@@ -83,7 +83,7 @@ export function UpcomingEventsSection() {
                 </p>
                 <Button
                   asChild
-                  className="mt-auto bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white"
+                  className="mt-auto bg-[#ED4746] hover:bg-[#ED4746] text-white hover:opacity-80 transition-opacity duration-200"
                 >
                   <Link href={event.registrationLink}>Register Now</Link>
                 </Button>
@@ -96,7 +96,7 @@ export function UpcomingEventsSection() {
           <Button
             asChild
             variant="outline"
-            className="border-indigo-300 text-indigo-700 hover:bg-indigo-50"
+            className="border-[#ED4746] text-[#ED4746] hover:bg-[#ED4746] hover:text-white transition-bg duration-300"
           >
             <Link href="/events">
               View All Events

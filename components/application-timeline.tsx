@@ -171,7 +171,7 @@ export function ApplicationTimeline() {
                   className={`absolute left-[-2.5rem] md:left-[-4rem] top-4 md:top-6 h-0.5 w-10 md:w-16 ${
                     index <= activeStep ||
                     (index === visibleSteps[0] && activeStep < index)
-                      ? "bg-gradient-to-r from-teal-500 to-emerald-500"
+                      ? "bg-gradient-to-r from-[#ED4746] to-orange-500"
                       : "bg-gray-200"
                   }`}
                 />
@@ -187,9 +187,9 @@ export function ApplicationTimeline() {
                 }}
                 className={`relative z-10 flex h-12 w-12 md:h-16 md:w-16 items-center justify-center rounded-full ${
                   index === activeStep
-                    ? "bg-gradient-to-r from-teal-500 to-emerald-500 text-white shadow-lg"
+                    ? "bg-gradient-to-r from-[#ED4746] to-orange-500 text-white shadow-lg"
                     : index < activeStep
-                    ? "bg-emerald-100 text-emerald-600"
+                    ? "bg-orange-200 text-orange-600"
                     : "bg-gray-100 text-gray-400"
                 } transition-all duration-300 mx-2 md:mx-4`}
               >
@@ -221,7 +221,7 @@ export function ApplicationTimeline() {
         className="mx-auto max-w-2xl rounded-xl bg-white p-4 md:p-6 shadow-md"
       >
         <div className="flex items-start gap-3 md:gap-4">
-          <div className="rounded-full bg-gradient-to-r from-teal-500 to-emerald-500 p-2 md:p-3 text-white">
+          <div className="rounded-full bg-gradient-to-r from-[#ED4746] to-orange-500 p-2 md:p-3 text-white">
             {steps[activeStep].icon}
           </div>
           <div>
@@ -241,7 +241,7 @@ export function ApplicationTimeline() {
               <div
                 key={index}
                 className={`h-1.5 w-4 rounded-full ${
-                  index === activeStep ? "bg-emerald-500" : "bg-gray-200"
+                  index === activeStep ? "bg-orange-500" : "bg-gray-200"
                 }`}
               />
             ))}

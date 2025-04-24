@@ -33,7 +33,7 @@ export function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full border-b bg-[#f0ebe6]">
+      <header className="sticky top-0 z-50 w-full border-[#f0ebe6] bg-[#f0ebe6]">
         <div className="container flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
             <Image
@@ -46,7 +46,7 @@ export function Header() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex gap-6 items-center text-base font-satoshi font-medium text-gray-800">
+          <nav className="hidden md:flex gap-10 items-center text-base font-satoshi font-light text-gray-800">
             <Link
               href="/about"
               className="group relative hover:text-primary transition"

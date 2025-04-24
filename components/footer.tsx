@@ -35,8 +35,8 @@ export function Footer() {
       "https://www.linkedin.com/company/inspire-overseaas-education-services/",
   };
   return (
-    <footer className="w-full border-t bg-gray-50 py-12">
-      <div className="container grid gap-8 px-4 md:px-6 lg:grid-cols-4">
+    <footer className="w-full border-t bg-[#1c1a1a] py-12">
+      <div className="container grid gap-8 px-4 md:px-6 lg:grid-cols-4 text-white">
         <div className="space-y-4">
           <Link href="/" className="flex items-center gap-2">
             <Image
@@ -46,9 +46,8 @@ export function Footer() {
               height={100}
               className="rounded"
             />
-            {/* <span className="text-xl font-bold tracking-tight">IOES</span> */}
           </Link>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm font-light">
             Inspire Overseaas Education Services (IOES) is a premier education
             consultancy helping students achieve their dreams of studying
             abroad.
@@ -76,67 +75,97 @@ export function Footer() {
           </div>
         </div>
         <div className="space-y-4">
-          <h3 className="text-lg font-bold">Quick Links</h3>
-          <ul className="space-y-2 text-sm text-gray-500">
+          <h3 className="text-lg font-medium">Quick Links</h3>
+          <ul className="space-y-2 text-sm font-light">
             <li>
-              <Link href="/" className="hover:text-blue-800">
+              <Link
+                href="/"
+                className="hover:text-[#F2F6FF] hover:opacity-60 hover:pl-2 transition-opacity-padding duration-200"
+              >
                 Home
               </Link>
             </li>
             <li>
-              <Link href="/about" className="hover:text-blue-800">
+              <Link
+                href="/about"
+                className="hover:text-[#F2F6FF] hover:opacity-60 hover:pl-2  transition-opacity-padding duration-200 "
+              >
                 About Us
               </Link>
             </li>
             <li>
-              <Link href="/services" className="hover:text-blue-800">
+              <Link
+                href="/services"
+                className="hover:text-[#F2F6FF] hover:opacity-60 hover:pl-2  transition-opacity-padding duration-200 "
+              >
                 Services
               </Link>
             </li>
             <li>
-              <Link href="/study-abroad" className="hover:text-blue-800">
+              <Link
+                href="/study-abroad"
+                className="hover:text-[#F2F6FF] hover:opacity-60 hover:pl-2  transition-opacity-padding duration-200 "
+              >
                 Study Abroad
               </Link>
             </li>
             <li>
-              <Link href="/scholarships" className="hover:text-blue-800">
+              <Link
+                href="/scholarships"
+                className="hover:text-[#F2F6FF] hover:opacity-60 hover:pl-2  transition-opacity-padding duration-200 "
+              >
                 Scholarships
               </Link>
             </li>
             <li>
-              <Link href="/success-stories" className="hover:text-blue-800">
+              <Link
+                href="/success-stories"
+                className="hover:text-[#F2F6FF] hover:opacity-60 hover:pl-2  transition-opacity-padding duration-200 "
+              >
                 Success Stories
               </Link>
             </li>
             <li>
-              <Link href="/contact" className="hover:text-blue-800">
+              <Link
+                href="/contact"
+                className="hover:text-[#F2F6FF] hover:opacity-60 hover:pl-2  transition-opacity-padding duration-200 "
+              >
                 Contact Us
               </Link>
             </li>
           </ul>
         </div>
         <div className="space-y-4">
-          <h3 className="text-lg font-bold">Study Destinations</h3>
-          <ul className="space-y-2 text-sm text-gray-500">
+          <h3 className="text-lg font-medium">Study Destinations</h3>
+          <ul className="space-y-2 text-sm font-light">
             <li>
-              <Link href="/destinations/usa" className="hover:text-blue-800">
+              <Link
+                href="/destinations/usa"
+                className="hover:text-[#F2F6FF] hover:opacity-60 hover:pl-2  transition-opacity-padding duration-200 "
+              >
                 United States
               </Link>
             </li>
             <li>
-              <Link href="/destinations/uk" className="hover:text-blue-800">
+              <Link
+                href="/destinations/uk"
+                className="hover:text-[#F2F6FF] hover:opacity-60 hover:pl-2  transition-opacity-padding duration-200 "
+              >
                 United Kingdom
               </Link>
             </li>
             <li>
-              <Link href="/destinations/canada" className="hover:text-blue-800">
+              <Link
+                href="/destinations/canada"
+                className="hover:text-[#F2F6FF] hover:opacity-60 hover:pl-2  transition-opacity-padding duration-200 "
+              >
                 Canada
               </Link>
             </li>
             <li>
               <Link
                 href="/destinations/australia"
-                className="hover:text-blue-800"
+                className="hover:text-[#F2F6FF] hover:opacity-60 hover:pl-2  transition-opacity-padding duration-200 "
               >
                 Australia
               </Link>
@@ -144,7 +173,7 @@ export function Footer() {
             <li>
               <Link
                 href="/destinations/new-zealand"
-                className="hover:text-blue-800"
+                className="hover:text-[#F2F6FF] hover:opacity-60 hover:pl-2  transition-opacity-padding duration-200 "
               >
                 New Zealand
               </Link>
@@ -152,7 +181,7 @@ export function Footer() {
             <li>
               <Link
                 href="/destinations/germany"
-                className="hover:text-blue-800"
+                className="hover:text-[#F2F6FF] hover:opacity-60 hover:pl-2  transition-opacity-padding duration-200 "
               >
                 Germany
               </Link>
@@ -160,22 +189,22 @@ export function Footer() {
           </ul>
         </div>
         <div className="space-y-4">
-          <h3 className="text-lg font-bold">Contact Information</h3>
-          <ul className="space-y-2 text-sm text-gray-500">
+          <h3 className="text-lg font-medium">Contact Information</h3>
+          <ul className="space-y-2 text-sm font-light">
             <li className="flex items-start gap-2">
-              <MapPin className="h-[3em] w-[3em] text-blue-800" />
-              <span className="text-gray-500">{contact.address}</span>
+              <MapPin className="h-[3em] w-[3em] text-[#ED4746]" />
+              <span>{contact.address}</span>
             </li>
             <li className="flex items-start gap-2">
-              <Phone className="h-4 w-4 text-blue-800" />
+              <Phone className="h-4 w-4 text-[#ED4746]" />
               <span>{contact.primaryNumber}</span>
             </li>
             <li className="flex items-start gap-2">
-              <Mail className="h-4 w-4 text-blue-800" />
+              <Mail className="h-4 w-4 text-[#ED4746]" />
               <span>info@ioes.in</span>
             </li>
             <li className="flex items-start gap-2">
-              <Clock className="h-4 w-4 text-blue-800" />
+              <Clock className="h-4 w-4 text-[#ED4746]" />
               <span>Monday - Saturday: 10:00 AM - 6:00 PM</span>
             </li>
           </ul>

@@ -72,21 +72,26 @@ export default function Home() {
         >
           <div className="container px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-[1fr_500px] lg:gap-12 xl:grid-cols-[1fr_550px]">
-              <div className="flex flex-col justify-center space-y-4">
+              <div className="flex flex-col justify-center space-y-4 gap-2">
                 <div className="space-y-6">
                   <motion.h1
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
-                    className="text-4xl font-satoshi tracking-tighter text-white font-normal sm:text-7xl"
+                    className="text-5xl font-normal font-satoshi tracking-tighter text-white sm:text-7xl font-normal"
                   >
                     Your{" "}
-                    <span
+                    <motion.span
+                      animate={{ y: [0, -5, 0], opacity: [0.8, 1, 0.8] }}
+                      transition={{
+                        duration: 1.5,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
                       style={{ fontStyle: "italic", fontWeight: "lighter" }}
-                      className="relative font-nibpro inline-block m-2 opacity-60"
+                      className="relative font-nibpro inline-block m-2"
                     >
                       Global
-                      {/* UNDERLINE always visible */}
                       <Image
                         src="/underline.svg"
                         alt="Underline"
@@ -94,7 +99,7 @@ export default function Home() {
                         height={10}
                         className="absolute -bottom-2 left-1/2 transform -translate-x-1/2"
                       />
-                    </span>{" "}
+                    </motion.span>{" "}
                     Education Journey Starts Here
                   </motion.h1>
 
@@ -183,14 +188,14 @@ export default function Home() {
         </section>
 
         {/* University Partners Carousel - New Section */}
-        <section className="w-full py-12 bg-[#f0ebe6]">
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-[#f0ebe6] to-white">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <div className="inline-block rounded-lg bg-purple-100 px-3 py-1 text-sm text-purple-800 font-nibpro">
                   Our University Partners
                 </div>
-                <h2 className="text-3xl font-normal tracking-tighter text-gray-900 sm:text-6xl">
+                <h2 className="text-4xl font-normal tracking-tighter text-gray-900 sm:text-6xl">
                   Partnered with Leading Global Universities
                 </h2>
                 <div className="w-full flex justify-center">
@@ -208,7 +213,7 @@ export default function Home() {
         {/* About Section - Updated with softer colors */}
         <section
           id="about"
-          className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-white to-teal-50"
+          className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-white to-[#f0ebe6]"
         >
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
@@ -216,7 +221,7 @@ export default function Home() {
                 <div className="inline-block rounded-lg bg-teal-100 px-3 py-1 text-sm text-teal-800 font-nibpro">
                   About IOES
                 </div>
-                <h2 className="text-3xl font-normal tracking-tighter text-gray-900 sm:text-6xl">
+                <h2 className="text-4xl font-normal tracking-tighter text-gray-900 sm:text-6xl">
                   Your Trusted Education Partner
                 </h2>
                 <p className="max-w-[900px] text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
@@ -294,14 +299,14 @@ export default function Home() {
         </section>
 
         {/* Application Process Timeline - New Section */}
-        <section className="w-full py-12 md:py-24 bg-gradient-to-r from-teal-50 to-emerald-50">
+        <section className="w-full py-12 md:py-24 bg-gradient-to-b from-[#f0ebe6] to-white">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-emerald-100 px-3 py-1 text-sm text-emerald-800 font-nibpro">
+                <div className="inline-block rounded-lg bg-rose-100 px-3 py-1 text-sm text-rose-800 font-nibpro">
                   Application Process
                 </div>
-                <h2 className="text-3xl font-normal tracking-tighter text-gray-900 sm:text-6xl">
+                <h2 className="text-4xl font-normal tracking-tighter text-gray-900 sm:text-6xl">
                   Your Path to International Education
                 </h2>
                 <p className="max-w-[900px] text-gray-600 md:text-lg">
@@ -325,7 +330,7 @@ export default function Home() {
                 <div className="inline-block rounded-lg bg-amber-100 px-3 py-1 text-sm text-amber-800 font-nibpro">
                   Our Services
                 </div>
-                <h2 className="text-3xl font-normal tracking-tighter text-gray-900 sm:text-6xl">
+                <h2 className="text-4xl font-normal tracking-tighter text-gray-900 sm:text-6xl">
                   Comprehensive Support
                 </h2>
                 <p className="max-w-[900px] text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
@@ -425,7 +430,7 @@ export default function Home() {
                 <div className="inline-block rounded-lg bg-indigo-100 px-3 py-1 text-sm text-indigo-800 font-nibpro">
                   Study Destinations
                 </div>
-                <h2 className="text-3xl font-normal tracking-tighter text-gray-900 sm:text-6xl">
+                <h2 className="text-4xl font-normal tracking-tighter text-gray-900 sm:text-6xl">
                   Global Education Opportunities
                 </h2>
                 <p className="max-w-[900px] text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
@@ -531,7 +536,7 @@ export default function Home() {
                 <div className="inline-block rounded-lg bg-white/10 px-3 py-1 text-sm font-nibpro">
                   Success Stories
                 </div>
-                <h2 className="text-3xl font-normal tracking-tighter sm:text-6xl">
+                <h2 className="text-4xl font-normal tracking-tighter sm:text-6xl">
                   Hear From Our Students
                 </h2>
                 <p className="max-w-[900px] text-white/80 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
@@ -584,15 +589,15 @@ export default function Home() {
         <UpcomingEventsSection />
 
         {/* Why Choose Us Section - Updated with fresh colors */}
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-r from-teal-50 to-cyan-50">
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-[#f0ebe6] to-white">
           <div className="container px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-2 lg:gap-12">
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
-                  <div className="inline-block rounded-lg bg-teal-100 px-3 py-1 text-sm text-teal-800 font-nibpro">
+                  <div className="inline-block rounded-lg bg-amber-100 px-3 py-1 text-sm text-amber-800 font-nibpro">
                     Why Choose IOES
                   </div>
-                  <h2 className="text-3xl font-normal tracking-tighter text-gray-900 sm:text-6xl">
+                  <h2 className="text-4xl font-normal tracking-tighter text-gray-900 sm:text-6xl">
                     Your Future, Our Priority
                   </h2>
                   <p className="max-w-[600px] text-gray-600 md:text-xl/relaxed">
@@ -629,7 +634,7 @@ export default function Home() {
                   className="flex flex-col gap-2 min-[400px]:flex-row"
                 >
                   <Button
-                    className="bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-600 hover:to-cyan-600 text-white shadow-md"
+                    className="bg-gradient-to-r from-rose-500 to-amber-500 hover:from-rose-600 hover:to-amber-600 text-white shadow-md"
                     onClick={openPopup}
                   >
                     Book a Consultation
@@ -666,7 +671,7 @@ export default function Home() {
                 <div className="inline-block rounded-lg bg-rose-100 px-3 py-1 text-sm text-rose-800 font-nibpro">
                   Get in Touch
                 </div>
-                <h2 className="text-3xl font-normal tracking-tighter text-gray-900 sm:text-6xl">
+                <h2 className="text-4xl font-normal tracking-tighter text-gray-900 sm:text-6xl">
                   Start Your Journey Today
                 </h2>
                 <p className="max-w-[900px] text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
@@ -759,7 +764,7 @@ export default function Home() {
                   Request a Free Consultation
                 </h3>
                 <form className="space-y-4">
-                  <div className="grid gap-4 sm:grid-cols-2">
+                  <div className="grid gap-4 sm:grid-cols-2 font-nibpro">
                     <div className="space-y-2">
                       <label
                         htmlFor="first-name"
@@ -787,7 +792,7 @@ export default function Home() {
                       />
                     </div>
                   </div>
-                  <div className="space-y-2">
+                  <div className="space-y-2 font-nibpro">
                     <label
                       htmlFor="email"
                       className="text-sm font-medium leading-none text-gray-700 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -801,7 +806,7 @@ export default function Home() {
                       className="border-rose-200 focus:border-rose-500 focus:ring-rose-500"
                     />
                   </div>
-                  <div className="space-y-2">
+                  <div className="space-y-2 font-nibpro">
                     <label
                       htmlFor="phone"
                       className="text-sm font-medium leading-none text-gray-700 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -814,7 +819,7 @@ export default function Home() {
                       className="border-rose-200 focus:border-rose-500 focus:ring-rose-500"
                     />
                   </div>
-                  <div className="space-y-2">
+                  <div className="space-y-2 font-nibpro">
                     <label
                       htmlFor="country"
                       className="text-sm font-medium leading-none text-gray-700 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -838,7 +843,7 @@ export default function Home() {
                   <div className="space-y-2">
                     <label
                       htmlFor="message"
-                      className="text-sm font-medium leading-none text-gray-700 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      className="text-sm font-medium leading-none font-nibpro text-gray-700 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     >
                       Message
                     </label>
@@ -854,7 +859,7 @@ export default function Home() {
                   >
                     <Button
                       type="submit"
-                      className="w-full bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white shadow-md"
+                      className="w-full font-nibpro bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white shadow-md"
                     >
                       Submit Request
                     </Button>
