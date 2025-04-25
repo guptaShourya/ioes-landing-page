@@ -107,35 +107,39 @@ export function DestinationPage({ data }: DestinationPageProps) {
             />
             <div className="absolute inset-0 bg-black/50" />
           </div>
-          <div className="container relative flex min-h-[400px] flex-col items-center justify-center px-4 py-24 text-center text-white md:px-6">
-            <div className="flex items-center gap-2 mb-4">
-              <Image
-                src={data.flag || "/placeholder.svg"}
-                alt={`${data.name} flag`}
-                width={30}
-                height={20}
-                className="rounded"
-              />
-              <span className="text-sm font-medium">Study in</span>
+          <div className="container gap-y-8 relative flex min-h-[400px] flex-col items-center justify-center px-4 py-24 text-center text-white md:px-6">
+            <div className="space-y-2 flex flex-col items-center">
+              <div className="flex items-center gap-2 mb-4">
+                <Image
+                  src={data.flag || "/placeholder.svg"}
+                  alt={`${data.name} flag`}
+                  width={30}
+                  height={20}
+                  className="rounded"
+                />
+                <span className="text-sm font-medium font-nibpro">
+                  Study in
+                </span>
+              </div>
+              <h1 className="text-5xl font-light italic font-nibpro tracking-tighter text-white sm:text-7xl font-light">
+                {data.name}
+              </h1>
             </div>
-            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
-              {data.name}
-            </h1>
-            <p className="mt-4 max-w-[700px] text-lg text-white/90 md:text-xl">
+            <p className="max-w-[90%] text-white md:text-xl md:max-w-[70%] font-light">
               {data.overview}
             </p>
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+            <div className=" flex flex-col gap-4 sm:flex-row">
               <Button
                 size="lg"
-                className="bg-blue-800 hover:bg-blue-900 hover:shadow-md"
+                className="bg-[#ED4746] text-white hover:bg-[#ED4746]/90 transition-all duration-300"
                 onClick={openPopup}
               >
-                Get Free Counselling
+                Get Free Consultation
               </Button>
               <Button
                 variant="outline"
                 size="lg"
-                className="border-white text-blue-800 bg-white hover:bg-blue-900 hover:text-white"
+                className="border-white bg-transparent text-white hover:text-white hover:bg-transparent hover:opacity-80 transitions-all duration-300"
               >
                 <Link href={`/destinations/${data.slug}/programs`}>
                   Explore Programs
@@ -146,15 +150,18 @@ export function DestinationPage({ data }: DestinationPageProps) {
         </section>
 
         {/* Top Three Reasons Section */}
-        <section className="w-full py-12 md:py-24 bg-white">
+        <section className="w-full py-12 md:py-24 bg-gradient-to-b from-[#f0ebe6] to-white">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
+              <div className="space-y-2 flex flex-col items-center">
+                <div className="inline-block font-nibpro rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
                   Why Study in {data.name}
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-                  Top Reasons to Choose {data.name}
+                <h2 className="text-4xl font-normal tracking-tighter sm:text-6xl">
+                  Top Reasons to Choose{" "}
+                  <span className="font-light italic font-nibpro">
+                    {data.name}
+                  </span>
                 </h2>
                 <p className="max-w-[700px] text-gray-500 md:text-xl/relaxed">
                   Discover what makes {data.name} an exceptional destination for
@@ -169,7 +176,7 @@ export function DestinationPage({ data }: DestinationPageProps) {
                   className="flex flex-col items-center space-y-4 rounded-lg border bg-white p-6 shadow-sm transition-all hover:shadow-md"
                 >
                   <div className="text-blue-800">{reason.icon}</div>
-                  <h3 className="text-xl font-bold">{reason.title}</h3>
+                  <h3 className="text-xl font-medium">{reason.title}</h3>
                   <p className="text-center text-gray-500">
                     {reason.description}
                   </p>
@@ -180,15 +187,15 @@ export function DestinationPage({ data }: DestinationPageProps) {
         </section>
 
         {/* Study Areas Section */}
-        <section className="w-full py-12 md:py-24 bg-gray-50">
+        <section className="w-full py-12 md:py-24 bg-gradient-to-t from-[#f0ebe6] to-white">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
+                <div className="inline-block font-nibpro rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
                   Academic Excellence
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-                  Popular Study Areas in {data.name}
+                <h2 className="text-4xl font-normal tracking-tighter sm:text-6xl">
+                  Popular Study Areas
                 </h2>
                 <p className="max-w-[700px] text-gray-500 md:text-xl/relaxed">
                   {data.name} offers world-class education across a wide range
@@ -221,15 +228,15 @@ export function DestinationPage({ data }: DestinationPageProps) {
         </section>
 
         {/* Visa Assistance Section */}
-        <section className="w-full py-12 md:py-24 bg-white">
+        <section className="w-full py-12 md:py-24 bg-gradient-to-b from-[#f0ebe6] to-white">
           <div className="container px-4 md:px-6">
             <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
-                  <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
+                  <div className="inline-block font-nibpro rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
                     Visa Guidance
                   </div>
-                  <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                  <h2 className="text-4xl font-normal tracking-tighter sm:text-6xl">
                     {data.visa.title}
                   </h2>
                   <p className="text-gray-500 md:text-xl/relaxed">
@@ -255,7 +262,9 @@ export function DestinationPage({ data }: DestinationPageProps) {
               </div>
               <div className="flex items-center justify-center">
                 <div className="rounded-xl border bg-white p-6 shadow-md">
-                  <h3 className="mb-4 text-xl font-bold">Visa Success Rate</h3>
+                  <h3 className="mb-4 text-xl font-medium">
+                    Visa Success Rate
+                  </h3>
                   <div className="flex items-center justify-center">
                     <div className="relative h-40 w-40">
                       <div className="absolute inset-0 flex items-center justify-center">
@@ -286,7 +295,7 @@ export function DestinationPage({ data }: DestinationPageProps) {
                       </svg>
                     </div>
                   </div>
-                  <p className="mt-4 text-center text-gray-500">
+                  <p className="mt-4 italic text-center text-gray-500">
                     Our expert counselors have helped thousands of students
                     secure their visas successfully.
                   </p>
@@ -297,14 +306,14 @@ export function DestinationPage({ data }: DestinationPageProps) {
         </section>
 
         {/* Lifestyle, Cost, and Scholarships Grid */}
-        <section className="w-full py-12 md:py-24 bg-gray-50">
+        <section className="w-full py-12 md:py-24 bg-gradient-to-t from-[#f0ebe6] to-white">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
+                <div className="inline-block font-nibpro rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
                   Student Life
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                <h2 className="text-4xl font-normal tracking-tighter sm:text-6xl">
                   Living in {data.name}
                 </h2>
                 <p className="max-w-[700px] text-gray-500 md:text-xl/relaxed">
@@ -319,7 +328,7 @@ export function DestinationPage({ data }: DestinationPageProps) {
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 text-blue-800">
                   <Globe className="h-6 w-6" />
                 </div>
-                <h3 className="text-xl font-bold">{data.lifestyle.title}</h3>
+                <h3 className="text-xl font-medium">{data.lifestyle.title}</h3>
                 <p className="flex-1 text-gray-500">
                   {data.lifestyle.description}
                 </p>
@@ -343,7 +352,9 @@ export function DestinationPage({ data }: DestinationPageProps) {
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 text-blue-800">
                   <CreditCard className="h-6 w-6" />
                 </div>
-                <h3 className="text-xl font-bold">{data.costOfLiving.title}</h3>
+                <h3 className="text-xl font-medium">
+                  {data.costOfLiving.title}
+                </h3>
                 <p className="flex-1 text-gray-500">
                   {data.costOfLiving.description}
                 </p>
@@ -367,7 +378,9 @@ export function DestinationPage({ data }: DestinationPageProps) {
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 text-blue-800">
                   <Award className="h-6 w-6" />
                 </div>
-                <h3 className="text-xl font-bold">{data.scholarships.title}</h3>
+                <h3 className="text-xl font-medium">
+                  {data.scholarships.title}
+                </h3>
                 <p className="flex-1 text-gray-500">
                   {data.scholarships.description}
                 </p>
@@ -391,15 +404,20 @@ export function DestinationPage({ data }: DestinationPageProps) {
 
         {/* Top Universities Section */}
         {data.universities && data.universities.length > 0 && (
-          <section className="w-full py-12 md:py-24 bg-white">
+          <section className="w-full py-12 md:py-24 bg-gradient-to-b from-[#f0ebe6] to-white">
             <div className="container px-4 md:px-6">
               <div className="flex flex-col items-center justify-center space-y-4 text-center">
                 <div className="space-y-2">
-                  <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
+                  <div className="inline-block font-nibpro rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
                     Academic Excellence
                   </div>
-                  <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-                    Top Universities in {data.name}
+                  <h2 className="text-4xl font-normal tracking-tighter sm:text-6xl">
+                    Top
+                    <span className="font-nibpro italic font-light">
+                      {" "}
+                      Universities{" "}
+                    </span>
+                    in {data.name}
                   </h2>
                   <p className="max-w-[700px] text-gray-500 md:text-xl/relaxed">
                     Discover the leading institutions that offer world-class
@@ -422,8 +440,8 @@ export function DestinationPage({ data }: DestinationPageProps) {
                         className="rounded-full object-cover"
                       />
                       <div>
-                        <h3 className="font-bold">{university.name}</h3>
-                        <p className="text-sm text-gray-500">
+                        <h3 className="font-medium">{university.name}</h3>
+                        <p className="text-sm font-light font-nibpro italic text-gray-500">
                           {university.location}
                         </p>
                       </div>
@@ -440,15 +458,15 @@ export function DestinationPage({ data }: DestinationPageProps) {
         )}
 
         {/* Career Options Section */}
-        <section className="w-full py-12 md:py-24 bg-white">
+        <section className="w-full py-12 md:py-24 bg-gradient-to-t from-[#f0ebe6] to-white">
           <div className="container px-4 md:px-6">
             <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
-                  <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
+                  <div className="inline-block font-nibpro rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
                     Career Prospects
                   </div>
-                  <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                  <h2 className="text-4xl font-normal tracking-tighter sm:text-6xl">
                     {data.careers.title}
                   </h2>
                   <p className="text-gray-500 md:text-xl/relaxed">
@@ -483,14 +501,14 @@ export function DestinationPage({ data }: DestinationPageProps) {
 
         {/* Admission Requirements Section */}
         {data.admissionRequirements && (
-          <section className="w-full py-12 md:py-24 bg-gray-50">
+          <section className="w-full py-12 md:py-24 bg-gradient-to-b from-[#f0ebe6] to-white">
             <div className="container px-4 md:px-6">
               <div className="flex flex-col items-center justify-center space-y-4 text-center">
                 <div className="space-y-2">
-                  <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
+                  <div className="inline-block font-nibpro rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
                     Admission Process
                   </div>
-                  <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                  <h2 className="text-4xl font-normal tracking-tighter sm:text-6xl">
                     Admission Requirements
                   </h2>
                   <p className="max-w-[700px] text-gray-500 md:text-xl/relaxed">
@@ -502,8 +520,11 @@ export function DestinationPage({ data }: DestinationPageProps) {
               <div className="mx-auto grid max-w-5xl gap-8 py-12 md:grid-cols-2">
                 {/* Undergraduate Requirements */}
                 <div className="flex flex-col space-y-4 rounded-lg border bg-white p-6 shadow-sm">
-                  <h3 className="text-xl font-bold">
-                    Undergraduate Requirements
+                  <h3 className="text-xl font-medium">
+                    <span className="font-normal font-nibpro italic">
+                      Undergraduate
+                    </span>{" "}
+                    Requirements
                   </h3>
                   <ul className="space-y-2">
                     {data.admissionRequirements.undergraduate.map(
@@ -519,8 +540,11 @@ export function DestinationPage({ data }: DestinationPageProps) {
 
                 {/* Postgraduate Requirements */}
                 <div className="flex flex-col space-y-4 rounded-lg border bg-white p-6 shadow-sm">
-                  <h3 className="text-xl font-bold">
-                    Postgraduate Requirements
+                  <h3 className="text-xl font-medium">
+                    <span className="font-normal font-nibpro italic">
+                      Postgraduate
+                    </span>{" "}
+                    Requirements
                   </h3>
                   <ul className="space-y-2">
                     {data.admissionRequirements.postgraduate.map(
@@ -540,14 +564,14 @@ export function DestinationPage({ data }: DestinationPageProps) {
 
         {/* Intakes and Deadlines Section */}
         {data.intakes && (
-          <section className="w-full py-12 md:py-24 bg-white">
+          <section className="w-full py-12 md:py-24 bg-gradient-to-t  from-[#f0ebe6] to-white">
             <div className="container px-4 md:px-6">
               <div className="flex flex-col items-center justify-center space-y-4 text-center">
                 <div className="space-y-2">
-                  <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
+                  <div className="inline-block font-nibpro rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
                     Application Timeline
                   </div>
-                  <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                  <h2 className="text-4xl font-normal tracking-tighter sm:text-6xl">
                     Intakes & Application Deadlines
                   </h2>
                   <p className="max-w-[700px] text-gray-500 md:text-xl/relaxed">
@@ -616,15 +640,18 @@ export function DestinationPage({ data }: DestinationPageProps) {
         )}
 
         {/* Country-Specific Partners Section */}
-        <section className="w-full py-12 md:py-24 bg-gray-50">
+        <section className="w-full py-12 md:py-24 bg-gradient-to-b from-[#f0ebe6] to-white">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
+                <div className="inline-block font-nibpro rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
                   Our Partners
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-                  Partners in {data.name}
+                <h2 className="text-4xl font-normal tracking-tighter sm:text-6xl">
+                  <span className="font-light italic font-nibpro">
+                    Partners{" "}
+                  </span>{" "}
+                  in {data.name}
                 </h2>
                 <p className="max-w-[700px] text-gray-500 md:text-xl/relaxed">
                   We have established partnerships with leading organizations in{" "}
@@ -639,7 +666,7 @@ export function DestinationPage({ data }: DestinationPageProps) {
                 className="flex flex-col items-center space-y-4 rounded-lg border bg-white p-6 shadow-sm transition-all hover:shadow-md"
               >
                 <CreditCard className="h-12 w-12 text-blue-800" />
-                <h3 className="text-xl font-bold">Loan Partners</h3>
+                <h3 className="text-xl font-medium">Loan Partners</h3>
                 <p className="text-center text-gray-500">
                   Access to education loans with competitive interest rates
                   through our financial partners in {data.name}.
@@ -653,7 +680,7 @@ export function DestinationPage({ data }: DestinationPageProps) {
                 className="flex flex-col items-center space-y-4 rounded-lg border bg-white p-6 shadow-sm transition-all hover:shadow-md"
               >
                 <Heart className="h-12 w-12 text-blue-800" />
-                <h3 className="text-xl font-bold">Health Insurance</h3>
+                <h3 className="text-xl font-medium">Health Insurance</h3>
                 <p className="text-center text-gray-500">
                   Comprehensive health insurance plans through our trusted
                   insurance partners in {data.name}.
@@ -668,7 +695,7 @@ export function DestinationPage({ data }: DestinationPageProps) {
                 className="flex flex-col items-center space-y-4 rounded-lg border bg-white p-6 shadow-sm transition-all hover:shadow-md"
               >
                 <Home className="h-12 w-12 text-blue-800" />
-                <h3 className="text-xl font-bold">Accommodation</h3>
+                <h3 className="text-xl font-medium">Accommodation</h3>
                 <p className="text-center text-gray-500">
                   Find suitable and affordable accommodation options through our
                   housing partners in {data.name}.
@@ -683,14 +710,24 @@ export function DestinationPage({ data }: DestinationPageProps) {
         </section>
 
         {/* CTA Section */}
-        <section className="w-full py-12 md:py-24 bg-blue-800 text-white">
+        <section
+          className="w-full py-12 md:py-24 bg-blue-800 text-white"
+          style={{
+            backgroundColor: "#102324",
+            backgroundImage:
+              "radial-gradient(circle farthest-corner at 140% -10%, #2d737b 10%, #102324 100%)",
+          }}
+        >
           <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-                  Ready to Study in {data.name}?
+            <div className="flex flex-col items-center justify-center space-y-10 text-center">
+              <div className="space-y-4">
+                <h2 className="mb-2 text-4xl font-normal tracking-tighter text-white sm:text-5xl sm:mb-4">
+                  Ready to Study in{" "}
+                  <span className="font-light italic font-nibpro">
+                    {data.name}?
+                  </span>
                 </h2>
-                <p className="max-w-[700px] text-white/80 md:text-xl/relaxed">
+                <p className="mx-auto mb-8 max-w-2xl text-lg opacity-90">
                   Take the first step towards your international education
                   journey with IOES.
                 </p>
@@ -698,7 +735,7 @@ export function DestinationPage({ data }: DestinationPageProps) {
               <div className="flex flex-col gap-2 min-[400px]:flex-row">
                 <Button
                   size="lg"
-                  className="bg-white text-blue-800 hover:bg-white/90"
+                  className="bg-[#ED4746] text-white hover:bg-[#ED4746]/90 transition-all duration-300"
                   onClick={openPopup}
                 >
                   Book a Free Consultation
@@ -706,7 +743,7 @@ export function DestinationPage({ data }: DestinationPageProps) {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="border-white text-white bg-blue-800 hover:bg-white hover:text-blue-800"
+                  className="border-white text-white bg-transparent transition-all duration-300"
                 >
                   Download Country Guide
                 </Button>
