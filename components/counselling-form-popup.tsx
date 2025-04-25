@@ -106,7 +106,7 @@ export function CounselingFormPopup({
         {!formSubmitted ? (
           <>
             <div className="mb-6 text-center">
-              <h2 className="text-2xl font-bold text-blue-800">
+              <h2 className="text-2xl font-bold text-[#ED4746]">
                 Get Expert Counseling
               </h2>
               <p className="text-gray-500">
@@ -122,9 +122,9 @@ export function CounselingFormPopup({
                     key={step}
                     className={`flex h-8 w-8 items-center justify-center rounded-full ${
                       step === formStep
-                        ? "bg-blue-800 text-white"
+                        ? "bg-[#ED4746] text-white"
                         : step < formStep
-                        ? "bg-green-100 text-green-600"
+                        ? "bg-rose-100 text-rose-600"
                         : "bg-gray-100 text-gray-400"
                     }`}
                   >
@@ -282,7 +282,10 @@ export function CounselingFormPopup({
                 ) : (
                   <div></div>
                 )}
-                <Button type="submit" className="bg-blue-800 hover:bg-blue-900">
+                <Button
+                  type="submit"
+                  className="bg-[#ED4746] hover:bg-[#ED4746]"
+                >
                   {formStep < 3 ? "Next" : "Submit"}
                 </Button>
               </div>
@@ -290,10 +293,10 @@ export function CounselingFormPopup({
           </>
         ) : (
           <div className="flex flex-col items-center justify-center py-8 text-center">
-            <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
-              <Check className="h-8 w-8 text-green-600" />
+            <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-rose-100">
+              <Check className="h-8 w-8 text-rose-600" />
             </div>
-            <h2 className="mb-2 text-2xl font-bold text-blue-800">
+            <h2 className="mb-2 text-2xl font-bold text-[#ED4746]">
               Thank You!
             </h2>
             <p className="mb-6 text-gray-500">
@@ -305,7 +308,7 @@ export function CounselingFormPopup({
                 Close
               </Button>
               <Button
-                className="bg-blue-800 hover:bg-blue-900"
+                className="bg-[#ED4746] hover:bg-[#ED4746]"
                 onClick={resetForm}
               >
                 Submit Another Request
