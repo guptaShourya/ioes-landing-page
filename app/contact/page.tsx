@@ -26,6 +26,7 @@ import { Footer } from "@/components/footer";
 import contact from "../../data/contact.json";
 import { useState } from "react";
 import { AlertToast } from "@/components/ui/alert-toast";
+import FAQs from "../../data/faqs.json";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -148,15 +149,15 @@ export default function ContactPage() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-r from-blue-50 to-indigo-50">
+        <section className="w-full py-12 md:py-16 bg-gradient-to-t from-white to-[#f0ebe6]">
           <div className="container px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_450px]">
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
-                  <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
+                  <div className="inline-block font-nibpro rounded-lg bg-rose-100 px-3 py-1 text-sm text-rose-800">
                     Get in Touch
                   </div>
-                  <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                  <h1 className="text-5xl font-light italic font-nibpro tracking-tighter text-black sm:text-7xl font-light">
                     Contact Us
                   </h1>
                   <p className="max-w-[600px] text-gray-500 md:text-xl">
@@ -167,7 +168,7 @@ export default function ContactPage() {
                 </div>
                 <div className="space-y-4">
                   <div className="flex items-start gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-800">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-rose-100 text-rose-800">
                       <MapPin className="h-5 w-5" />
                     </div>
                     <div>
@@ -182,7 +183,7 @@ export default function ContactPage() {
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-800">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-rose-100 text-rose-800">
                       <Phone className="h-5 w-5" />
                     </div>
                     <div>
@@ -196,7 +197,7 @@ export default function ContactPage() {
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-800">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-rose-100 text-rose-800">
                       <Mail className="h-5 w-5" />
                     </div>
                     <div>
@@ -210,7 +211,7 @@ export default function ContactPage() {
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-800">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-rose-100 text-rose-800">
                       <Clock className="h-5 w-5" />
                     </div>
                     <div>
@@ -395,7 +396,7 @@ export default function ContactPage() {
                     </div>
                     <Button
                       type="submit"
-                      className="w-full bg-blue-800 hover:bg-blue-900"
+                      className="w-full bg-rose-800 hover:bg-rose-900"
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? "Sending..." : "Send Message"}
@@ -408,14 +409,14 @@ export default function ContactPage() {
         </section>
 
         {/* Map Section */}
-        <section className="w-full py-12 md:py-24 bg-white">
+        <section className="w-full py-12 md:py-24 bg-gradient-to-b from-white to-[#f0ebe6]">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
+                <div className="inline-block font-nibpro rounded-lg bg-rose-100 px-3 py-1 text-sm text-rose-800">
                   Our Location
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                <h2 className="text-4xl font-normal tracking-tighter sm:text-6xl">
                   Find Us
                 </h2>
                 <p className="max-w-[700px] text-gray-500 md:text-xl/relaxed">
@@ -437,15 +438,15 @@ export default function ContactPage() {
                 </div>
                 <div className="grid gap-4 p-6 md:grid-cols-3">
                   <div className="flex items-start gap-2">
-                    <MapPin className="h-5 w-5 text-blue-800" />
+                    <MapPin className="h-5 w-5 text-rose-800" />
                     <span>{contact.address}</span>
                   </div>
                   <div className="flex items-start gap-2">
-                    <Globe className="h-5 w-5 text-blue-800" />
+                    <Globe className="h-5 w-5 text-rose-800" />
                     <span>Near Central Metro Station</span>
                   </div>
                   <div className="flex items-start gap-2">
-                    <Clock className="h-5 w-5 text-blue-800" />
+                    <Clock className="h-5 w-5 text-rose-800" />
                     <span>10:00 AM - 6:00 PM (Mon-Sat)</span>
                   </div>
                 </div>
@@ -455,15 +456,18 @@ export default function ContactPage() {
         </section>
 
         {/* Contact Departments Section */}
-        <section className="w-full py-12 md:py-24 bg-gray-50">
+        <section className="w-full py-12 md:py-24 bg-gradient-to-t from-white to-[#f0ebe6]">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
+                <div className="inline-block font-nibpro rounded-lg bg-rose-100 px-3 py-1 text-sm text-rose-800">
                   Departments
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-                  Contact Specific Departments
+                <h2 className="text-4xl font-normal tracking-tighter sm:text-6xl">
+                  <span className="italic font-nibpro font-light">
+                    Contact{" "}
+                  </span>{" "}
+                  Specific Departments
                 </h2>
                 <p className="max-w-[700px] text-gray-500 md:text-xl/relaxed">
                   Reach out directly to our specialized teams for specific
@@ -514,15 +518,15 @@ export default function ContactPage() {
                   key={index}
                   className="flex flex-col items-center space-y-4 rounded-lg border bg-white p-6 shadow-sm transition-all hover:shadow-md"
                 >
-                  <div className="text-blue-800">{department.icon}</div>
+                  <div className="text-rose-800">{department.icon}</div>
                   <h3 className="text-xl font-bold">{department.title}</h3>
                   <div className="space-y-2 text-center">
                     <p className="flex items-center justify-center gap-2">
-                      <Mail className="h-4 w-4 text-blue-800" />
+                      <Mail className="h-4 w-4 text-rose-800" />
                       <span>{department.email}</span>
                     </p>
                     <p className="flex items-center justify-center gap-2">
-                      <Phone className="h-4 w-4 text-blue-800" />
+                      <Phone className="h-4 w-4 text-rose-800" />
                       <span>{department.phone}</span>
                     </p>
                   </div>
@@ -533,15 +537,19 @@ export default function ContactPage() {
         </section>
 
         {/* FAQ Section */}
-        <section className="w-full py-12 md:py-24 bg-white">
+        <section className="w-full py-12 md:py-24 bg-gradient-to-b from-white to-[#f0ebe6]">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
+                <div className="inline-block font-nibpro rounded-lg bg-rose-100 px-3 py-1 text-sm text-rose-800">
                   FAQs
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-                  Frequently Asked Questions
+                <h2 className="text-4xl font-normal tracking-tighter sm:text-6xl">
+                  Frequently Asked
+                  <span className="font-nibpro italic font-light">
+                    {" "}
+                    Questions
+                  </span>
                 </h2>
                 <p className="max-w-[700px] text-gray-500 md:text-xl/relaxed">
                   Find answers to common questions about contacting and working
@@ -551,36 +559,11 @@ export default function ContactPage() {
             </div>
             <div className="mx-auto max-w-3xl py-12">
               <div className="space-y-6">
-                {[
-                  {
-                    question: "How can I schedule a counseling session?",
-                    answer:
-                      "You can schedule a counseling session by filling out the contact form on this page, calling our office, or visiting us in person. We offer both in-person and virtual counseling sessions.",
-                  },
-                  {
-                    question: "Is there a fee for initial consultation?",
-                    answer:
-                      "No, our initial consultations are completely free of charge. We believe in providing accessible guidance to all students aspiring to study abroad.",
-                  },
-                  {
-                    question:
-                      "How quickly will I receive a response to my inquiry?",
-                    answer:
-                      "We typically respond to all inquiries within 24-48 hours during business days. For urgent matters, we recommend calling our office directly.",
-                  },
-                  {
-                    question: "Can I visit your office without an appointment?",
-                    answer:
-                      "While we welcome walk-ins, we recommend scheduling an appointment to ensure that a counselor with expertise in your area of interest is available to assist you.",
-                  },
-                  {
-                    question: "Do you have offices in other cities?",
-                    answer:
-                      "Currently, our main office is in Delhi, but we have partner offices in Mumbai, Bangalore, Chennai, and Hyderabad. We also offer virtual consultations for students from any location.",
-                  },
-                ].map((faq, index) => (
+                {FAQs["contact"].map((faq, index) => (
                   <div key={index} className="rounded-lg border p-6">
-                    <h3 className="text-lg font-bold">{faq.question}</h3>
+                    <h3 className="text-lg font-normal italic">
+                      {faq.question}
+                    </h3>
                     <p className="mt-2 text-gray-500">{faq.answer}</p>
                   </div>
                 ))}

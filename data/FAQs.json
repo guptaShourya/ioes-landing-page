@@ -32,5 +32,27 @@
       "question": "What support does IOES provide after I receive my visa?",
       "answer": "IOES provides comprehensive pre-departure orientation, assistance with accommodation arrangements, airport pickup coordination, local SIM card and bank account setup guidance, and continuous support throughout your stay abroad through our global partner network."
     }
+  ],
+  "contact": [
+    {
+      "question": "How can I schedule a counseling session?",
+      "answer": "You can schedule a counseling session by filling out the contact form on this page, calling our office, or visiting us in person. We offer both in-person and virtual counseling sessions."
+    },
+    {
+      "question": "Is there a fee for initial consultation?",
+      "answer": "No, our initial consultations are completely free of charge. We believe in providing accessible guidance to all students aspiring to study abroad."
+    },
+    {
+      "question": "How quickly will I receive a response to my inquiry?",
+      "answer": "We typically respond to all inquiries within 24-48 hours during business days. For urgent matters, we recommend calling our office directly."
+    },
+    {
+      "question": "Can I visit your office without an appointment?",
+      "answer": "While we welcome walk-ins, we recommend scheduling an appointment to ensure that a counselor with expertise in your area of interest is available to assist you."
+    },
+    {
+      "question": "Do you have offices in other cities?",
+      "answer": "Currently, our main office is in Delhi, but we have partner offices in Mumbai, Bangalore, Chennai, and Hyderabad. We also offer virtual consultations for students from any location."
+    }
   ]
 }
