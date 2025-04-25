@@ -46,7 +46,7 @@ export function Header() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex gap-10 items-center text-base font-satoshi font-light text-gray-800">
+          <nav className="hidden lg:flex gap-10 items-center text-base font-satoshi font-light text-gray-800">
             <Link
               href="/about"
               className="group relative hover:text-primary transition"
@@ -122,7 +122,7 @@ export function Header() {
           <div className="flex items-center gap-4">
             <Button
               size="sm"
-              className="hidden md:flex bg-[#ED4746]"
+              className="hidden lg:flex bg-[#ED4746]"
               onClick={openPopup}
             >
               Get Started
@@ -130,7 +130,7 @@ export function Header() {
             <Button
               variant="ghost"
               size="icon"
-              className="md:hidden"
+              className="lg:hidden"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {/* Hamburger icon */}

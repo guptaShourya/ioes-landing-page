@@ -22,6 +22,7 @@ import {
 import { Footer } from "@/components/footer";
 import { usePopup } from "@/hooks/use-popup";
 import { CounselingFormPopup } from "@/components/counselling-form-popup";
+import destinationData from "../../data/destinations.json";
 
 const scholarshipTypes = [
   {
@@ -113,49 +114,6 @@ const topScholarships = [
     eligibility: "Indian students applying for specific master's programs",
     deadline: "Varies by university",
     link: "#",
-  },
-];
-
-const destinations = [
-  {
-    country: "United States",
-    flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/US.svg",
-    slug: "usa",
-    scholarshipCount: "1,000+ scholarships",
-  },
-  {
-    country: "United Kingdom",
-    flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/GB.svg",
-
-    slug: "uk",
-    scholarshipCount: "500+ scholarships",
-  },
-  {
-    country: "Canada",
-    flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/CA.svg",
-    slug: "canada",
-    scholarshipCount: "400+ scholarships",
-  },
-  {
-    country: "Australia",
-    flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/AU.svg",
-
-    slug: "australia",
-    scholarshipCount: "300+ scholarships",
-  },
-  {
-    country: "Germany",
-    flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/DE.svg",
-
-    slug: "germany",
-    scholarshipCount: "250+ scholarships",
-  },
-  {
-    country: "New Zealand",
-    flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/NZ.svg",
-
-    slug: "new-zealand",
-    scholarshipCount: "100+ scholarships",
   },
 ];
 
@@ -255,10 +213,10 @@ export default function ScholarshipsPage() {
               className="object-cover"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-900/70 to-indigo-900/70" />
+            <div className="absolute inset-0 bg-black/50" />
           </div>
           <div className="container relative flex min-h-[500px] flex-col items-center justify-center px-4 py-24 text-center text-white md:px-6">
-            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
+            <h1 className="text-5xl font-normal tracking-tighter text-white sm:text-7xl font-light">
               Fund Your Global Education Journey
             </h1>
             <p className="mt-4 max-w-[800px] text-lg text-white/90 md:text-xl">
@@ -269,14 +227,15 @@ export default function ScholarshipsPage() {
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <Button
                 size="lg"
-                className="bg-white text-blue-800 hover:bg-white/90"
+                className="bg-[#ED4746] text-white hover:bg-[#ED4746]/90 transition-all duration-300"
                 onClick={openPopup}
               >
                 Find Scholarships
               </Button>
               <Button
                 size="lg"
-                className="border-white text-white bg-indigo-800 hover:text-indigo-800 hover:bg-white"
+                variant="outline"
+                className="border-white bg-transparent text-white hover:text-white hover:bg-transparent hover:opacity-80 transitions-all duration-300"
               >
                 <Link href="/contact">Get Application Support</Link>
               </Button>
@@ -285,16 +244,20 @@ export default function ScholarshipsPage() {
         </section>
 
         {/* Importance of Scholarships Section */}
-        <section className="w-full py-12 md:py-24 bg-white">
+        <section className="w-full py-12 md:py-24 bg-gradient-to-b from-white to-[#f0ebe6]">
           <div className="container px-4 md:px-6">
             <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
-                  <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
+                  <div className="inline-block font-nibpro rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
                     Financial Support
                   </div>
-                  <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-                    Why Scholarships Matter for Indian Students
+                  <h2 className="text-4xl font-normal tracking-tighter sm:text-6xl">
+                    Why Scholarships Matter for
+                    <span className="italic font-light font-nibpro">
+                      {" "}
+                      Indian Students
+                    </span>
                   </h2>
                   <p className="text-gray-500 md:text-xl/relaxed">
                     For many Indian students, scholarships are the gateway to
@@ -374,14 +337,14 @@ export default function ScholarshipsPage() {
         </section>
 
         {/* Types of Scholarships Section */}
-        <section className="w-full py-12 md:py-24 bg-gray-50">
+        <section className="w-full py-12 md:py-24 bg-gradient-to-t from-white to-[#f0ebe6]">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
+                <div className="inline-block font-nibpro rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
                   Scholarship Categories
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                <h2 className="text-4xl font-normal tracking-tighter sm:text-6xl">
                   Types of Scholarships Available
                 </h2>
                 <p className="max-w-[800px] text-gray-500 md:text-xl/relaxed">
@@ -397,7 +360,9 @@ export default function ScholarshipsPage() {
                   className="flex flex-col items-center space-y-4 rounded-lg border bg-white p-6 shadow-sm transition-all hover:shadow-md"
                 >
                   <div className="text-blue-800">{type.icon}</div>
-                  <h3 className="text-xl font-bold">{type.title}</h3>
+                  <h3 className="text-xl font-medium text-center">
+                    {type.title}
+                  </h3>
                   <p className="text-center text-gray-500">
                     {type.description}
                   </p>
@@ -408,14 +373,14 @@ export default function ScholarshipsPage() {
         </section>
 
         {/* Top Scholarships for Indian Students Section */}
-        <section className="w-full py-12 md:py-24 bg-white">
+        <section className="w-full py-12 md:py-24 bg-gradient-to-b from-white to-[#f0ebe6]">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
+                <div className="inline-block font-nibpro rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
                   Top Opportunities
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                <h2 className="text-4xl font-normal tracking-tighter sm:text-6xl">
                   Best Scholarships for Indian Students
                 </h2>
                 <p className="max-w-[800px] text-gray-500 md:text-xl/relaxed">
@@ -483,14 +448,14 @@ export default function ScholarshipsPage() {
         </section>
 
         {/* Eligibility Criteria Section */}
-        <section className="w-full py-12 md:py-24 bg-gray-50">
+        <section className="w-full py-12 md:py-24 bg-gradient-to-t from-white to-[#f0ebe6]">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
+                <div className="inline-block font-nibpro rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
                   Qualification Requirements
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                <h2 className="text-4xl font-normal tracking-tighter sm:text-6xl">
                   General Eligibility Criteria
                 </h2>
                 <p className="max-w-[800px] text-gray-500 md:text-xl/relaxed">
@@ -510,7 +475,7 @@ export default function ScholarshipsPage() {
                     {criteria.icon}
                   </div>
                   <div>
-                    <h3 className="font-bold">{criteria.title}</h3>
+                    <h3 className="font-medium">{criteria.title}</h3>
                     <p className="mt-2 text-gray-500">{criteria.description}</p>
                   </div>
                 </div>
@@ -520,15 +485,19 @@ export default function ScholarshipsPage() {
         </section>
 
         {/* Application Process Section */}
-        <section className="w-full py-12 md:py-24 bg-white">
+        <section className="w-full py-12 md:py-24 bg-gradient-to-b from-white to-[#f0ebe6]">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
+              <div className="space-y-2 flex flex-col items-center">
+                <div className="inline-block font-nibpro rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
                   Application Guide
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-                  How to Secure a Scholarship: Step-by-Step
+                <h2 className="text-4xl font-normal tracking-tighter sm:text-6xl">
+                  How to Secure a Scholarship:
+                  <span className="italic font-light font-nibpro">
+                    {" "}
+                    Step-by-Step
+                  </span>
                 </h2>
                 <p className="max-w-[800px] text-gray-500 md:text-xl/relaxed">
                   Follow this proven process to maximize your chances of winning
@@ -543,7 +512,7 @@ export default function ScholarshipsPage() {
                   {applicationSteps.map((step, index) => (
                     <div
                       key={index}
-                      className={`relative flex flex-col gap-6 md:flex-row ${
+                      className={`relative flex flex-col gap-6 md:flex-row md:items-center ${
                         index % 2 === 1 ? "md:flex-row-reverse" : ""
                       }`}
                     >
@@ -555,7 +524,9 @@ export default function ScholarshipsPage() {
                           index % 2 === 0 ? "md:text-right" : ""
                         }`}
                       >
-                        <h3 className="text-xl font-bold">{step.title}</h3>
+                        <h3 className="text-xl font-medium font-nibpro">
+                          {step.title}
+                        </h3>
                         <p className="text-gray-500">{step.description}</p>
                       </div>
                     </div>
@@ -567,15 +538,19 @@ export default function ScholarshipsPage() {
         </section>
 
         {/* Scholarships by Destination Section */}
-        <section className="w-full py-12 md:py-24 bg-gray-50">
+        <section className="w-full py-12 md:py-24 bg-gradient-to-t from-white to-[#f0ebe6]">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
+                <div className="inline-block font-nibpro rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
                   Country-Specific Opportunities
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-                  Explore Scholarships by Destination
+                <h2 className="text-4xl font-normal tracking-tighter sm:text-6xl">
+                  Explore Scholarships by
+                  <span className="italic font-light font-nibpro">
+                    {" "}
+                    Destination
+                  </span>
                 </h2>
                 <p className="max-w-[800px] text-gray-500 md:text-xl/relaxed">
                   Different countries offer unique scholarship opportunities for
@@ -585,7 +560,7 @@ export default function ScholarshipsPage() {
               </div>
             </div>
             <div className="mx-auto grid max-w-5xl gap-8 py-12 md:grid-cols-2 lg:grid-cols-3">
-              {destinations.map((destination, index) => (
+              {destinationData["destinations"].map((destination, index) => (
                 <Link
                   key={index}
                   href={`/scholarships/${destination.slug}`}
@@ -608,7 +583,7 @@ export default function ScholarshipsPage() {
                         height={14}
                         className="rounded"
                       />
-                      <h3 className="text-xl font-bold">
+                      <h3 className="text-xl font-medium">
                         {destination.country}
                       </h3>
                     </div>
@@ -621,24 +596,19 @@ export default function ScholarshipsPage() {
         </section>
 
         {/* IOES Scholarship Support Section */}
-        <section className="w-full py-12 md:py-24 bg-blue-800 text-white">
-          <div className="container px-4 md:px-6">
+        <section className="w-full p-6 md:p-12 lg:p-24 bg-gradient-to-b from-white to-[#f0ebe6] text-white">
+          <div className="container p-4 bg-[#b82b35] rounded-xl md:p-12">
             <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
-              <div className="flex flex-col justify-center space-y-4">
+              <div className="flex flex-col justify-center space-y-6">
                 <div className="space-y-2">
-                  <div className="inline-block rounded-lg bg-white/10 px-3 py-1 text-sm">
-                    Our Support
-                  </div>
-                  <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-                    How IOES Helps You Win Scholarships
+                  <h2 className="text-4xl font-normal tracking-tighter sm:text-6xl">
+                    How IOES Helps You
+                    <span className="my-2 block font-light font-nibpro italic">
+                      Win Scholarships
+                    </span>
                   </h2>
-                  <p className="text-white/80 md:text-xl/relaxed">
-                    Our expert counselors provide comprehensive support
-                    throughout your scholarship application journey,
-                    significantly increasing your chances of success.
-                  </p>
                 </div>
-                <ul className="grid gap-4">
+                <ul className="grid gap-4 md:gap-2">
                   <li className="flex items-start gap-2">
                     <div className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-white">
                       <Search className="h-4 w-4" />
@@ -684,8 +654,17 @@ export default function ScholarshipsPage() {
                     </span>
                   </li>
                 </ul>
+                <div className="w-full flex justify-center items-center lg:block">
+                  <Button
+                    size="lg"
+                    className="bg-[#1c1a1a] text-white hover:bg-[#1c1a1a]/90 transition-all duration-300"
+                    onClick={openPopup}
+                  >
+                    Book a Scholarship Consultation
+                  </Button>
+                </div>
               </div>
-              <div className="flex items-center justify-center">
+              <div className="items-center justify-center hidden md:flex">
                 <Image
                   src="/scholarship-ioes-help.webp"
                   width={500}
@@ -699,7 +678,7 @@ export default function ScholarshipsPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="w-full py-12 md:py-24 bg-gradient-to-r from-blue-800 to-indigo-800 text-white">
+        {/* <section className="w-full py-12 md:py-24 bg-gradient-to-r from-blue-800 to-indigo-800 text-white">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
@@ -730,7 +709,7 @@ export default function ScholarshipsPage() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
       </main>
       <CounselingFormPopup isOpen={isOpen} onClose={closePopup} />
 
