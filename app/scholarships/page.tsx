@@ -676,40 +676,6 @@ export default function ScholarshipsPage() {
             </div>
           </div>
         </section>
-
-        {/* CTA Section */}
-        {/* <section className="w-full py-12 md:py-24 bg-gradient-to-r from-blue-800 to-indigo-800 text-white">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-                  Ready to Fund Your Education?
-                </h2>
-                <p className="max-w-[800px] text-white/80 md:text-xl/relaxed">
-                  Take the first step towards securing financial support for
-                  your international education. Our expert counselors are ready
-                  to guide you through the scholarship application process.
-                </p>
-              </div>
-              <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                <Button
-                  size="lg"
-                  className="bg-white text-blue-800 hover:bg-white/90"
-                  onClick={openPopup}
-                >
-                  Book a Scholarship Consultation
-                </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="border-white text-white bg-indigo-800 hover:text-indigo-800 hover:bg-white"
-                >
-                  Download Scholarship Guide
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section> */}
       </main>
       <CounselingFormPopup isOpen={isOpen} onClose={closePopup} />
 
