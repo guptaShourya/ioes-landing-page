@@ -64,7 +64,8 @@ export function CountrySpecificPage({
               className="object-cover"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-900/70 to-indigo-900/70" />
+            <div className="absolute inset-0 bg-black/50" />
+            {/* <div className="absolute inset-0 bg-gradient-to-r from-rose-900/70 to-indigo-900/70" /> */}
           </div>
           <div className="container relative flex min-h-[500px] flex-col items-center justify-center px-4 py-24 text-center text-white md:px-6">
             <div className="flex items-center gap-2 mb-4">
@@ -75,9 +76,9 @@ export function CountrySpecificPage({
                 height={20}
                 className="rounded"
               />
-              <span className="text-sm font-medium">{country}</span>
+              <span className="text-normal font-medium">{country}</span>
             </div>
-            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
+            <h1 className="text-5xl font-light italic font-nibpro tracking-tighter text-white sm:text-7xl font-light">
               {pageTypeLabels[pageType]}
             </h1>
             <p className="mt-4 max-w-[800px] text-lg text-white/90 md:text-xl">
@@ -86,14 +87,15 @@ export function CountrySpecificPage({
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <Button
                 size="lg"
-                className="bg-white text-blue-800 hover:bg-white/90"
+                className="bg-[#ED4746] text-white hover:bg-[#ED4746]/90 transition-all duration-300"
                 onClick={openPopup}
               >
-                Get Free Counseling
+                Get Free Consultation
               </Button>
               <Button
+                variant="outline"
                 size="lg"
-                className="border-white text-white bg-indigo-800 hover:text-indigo-800 hover:bg-white"
+                className="border-white bg-transparent text-white hover:text-white hover:bg-transparent hover:opacity-80 transitions-all duration-300"
               >
                 <Link href={`/destinations/${slug}/${pageType}#more-aspects`}>
                   Explore Other Aspects
@@ -107,14 +109,14 @@ export function CountrySpecificPage({
         <section className="w-full py-12 md:py-24 bg-white">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
+              <div className="space-y-2 flex flex-col items-center">
+                <div className="inline-block font-nibpro rounded-lg bg-rose-100 px-3 py-1 text-sm text-rose-800">
                   {pageTypeLabels[pageType]}
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                <h2 className="text-4xl font-normal tracking-tighter sm:text-6xl">
                   {content.title}
                 </h2>
-                <p className="max-w-[800px] text-gray-500 md:text-xl/relaxed">
+                <p className="max-w-[700px] text-gray-500 md:text-xl/relaxed">
                   {content.description}
                 </p>
               </div>
@@ -147,7 +149,9 @@ export function CountrySpecificPage({
                       section.image ? "w-full md:w-3/5" : "w-full"
                     }`}
                   >
-                    <h3 className="text-2xl font-bold">{section.title}</h3>
+                    <h3 className="text-2xl font-medium italic font-nibpro">
+                      {section.title}
+                    </h3>
                     <div className="text-gray-500 space-y-4">
                       {section.content}
                     </div>
@@ -159,17 +163,17 @@ export function CountrySpecificPage({
         </section>
 
         {/* Related Pages Section */}
-        <section className="w-full py-12 md:py-24 bg-gray-50" id="more-aspects">
+        <section className="w-full py-12 md:py-24 bg-white" id="more-aspects">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
+              <div className="space-y-2 flex flex-col items-center">
+                <div className="inline-block font-nibpro rounded-lg bg-rose-100 px-3 py-1 text-sm text-rose-800">
                   Explore More
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-                  More About Studying in {country}
+                <h2 className="text-4xl font-normal tracking-tighter sm:text-6xl">
+                  More About {country}
                 </h2>
-                <p className="max-w-[800px] text-gray-500 md:text-xl/relaxed">
+                <p className="max-w-[700px] text-gray-500 md:text-xl/relaxed">
                   Discover other aspects of student life and opportunities in{" "}
                   {country}.
                 </p>
@@ -199,7 +203,7 @@ export function CountrySpecificPage({
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                     <div className="absolute bottom-0 w-full p-4 text-white">
-                      <h3 className="text-xl font-bold">
+                      <h3 className="text-xl font-medium">
                         {pageTypeLabels[type as keyof typeof pageTypeLabels]}
                       </h3>
                     </div>
@@ -210,7 +214,7 @@ export function CountrySpecificPage({
               <Button
                 variant="outline"
                 size="lg"
-                className="border-white text-white bg-blue-800 hover:text-white hover:bg-blue-800"
+                className="border-white text-white bg-rose-600 hover:text-white hover:bg-rose-800 transitions-all duration-300"
               >
                 <Link href={`/study-abroad#destinations`}>
                   Explore Other Destinations
@@ -221,14 +225,24 @@ export function CountrySpecificPage({
         </section>
 
         {/* CTA Section */}
-        <section className="w-full py-12 md:py-24 bg-blue-800 text-white">
+        <section
+          className="w-full py-12 md:py-24 bg-rose-800 text-white"
+          style={{
+            backgroundColor: "#102324",
+            backgroundImage:
+              "radial-gradient(circle farthest-corner at 140% -10%, #2d737b 10%, #102324 100%)",
+          }}
+        >
           <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-                  Ready to Study in {country}?
+            <div className="flex flex-col items-center justify-center space-y-10 text-center">
+              <div className="space-y-4">
+                <h2 className="mb-2 text-4xl font-normal tracking-tighter text-white sm:text-5xl sm:mb-4">
+                  Ready to Study in{" "}
+                  <span className="font-light italic font-nibpro">
+                    {country}?
+                  </span>
                 </h2>
-                <p className="max-w-[700px] text-white/80 md:text-xl/relaxed">
+                <p className="mx-auto mb-8 max-w-2xl text-lg opacity-90">
                   Take the first step towards your international education
                   journey with IOES.
                 </p>
@@ -236,7 +250,7 @@ export function CountrySpecificPage({
               <div className="flex flex-col gap-2 min-[400px]:flex-row">
                 <Button
                   size="lg"
-                  className="bg-white text-blue-800 hover:bg-white/90"
+                  className="bg-[#ED4746] text-white hover:bg-[#ED4746]/90 transition-all duration-300"
                   onClick={openPopup}
                 >
                   Book a Free Consultation
@@ -244,7 +258,7 @@ export function CountrySpecificPage({
                 <Button
                   variant="outline"
                   size="lg"
-                  className="border-white text-white bg-blue-800 hover:bg-white hover:text-blue-800"
+                  className="border-white text-white bg-transparent transition-all duration-300"
                 >
                   Download {country} Guide
                 </Button>
