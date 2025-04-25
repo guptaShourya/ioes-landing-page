@@ -55,16 +55,16 @@ export default function EventsPage() {
       <Header />
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="w-full py-12 md:py-24 bg-gradient-to-r from-indigo-600 to-purple-700 text-white">
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-[linear-gradient(61deg,_#132e31c7,_#132e318f_38%,_#132e3170_50%,_#132e3100_60%),_linear-gradient(180deg,_#0000_81%,_#132e31_94%),_linear-gradient(to_bottom,_#192b2d80,_#192b2d80)]">
           <div className="container px-4 md:px-6">
-            <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12">
-              <div className="flex flex-col justify-center space-y-4">
-                <div className="space-y-2">
+            <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_450px]">
+              <div className="flex flex-col justify-center space-y-6">
+                <div className="space-y-6">
                   <motion.h1
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
-                    className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
+                    className="text-5xl font-light italic font-nibpro tracking-tighter text-white sm:text-7xl font-light"
                   >
                     Events & Workshops
                   </motion.h1>
@@ -72,7 +72,7 @@ export default function EventsPage() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
-                    className="max-w-[600px] text-white/80 md:text-xl"
+                    className="max-w-[600px] text-white md:text-xl font-light"
                   >
                     Join our educational events, workshops, and fairs to get
                     expert guidance and connect with university representatives.
@@ -86,7 +86,7 @@ export default function EventsPage() {
                 className="flex items-center justify-center"
               >
                 <Image
-                  src="/events/events-hero.jpg"
+                  src="/placeholder.svg"
                   alt="IOES Events"
                   width={400}
                   height={300}
@@ -116,7 +116,7 @@ export default function EventsPage() {
                   variant={filter === "all" ? "default" : "outline"}
                   onClick={() => setFilter("all")}
                   className={
-                    filter === "all" ? "bg-indigo-600 hover:bg-indigo-700" : ""
+                    filter === "all" ? "bg-rose-600 hover:bg-rose-700" : ""
                   }
                 >
                   All Events
@@ -125,9 +125,7 @@ export default function EventsPage() {
                   variant={filter === "upcoming" ? "default" : "outline"}
                   onClick={() => setFilter("upcoming")}
                   className={
-                    filter === "upcoming"
-                      ? "bg-indigo-600 hover:bg-indigo-700"
-                      : ""
+                    filter === "upcoming" ? "bg-rose-600 hover:bg-rose-700" : ""
                   }
                 >
                   Upcoming
@@ -136,7 +134,7 @@ export default function EventsPage() {
                   variant={filter === "past" ? "default" : "outline"}
                   onClick={() => setFilter("past")}
                   className={
-                    filter === "past" ? "bg-indigo-600 hover:bg-indigo-700" : ""
+                    filter === "past" ? "bg-rose-600 hover:bg-rose-700" : ""
                   }
                 >
                   Past Events
@@ -187,15 +185,15 @@ export default function EventsPage() {
                       </h3>
                       <div className="space-y-2 mb-4">
                         <div className="flex items-center text-sm text-gray-600">
-                          <Calendar className="mr-2 h-4 w-4 text-indigo-600" />
+                          <Calendar className="mr-2 h-4 w-4 text-rose-600" />
                           {formatDate(event.date)}
                         </div>
                         <div className="flex items-center text-sm text-gray-600">
-                          <Clock className="mr-2 h-4 w-4 text-indigo-600" />
+                          <Clock className="mr-2 h-4 w-4 text-rose-600" />
                           {event.time}
                         </div>
                         <div className="flex items-center text-sm text-gray-600">
-                          <MapPin className="mr-2 h-4 w-4 text-indigo-600" />
+                          <MapPin className="mr-2 h-4 w-4 text-rose-600" />
                           {event.location}
                         </div>
                       </div>
@@ -207,7 +205,7 @@ export default function EventsPage() {
                         className={`mt-auto ${
                           new Date(event.date) < today
                             ? "bg-gray-600 hover:bg-gray-700"
-                            : "bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600"
+                            : "bg-gradient-to-r from-rose-500 to-purple-500 hover:from-rose-600 hover:to-purple-600"
                         } text-white`}
                         disabled={new Date(event.date) < today}
                       >
