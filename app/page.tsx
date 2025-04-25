@@ -192,15 +192,17 @@ export default function Home() {
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <div className="inline-block rounded-lg bg-purple-100 px-3 py-1 text-sm text-purple-800 font-nibpro">
-                  Our University Partners
+                  Student Placements
                 </div>
                 <h2 className="text-4xl font-normal tracking-tighter text-gray-900 sm:text-6xl">
-                  Partnered with Leading Global Universities
+                  Our Track Record of Global Admissions
                 </h2>
                 <div className="w-full flex justify-center">
                   <p className="max-w-[700px] text-gray-500 md:text-lg">
-                    We collaborate with prestigious institutions worldwide to
-                    provide you with the best educational opportunities.
+                    We take pride in guiding students to achieve their dreams of
+                    studying abroad. Over the years, we've helped students gain
+                    admission to some of the world’s most prestigious
+                    institutions.
                   </p>
                 </div>
               </div>
