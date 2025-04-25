@@ -33,6 +33,7 @@ import { motion } from "framer-motion";
 import { UniversityCarousel } from "@/components/university-carousel";
 import { ApplicationTimeline } from "@/components/application-timeline";
 import { UpcomingEventsSection } from "@/components/upcoming-events-section";
+import destinations from "../data/destinations.json";
 
 export default function Home() {
   const { isOpen, openPopup, closePopup } = usePopup();
@@ -441,44 +442,7 @@ export default function Home() {
               </div>
             </div>
             <div className="mx-auto grid max-w-5xl gap-8 py-12 md:grid-cols-2 lg:grid-cols-3">
-              {[
-                {
-                  country: "United States",
-                  image: "/cover/usa.webp",
-                  universities: "1,000+ Universities",
-                  slug: "usa",
-                },
-                {
-                  country: "United Kingdom",
-                  image: "/cover/uk.webp",
-                  universities: "150+ Universities",
-                  slug: "uk",
-                },
-                {
-                  country: "Canada",
-                  image: "/cover/canada.webp",
-                  universities: "100+ Universities",
-                  slug: "canada",
-                },
-                {
-                  country: "Australia",
-                  image: "/cover/australia.webp",
-                  universities: "40+ Universities",
-                  slug: "australia",
-                },
-                {
-                  country: "New Zealand",
-                  image: "/cover/new-zealand.webp",
-                  universities: "8+ Universities",
-                  slug: "new-zealand",
-                },
-                {
-                  country: "Germany",
-                  image: "/cover/germany.webp",
-                  universities: "400+ Universities",
-                  slug: "germany",
-                },
-              ].map((destination, index) => (
+              {destinations["destinations"].map((destination, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -492,7 +456,9 @@ export default function Home() {
                     className="group relative overflow-hidden rounded-xl shadow-lg block h-full"
                   >
                     <Image
-                      src={destination.image || "/placeholder.svg"}
+                      src={
+                        `/cover/${destination.slug}.webp` || "/placeholder.svg"
+                      }
                       alt={destination.country}
                       width={300}
                       height={200}
@@ -570,7 +536,7 @@ export default function Home() {
                       "{testimonial.review}"
                     </p>
                     <div className="flex flex-col items-center mt-auto">
-                      <h3 className="font-bold">{testimonial.name}</h3>
+                      <h3 className="font-medium">{testimonial.name}</h3>
                       <p className="text-sm text-[#ED4746] font-nibpro font-medium">
                         {testimonial.university}
                       </p>

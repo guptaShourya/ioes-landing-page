@@ -143,5 +143,28 @@
       "image": "/testimonials/chaitanya-ambike.png",
       "review": "Very professional and helpful staff. Received the 100% Vice-Chancellor Leadership Scholarship through the guidance of Mr. Varun Gupta. I was also able to secure an 8.5 band in IELTS on coaching from IOES."
     }
+  ],
+  "study-abroad": [
+    {
+      "name": "Anmol Huda",
+      "course": "Bachelor of Science (Information Technology)",
+      "university": "Fairleigh Dickinson University",
+      "image": "/testimonials/anmol-huda.png",
+      "review": "IOES made my study abroad journey seamless. Their expert guidance helped me choose the right university and navigate the visa process effortlessly. Thanks to their support, I secured admission to a top university and felt confident throughout. Highly recommend their services!"
+    },
+    {
+      "name": "Akash Rastogi",
+      "course": "MSc Financial Risk Management",
+      "university": "Trinity College Dublin, Ireland",
+      "image": "/avatars/4.png",
+      "review": "My experience with IOES and especially with Varun has been remarkable. I will definitely recommend for Visa/Admissions."
+    },
+    {
+      "name": "Gauri Prem Kumar",
+      "course": "Bachelor of Nursing",
+      "university": "Western Sydney University",
+      "image": "/avatars/3.png",
+      "review": "Huge thanks to Varun and the IOES team for their incredible support in helping me secure admission to Australia, even with delays in my process. With their guidance, I received a 50% scholarship and got my visa in just 8 days! I highly recommend IOES to anyone aiming to study abroad."
+    }
   ]
 }

@@ -1,0 +1,52 @@
+{
+  "destinations": [
+    {
+      "country": "United States",
+      "universities": "1,000+ Universities",
+      "slug": "usa",
+      "averageTuition": "$20,000 - $50,000 per year",
+      "livingCosts": "$10,000 - $25,000 per year",
+      "flag": "https://purecatamphetamine.github.io/country-flag-icons/3x2/US.svg"
+    },
+    {
+      "country": "United Kingdom",
+      "universities": "150+ Universities",
+      "slug": "uk",
+      "averageTuition": "£10,000 - £38,000 per year",
+      "livingCosts": "£12,000 - £15,000 per year",
+      "flag": "https://purecatamphetamine.github.io/country-flag-icons/3x2/GB.svg"
+    },
+    {
+      "country": "Canada",
+      "universities": "100+ Universities",
+      "slug": "canada",
+      "averageTuition": "CAD 20,000 - CAD 30,000 per year",
+      "livingCosts": "CAD 10,000 - CAD 15,000 per year",
+      "flag": "https://purecatamphetamine.github.io/country-flag-icons/3x2/CA.svg"
+    },
+    {
+      "country": "Australia",
+      "universities": "40+ Universities",
+      "slug": "australia",
+      "averageTuition": "AUD 20,000 - AUD 45,000 per year",
+      "livingCosts": "AUD 15,000 - AUD 25,000 per year",
+      "flag": "https://purecatamphetamine.github.io/country-flag-icons/3x2/AU.svg"
+    },
+    {
+      "country": "New Zealand",
+      "universities": "8+ Universities",
+      "slug": "new-zealand",
+      "averageTuition": "NZD 22,000 - NZD 32,000 per year",
+      "livingCosts": "NZD 15,000 - NZD 20,000 per year",
+      "flag": "https://purecatamphetamine.github.io/country-flag-icons/3x2/NZ.svg"
+    },
+    {
+      "country": "Germany",
+      "universities": "400+ Universities",
+      "slug": "germany",
+      "averageTuition": "€0 - €3,000 per year (mostly free)",
+      "livingCosts": "€10,000 - €12,000 per year",
+      "flag": "https://purecatamphetamine.github.io/country-flag-icons/3x2/DE.svg"
+    }
+  ]
+}
