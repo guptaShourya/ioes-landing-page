@@ -35,7 +35,7 @@ export function Footer() {
       "https://www.linkedin.com/company/inspire-overseaas-education-services/",
   };
   return (
-    <footer className="w-full border-t bg-[#1c1a1a] py-12">
+    <footer className="w-full bg-[#1c1a1a] py-12">
       <div className="container grid gap-8 px-4 md:px-6 lg:grid-cols-4 text-white">
         <div className="space-y-4">
           <Link href="/" className="flex items-center gap-2">

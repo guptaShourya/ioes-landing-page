@@ -1,0 +1,40 @@
+{
+  "teamMembers": [
+    {
+      "name": "Rajiv Sharma",
+      "position": "Founder & CEO",
+      "bio": "With over 25 years in international education, Rajiv founded IOES with a vision to transform overseas education consultancy in India.",
+      "image": "/placeholder.svg?height=300&width=300"
+    },
+    {
+      "name": "Priya Patel",
+      "position": "Director of Operations",
+      "bio": "Priya oversees all operational aspects of IOES, ensuring seamless service delivery across all our offices.",
+      "image": "/placeholder.svg?height=300&width=300"
+    },
+    {
+      "name": "Dr. Anand Verma",
+      "position": "Head of Academic Counseling",
+      "bio": "A former university professor, Dr. Verma leads our team of academic counselors with his extensive knowledge of global education systems.",
+      "image": "/placeholder.svg?height=300&width=300"
+    },
+    {
+      "name": "Meera Kapoor",
+      "position": "Visa & Immigration Specialist",
+      "bio": "With a background in immigration law, Meera has helped thousands of students navigate complex visa processes successfully.",
+      "image": "/placeholder.svg?height=300&width=300"
+    },
+    {
+      "name": "Vikram Singh",
+      "position": "Financial Aid Advisor",
+      "bio": "Vikram specializes in helping students secure scholarships and financial aid to make their study abroad dreams affordable.",
+      "image": "/placeholder.svg?height=300&width=300"
+    },
+    {
+      "name": "Neha Gupta",
+      "position": "University Relations Manager",
+      "bio": "Neha maintains our partnerships with universities worldwide, staying updated on admission requirements and new programs.",
+      "image": "/placeholder.svg?height=300&width=300"
+    }
+  ]
+}

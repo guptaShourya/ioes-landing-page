@@ -13,9 +13,10 @@ import {
   GraduationCap,
   Heart,
   MapPin,
-  Phone,
   Users,
 } from "lucide-react";
+import team from "../../data/team.json";
+import reviews from "../../data/reviews.json";
 
 export default function AboutPage() {
   return (
@@ -23,93 +24,57 @@ export default function AboutPage() {
       <Header />
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-r from-blue-600 to-indigo-700 py-20 text-white">
+        <section
+          style={{
+            backgroundColor: "#102324",
+            backgroundImage:
+              "radial-gradient(circle farthest-corner at 140% -10%, #2d737b 10%, #102324 100%)",
+          }}
+          className="relative py-20 text-white"
+        >
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-12 md:grid-cols-2 items-center">
               <div className="flex flex-col justify-center">
-                <h1 className="mb-6 text-4xl font-bold leading-tight md:text-5xl">
-                  Empowering Global Education Dreams Since 2005
+                <h1 className="mb-4 text-5xl font-light md:text-5xl">
+                  Empowering Global Education
                 </h1>
-                <p className="mb-8 text-lg opacity-90">
-                  IOES has helped over 15,000 students achieve their dreams of
-                  studying abroad through personalized guidance and support.
-                </p>
-                <div className="flex flex-wrap gap-4">
-                  <Button
-                    asChild
-                    size="lg"
-                    className="bg-white text-blue-700 hover:bg-gray-100"
-                  >
-                    <Link href="/contact">Contact Us</Link>
-                  </Button>
-                  <Button
-                    asChild
-                    variant="outline"
-                    size="lg"
-                    className="border-white text-white bg-indigo-700 hover:bg-white hover:text-indigo-700"
-                  >
-                    <Link href="/success-stories">View Success Stories</Link>
-                  </Button>
-                </div>
-              </div>
-              <div className="flex items-center justify-center">
-                <div className="relative h-80 w-full max-w-md overflow-hidden rounded-lg shadow-xl">
+                <div className="relative inline-block w-fit self-start">
+                  <h1 className="text-5xl font-light font-nibpro italic opacity-60 md:text-5xl">
+                    Dreams
+                  </h1>
                   <Image
-                    src="/placeholder.svg?height=400&width=600"
-                    alt="IOES Team"
-                    fill
-                    className="object-cover"
+                    src="/underline.svg"
+                    alt="Underline"
+                    width={140}
+                    height={10}
+                    className="absolute left-1/2 -translate-x-1/2"
                   />
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Mission & Vision */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="mb-12 text-center">
-              <h2 className="mb-4 text-3xl font-bold">Our Mission & Vision</h2>
-              <div className="mx-auto h-1 w-20 bg-blue-600"></div>
-            </div>
-            <div className="grid gap-8 md:grid-cols-2">
-              <Card className="overflow-hidden">
-                <div className="bg-blue-600 p-4 text-white">
-                  <h3 className="text-xl font-bold">Our Mission</h3>
-                </div>
-                <CardContent className="p-6">
-                  <p className="text-gray-700">
-                    To provide comprehensive, ethical, and personalized guidance
-                    to students aspiring to study abroad, ensuring they make
-                    informed decisions that align with their academic goals,
-                    career aspirations, and financial circumstances.
-                  </p>
-                </CardContent>
-              </Card>
-              <Card className="overflow-hidden">
-                <div className="bg-indigo-600 p-4 text-white">
-                  <h3 className="text-xl font-bold">Our Vision</h3>
-                </div>
-                <CardContent className="p-6">
-                  <p className="text-gray-700">
-                    To be the most trusted overseas education consultancy in
-                    India, recognized for our integrity, student-centric
-                    approach, and consistent delivery of exceptional service
-                    that transforms educational aspirations into reality.
-                  </p>
-                </CardContent>
-              </Card>
+              <div className="flex items-center justify-center">
+                <p className="text-medium text-center w-[95%] md:text-left md:w-[75%]">
+                  Since 2010, IOES has guided over 15,000 students in achieving
+                  their study abroad goals through ethical, personalized
+                  support. Focused on integrity and student success, we help
+                  turn aspirations into global opportunities — one informed
+                  decision at a time.
+                </p>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Our Story */}
-        <section className="bg-gray-50 py-16">
+        <section className="py-16 bg-gradient-to-b from-[#f0ebe6] to-white">
           <div className="container mx-auto px-4">
-            <div className="mb-12 text-center">
-              <h2 className="mb-4 text-3xl font-bold">Our Story</h2>
-              <div className="mx-auto h-1 w-20 bg-blue-600"></div>
+            <div className="mb-16 text-center">
+              <h2 className="text-5xl font-normal tracking-tighter text-gray-900 sm:text-6xl">
+                Our
+                <span className="italic font-nibpro font-light text-[#1C1A1A]">
+                  {" "}
+                  Story
+                </span>
+              </h2>
             </div>
             <div className="grid gap-8 md:grid-cols-12">
               <div className="md:col-span-5">
@@ -129,7 +94,7 @@ export default function AboutPage() {
                       <BookOpen className="h-5 w-5" />
                     </div>
                     <div>
-                      <h3 className="mb-2 text-xl font-bold">
+                      <h3 className="mb-2 text-xl font-medium">
                         Founded in 2005
                       </h3>
                       <p className="text-gray-700">
@@ -144,7 +109,7 @@ export default function AboutPage() {
                       <GraduationCap className="h-5 w-5" />
                     </div>
                     <div>
-                      <h3 className="mb-2 text-xl font-bold">
+                      <h3 className="mb-2 text-xl font-medium">
                         Expanding Our Reach
                       </h3>
                       <p className="text-gray-700">
@@ -160,7 +125,7 @@ export default function AboutPage() {
                       <Globe className="h-5 w-5" />
                     </div>
                     <div>
-                      <h3 className="mb-2 text-xl font-bold">
+                      <h3 className="mb-2 text-xl font-medium">
                         Global Recognition
                       </h3>
                       <p className="text-gray-700">
@@ -176,7 +141,7 @@ export default function AboutPage() {
                       <Heart className="h-5 w-5" />
                     </div>
                     <div>
-                      <h3 className="mb-2 text-xl font-bold">
+                      <h3 className="mb-2 text-xl font-medium">
                         Student Success
                       </h3>
                       <p className="text-gray-700">
@@ -194,12 +159,18 @@ export default function AboutPage() {
         </section>
 
         {/* Core Values */}
-        <section className="py-16">
+        <section className="py-16 bg-gradient-to-b from-white to-[#f0ebe6]">
           <div className="container mx-auto px-4">
-            <div className="mb-12 text-center">
-              <h2 className="mb-4 text-3xl font-bold">Our Core Values</h2>
-              <div className="mx-auto h-1 w-20 bg-blue-600"></div>
-              <p className="mx-auto mt-4 max-w-2xl text-gray-600">
+            <div className="mb-12 space-y-2 text-center flex flex-col items-center">
+              <h2 className="text-5xl font-normal tracking-tighter text-gray-900 sm:text-6xl">
+                Our
+                <span className="italic font-nibpro font-light text-[#1C1A1A]">
+                  {" "}
+                  Core{" "}
+                </span>
+                Values
+              </h2>
+              <p className="max-w-[900px] text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 These principles guide every interaction and decision we make at
                 IOES
               </p>
@@ -245,54 +216,23 @@ export default function AboutPage() {
         </section>
 
         {/* Leadership Team */}
-        <section className="bg-gray-50 py-16">
+        <section className="py-16 bg-gradient-to-b from-[#f0ebe6] to-white">
           <div className="container mx-auto px-4">
-            <div className="mb-12 text-center">
-              <h2 className="mb-4 text-3xl font-bold">Our Leadership Team</h2>
-              <div className="mx-auto h-1 w-20 bg-blue-600"></div>
-              <p className="mx-auto mt-4 max-w-2xl text-gray-600">
+            <div className="mb-12 space-y-2 text-center flex flex-col items-center">
+              <h2 className="text-5xl font-normal tracking-tighter text-gray-900 sm:text-6xl">
+                Our
+                <span className="italic font-nibpro font-light text-[#1C1A1A]">
+                  {" "}
+                  Leadership{" "}
+                </span>
+                Team
+              </h2>
+              <p className="max-w-[900px] text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 Meet the experienced professionals guiding IOES's mission
               </p>
             </div>
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {[
-                {
-                  name: "Rajiv Sharma",
-                  position: "Founder & CEO",
-                  bio: "With over 25 years in international education, Rajiv founded IOES with a vision to transform overseas education consultancy in India.",
-                  image: "/placeholder.svg?height=300&width=300",
-                },
-                {
-                  name: "Priya Patel",
-                  position: "Director of Operations",
-                  bio: "Priya oversees all operational aspects of IOES, ensuring seamless service delivery across all our offices.",
-                  image: "/placeholder.svg?height=300&width=300",
-                },
-                {
-                  name: "Dr. Anand Verma",
-                  position: "Head of Academic Counseling",
-                  bio: "A former university professor, Dr. Verma leads our team of academic counselors with his extensive knowledge of global education systems.",
-                  image: "/placeholder.svg?height=300&width=300",
-                },
-                {
-                  name: "Meera Kapoor",
-                  position: "Visa & Immigration Specialist",
-                  bio: "With a background in immigration law, Meera has helped thousands of students navigate complex visa processes successfully.",
-                  image: "/placeholder.svg?height=300&width=300",
-                },
-                {
-                  name: "Vikram Singh",
-                  position: "Financial Aid Advisor",
-                  bio: "Vikram specializes in helping students secure scholarships and financial aid to make their study abroad dreams affordable.",
-                  image: "/placeholder.svg?height=300&width=300",
-                },
-                {
-                  name: "Neha Gupta",
-                  position: "University Relations Manager",
-                  bio: "Neha maintains our partnerships with universities worldwide, staying updated on admission requirements and new programs.",
-                  image: "/placeholder.svg?height=300&width=300",
-                },
-              ].map((member, index) => (
+              {team["teamMembers"].map((member, index) => (
                 <Card key={index} className="overflow-hidden">
                   <div className="relative h-64 w-full">
                     <Image
@@ -303,11 +243,11 @@ export default function AboutPage() {
                     />
                   </div>
                   <CardContent className="p-6">
-                    <h3 className="mb-1 text-xl font-bold">{member.name}</h3>
-                    <p className="mb-3 text-sm font-medium text-blue-600">
+                    <h3 className="mb-1 text-xl font-medium">{member.name}</h3>
+                    <p className="mb-3 text-sm font-light italic underline font-nibpro text-blue-600">
                       {member.position}
                     </p>
-                    <p className="text-gray-600">{member.bio}</p>
+                    <p className="text-gray-600 font-normal">{member.bio}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -316,11 +256,16 @@ export default function AboutPage() {
         </section>
 
         {/* Achievements */}
-        <section className="py-16">
+        <section className="py-16 bg-gradient-to-b from-white to-[#f0ebe6]">
           <div className="container mx-auto px-4">
             <div className="mb-12 text-center">
-              <h2 className="mb-4 text-3xl font-bold">Our Achievements</h2>
-              <div className="mx-auto h-1 w-20 bg-blue-600"></div>
+              <h2 className="text-5xl font-normal tracking-tighter text-gray-900 sm:text-6xl">
+                Our
+                <span className="italic font-nibpro font-light text-[#1C1A1A]">
+                  {" "}
+                  Achievements
+                </span>
+              </h2>
             </div>
             <div className="grid gap-8 md:grid-cols-4">
               {[
@@ -359,36 +304,20 @@ export default function AboutPage() {
         </section>
 
         {/* Testimonials */}
-        <section className="bg-gray-50 py-16">
+        <section className="py-16 bg-gradient-to-b from-[#f0ebe6] to-white">
           <div className="container mx-auto px-4">
             <div className="mb-12 text-center">
-              <h2 className="mb-4 text-3xl font-bold">What Our Students Say</h2>
-              <div className="mx-auto h-1 w-20 bg-blue-600"></div>
+              <h2 className="text-5xl font-normal tracking-tighter text-gray-900 sm:text-6xl">
+                What Our
+                <span className="italic font-nibpro font-light text-[#1C1A1A]">
+                  {" "}
+                  Students{" "}
+                </span>
+                Say
+              </h2>
             </div>
             <div className="grid gap-8 md:grid-cols-3">
-              {[
-                {
-                  name: "Aditya Mehta",
-                  university: "University of Toronto",
-                  quote:
-                    "IOES made my dream of studying in Canada a reality. Their counselors guided me through every step of the process, from university selection to visa application.",
-                  image: "/placeholder.svg?height=100&width=100",
-                },
-                {
-                  name: "Sneha Reddy",
-                  university: "University of Melbourne",
-                  quote:
-                    "I was overwhelmed by the prospect of studying abroad, but IOES simplified everything. Their scholarship guidance helped me secure a 50% tuition waiver!",
-                  image: "/placeholder.svg?height=100&width=100",
-                },
-                {
-                  name: "Rahul Khanna",
-                  university: "Imperial College London",
-                  quote:
-                    "The personalized attention I received from IOES was exceptional. They understood my academic goals perfectly and matched me with the ideal program.",
-                  image: "/placeholder.svg?height=100&width=100",
-                },
-              ].map((testimonial, index) => (
+              {reviews["about-us-cards"].map((testimonial, index) => (
                 <Card key={index} className="p-6">
                   <div className="mb-4 flex items-center gap-4">
                     <div className="relative h-16 w-16 overflow-hidden rounded-full">
@@ -400,18 +329,18 @@ export default function AboutPage() {
                       />
                     </div>
                     <div>
-                      <h3 className="font-bold">{testimonial.name}</h3>
-                      <p className="text-sm text-blue-600">
+                      <h3 className="font-medium">{testimonial.name}</h3>
+                      <p className="text-sm font-nibpro italic text-blue-600">
                         {testimonial.university}
                       </p>
                     </div>
                   </div>
-                  <p className="italic text-gray-700">"{testimonial.quote}"</p>
+                  <p className="italic text-gray-700">"{testimonial.review}"</p>
                 </Card>
               ))}
             </div>
             <div className="mt-10 text-center">
-              <Button asChild className="bg-blue-800 text-white">
+              <Button asChild className="bg-[#ED4746] text-white">
                 <Link href="/success-stories">Read More Success Stories</Link>
               </Button>
             </div>
@@ -419,10 +348,20 @@ export default function AboutPage() {
         </section>
 
         {/* CTA */}
-        <section className="bg-gradient-to-r from-blue-600 to-indigo-700 py-16 text-white">
+        <section
+          style={{
+            backgroundColor: "#102324",
+            backgroundImage:
+              "radial-gradient(circle farthest-corner at 140% -10%, #2d737b 10%, #102324 100%)",
+          }}
+          className="py-16 text-white"
+        >
           <div className="container mx-auto px-4 text-center">
-            <h2 className="mb-6 text-3xl font-bold">
-              Ready to Begin Your Global Education Journey?
+            <h2 className="mb-2 text-4xl font-normal tracking-tighter text-white sm:text-5xl sm:mb-4">
+              <span className="italic font-nibpro font-light text-4xl sm:text-5xl">
+                Ready
+              </span>{" "}
+              to Begin Your Global Education Journey?
             </h2>
             <p className="mx-auto mb-8 max-w-2xl text-lg opacity-90">
               Schedule a free consultation with our expert counselors to discuss
@@ -432,7 +371,7 @@ export default function AboutPage() {
               <Button
                 asChild
                 size="lg"
-                className="bg-white text-blue-700 hover:bg-gray-100"
+                className="bg-[#ED4746] text-white hover:bg-[#ED4746] hover:opacity-80 transition-all duration-300"
               >
                 <Link href="/contact">Contact Us</Link>
               </Button>
@@ -440,7 +379,7 @@ export default function AboutPage() {
                 asChild
                 variant="outline"
                 size="lg"
-                className="border-white text-white bg-indigo-700 hover:bg-white hover:text-indigo-700"
+                className="border-white text-white bg-transparent transition-all duration-300"
               >
                 <Link href="/services">Explore Our Services</Link>
               </Button>
