@@ -519,7 +519,7 @@ export default function ContactPage() {
                   className="flex flex-col items-center space-y-4 rounded-lg border bg-white p-6 shadow-sm transition-all hover:shadow-md"
                 >
                   <div className="text-rose-800">{department.icon}</div>
-                  <h3 className="text-xl font-bold">{department.title}</h3>
+                  <h3 className="text-xl font-medium">{department.title}</h3>
                   <div className="space-y-2 text-center">
                     <p className="flex items-center justify-center gap-2">
                       <Mail className="h-4 w-4 text-rose-800" />
