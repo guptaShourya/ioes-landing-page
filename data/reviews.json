@@ -120,5 +120,28 @@
       "image": "/testimonials/anmol-huda.png",
       "review": "IOES made my study abroad journey seamless. Their expert guidance helped me choose the right university and navigate the visa process effortlessly. Thanks to their support, I secured admission to a top university and felt confident throughout. Highly recommend their services!"
     }
+  ],
+  "service-index": [
+    {
+      "name": "Shubhangi Sharma",
+      "course": "Graduate Certificate in Occupational Health and Safety Management",
+      "university": "Lambton College",
+      "image": "/avatars/3.png",
+      "review": "Trustworthy counsellors. From finding the right course to making sure I get my visa as soon as possible, they did all very effortlessly. I’m glad that I went with IOES for it."
+    },
+    {
+      "name": "Paavni Jain",
+      "course": "Master of Law",
+      "university": "University of Cambridge, UK",
+      "image": "/avatars/1.png",
+      "review": "Really great services. My case was a critical one but they manage to get my visa in first go. Really recommend them for student visa."
+    },
+    {
+      "name": "Chaitanya Ambike",
+      "course": "Bachelor of Mathematics (Advanced)",
+      "university": "University of Wollongong, Australia",
+      "image": "/testimonials/chaitanya-ambike.png",
+      "review": "Very professional and helpful staff. Received the 100% Vice-Chancellor Leadership Scholarship through the guidance of Mr. Varun Gupta. I was also able to secure an 8.5 band in IELTS on coaching from IOES."
+    }
   ]
 }

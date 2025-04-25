@@ -17,7 +17,7 @@ import {
 import { Footer } from "@/components/footer";
 import { usePopup } from "@/hooks/use-popup";
 import { CounselingFormPopup } from "@/components/counselling-form-popup";
-
+import reviews from "../../data/reviews.json";
 const services = [
   {
     name: "Counselling",
@@ -90,14 +90,16 @@ export default function ServicesPage() {
             />
             <div className="absolute inset-0 bg-black/50" />
           </div>
-          <div className="container relative space-y-2 flex min-h-[400px] flex-col items-center justify-center px-4 py-24 text-center text-white md:px-6">
-            <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
-              Comprehensive Support
+          <div className="container relative space-y-6 flex min-h-[400px] flex-col items-center justify-center px-4 py-24 text-center text-white md:px-6">
+            <div className="space-y-2">
+              <div className="inline-block font-nibpro rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
+                Comprehensive Support
+              </div>
+              <h1 className="text-5xl font-normal font-satoshi tracking-tighter text-white sm:text-7xl font-normal">
+                Our Services
+              </h1>
             </div>
-            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
-              Our Services
-            </h1>
-            <p className="mt-4 max-w-[700px] text-lg text-white/90 md:text-xl">
+            <p className="max-w-[600px] text-white md:text-xl font-light">
               From application to arrival, we provide end-to-end support to make
               your international education journey smooth and successful.
             </p>
@@ -114,17 +116,19 @@ export default function ServicesPage() {
         </section>
 
         {/* Services Overview Section */}
-        <section className="w-full py-12 md:py-24 bg-white">
+        <section className="w-full py-12 md:py-24 bg-gradient-to-b from-[#f0ebe6] to-white">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
-                  Free of Cost
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <div className="inline-block font-nibpro rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
+                    Free of Cost
+                  </div>
+                  <h2 className="text-4xl font-normal tracking-tighter sm:text-6xl">
+                    Comprehensive Student Support
+                  </h2>
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-                  Comprehensive Student Support
-                </h2>
-                <p className="max-w-[700px] text-gray-500 md:text-xl/relaxed">
+                <p className="max-w-[700px] text-gray-500 md:text-lg/relaxed">
                   We are committed to providing high-quality services to
                   students at no cost, ensuring that your focus remains on your
                   education.
@@ -153,18 +157,20 @@ export default function ServicesPage() {
         </section>
 
         {/* Why Choose Us Section */}
-        <section className="w-full py-12 md:py-24 bg-gray-50">
+        <section className="w-full py-12 md:py-24 bg-gray-50 bg-gradient-to-t from-[#f0ebe6] to-white">
           <div className="container px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-2 lg:gap-12">
-              <div className="flex flex-col justify-center space-y-4">
-                <div className="space-y-2">
-                  <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
-                    Why Choose IOES
+              <div className="flex flex-col justify-center space-y-6">
+                <div className="space-y-8">
+                  <div className="space-y-2">
+                    <div className="inline-block font-nibpro rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
+                      Why Choose IOES
+                    </div>
+                    <h2 className="text-4xl font-normal tracking-tighter sm:text-6xl">
+                      Student-Centered Approach
+                    </h2>
                   </div>
-                  <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-                    Student-Centered Approach
-                  </h2>
-                  <p className="text-gray-500 md:text-xl/relaxed">
+                  <p className="max-w-[700px] text-gray-500 md:text-lg/relaxed">
                     At IOES, we prioritize your comfort, success, and well-being
                     throughout your educational journey. Our comprehensive
                     services are designed to address every aspect of your study
@@ -216,14 +222,14 @@ export default function ServicesPage() {
         </section>
 
         {/* Testimonials Section */}
-        <section className="w-full py-12 md:py-24 bg-white">
+        <section className="w-full py-12 md:py-24 bg-gradient-to-b from-[#f0ebe6] to-white">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
+                <div className="inline-block font-nibpro rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
                   Success Stories
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                <h2 className="text-4xl font-normal tracking-tighter sm:text-6xl">
                   What Our Students Say
                 </h2>
                 <p className="max-w-[700px] text-gray-500 md:text-xl/relaxed">
@@ -233,29 +239,7 @@ export default function ServicesPage() {
               </div>
             </div>
             <div className="mx-auto grid max-w-5xl gap-8 py-12 md:grid-cols-2 lg:grid-cols-3">
-              {[
-                {
-                  name: "Rahul Sharma",
-                  university: "Harvard University, USA",
-                  image: "/placeholder.svg?height=100&width=100",
-                  testimonial:
-                    "The counseling and university selection services at IOES were exceptional. They helped me secure admission to my dream university with a scholarship.",
-                },
-                {
-                  name: "Priya Patel",
-                  university: "University of Toronto, Canada",
-                  image: "/placeholder.svg?height=100&width=100",
-                  testimonial:
-                    "The visa guidance and loan assistance made my application process stress-free. I'm grateful for the continuous support from the IOES team.",
-                },
-                {
-                  name: "Arjun Singh",
-                  university: "University of Melbourne, Australia",
-                  image: "/placeholder.svg?height=100&width=100",
-                  testimonial:
-                    "Finding accommodation in a new country was my biggest concern, but IOES connected me with reliable housing partners that made the transition smooth.",
-                },
-              ].map((testimonial, index) => (
+              {reviews["service-index"].map((testimonial, index) => (
                 <div
                   key={index}
                   className="flex flex-col items-center space-y-4 rounded-lg border p-6 shadow-sm"
@@ -268,10 +252,12 @@ export default function ServicesPage() {
                     className="h-20 w-20 rounded-full object-cover"
                   />
                   <div className="space-y-2 text-center">
-                    <p className="text-gray-500">"{testimonial.testimonial}"</p>
+                    <p className="text-gray-500 italic">
+                      "{testimonial.review}"
+                    </p>
                     <div>
-                      <h3 className="font-bold">{testimonial.name}</h3>
-                      <p className="text-sm text-gray-500">
+                      <h3 className="font-medium">{testimonial.name}</h3>
+                      <p className="text-sm text-blue-500 font-nibpro">
                         {testimonial.university}
                       </p>
                     </div>
@@ -283,22 +269,32 @@ export default function ServicesPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="w-full py-12 md:py-24 bg-blue-800 text-white">
+        <section
+          className="w-full py-12 md:py-24 bg-blue-800 text-white"
+          style={{
+            backgroundColor: "#102324",
+            backgroundImage:
+              "radial-gradient(circle farthest-corner at 140% -10%, #2d737b 10%, #102324 100%)",
+          }}
+        >
           <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-                  Ready to Start Your Journey?
+            <div className="flex flex-col items-center justify-center space-y-10 text-center">
+              <div className="space-y-4">
+                <h2 className="mb-2 text-4xl font-normal tracking-tighter text-white sm:text-5xl sm:mb-4">
+                  Ready to Start{" "}
+                  <span className="font-nibpro italic font-light">
+                    Your Journey?
+                  </span>
                 </h2>
-                <p className="max-w-[700px] text-white/80 md:text-xl/relaxed">
+                <p className="mx-auto mb-8 max-w-2xl text-lg opacity-90">
                   Contact us today for a free consultation and take the first
                   step towards your international education.
                 </p>
               </div>
-              <div className="flex flex-col gap-2 min-[400px]:flex-row">
+              <div className="flex flex-col gap-6 min-[400px]:flex-row">
                 <Button
                   size="lg"
-                  className="bg-white text-blue-800 hover:bg-white/90"
+                  className="bg-[#ED4746] text-white hover:bg-[#ED4746]/90 transition-all duration-300"
                   onClick={openPopup}
                 >
                   Book a Free Consultation
@@ -306,7 +302,7 @@ export default function ServicesPage() {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="border-white text-white bg-blue-800 hover:bg-white hover:text-blue-800"
+                  className="border-white text-white bg-transparent transition-all duration-300"
                 >
                   <Link href="/study-abroad">Explore Study Destinations</Link>
                 </Button>
