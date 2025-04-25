@@ -63,13 +63,13 @@ export function Header() {
               <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-[#ed4746] transition-all duration-300 group-hover:w-full" />
             </Link>
 
-            {/* Study Abroad with dropdown */}
             <div className="relative group">
-              <span className="cursor-pointer hover:text-primary transition group">
+              <span className="cursor-pointer hover:text-primary transition group-hover/dropdown:text-primary inline-block relative">
                 Study Abroad
                 <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-[#ed4746] transition-all duration-300 group-hover:w-full" />
               </span>
-              <div className="absolute left-0 mt-2 w-48 rounded-lg border bg-white p-2 shadow-lg opacity-0 group-hover:opacity-100 group-hover:translate-y-0 -translate-y-2 transition-all duration-300 ease-in-out z-50">
+
+              <div className="pointer-events-none opacity-0 translate-y-2 group-hover:pointer-events-auto group-hover:opacity-100 group-hover:translate-y-0 absolute left-0 mt-2 w-48 rounded-lg border bg-white p-2 shadow-lg transition-all duration-300 ease-in-out z-50">
                 {STUDY_ABROAD_COUNTRIES.map((country) => (
                   <Link
                     key={country.href}
@@ -84,11 +84,11 @@ export function Header() {
 
             {/* Scholarships with dropdown */}
             <div className="relative group">
-              <span className="cursor-pointer hover:text-primary transition group">
+              <span className="cursor-pointer hover:text-primary transition group-hover/dropdown:text-primary inline-block relative">
                 Scholarships
                 <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-[#ed4746] transition-all duration-300 group-hover:w-full" />
               </span>
-              <div className="absolute left-0 mt-2 w-48 rounded-lg border bg-white p-2 shadow-lg opacity-0 group-hover:opacity-100 group-hover:translate-y-0 -translate-y-2 transition-all duration-300 ease-in-out z-50">
+              <div className="pointer-events-none opacity-0 translate-y-2 group-hover:pointer-events-auto group-hover:opacity-100 group-hover:translate-y-0 absolute left-0 mt-2 w-48 rounded-lg border bg-white p-2 shadow-lg transition-all duration-300 ease-in-out z-50">
                 {SCHOLARSHIP_COUNTRIES.map((country) => (
                   <Link
                     key={country.href}
