@@ -270,7 +270,7 @@ export default function ServicesPage() {
 
         {/* CTA Section */}
         <section
-          className="w-full py-12 md:py-24 bg-blue-800 text-white"
+          className="w-full py-12 md:py-24 text-white"
           style={{
             backgroundColor: "#102324",
             backgroundImage:
