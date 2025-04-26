@@ -190,7 +190,7 @@ export default function Home() {
         </section>
 
         {/* University Partners Carousel - New Section */}
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-[#f0ebe6] to-white">
+        <section className="w-full py-12 md:py-18 bg-gradient-to-b from-[#f0ebe6] to-white">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
@@ -217,7 +217,7 @@ export default function Home() {
         {/* About Section - Updated with softer colors */}
         <section
           id="about"
-          className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-white to-[#f0ebe6]"
+          className="w-full py-12 md:py-18 bg-gradient-to-b from-white to-[#f0ebe6]"
         >
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
@@ -303,7 +303,7 @@ export default function Home() {
         </section>
 
         {/* Application Process Timeline - New Section */}
-        <section className="w-full py-12 md:py-24 bg-gradient-to-b from-[#f0ebe6] to-white">
+        <section className="w-full py-12 md:py-18 md:pb-24 bg-gradient-to-b from-[#f0ebe6] to-white">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
               <div className="space-y-2">
@@ -324,10 +324,7 @@ export default function Home() {
         </section>
 
         {/* Services Section - Updated with new colors */}
-        <section
-          id="services"
-          className="w-full py-12 md:py-24 lg:py-32 bg-white"
-        >
+        <section id="services" className="w-full py-12 md:py-18 bg-white">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
@@ -349,7 +346,7 @@ export default function Home() {
                   icon: <GraduationCap className="h-10 w-10" />,
                   title: "University Selection",
                   description:
-                    "Personalized recommendations based on your academic profile and career goals.",
+                    "Free personalized recommendations based on your academic profile and career goals.",
                   color: "text-amber-600 bg-amber-50 border-amber-200",
                 },
                 {
@@ -426,7 +423,7 @@ export default function Home() {
         {/* Destinations Section - Updated with vibrant colors */}
         <section
           id="destinations"
-          className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-white to-indigo-50"
+          className="w-full py-12 md:py-18 bg-gradient-to-b from-white to-indigo-50"
         >
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
@@ -496,7 +493,7 @@ export default function Home() {
             backgroundImage:
               "radial-gradient(circle farthest-corner at 140% -10%, #2d737b 10%, #102324 100%)",
           }}
-          className="w-full py-12 md:py-24 lg:py-32 text-white"
+          className="w-full py-12 md:py-18 text-white"
           // className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-r from-purple-900 to-indigo-900 text-white"
         >
           <div className="container px-4 md:px-6">
@@ -558,7 +555,7 @@ export default function Home() {
         <UpcomingEventsSection />
 
         {/* Why Choose Us Section - Updated with fresh colors */}
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-[#f0ebe6] to-white">
+        <section className="w-full py-12 md:py-18 bg-gradient-to-b from-[#f0ebe6] to-white">
           <div className="container px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-2 lg:gap-12">
               <div className="flex flex-col justify-center space-y-4">
@@ -576,9 +573,9 @@ export default function Home() {
                 </div>
                 <ul className="grid gap-4">
                   {[
-                    "Personalized counseling tailored to your academic profile",
-                    "Partnerships with 500+ universities worldwide",
-                    "95% visa success rate",
+                    "Free personalized counseling tailored to your academic profile",
+                    "Students placed at 200+ universities worldwide",
+                    "98% visa success rate",
                     "Comprehensive support from application to arrival",
                     "Regular workshops and seminars on study abroad opportunities",
                   ].map((point, index) => (
@@ -630,10 +627,7 @@ export default function Home() {
         </section>
 
         {/* Contact Section - Updated with subtle colors */}
-        <section
-          id="contact"
-          className="w-full py-12 md:py-24 lg:py-32 bg-white"
-        >
+        <section id="contact" className="w-full py-12 md:py-18 bg-white">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
@@ -650,48 +644,87 @@ export default function Home() {
               </div>
             </div>
             <div className="mx-auto grid max-w-5xl gap-8 py-12 md:grid-cols-2">
-              <div className="space-y-6">
-                {[
-                  {
-                    icon: <MapPin className="h-6 w-6 text-rose-600" />,
-                    title: "Visit Us",
-                    content: contact.address,
-                  },
-                  {
-                    icon: <Phone className="h-6 w-6 text-rose-600" />,
-                    title: "Call Us",
-                    content: contact.primaryNumber,
-                  },
-                  {
-                    icon: <Mail className="h-6 w-6 text-rose-600" />,
-                    title: "Email Us",
-                    content: "info@ioes.in",
-                  },
-                  {
-                    icon: <Clock className="h-6 w-6 text-rose-600" />,
-                    title: "Office Hours",
-                    content: "Monday - Saturday: 10:00 AM - 6:00 PM",
-                  },
-                ].map((item, index) => (
-                  <motion.div
-                    key={index}
-                    className="flex items-start gap-4"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                  >
-                    {item.icon}
-                    <div>
-                      <h3 className="font-bold text-gray-900">{item.title}</h3>
-                      <p className="text-gray-600">{item.content}</p>
+              <div className="space-y-10">
+                {/* Delhi Office */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  viewport={{ once: true }}
+                  className="rounded-xl bg-rose-50 p-6"
+                >
+                  <h3 className="mb-4 text-xl font-bold text-gray-900">
+                    Delhi Office
+                  </h3>
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-4">
+                      <MapPin className="h-6 w-6 text-rose-600" />
+                      <p className="text-gray-600">{contact["office-delhi"]}</p>
                     </div>
-                  </motion.div>
-                ))}
+                    <div className="flex items-start gap-4">
+                      <Phone className="h-6 w-6 text-rose-600" />
+                      <p className="text-gray-600">{contact["number-delhi"]}</p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Mumbai Office */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  viewport={{ once: true }}
+                  className="rounded-xl bg-rose-50 p-6"
+                >
+                  <h3 className="mb-4 text-xl font-bold text-gray-900">
+                    Mumbai Office
+                  </h3>
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-4">
+                      <MapPin className="h-6 w-6 text-rose-600" />
+                      <p className="text-gray-600">
+                        {contact["office-mumbai"]}
+                      </p>
+                    </div>
+                    <div className="flex items-start gap-4">
+                      <Phone className="h-6 w-6 text-rose-600" />
+                      <p className="text-gray-600">
+                        {contact["number-mumbai"]}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Common Details */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.4 }}
+                  viewport={{ once: true }}
+                  className="rounded-xl bg-rose-50 p-6"
+                >
+                  <h3 className="mb-4 text-xl font-bold text-gray-900">
+                    Other Info
+                  </h3>
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-4">
+                      <Mail className="h-6 w-6 text-rose-600" />
+                      <p className="text-gray-600">info@ioes.in</p>
+                    </div>
+                    <div className="flex items-start gap-4">
+                      <Clock className="h-6 w-6 text-rose-600" />
+                      <p className="text-gray-600">
+                        Monday - Saturday: 10:00 AM - 6:00 PM
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Socials */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.6 }}
                   viewport={{ once: true }}
                   className="rounded-xl bg-rose-50 p-6"
                 >
@@ -722,11 +755,13 @@ export default function Home() {
                   </div>
                 </motion.div>
               </div>
+
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7 }}
                 viewport={{ once: true }}
+                style={{ height: "fit-content" }}
                 className="rounded-xl border border-rose-100 bg-white p-6 shadow-md"
               >
                 <h3 className="mb-4 text-xl font-bold text-gray-900">

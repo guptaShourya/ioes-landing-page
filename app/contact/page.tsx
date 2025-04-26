@@ -166,50 +166,78 @@ export default function ContactPage() {
                     education journey.
                   </p>
                 </div>
-                <div className="space-y-4">
+                <div className="space-y-6">
+                  {/* Visit Our Offices */}
                   <div className="flex items-start gap-4">
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-rose-100 text-rose-800">
                       <MapPin className="h-5 w-5" />
                     </div>
                     <div>
-                      <h3 className="font-bold">Visit Our Office</h3>
-                      <p className="text-gray-500">
-                        3rd floor, Plot No. 12B/58, B-59, Rd Number 203,
-                      </p>
-                      <p className="text-gray-500">
-                        Parmanand Colony Pocket 8, Block B, Sector 12 Dwarka,
-                      </p>
-                      <p className="text-gray-500">Delhi, 110075</p>
+                      <h3 className="font-bold">Visit Our Offices</h3>
+                      <div className="mt-2 space-y-2 text-gray-500">
+                        <div>
+                          <p className="font-medium text-gray-700">
+                            Delhi Office:
+                          </p>
+                          <p>{contact["address-delhi-line1"]}</p>
+                          <p>{contact["address-delhi-line2"]}</p>
+                          <p>{contact["address-delhi-line3"]}</p>
+                        </div>
+                        <div className="pt-2">
+                          <p className="font-medium text-gray-700">
+                            Mumbai Office:
+                          </p>
+                          <p>{contact["address-mumbai-line1"]}</p>
+                          <p>{contact["address-mumbai-line2"]}</p>
+                          <p>{contact["address-mumbai-line3"]}</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
+
+                  {/* Call Us */}
                   <div className="flex items-start gap-4">
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-rose-100 text-rose-800">
                       <Phone className="h-5 w-5" />
                     </div>
                     <div>
                       <h3 className="font-bold">Call Us</h3>
-                      <p className="text-gray-500">
-                        {contact.primaryNumber} (General Inquiries)
-                      </p>
-                      <p className="text-gray-500">
-                        +91 98765 43211 (Admissions)
-                      </p>
+                      <div className="mt-2 space-y-2 text-gray-500">
+                        <div>
+                          <p className="font-medium text-gray-700">
+                            Delhi Office:
+                          </p>
+                          <p>{contact["number-delhi"]}</p>
+                        </div>
+                        <div className="pt-2">
+                          <p className="font-medium text-gray-700">
+                            Mumbai Office:
+                          </p>
+                          <p>{contact["number-mumbai"]}</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
+
+                  {/* Email Us */}
                   <div className="flex items-start gap-4">
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-rose-100 text-rose-800">
                       <Mail className="h-5 w-5" />
                     </div>
                     <div>
                       <h3 className="font-bold">Email Us</h3>
-                      <p className="text-gray-500">
-                        info@ioes.in (General Inquiries)
-                      </p>
-                      <p className="text-gray-500">
-                        admissions@ioes.in (Admissions)
-                      </p>
+                      <div className="mt-2 space-y-2 text-gray-500">
+                        <div>
+                          {/* <p className="font-medium text-gray-700"> */}
+                          {/* General Inquiries: */}
+                          {/* </p> */}
+                          <p>{contact["general-email"]}</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
+
+                  {/* Office Hours */}
                   <div className="flex items-start gap-4">
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-rose-100 text-rose-800">
                       <Clock className="h-5 w-5" />
@@ -223,6 +251,7 @@ export default function ContactPage() {
                     </div>
                   </div>
                 </div>
+
                 <div className="space-y-2">
                   <h3 className="font-bold">Connect With Us</h3>
                   <div className="flex gap-4">

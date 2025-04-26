@@ -2,6 +2,7 @@ import type React from "react";
 import "@/app/globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { satoshi, nibpro } from "./fonts";
+import { FloatingContactButton } from "@/components/floating-contact-button";
 
 export const metadata = {
   title: "IOES - Inspire Overseass Education Services",
@@ -30,6 +31,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <FloatingContactButton />
         </ThemeProvider>
       </body>
     </html>

@@ -1,4 +1,18 @@
 {
   "address": "3rd floor, Plot No. 12B/58, B-59, Rd Number 203, Parmanand Colony Pocket 8, Block B, Sector 12 Dwarka, 110075",
-  "primaryNumber": "+91-93554 51451"
+  "office-mumbai": "B Wing, Poonam Cluster 3, Office No. 20 1st Floor, A &, opp. Surya Shopping Center, Mira Road East, Mumbai, Maharashtra 401107",
+  "office-delhi": "3rd floor, Plot No. 12B/58, B-59, Rd Number 203, Parmanand Colony Pocket 8, Block B, Sector 12 Dwarka, 110075",
+  "primaryNumber": "+91-93554 51451",
+  "number-delhi": "+91-93554 51451",
+  "number-mumbai": "+91-99202 20423",
+  "address-delhi-line1": "3rd floor, Plot No. 12B/58, B-59, Rd Number 203",
+  "address-delhi-line2": "Parmanand Colony Pocket 8, Block B, Sector 12 Dwarka",
+  "address-delhi-line3": "Delhi, 110075",
+  "address-mumbai-line1": "4th Floor, ABC Tower",
+  "address-mumbai-line2": "Bandra Kurla Complex",
+  "address-mumbai-line3": "Mumbai, 400051",
+
+  "general-email": "info@ioes.in",
+  "admission-email-delhi": "admissions.delhi@ioes.in",
+  "admission-email-mumbai": "admissions.mumbai@ioes.in"
 }

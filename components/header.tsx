@@ -131,7 +131,7 @@ export function Header() {
               className="hidden lg:flex bg-[#ED4746]"
               onClick={openPopup}
             >
-              Get Started
+              Get Free Consultation
             </Button>
             <Button
               variant="ghost"
