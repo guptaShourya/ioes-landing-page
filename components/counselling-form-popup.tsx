@@ -173,6 +173,8 @@ export function CounselingFormPopup({
                       id="phone"
                       name="phone"
                       value={formData.phone}
+                      maxLength={10}
+                      minLength={10}
                       onChange={handleChange}
                       placeholder="Enter your phone number"
                       required
