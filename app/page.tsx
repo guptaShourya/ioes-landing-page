@@ -133,7 +133,9 @@ export default function Home() {
                     size="lg"
                     className="font-satoshi font-light border-white text-white bg-transparent"
                   >
-                    <Link href="/study-abroad">Explore Programs</Link>
+                    <Link href="/study-abroad#destinations">
+                      Explore Destinations
+                    </Link>
                   </Button>
                 </motion.div>
                 <motion.div

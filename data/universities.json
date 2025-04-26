@@ -1,0 +1,122 @@
+{
+  "all": [
+    { "name": "Monash University", "logo": "/university/monash.png" },
+    { "name": "University of Melbourne", "logo": "/university/melbourne.png" },
+    { "name": "Deakin University", "logo": "/university/deakin.png" },
+    {
+      "name": "Pennsylvania State University",
+      "logo": "/university/penn-state.png"
+    },
+    {
+      "name": "GLION Institute of Higher Education",
+      "logo": "/university/glion.png"
+    },
+    {
+      "name": "Trinity College Dublin",
+      "logo": "/university/trinity-dublin.png"
+    },
+    { "name": "University of Galway", "logo": "/university/galway.png" },
+    { "name": "ANU", "logo": "/university/anu.png" },
+    { "name": "UNSW", "logo": "/university/unsw.png" },
+    { "name": "Flinders University", "logo": "/university/flinders.png" },
+    { "name": "Western Sydney University", "logo": "/university/wsu.png" },
+    { "name": "Griffith University", "logo": "/university/griffith.png" },
+    { "name": "Wolloongong University", "logo": "/university/wollongong.png" },
+    {
+      "name": "University of Nottingham",
+      "logo": "/university/nottingham.png"
+    },
+    { "name": "Manchester University", "logo": "/university/manchester.png" },
+    { "name": "University of Sussex", "logo": "/university/sussex.png" },
+    { "name": "University of Dundee", "logo": "/university/dundee.png" },
+    { "name": "James Cook University", "logo": "/university/james-cook.png" },
+    { "name": "University of Sydney", "logo": "/university/uni-of-sydney.png" },
+    {
+      "name": "University of Queensland",
+      "logo": "/university/queensland.png"
+    },
+    {
+      "name": "University of Western Australia",
+      "logo": "/university/western-australia.png"
+    },
+    { "name": "Adelaide University", "logo": "/university/adelaide.png" },
+    { "name": "Curtin University", "logo": "/university/curtin.png" },
+    {
+      "name": "Swinburne University of Technology",
+      "logo": "/university/swinburne.png"
+    },
+    {
+      "name": "University of Technology Sydney",
+      "logo": "/university/uts.png"
+    },
+    { "name": "Bond University", "logo": "/university/bond.png" },
+    { "name": "Macquaire University", "logo": "/university/macquarie.png" },
+    { "name": "Charles Sturt University", "logo": "/university/csu.png" },
+    {
+      "name": "Queen Mary University of London",
+      "logo": "/university/queen-mary.png"
+    },
+    { "name": "The University of Exeter", "logo": "/university/exeter.png" },
+    {
+      "name": "Queen's University Belfast",
+      "logo": "/university/queens-belfast.png"
+    },
+    { "name": "Heriot Watt University", "logo": "/university/heriot.png" },
+    {
+      "name": "Royal Holloway, University of London",
+      "logo": "/university/royal-holloway.png"
+    },
+    { "name": "Sheffield Hallam University", "logo": "/university/shu.png" },
+    { "name": "University of Leeds", "logo": "/university/uni-leeds.png" },
+    { "name": "John Hopkins University", "logo": "/university/john-hop.png" },
+    { "name": "UMass Boston", "logo": "/university/umass-boston.png" },
+    {
+      "name": "Arizona State University",
+      "logo": "/university/arizona-state.png"
+    },
+    { "name": "The University of Texas", "logo": "/university/texas.png" },
+    { "name": "University of Wisconsin", "logo": "/university/wisconsin.png" },
+    { "name": "University of Rochester", "logo": "/university/rochester.png" },
+    { "name": "Texas A&M University", "logo": "/university/texas-am.png" },
+    {
+      "name": "Florida State University",
+      "logo": "/university/florida-state.png"
+    },
+    { "name": "University College Dublin", "logo": "/university/ucd.png" },
+    { "name": "Maynooth University", "logo": "/university/maynooth.png" },
+    { "name": "University of Toronto", "logo": "/university/toronto.png" },
+    { "name": "University of British Columbia", "logo": "/university/ubc.png" },
+    {
+      "name": "University of Niagara Falls",
+      "logo": "/university/niagara.png"
+    },
+    { "name": "University of Alberta", "logo": "/university/alberta.png" },
+    { "name": "Simon Fraser University", "logo": "/university/sfu.png" },
+    { "name": "Lakehead University", "logo": "/university/lakehead.png" },
+    { "name": "Trent University", "logo": "/university/trent.png" },
+    { "name": "University of Waterloo", "logo": "/university/waterloo.png" },
+    { "name": "University of Windsor", "logo": "/university/windsor.png" },
+    { "name": "Victoria University", "logo": "/university/victoria.png" },
+    { "name": "Western University", "logo": "/university/western.png" },
+    { "name": "Conestoga College", "logo": "/university/conestoga.png" },
+    { "name": "Centennial", "logo": "/university/centennial.png" },
+    { "name": "Fanshawe", "logo": "/university/fanshawe.png" },
+    { "name": "Fleming", "logo": "/university/fleming.png" },
+    { "name": "Humber", "logo": "/university/humber.png" },
+    { "name": "Lambton", "logo": "/university/lambton.png" },
+    { "name": "Georgian", "logo": "/university/georgian.png" },
+    { "name": "Sheridan", "logo": "/university/sheridan.png" },
+    { "name": "Wintec", "logo": "/university/wintec.png" },
+    { "name": "Massey University", "logo": "/university/massey.png" },
+    { "name": "University of Otago", "logo": "/university/otago.png" },
+    {
+      "name": "University of Canterbury",
+      "logo": "/university/canterbury.png"
+    },
+    { "name": "The University of Waikato", "logo": "/university/waikato.png" },
+    {
+      "name": "Auckland University of Technology",
+      "logo": "/university/aut.png"
+    }
+  ]
+}

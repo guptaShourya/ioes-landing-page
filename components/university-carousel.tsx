@@ -3,34 +3,14 @@
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import universityData from "../data/universities.json";
 
 interface University {
   name: string;
   logo: string;
 }
 
-const universities: University[] = [
-  { name: "Monash University", logo: "/university/monash.png" },
-  { name: "University of Melbourne", logo: "/university/melbourne.png" },
-  { name: "Deakin University", logo: "/university/deakin.png" },
-  { name: "Pennsylvania State University", logo: "/university/penn-state.png" },
-  {
-    name: "GLION Institute of Higher Education",
-    logo: "/university/glion.png",
-  },
-  { name: "Trinity College Dublin", logo: "/university/trinity-dublin.png" },
-  { name: "University of Galway", logo: "/university/galway.png" },
-  { name: "ANU", logo: "/university/anu.png" },
-  { name: "UNSW", logo: "/university/unsw.png" },
-  { name: "Flinders University", logo: "/university/flinders.png" },
-  { name: "Western Sydney University", logo: "/university/wsu.png" },
-  { name: "Griffith University", logo: "/university/griffith.png" },
-  { name: "Wolloongong University", logo: "/university/wollongong.png" },
-  { name: "Nottingham University", logo: "/university/nottingham.png" },
-  { name: "Manchester University", logo: "/university/manchester.png" },
-  { name: "University of Sussex", logo: "/university/sussex.png" },
-  { name: "University of Dundee", logo: "/university/dundee.png" },
-];
+const universities: University[] = universityData["all"];
 
 export function UniversityCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -46,7 +26,7 @@ export function UniversityCarousel() {
       } else if (window.innerWidth < 1024) {
         setItemsPerPage(3);
       } else {
-        setItemsPerPage(4);
+        setItemsPerPage(5);
       }
     }
   }, []);
@@ -74,7 +54,7 @@ export function UniversityCarousel() {
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
-    }, 3000);
+    }, 2500);
     return () => clearInterval(interval);
   }, [currentIndex, itemsPerPage]);
 
