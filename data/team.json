@@ -1,40 +1,28 @@
 {
   "teamMembers": [
     {
-      "name": "Rajiv Sharma",
+      "name": "Brett Farmer",
       "position": "Founder & CEO",
-      "bio": "With over 25 years in international education, Rajiv founded IOES with a vision to transform overseas education consultancy in India.",
-      "image": "/placeholder.svg?height=300&width=300"
+      "bio": "A strong record of securing desired outcomes within cross-cultural contexts. Have worked extensively as a diplomat for the Australian Government across Asia, Australia and in the Middle East. A history of effective leadership and team management, combined with high level communication and strategic policy skills. Proven capacity to influence through building networks of strong personal relationships. Extensive experience with the Australian Department of Foreign Affairs and Trade in other high-level diplomatic positions across Asia. A well-developed knowledge of South and South East Asia, with a total of ten years spent in South Asia and a further twelve years in South East Asia.",
+      "image": "/team/brett.png"
     },
     {
-      "name": "Priya Patel",
-      "position": "Director of Operations",
-      "bio": "Priya oversees all operational aspects of IOES, ensuring seamless service delivery across all our offices.",
-      "image": "/placeholder.svg?height=300&width=300"
+      "name": "Varun Gupta",
+      "position": "Country Head",
+      "bio": "19 years of work experience, 11 years with Australian High commission, New Delhi including 6 years as Team Leader in the visa office, 5 years in the education industry with Australian universities. 5 years of experience working with Deakin University and Western Sydney University as Manager Recruitment and Business Development (South Asia) Possessing valuable insights, keen analysis and team approach to implement best practices, adept at working in high pressure environments with strict deadlines and multiple deliverables. Strong team leader builder and facilitator, fostering an atmosphere that motivates highly talented professionals to balance high-level skills with maximum productivity. Knowledge of overseas education including recruitment of students to various universities/colleges across the world.",
+      "image": "/team/varun.png"
     },
     {
-      "name": "Dr. Anand Verma",
-      "position": "Head of Academic Counseling",
-      "bio": "A former university professor, Dr. Verma leads our team of academic counselors with his extensive knowledge of global education systems.",
-      "image": "/placeholder.svg?height=300&width=300"
+      "name": "Kristin Bjorkman",
+      "position": "Senior Academic and Career Advisor (U.S.)",
+      "bio": "Kristin grew up in the US and went to schools there, but was always interested in international education. She studied abroad a number of times in Austria, France, Holland, and Belgium. Kristin loves to travel and learn about other cultures and nationalities. Her career has been built on building relationships. Both on a campus level, developing relationships with colleges and universities to help her company recruit top students from top international universities and then taking that career to the next level, helping global companies find high-level executive talent. She has come on board to act as a liaison between colleges and universities in the US and IOES to help open doors for students like you.",
+      "image": "/team/kris.png"
     },
     {
-      "name": "Meera Kapoor",
-      "position": "Visa & Immigration Specialist",
-      "bio": "With a background in immigration law, Meera has helped thousands of students navigate complex visa processes successfully.",
-      "image": "/placeholder.svg?height=300&width=300"
-    },
-    {
-      "name": "Vikram Singh",
-      "position": "Financial Aid Advisor",
-      "bio": "Vikram specializes in helping students secure scholarships and financial aid to make their study abroad dreams affordable.",
-      "image": "/placeholder.svg?height=300&width=300"
-    },
-    {
-      "name": "Neha Gupta",
-      "position": "University Relations Manager",
-      "bio": "Neha maintains our partnerships with universities worldwide, staying updated on admission requirements and new programs.",
-      "image": "/placeholder.svg?height=300&width=300"
+      "name": "Sushma Singh",
+      "position": "Senior International Career Advisor",
+      "bio": "In the field of education for more than four decades, Sushma Singh has seen it all. Starting as a school teacher, she went through the entire gamut of responsibilities, assignments and functions in this field. These include pedagogy, school administration, counselling, both emotional and career, as well as being the Principal of an International School in Bangladesh. She was the co-founder as well as one of the Directors of one of the leading career counselling groups, Careers Smart. At present, she is the college advisor at the American Excelsior School at Gurgaon, while till recently, she was a career counsellor with Modern School, Barakhamba Road, New Delhi, for three years. Earlier, she had set up the career counselling cells at Montfort School, New Delhi. She has also been a counsellor in G D Goenka World School, Sohna, and the American International School in Mali, West Africa. Sushma Singh’s counselling gets reinforced by her experience that has covered diverse systems such as CBSE, IGCSE, IB and American. She has travelled extensively and visited global universities in the USA, Singapore, Hong Kong, Japan, Switzerland, Abu Dhabi, etc. Widely travelled in India as well, she now concentrates on career counselling with emphasis on higher education in India and abroad.",
+      "image": "/team/sushma.png"
     }
   ]
 }

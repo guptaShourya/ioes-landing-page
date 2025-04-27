@@ -24,7 +24,7 @@ export function FloatingContactButton() {
           <MessageCircle className="h-6 w-6" />
           <AnimatePresence>
             <motion.span
-              className="ml-2 font-medium"
+              className="ml-2 font-medium hidden sm:block"
               initial={{ opacity: 0, width: 0 }}
               animate={{ opacity: 1, width: "auto" }}
               exit={{ opacity: 0, width: 0 }}

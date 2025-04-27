@@ -53,7 +53,7 @@ export default function AboutPage() {
               </div>
               <div className="flex items-center justify-center">
                 <p className="text-medium text-center w-[95%] md:text-left md:w-[75%]">
-                  Since 2010, IOES has guided over 15,000 students in achieving
+                  Since 2019, IOES has guided over 1,500 students in achieving
                   their study abroad goals through ethical, personalized
                   support. Focused on integrity and student success, we help
                   turn aspirations into global opportunities — one informed
@@ -95,7 +95,7 @@ export default function AboutPage() {
                     </div>
                     <div>
                       <h3 className="mb-2 text-xl font-medium">
-                        Founded in 2005
+                        Founded in 2019
                       </h3>
                       <p className="text-gray-700">
                         IOES was established in Delhi by a team of education
@@ -270,13 +270,13 @@ export default function AboutPage() {
             <div className="grid gap-8 md:grid-cols-4">
               {[
                 {
-                  number: "15,000+",
+                  number: "1,500+",
                   label: "Students Placed",
                   icon: <Users className="h-8 w-8" />,
                 },
                 {
-                  number: "500+",
-                  label: "University Partners",
+                  number: "200+",
+                  label: "University Placements",
                   icon: <Building className="h-8 w-8" />,
                 },
                 {
@@ -285,7 +285,7 @@ export default function AboutPage() {
                   icon: <CheckCircle className="h-8 w-8" />,
                 },
                 {
-                  number: "12",
+                  number: "2",
                   label: "Offices Across India",
                   icon: <MapPin className="h-8 w-8" />,
                 },
