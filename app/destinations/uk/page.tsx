@@ -70,7 +70,7 @@ const ukData: DestinationData = {
   costOfLiving: {
     title: "Variable by Region",
     description:
-      "London is more expensive than other UK cities. Students should budget £12,000-£15,000 per year for living expenses outside London, and £15,000-£18,000 in London, covering accommodation, food, and transportation.",
+      "London is more expensive than other UK cities. Students should budget £10,000-£15,000 per year for living expenses outside London, and £15,000-£18,000 in London, covering accommodation, food, and transportation.",
     image: "/placeholder.svg?height=200&width=300",
   },
   scholarships: {
@@ -118,14 +118,14 @@ const ukData: DestinationData = {
   ],
   admissionRequirements: {
     undergraduate: [
-      "Completed 12th grade with strong academic performance (70-80% or higher depending on program)",
+      "Completed 12th grade with strong academic performance (60-70% or higher depending on program)",
       "English proficiency: IELTS (6.0-6.5), TOEFL (70-90), or PTE (50-64)",
       "Specific subject prerequisites for certain programs",
       "Portfolio or audition for creative arts programs",
       "Statement of purpose and academic references",
     ],
     postgraduate: [
-      "Bachelor's degree with minimum 60-70% or equivalent GPA",
+      "Bachelor's degree with minimum 55-60% or equivalent GPA",
       "English proficiency: IELTS (6.5-7.0), TOEFL (90-100), or PTE (65-79)",
       "Work experience for MBA and certain professional programs",
       "Research proposal for research degrees",

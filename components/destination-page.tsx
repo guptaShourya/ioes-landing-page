@@ -269,7 +269,7 @@ export function DestinationPage({ data }: DestinationPageProps) {
                     <div className="relative h-40 w-40">
                       <div className="absolute inset-0 flex items-center justify-center">
                         <span className="text-3xl font-bold text-blue-800">
-                          95%
+                          {data.name == "Australia" ? "98%" : "95%"}
                         </span>
                       </div>
                       <svg className="h-full w-full" viewBox="0 0 100 100">
@@ -595,9 +595,7 @@ export function DestinationPage({ data }: DestinationPageProps) {
                         ))}
                         {data.intakes.secondary.length > 0 && (
                           <>
-                            <li className="font-medium mt-4">
-                              Secondary Intakes:
-                            </li>
+                            <li className="font-medium mt-4">Other Intakes:</li>
                             {data.intakes.secondary.map((intake, index) => (
                               <li
                                 key={index}

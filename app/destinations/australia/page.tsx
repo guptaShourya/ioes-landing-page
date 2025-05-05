@@ -22,21 +22,21 @@ const australiaData: DestinationData = {
   flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/AU.svg",
   reasons: [
     {
-      title: "World-Class Education",
+      title: "Top Ranked Universities",
       description:
-        "Australian universities are globally recognized for their research output, innovative teaching methods, and comprehensive quality assurance systems.",
+        "Australian universities are globally recognized for their quality of education, student satisfaction, research outputs and teaching methods ensuring a comprehensive quality assurance system.",
       icon: <GraduationCap className="h-10 w-10" />,
     },
     {
-      title: "Cultural Diversity",
+      title: "Globally Demanded",
       description:
-        "Australia's multicultural society creates a welcoming environment for international students with vibrant communities from around the world.",
+        "Graduates from Australian universities are highly demanded not only within the Country but globally due to the known fact that Australian qualifications are current, industry relevant and of world-class standard.",
       icon: <Globe className="h-10 w-10" />,
     },
     {
-      title: "Post-Study Work Rights",
+      title: "Innovation Rich History",
       description:
-        "Generous post-study work visas allow graduates to gain valuable international work experience for up to 4 years depending on qualification level.",
+        "The work of researchers at Australian providers has benefited millions worldwide, from the discovery of penicillin to the development of the cervical cancer vaccine, Wi-Fi, the Cochlear implant and so many more life-changing innovations.",
       icon: <Briefcase className="h-10 w-10" />,
     },
   ],
@@ -45,12 +45,12 @@ const australiaData: DestinationData = {
       name: "Engineering & Technology",
       icon: <Landmark className="h-6 w-6" />,
     },
-    { name: "Natural Sciences", icon: <Lightbulb className="h-6 w-6" /> },
+    { name: "Computer Science", icon: <Lightbulb className="h-6 w-6" /> },
     { name: "Business & Management", icon: <Building className="h-6 w-6" /> },
     { name: "Healthcare & Medicine", icon: <Heart className="h-6 w-6" /> },
-    { name: "Environmental Studies", icon: <Globe className="h-6 w-6" /> },
+    { name: "Media & Communication", icon: <Globe className="h-6 w-6" /> },
     {
-      name: "Creative Arts & Design",
+      name: "Academics & Teaching",
       icon: <BookOpen className="h-6 w-6" />,
     },
   ],
@@ -60,7 +60,7 @@ const australiaData: DestinationData = {
       "The Student Visa (Subclass 500) allows international students to study full-time in Australia. Our counselors provide comprehensive guidance through the entire application process, including meeting financial requirements, health insurance, and genuine temporary entrant (GTE) criteria.",
     requirements: [
       "Confirmation of Enrollment (CoE) from an Australian educational institution",
-      "Financial capacity proof (tuition fees, living costs of AUD 21,041 per year, travel costs)",
+      "Financial capacity proof (tuition fees, living costs of AUD 29,710 per year, travel costs)",
       "English proficiency (IELTS, TOEFL, PTE, or equivalent)",
       "Overseas Student Health Cover (OSHC)",
       "Meeting the Genuine Temporary Entrant (GTE) requirement",
@@ -76,7 +76,7 @@ const australiaData: DestinationData = {
   costOfLiving: {
     title: "Manageable Living Expenses",
     description:
-      "While Australia has a high standard of living, costs are manageable with proper planning. Students typically need AUD 21,000-25,000 per year for living expenses, varying by location. Major cities like Sydney and Melbourne are more expensive than regional areas, which offer more affordable options and additional immigration benefits.",
+      "While Australia has a high standard of living, costs are manageable with proper planning. Students typically need AUD 29,710 per year for living expenses, varying by location. Major cities like Sydney and Melbourne are more expensive than regional areas, which offer more affordable options and additional immigration benefits.",
     image: "/placeholder.svg?height=200&width=300",
   },
   scholarships: {
@@ -143,8 +143,6 @@ const australiaData: DestinationData = {
       "English proficiency: IELTS (6.5-7.0), TOEFL (90-100), or PTE (65-79)",
       "Work experience for MBA and certain professional programs",
       "Research proposal for research degrees",
-      "GRE/GMAT for specific programs (especially business and engineering)",
-      "Letters of recommendation and statement of purpose",
     ],
   },
   intakes: {
@@ -158,9 +156,9 @@ const australiaData: DestinationData = {
     },
   },
   careers: {
-    title: "Graduate Route Visa",
+    title: "Temporary Graduate Visa",
     description:
-      "The Graduate Route allows international students to stay in the UK for 2 years after graduation (3 years for PhD graduates) to work or look for work, providing valuable international experience.",
+      "The Graduate Route allows international students to stay in Australia for 2 - 3 years (depending on qualification) to work or look for work, providing valuable international experience.",
     industries: [
       { name: "Healthcare", icon: <Heart className="h-6 w-6" /> },
       { name: "Technology", icon: <Lightbulb className="h-6 w-6" /> },
