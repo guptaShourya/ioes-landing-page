@@ -22,15 +22,15 @@ const usaData: DestinationData = {
   flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/US.svg",
   reasons: [
     {
-      title: "World-Class Education",
+      title: "Academic Exellence",
       description:
-        "Home to 8 of the top 10 universities in the world, the US offers exceptional academic standards and research opportunities.",
+        "Home to 7 of the top 10 universities in the world, the US offers exceptional academic standards and research opportunities.",
       icon: <GraduationCap className="h-10 w-10" />,
     },
     {
-      title: "Diverse Program Options",
+      title: "Flexible Education System",
       description:
-        "With over 4,000 institutions, students can choose from a vast array of programs and specializations to match their interests.",
+        "With over 4,000 institutions, students can choose from a vast array of programs, structure and specializations to match their interests.",
       icon: <BookOpen className="h-10 w-10" />,
     },
     {
@@ -48,8 +48,8 @@ const usaData: DestinationData = {
     },
     { name: "Computer Science", icon: <Lightbulb className="h-6 w-6" /> },
     { name: "Medicine & Healthcare", icon: <Heart className="h-6 w-6" /> },
-    { name: "Arts & Humanities", icon: <Book className="h-6 w-6" /> },
-    { name: "Natural Sciences", icon: <Globe className="h-6 w-6" /> },
+    { name: "Arts & Design", icon: <Book className="h-6 w-6" /> },
+    { name: "Economics & Econometrics", icon: <Globe className="h-6 w-6" /> },
   ],
   visa: {
     title: "F-1 Student Visa",
@@ -121,20 +121,21 @@ const usaData: DestinationData = {
   ],
   admissionRequirements: {
     undergraduate: [
-      "Completed high school with strong academic performance (GPA 3.0 or higher)",
-      "Standardized test scores: SAT/ACT (optional for some universities)",
-      "English proficiency: TOEFL (80-100), IELTS (6.5-7.0), or equivalent",
+      "Completed high school with strong academic performance (min. GPA 2.5 - 3.6)",
+      "Standardized test scores: SAT/ACT",
+      "English proficiency: TOEFL, IELTS, or equivalent",
+      "Transcripts",
+      "Resume/CV",
       "Personal statement or essay",
       "Letters of recommendation",
-      "Extracurricular activities and leadership roles",
     ],
     postgraduate: [
-      "Bachelor's degree with a strong academic record (GPA 3.0 or higher)",
-      "Standardized test scores: GRE/GMAT (required for some programs)",
-      "English proficiency: TOEFL (90-100), IELTS (6.5-7.5), or equivalent",
+      "Bachelor's degree with a strong academic record (min. GPA 2.5 - 3.5)",
+      "Standardized test scores: GRE/GMAT",
+      "English proficiency: TOEFL, IELTS, or equivalent",
       "Statement of purpose (SOP)",
       "Letters of recommendation",
-      "Work experience (for MBA and professional programs)",
+      "Work experience (for MBA and professional programs min. 2-3yrs)",
     ],
   },
   intakes: {
