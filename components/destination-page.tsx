@@ -486,7 +486,7 @@ export function DestinationPage({ data }: DestinationPageProps) {
                 {data.careers.industries.map((industry, index) => (
                   <div
                     key={index}
-                    className="flex flex-col items-center space-y-2 rounded-lg border bg-white p-6 text-center shadow-sm"
+                    className="flex flex-col items-center justify-center space-y-2 rounded-lg border bg-white p-6 text-center shadow-sm"
                   >
                     <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 text-blue-800">
                       {industry.icon}

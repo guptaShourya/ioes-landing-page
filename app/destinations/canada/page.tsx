@@ -155,7 +155,7 @@ const canadaData: DestinationData = {
   careers: {
     title: "Post-Graduation Work Permit",
     description:
-      "The post-graduation work permit (PGWP) allows students who have graduated from eligible schools to gain Canadian work experience.",
+      "The post-graduation work permit (PGWP) allows students who have graduated from eligible schools to gain work experience. The length of your depends on the level and duration of your study program, as well as the expiry date of your passport, whichever comes first.",
     industries: [
       { name: "Engineering", icon: <Lightbulb className="h-6 w-6" /> },
       { name: "Healthcare", icon: <Heart className="h-6 w-6" /> },
