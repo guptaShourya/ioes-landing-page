@@ -33,7 +33,7 @@ const canadaData: DestinationData = {
       icon: <Globe className="h-10 w-10" />,
     },
     {
-      title: "Post-Graduation Opportunities",
+      title: "Immigration Opportunities",
       description:
         "Generous post-study work permits and pathways to permanent residency make Canada an excellent choice for long-term career planning.",
       icon: <Briefcase className="h-10 w-10" />,
@@ -56,7 +56,8 @@ const canadaData: DestinationData = {
       "International students require a study permit to study in Canada for programs longer than six months. Our expert counselors will guide you through the entire application process, from preparing documentation to biometrics submission, ensuring a smooth visa approval process.",
     requirements: [
       "Acceptance letter from a Designated Learning Institution (DLI)",
-      "Proof of financial support (tuition fees plus CAD 10,000 for living expenses)",
+      "A Provisional Attestation Letter (PAL) or Territorial Attestation Letter (TAL)",
+      "A Gauranteed Investment Certificate (GIC), Proof of financial support (tuition fees plus CAD 10,000 for living expenses)",
       "Clean criminal record",
       "Good health and medical examination if required",
       "Intent to leave Canada after studies (though pathways to permanent residency exist)",
@@ -152,9 +153,9 @@ const canadaData: DestinationData = {
     },
   },
   careers: {
-    title: "Graduate Route Visa",
+    title: "Post-Graduation Work Permit",
     description:
-      "The Graduate Route allows international students to stay in the UK for 2 years after graduation (3 years for PhD graduates) to work or look for work, providing valuable international experience.",
+      "The post-graduation work permit (PGWP) allows students who have graduated from eligible schools to gain Canadian work experience.",
     industries: [
       { name: "Engineering", icon: <Lightbulb className="h-6 w-6" /> },
       { name: "Healthcare", icon: <Heart className="h-6 w-6" /> },
