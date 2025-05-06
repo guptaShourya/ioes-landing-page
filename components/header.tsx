@@ -14,7 +14,7 @@ const STUDY_ABROAD_COUNTRIES = [
   { name: "Canada", href: "/destinations/canada" },
   { name: "Australia", href: "/destinations/australia" },
   { name: "New Zealand", href: "/destinations/new-zealand" },
-  { name: "Germany", href: "/destinations/germany" },
+  { name: "Ireland", href: "/destinations/ireland" },
 ];
 
 const SCHOLARSHIP_COUNTRIES = [
@@ -24,7 +24,7 @@ const SCHOLARSHIP_COUNTRIES = [
   { name: "Canada", href: "/scholarships/canada" },
   { name: "Australia", href: "/scholarships/australia" },
   { name: "New Zealand", href: "/scholarships/new-zealand" },
-  { name: "Germany", href: "/scholarships/germany" },
+  { name: "Ireland", href: "/scholarships/ireland" },
 ];
 
 export function Header() {

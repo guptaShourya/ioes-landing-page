@@ -840,7 +840,7 @@ export default function Home() {
                       <option value="canada">Canada</option>
                       <option value="australia">Australia</option>
                       <option value="newzealand">New Zealand</option>
-                      <option value="germany">Germany</option>
+                      <option value="ireland">Ireland</option>
                       <option value="other">Other</option>
                     </select>
                   </div>

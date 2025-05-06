@@ -180,10 +180,10 @@ export function Footer() {
             </li>
             <li>
               <Link
-                href="/destinations/germany"
+                href="/destinations/ireland"
                 className="hover:text-[#F2F6FF] hover:opacity-60 hover:pl-2  transition-opacity-padding duration-200 "
               >
-                Germany
+                Ireland
               </Link>
             </li>
           </ul>

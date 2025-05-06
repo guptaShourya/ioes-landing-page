@@ -358,9 +358,9 @@ export default function SuccessStoriesPage() {
                   flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/NZ.svg",
                 },
                 {
-                  country: "Germany",
+                  country: "Ireland",
                   count: "400+ Students",
-                  flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/DE.svg",
+                  flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/IE.svg",
                 },
               ].map((destination, index) => (
                 <div

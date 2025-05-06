@@ -215,8 +215,8 @@ export function CounselingFormPopup({
                         <Label htmlFor="new-zealand">New Zealand</Label>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="germany" id="germany" />
-                        <Label htmlFor="germany">Germany</Label>
+                        <RadioGroupItem value="ireland" id="ireland" />
+                        <Label htmlFor="ireland">Ireland</Label>
                       </div>
                       <div className="flex items-center space-x-2">
                         <RadioGroupItem value="other" id="other" />
