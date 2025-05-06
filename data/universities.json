@@ -74,7 +74,9 @@
       "name": "Arizona State University",
       "logo": "/university/arizona-state.png"
     },
-    { "name": "The University of Texas", "logo": "/university/texas.png" },
+    { "name": "The University of Texas", "logo": "/university/texas.png" }
+  ],
+  "TBD": [
     { "name": "University of Wisconsin", "logo": "/university/wisconsin.png" },
     { "name": "University of Rochester", "logo": "/university/rochester.png" },
     { "name": "Texas A&M University", "logo": "/university/texas-am.png" },

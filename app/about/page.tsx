@@ -1,9 +1,11 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import {
   Award,
   BookOpen,
@@ -17,6 +19,29 @@ import {
 } from "lucide-react";
 import team from "../../data/team.json";
 import reviews from "../../data/reviews.json";
+import { motion } from "framer-motion";
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemFadeIn = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeInOut",
+    },
+  },
+};
 
 export default function AboutPage() {
   return (
@@ -231,27 +256,56 @@ export default function AboutPage() {
                 Meet the experienced professionals guiding IOES's mission
               </p>
             </div>
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            <motion.div
+              className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
               {team["teamMembers"].map((member, index) => (
-                <Card key={index} className="overflow-hidden">
-                  <div className="relative h-64 w-full">
-                    <Image
-                      src={member.image || "/placeholder.svg"}
-                      alt={member.name}
-                      fill
-                      className="object-cover"
-                    />
+                <motion.div key={index} variants={itemFadeIn}>
+                  <div className="relative group h-[400px] overflow-hidden rounded-lg shadow-md">
+                    {/* Image */}
+                    <div className="relative h-full w-full">
+                      <Image
+                        src={member.image || "/placeholder.svg"}
+                        alt={member.name}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-70"></div>
+
+                      {/* Initial content - name and title */}
+                      <div className="absolute bottom-0 left-0 right-0 p-6 text-white transition-all duration-300 group-hover:opacity-0 group-hover:translate-y-8">
+                        <h3 className="mb-1 text-xl font-medium">
+                          {member.name}
+                        </h3>
+                        <p className="text-sm font-light italic font-nibpro text-white/80">
+                          {member.position}
+                        </p>
+                      </div>
+
+                      {/* Hover content - bio */}
+                      <motion.div
+                        className="absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-[#102324] to-[#102324]/80 translate-y-full transition-transform duration-300 group-hover:translate-y-0"
+                        initial={false}
+                      >
+                        <h3 className="mb-1 text-xl font-medium text-white">
+                          {member.name}
+                        </h3>
+                        <p className="mb-3 text-sm font-light italic font-nibpro text-white/80">
+                          {member.position}
+                        </p>
+                        <div className="overflow-y-auto max-h-[180px] pr-2 custom-scrollbar">
+                          <p className="text-white/90 text-sm">{member.bio}</p>
+                        </div>
+                      </motion.div>
+                    </div>
                   </div>
-                  <CardContent className="p-6">
-                    <h3 className="mb-1 text-xl font-medium">{member.name}</h3>
-                    <p className="mb-3 text-sm font-light italic underline font-nibpro text-blue-600">
-                      {member.position}
-                    </p>
-                    <p className="text-gray-600 font-normal">{member.bio}</p>
-                  </CardContent>
-                </Card>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </section>
 

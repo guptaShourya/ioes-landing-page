@@ -59,14 +59,14 @@
       "name": "Paavni Jain",
       "course": "Master of Law",
       "university": "University of Cambridge, UK",
-      "image": "/avatars/1.png",
+      "image": "/testimonials/paavni-jain.png",
       "review": "Really great services. My case was a critical one but they manage to get my visa in first go. Really recommend them for student visa."
     },
     {
       "name": "Akash Rastogi",
       "course": "MSc Financial Risk Management",
       "university": "Trinity College Dublin, Ireland",
-      "image": "/avatars/4.png",
+      "image": "/testimonials/akash-rastogi.png",
       "review": "My experience with IOES and especially with Varun has been remarkable. I will definitely recommend for Visa/Admissions."
     },
     {
@@ -77,18 +77,18 @@
       "review": "Trustworthy counsellors. From finding the right course to making sure I get my visa as soon as possible, they did all very effortlessly. I’m glad that I went with IOES for it."
     },
     {
-      "name": "Avika Raaj Ray",
-      "course": "Bachelor of ???",
+      "name": "Avik Raaj Ray",
+      "course": "Bachelor of Creative Arts",
       "university": "Flinders University, Australia",
-      "image": "/avatars/2.png",
+      "image": "/testimonials/avik-raaj.png",
       "review": "One of the best consultancies out there for Australian universities. I managed to get a big 50% scholarship thanks to the efforts and guidance from IOES. Will recommend IOES over any other consultancies because of their great communication and assistance."
     },
     {
-      "name": "Gauri Prem Kumar",
-      "course": "Bachelor of Nursing",
-      "university": "Western Sydney University, Paramatta, Australia",
-      "image": "/avatars/3.png",
-      "review": "Huge thanks to Varun and the IOES team for their incredible support in helping me secure admission to Australia, even with delays in my process. With their guidance, I received a 50% scholarship and got my visa in just 8 days! I highly recommend IOES to anyone aiming to study abroad."
+      "name": "Sheen Banga",
+      "course": "Master of Human Resource Management",
+      "university": "UNSW, Sydney, Australia",
+      "image": "/testimonials/sheen-banga.jpeg",
+      "review": "I reached out to Varun Sir and team at IOES for my masters applications. They are there to answer any queries and help you through each step from deciding the right course to visa. I’d like to thank Varun Sir and the entire team for the outstanding help. Overall, the team is cooperative, friendly and listens to your concerns with care."
     },
     {
       "name": "Chaitanya Ambike",
@@ -100,11 +100,11 @@
   ],
   "about-us-cards": [
     {
-      "name": "Gauri Prem Kumar",
-      "course": "Bachelor of Nursing",
-      "university": "Western Sydney University",
-      "image": "/avatars/3.png",
-      "review": "Huge thanks to Varun and the IOES team for their incredible support in helping me secure admission to Australia, even with delays in my process. With their guidance, I received a 50% scholarship and got my visa in just 8 days! I highly recommend IOES to anyone aiming to study abroad."
+      "name": "Sheen Banga",
+      "course": "Master of Human Resource Management",
+      "university": "UNSW, Sydney, Australia",
+      "image": "/testimonials/sheen-banga.jpeg",
+      "review": "I reached out to Varun Sir and team at IOES for my masters applications. They are there to answer any queries and help you through each step from deciding the right course to visa. I’d like to thank Varun Sir and the entire team for the outstanding help. Overall, the team is cooperative, friendly and listens to your concerns with care."
     },
     {
       "name": "Shubhangi Sharma",
@@ -133,7 +133,7 @@
       "name": "Paavni Jain",
       "course": "Master of Law",
       "university": "University of Cambridge, UK",
-      "image": "/avatars/1.png",
+      "image": "/testimonials/paavni-jain.png",
       "review": "Really great services. My case was a critical one but they manage to get my visa in first go. Really recommend them for student visa."
     },
     {
@@ -156,15 +156,15 @@
       "name": "Akash Rastogi",
       "course": "MSc Financial Risk Management",
       "university": "Trinity College Dublin, Ireland",
-      "image": "/avatars/4.png",
+      "image": "/testimonials/akash-rastogi.png",
       "review": "My experience with IOES and especially with Varun has been remarkable. I will definitely recommend for Visa/Admissions."
     },
     {
-      "name": "Gauri Prem Kumar",
-      "course": "Bachelor of Nursing",
-      "university": "Western Sydney University",
-      "image": "/avatars/3.png",
-      "review": "Huge thanks to Varun and the IOES team for their incredible support in helping me secure admission to Australia, even with delays in my process. With their guidance, I received a 50% scholarship and got my visa in just 8 days! I highly recommend IOES to anyone aiming to study abroad."
+      "name": "Sheen Banga",
+      "course": "Master of Human Resource Management",
+      "university": "UNSW, Sydney, Australia",
+      "image": "/testimonials/sheen-banga.jpeg",
+      "review": "I reached out to Varun Sir and team at IOES for my masters applications. They are there to answer any queries and help you through each step from deciding the right course to visa. I’d like to thank Varun Sir and the entire team for the outstanding help. Overall, the team is cooperative, friendly and listens to your concerns with care."
     }
   ]
 }
