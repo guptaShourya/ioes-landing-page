@@ -57,13 +57,13 @@ const australiaData: DestinationData = {
   visa: {
     title: "Student Visa (Subclass 500)",
     description:
-      "The Student Visa (Subclass 500) allows international students to study full-time in Australia. Our counselors provide comprehensive guidance through the entire application process, including meeting financial requirements, health insurance, and genuine temporary entrant (GTE) criteria.",
+      "The Student Visa (Subclass 500) allows international students to study full-time in Australia. Our counselors provide comprehensive guidance through the entire application process, including meeting financial requirements, health insurance, and genuine student (GS) criteria.",
     requirements: [
       "Confirmation of Enrollment (CoE) from an Australian educational institution",
       "Financial capacity proof (tuition fees, living costs of AUD 29,710 per year, travel costs)",
       "English proficiency (IELTS, TOEFL, PTE, or equivalent)",
       "Overseas Student Health Cover (OSHC)",
-      "Meeting the Genuine Temporary Entrant (GTE) requirement",
+      "Meeting the Genuine Student (GS) requirement",
       "Character and health requirements",
     ],
   },
@@ -91,43 +91,42 @@ const australiaData: DestinationData = {
       location: "Melbourne, Victoria",
       description:
         "Australia's leading university with exceptional strength in medicine, engineering, and humanities.",
-      image: "/placeholder.svg?height=100&width=100&query=Melbourne University",
+      image: "/university/melbourne.png",
     },
     {
       name: "University of Sydney",
       location: "Sydney, New South Wales",
       description:
         "Historic institution known for research excellence and beautiful campus in Australia's largest city.",
-      image: "/placeholder.svg?height=100&width=100&query=Sydney University",
+      image: "/university/uni-of-sydney.png",
     },
     {
       name: "Australian National University",
       location: "Canberra, Australian Capital Territory",
       description:
         "Research-intensive university with strong connections to government and policy development.",
-      image: "/placeholder.svg?height=100&width=100&query=ANU University",
+      image: "/university/anu.png",
     },
     {
       name: "University of Queensland",
       location: "Brisbane, Queensland",
       description:
         "Leading institution for life sciences, agriculture, and environmental studies.",
-      image:
-        "/placeholder.svg?height=100&width=100&query=Queensland University",
+      image: "/university/queensland.png",
     },
     {
       name: "Monash University",
       location: "Melbourne, Victoria",
       description:
         "Innovative university with global outlook and strength in pharmacy, engineering, and business.",
-      image: "/placeholder.svg?height=100&width=100&query=Monash University",
+      image: "/university/monash.png",
     },
     {
       name: "University of New South Wales",
       location: "Sydney, New South Wales",
       description:
         "Known for excellence in engineering, technology, and business with strong industry connections.",
-      image: "/placeholder.svg?height=100&width=100&query=UNSW University",
+      image: "/university/unsw.png",
     },
   ],
   admissionRequirements: {

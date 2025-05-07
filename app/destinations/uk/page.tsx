@@ -85,35 +85,35 @@ const ukData: DestinationData = {
       location: "Oxford, England",
       description:
         "Ranked as one of the top universities globally, Oxford offers a wide range of programs and is renowned for its research excellence.",
-      image: "/placeholder.svg?height=100&width=100&query=Oxford University",
+      image: "/university/oxford.png",
     },
     {
       name: "University of Cambridge",
       location: "Cambridge, England",
       description:
         "Known for its rigorous academic programs and historic campus, Cambridge is a top choice for students worldwide.",
-      image: "/placeholder.svg?height=100&width=100&query=Cambridge University",
+      image: "/university/cambridge.png",
     },
     {
       name: "Imperial College London",
       location: "London, England",
       description:
         "Specializing in science, engineering, medicine, and business, Imperial is a leader in innovation and research.",
-      image: "/placeholder.svg?height=100&width=100&query=Imperial College",
+      image: "/university/icl.png",
     },
     {
       name: "London School of Economics and Political Science (LSE)",
       location: "London, England",
       description:
         "A world leader in social sciences, LSE attracts students from over 150 countries.",
-      image: "/placeholder.svg?height=100&width=100&query=LSE University",
+      image: "/university/lse.png",
     },
     {
       name: "University College London (UCL)",
       location: "London, England",
       description:
         "UCL is known for its multidisciplinary approach and strong emphasis on research.",
-      image: "/placeholder.svg?height=100&width=100&query=UCL University",
+      image: "/university/uclondon.png",
     },
   ],
   admissionRequirements: {

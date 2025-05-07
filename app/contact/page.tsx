@@ -458,7 +458,7 @@ export default function ContactPage() {
               <div className="overflow-hidden rounded-xl border shadow-sm">
                 <div className="aspect-[16/9] w-full bg-gray-100">
                   <Image
-                    src="/placeholder.svg?height=450&width=800"
+                    src="/contact-cover.png"
                     alt="Office location map"
                     width={800}
                     height={450}
@@ -509,38 +509,38 @@ export default function ContactPage() {
                 {
                   title: "Admissions",
                   icon: <Users className="h-10 w-10" />,
-                  email: "admissions@ioes.in",
-                  phone: "+91 98765 43211",
+                  email: "counsellor3@ioes.in",
+                  phone: "+91 9355451451",
                 },
                 {
                   title: "Visa Assistance",
                   icon: <Globe className="h-10 w-10" />,
-                  email: "visa@ioes.in",
-                  phone: "+91 98765 43212",
+                  email: "info@ioes.in",
+                  phone: "+91 8448008651",
                 },
                 {
                   title: "Scholarship Support",
                   icon: <Building className="h-10 w-10" />,
-                  email: "scholarships@ioes.in",
-                  phone: "+91 98765 43213",
+                  email: "info@ioes.in",
+                  phone: "+91 8448008651",
                 },
                 {
                   title: "Student Support",
                   icon: <MessageSquare className="h-10 w-10" />,
-                  email: "support@ioes.in",
-                  phone: "+91 98765 43214",
+                  email: "partnerships@ioes.in",
+                  phone: "+91 9355451451",
                 },
                 {
                   title: "Partnerships",
                   icon: <Users className="h-10 w-10" />,
                   email: "partnerships@ioes.in",
-                  phone: "+91 98765 43215",
+                  phone: "+91 11-47051451",
                 },
                 {
                   title: "Media Inquiries",
                   icon: <Globe className="h-10 w-10" />,
-                  email: "media@ioes.in",
-                  phone: "+91 98765 43216",
+                  email: "info@ioes.in",
+                  phone: "+91 11-47051451",
                 },
               ].map((department, index) => (
                 <div

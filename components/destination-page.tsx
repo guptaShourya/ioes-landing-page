@@ -269,7 +269,7 @@ export function DestinationPage({ data }: DestinationPageProps) {
                     <div className="relative h-40 w-40">
                       <div className="absolute inset-0 flex items-center justify-center">
                         <span className="text-3xl font-bold text-blue-800">
-                          {data.name == "Australia" ? "98%" : "95%"}
+                          98%
                         </span>
                       </div>
                       <svg className="h-full w-full" viewBox="0 0 100 100">
@@ -447,9 +447,9 @@ export function DestinationPage({ data }: DestinationPageProps) {
                       </div>
                     </div>
                     <p className="text-gray-500">{university.description}</p>
-                    <Button variant="outline" className="mt-auto">
+                    {/* <Button variant="outline" className="mt-auto">
                       Learn More
-                    </Button>
+                    </Button> */}
                   </div>
                 ))}
               </div>

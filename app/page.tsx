@@ -164,7 +164,7 @@ export default function Home() {
                   </div>
                   <p className="font-nibpro font-medium text-normal text-white">
                     Trusted by{" "}
-                    <span className="font-medium text-[#ed4746]">2,000+</span>{" "}
+                    <span className="font-medium text-[#ed4746]">1,500+</span>{" "}
                     students
                   </p>
                 </motion.div>
@@ -552,7 +552,7 @@ export default function Home() {
           </div>
         </section>
 
-        <UpcomingEventsSection />
+        {/* <UpcomingEventsSection /> */}
 
         {/* Why Choose Us Section - Updated with fresh colors */}
         <section className="w-full py-12 md:py-18 bg-gradient-to-b from-[#f0ebe6] to-white">

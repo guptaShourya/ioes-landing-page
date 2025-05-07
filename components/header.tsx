@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -30,6 +30,20 @@ const SCHOLARSHIP_COUNTRIES = [
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { isOpen, openPopup, closePopup } = usePopup();
+  const [openDropdown, setOpenDropdown] = useState<
+    "study" | "scholarship" | null
+  >(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const handleMouseEnter = (type: "study" | "scholarship") => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setOpenDropdown(type);
+  };
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setOpenDropdown(null);
+    }, 200);
+  };
 
   return (
     <>
@@ -63,42 +77,56 @@ export function Header() {
               <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-[#ed4746] transition-all duration-300 group-hover:w-full" />
             </Link>
 
-            <div className="relative group">
-              <span className="cursor-pointer hover:text-primary transition group-hover/dropdown:text-primary inline-block relative">
+            {/* Study Abroad Dropdown */}
+            <div
+              className="relative group"
+              onMouseEnter={() => handleMouseEnter("study")}
+              onMouseLeave={handleMouseLeave}
+            >
+              <span className="cursor-pointer hover:text-primary transition inline-block relative">
                 Study Abroad
                 <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-[#ed4746] transition-all duration-300 group-hover:w-full" />
               </span>
 
-              <div className="pointer-events-none opacity-0 translate-y-2 group-hover:pointer-events-auto group-hover:opacity-100 group-hover:translate-y-0 absolute left-0 mt-2 w-48 rounded-lg border bg-white p-2 shadow-lg transition-all duration-300 ease-in-out z-50">
-                {STUDY_ABROAD_COUNTRIES.map((country) => (
-                  <Link
-                    key={country.href}
-                    href={country.href}
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded"
-                  >
-                    {country.name}
-                  </Link>
-                ))}
-              </div>
+              {openDropdown === "study" && (
+                <div className="absolute left-0 mt-2 w-48 rounded-lg border bg-white p-2 shadow-lg z-50">
+                  {STUDY_ABROAD_COUNTRIES.map((country) => (
+                    <Link
+                      key={country.href}
+                      href={country.href}
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded"
+                    >
+                      {country.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
 
-            {/* Scholarships with dropdown */}
-            <div className="relative group">
-              <span className="cursor-pointer hover:text-primary transition group-hover/dropdown:text-primary inline-block relative">
+            {/* Scholarships Dropdown */}
+            <div
+              className="relative group"
+              onMouseEnter={() => handleMouseEnter("scholarship")}
+              onMouseLeave={handleMouseLeave}
+            >
+              <span className="cursor-pointer hover:text-primary transition inline-block relative">
                 Scholarships
                 <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-[#ed4746] transition-all duration-300 group-hover:w-full" />
               </span>
-              <div className="pointer-events-none opacity-0 translate-y-2 group-hover:pointer-events-auto group-hover:opacity-100 group-hover:translate-y-0 absolute left-0 mt-2 w-48 rounded-lg border bg-white p-2 shadow-lg transition-all duration-300 ease-in-out z-50">
-                {SCHOLARSHIP_COUNTRIES.map((country) => (
-                  <Link
-                    key={country.href}
-                    href={country.href}
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded"
-                  >
-                    {country.name}
-                  </Link>
-                ))}
-              </div>
+
+              {openDropdown === "scholarship" && (
+                <div className="absolute left-0 mt-2 w-48 rounded-lg border bg-white p-2 shadow-lg z-50">
+                  {SCHOLARSHIP_COUNTRIES.map((country) => (
+                    <Link
+                      key={country.href}
+                      href={country.href}
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded"
+                    >
+                      {country.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
 
             <Link
@@ -108,13 +136,13 @@ export function Header() {
               Success Stories
               <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-[#ed4746] transition-all duration-300 group-hover:w-full" />
             </Link>
-            <Link
+            {/* <Link
               href="/events"
               className="group relative hover:text-primary transition"
             >
               Events
               <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-[#ed4746] transition-all duration-300 group-hover:w-full" />
-            </Link>
+            </Link> */}
             <Link
               href="/contact"
               className="group relative hover:text-primary transition"
@@ -198,13 +226,13 @@ export function Header() {
               >
                 Success Stories
               </Link>
-              <Link
+              {/* <Link
                 href="/events"
                 className="text-sm font-medium hover:text-primary"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Events
-              </Link>
+              </Link> */}
               <Link
                 href="/contact"
                 className="text-sm font-medium hover:text-primary"

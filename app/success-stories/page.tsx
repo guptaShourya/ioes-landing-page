@@ -4,45 +4,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Header } from "@/components/header";
-import {
-  ChevronRight,
-  Quote,
-  GraduationCap,
-  Briefcase,
-  Award,
-  Star,
-} from "lucide-react";
+import { ChevronRight, Quote } from "lucide-react";
 import { Footer } from "@/components/footer";
 import { CounselingFormPopup } from "@/components/counselling-form-popup";
 import { usePopup } from "@/hooks/use-popup";
 import reviews from "../../data/reviews.json";
+import destinations from "../../data/destinations.json";
+import VideoStoriesSection from "@/components/video-stories-section";
 
 const featuredStories = reviews["success-stories-main"];
 
 const testimonials = reviews["success-stories-cards"];
 
-const statistics = [
-  {
-    number: "5000+",
-    label: "Students Placed",
-    icon: <GraduationCap className="h-6 w-6" />,
-  },
-  {
-    number: "95%",
-    label: "Visa Success Rate",
-    icon: <Award className="h-6 w-6" />,
-  },
-  {
-    number: "500+",
-    label: "University Partners",
-    icon: <Briefcase className="h-6 w-6" />,
-  },
-  {
-    number: "₹100Cr+",
-    label: "Scholarships Secured",
-    icon: <Star className="h-6 w-6" />,
-  },
-];
+const destinationsData = destinations["destinations"];
 
 export default function SuccessStoriesPage() {
   const { isOpen, openPopup, closePopup } = usePopup();
@@ -204,81 +178,7 @@ export default function SuccessStoriesPage() {
         </section>
 
         {/* Video Testimonials Section */}
-        <section className="w-full py-12 md:py-24 bg-gradient-to-b from-white to-[#f0ebe6]">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <div className="inline-block font-nibpro rounded-lg bg-rose-100 px-3 py-1 text-sm text-rose-800">
-                  Video Stories
-                </div>
-                <h2 className="text-4xl font-normal tracking-tighter sm:text-6xl">
-                  Watch Our Student Journeys
-                </h2>
-                <p className="max-w-[800px] text-gray-500 md:text-xl/relaxed">
-                  See and hear our students share their experiences in their own
-                  words.
-                </p>
-              </div>
-            </div>
-            <div className="mx-auto grid max-w-5xl gap-8 py-12 md:grid-cols-2 lg:grid-cols-3">
-              {[1, 2, 3].map((video, index) => (
-                <div key={index} className="flex flex-col space-y-4">
-                  <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-gray-200">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-rose-800 text-white">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          className="h-6 w-6"
-                        >
-                          <polygon points="5 3 19 12 5 21 5 3" />
-                        </svg>
-                      </div>
-                    </div>
-                    <Image
-                      src="/placeholder.svg?height=200&width=300"
-                      alt="Video thumbnail"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <h3 className="font-bold">
-                    Student Journey: From Delhi to{" "}
-                    {index === 0
-                      ? "Harvard"
-                      : index === 1
-                      ? "Oxford"
-                      : "Toronto"}
-                  </h3>
-                  <p className="text-gray-500">
-                    Watch how{" "}
-                    {index === 0 ? "Rahul" : index === 1 ? "Priya" : "Arjun"}{" "}
-                    navigated the challenges of international education with
-                    IOES support.
-                  </p>
-                </div>
-              ))}
-            </div>
-            <div className="flex justify-center">
-              <Button className="bg-rose-800 hover:bg-rose-900">
-                <Link
-                  href="https://www.youtube.com/@inspireoverseaaseducation"
-                  target="_blank"
-                >
-                  View All Videos
-                </Link>
-                <ChevronRight className="ml-2 h-4 w-4" />
-              </Button>
-            </div>
-          </div>
-        </section>
+        <VideoStoriesSection />
 
         {/* Success by Numbers Section */}
         <section className="w-full p-6 md:p-12 lg:p-24 bg-gradient-to-t from-white to-[#f0ebe6] text-white">
@@ -298,8 +198,8 @@ export default function SuccessStoriesPage() {
               {[
                 { label: "Top 100 Universities", value: "300+ Admits" },
                 { label: "Average Scholarship", value: "₹15 Lakhs" },
-                { label: "Visa Success Rate", value: "95%" },
-                { label: "Student Satisfaction", value: "4.8/5" },
+                { label: "Visa Success Rate", value: "98%" },
+                { label: "Student Satisfaction", value: "4.92/5" },
               ].map((stat, index) => (
                 <div
                   key={index}
@@ -331,38 +231,7 @@ export default function SuccessStoriesPage() {
               </div>
             </div>
             <div className="mx-auto grid max-w-5xl gap-8 py-12 md:grid-cols-2 lg:grid-cols-3">
-              {[
-                {
-                  country: "United States",
-                  count: "1,500+ Students",
-                  flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/US.svg",
-                },
-                {
-                  country: "United Kingdom",
-                  count: "1,200+ Students",
-                  flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/GB.svg",
-                },
-                {
-                  country: "Canada",
-                  count: "900+ Students",
-                  flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/CA.svg",
-                },
-                {
-                  country: "Australia",
-                  count: "700+ Students",
-                  flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/AU.svg",
-                },
-                {
-                  country: "New Zealand",
-                  count: "300+ Students",
-                  flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/NZ.svg",
-                },
-                {
-                  country: "Ireland",
-                  count: "400+ Students",
-                  flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/IE.svg",
-                },
-              ].map((destination, index) => (
+              {destinationsData.map((destination, index) => (
                 <div
                   key={index}
                   className="flex items-center gap-4 rounded-lg border bg-white p-6 shadow-sm"
@@ -378,7 +247,7 @@ export default function SuccessStoriesPage() {
                   </div>
                   <div>
                     <h3 className="font-bold">{destination.country}</h3>
-                    <p className="text-gray-500">{destination.count}</p>
+                    <p className="text-gray-500">{destination.universities}</p>
                   </div>
                 </div>
               ))}

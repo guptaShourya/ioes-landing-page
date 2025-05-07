@@ -87,42 +87,42 @@ const canadaData: DestinationData = {
       location: "Toronto, Ontario",
       description:
         "Canada's top-ranked university, known for research innovation and academic excellence across diverse disciplines.",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "/university/toronto.png",
     },
     {
       name: "University of British Columbia",
       location: "Vancouver, British Columbia",
       description:
         "Renowned for sustainability initiatives and strong programs in science, business, and environmental studies.",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "/university/ubc.png",
     },
     {
       name: "McGill University",
       location: "Montreal, Quebec",
       description:
         "Historic institution with global reputation for medicine, law, and engineering in a vibrant bilingual city.",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "/university/mcgill.png",
     },
     {
       name: "University of Alberta",
       location: "Edmonton, Alberta",
       description:
         "Leading research university with strengths in natural resources, engineering, and health sciences.",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "/university/alberta.png",
     },
     {
       name: "University of Waterloo",
       location: "Waterloo, Ontario",
       description:
         "Known for cooperative education programs and excellence in mathematics, computer science, and engineering.",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "/university/waterloo.png",
     },
     {
       name: "University of Montreal",
       location: "Montreal, Quebec",
       description:
         "Major French-language institution with outstanding programs in linguistics, computer science, and healthcare.",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "/university/montreal.png",
     },
   ],
   admissionRequirements: {

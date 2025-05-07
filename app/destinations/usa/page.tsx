@@ -87,36 +87,35 @@ const usaData: DestinationData = {
       location: "Cambridge, Massachusetts",
       description:
         "One of the most prestigious universities in the world, known for its excellence in law, business, and medicine.",
-      image: "/placeholder.svg?height=100&width=100&query=Harvard University",
+      image: "/university/harvard.png",
     },
     {
       name: "Stanford University",
       location: "Stanford, California",
       description:
         "A leader in innovation and entrepreneurship, Stanford excels in engineering, computer science, and business.",
-      image: "/placeholder.svg?height=100&width=100&query=Stanford University",
+      image: "/university/stanford.png",
     },
     {
       name: "Massachusetts Institute of Technology (MIT)",
       location: "Cambridge, Massachusetts",
       description:
         "Renowned for its cutting-edge research and programs in engineering, technology, and sciences.",
-      image: "/placeholder.svg?height=100&width=100&query=MIT University",
+      image: "/university/mit.png",
     },
     {
       name: "University of California, Berkeley",
       location: "Berkeley, California",
       description:
         "Known for its strong emphasis on research and innovation, Berkeley is a top choice for science and engineering.",
-      image: "/placeholder.svg?height=100&width=100&query=UC Berkeley",
+      image: "/university/california.png",
     },
     {
       name: "University of Chicago",
       location: "Chicago, Illinois",
       description:
         "A world leader in economics, social sciences, and law, with a strong focus on critical thinking and research.",
-      image:
-        "/placeholder.svg?height=100&width=100&query=University of Chicago",
+      image: "/university/chicago.png",
     },
   ],
   admissionRequirements: {

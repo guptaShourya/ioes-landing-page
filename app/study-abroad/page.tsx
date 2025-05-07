@@ -206,7 +206,10 @@ export default function StudyAbroadPage() {
                   Financial Planning
                 </div>
                 <h2 className="text-4xl font-normal tracking-tighter sm:text-6xl">
-                  Understanding the Costs
+                  <span className="font-nibpro font-light italic">
+                    Understanding{" "}
+                  </span>
+                  the Costs
                 </h2>
                 <p className="max-w-[700px] text-gray-500 md:text-lg/relaxed">
                   Planning your finances is a crucial part of your study abroad
@@ -455,7 +458,11 @@ export default function StudyAbroadPage() {
                   Your Journey
                 </div>
                 <h2 className="text-4xl font-normal tracking-tighter sm:text-6xl">
-                  Study Abroad Timeline
+                  Study Abroad
+                  <span className="font-nibpro font-light italic">
+                    {" "}
+                    Timeline
+                  </span>
                 </h2>
                 <p className="max-w-[700px] text-gray-500 md:text-lg/relaxed">
                   Understanding the timeline helps you plan your study abroad

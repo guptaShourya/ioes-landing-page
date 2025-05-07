@@ -37,6 +37,15 @@
       "flag": "https://purecatamphetamine.github.io/country-flag-icons/3x2/AU.svg"
     },
     {
+      "country": "Ireland",
+      "universities": "10+ Universities",
+      "slug": "ireland",
+      "averageTuition": "€0 - €3,000 per year (mostly free)",
+      "livingCosts": "€10,000 - €12,000 per year",
+      "scholarshipCount": "100+ scholarships",
+      "flag": "https://purecatamphetamine.github.io/country-flag-icons/3x2/IE.svg"
+    },
+    {
       "country": "New Zealand",
       "universities": "8+ Universities",
       "slug": "new-zealand",
@@ -44,15 +53,6 @@
       "livingCosts": "NZD 15,000 - NZD 20,000 per year",
       "scholarshipCount": "250+ scholarships",
       "flag": "https://purecatamphetamine.github.io/country-flag-icons/3x2/NZ.svg"
-    },
-    {
-      "country": "Ireland",
-      "universities": "400+ Universities",
-      "slug": "ireland",
-      "averageTuition": "€0 - €3,000 per year (mostly free)",
-      "livingCosts": "€10,000 - €12,000 per year",
-      "scholarshipCount": "100+ scholarships",
-      "flag": "https://purecatamphetamine.github.io/country-flag-icons/3x2/IE.svg"
     }
   ]
 }

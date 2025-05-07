@@ -88,42 +88,42 @@ const newZealandData: DestinationData = {
       location: "Auckland",
       description:
         "New Zealand's top-ranked university with comprehensive programs and research excellence across disciplines.",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "/university/auckland.png",
     },
     {
       name: "University of Otago",
       location: "Dunedin",
       description:
         "New Zealand's oldest university, renowned for medicine, sciences, and humanities in a vibrant student city.",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "/university/otago.png",
     },
     {
       name: "Victoria University of Wellington",
       location: "Wellington",
       description:
         "Located in the capital city with strengths in law, public policy, and creative disciplines.",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "/university/wellington.png",
     },
     {
       name: "University of Canterbury",
       location: "Christchurch",
       description:
         "Known for engineering, forestry, and natural sciences with strong industry connections.",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "/university/canterbury.png",
     },
     {
       name: "Massey University",
       location: "Multiple campuses (Palmerston North, Auckland, Wellington)",
       description:
         "Specializes in agriculture, veterinary science, aviation, and distance education.",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "/university/massey.png",
     },
     {
       name: "Auckland University of Technology (AUT)",
       location: "Auckland",
       description:
         "Modern, industry-focused university with strength in technology, health sciences, and business.",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "/university/aut.png",
     },
   ],
   admissionRequirements: {

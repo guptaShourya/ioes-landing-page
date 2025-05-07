@@ -104,42 +104,42 @@ const irelandData: DestinationData = {
       location: "Dublin",
       description:
         "Ireland’s oldest and most prestigious university, known for its historic campus and research-driven programs.",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "/university/trinity-dublin.png",
     },
     {
       name: "University College Dublin",
       location: "Dublin",
       description:
         "A leading research university with strengths in business, engineering, and sciences.",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "/university/ucd.png",
     },
     {
       name: "University of Galway",
       location: "Galway",
       description:
         "Renowned for arts, humanities, and science programs in a vibrant coastal city.",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "/university/galway.png",
     },
     {
       name: "University College Cork",
       location: "Cork",
       description:
         "Recognized for its innovation in life sciences, business, and sustainability.",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "/university/uc-cork.png",
     },
     {
       name: "Dublin City University",
       location: "Dublin",
       description:
         "Modern university focused on technology, business, and media studies with strong industry connections.",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "/university/dcu.png",
     },
     {
       name: "Technological University Dublin",
       location: "Dublin",
       description:
         "Ireland’s first technological university offering practical, career-focused programs.",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "/university/tud.png",
     },
   ],
   admissionRequirements: {

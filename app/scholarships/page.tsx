@@ -411,9 +411,6 @@ export default function ScholarshipsPage() {
                         <th className="px-6 py-3 text-left font-medium">
                           Deadline
                         </th>
-                        <th className="px-6 py-3 text-left font-medium">
-                          Action
-                        </th>
                       </tr>
                     </thead>
                     <tbody className="divide-y">
@@ -428,15 +425,6 @@ export default function ScholarshipsPage() {
                             {scholarship.eligibility}
                           </td>
                           <td className="px-6 py-4">{scholarship.deadline}</td>
-                          <td className="px-6 py-4">
-                            <Button
-                              variant="link"
-                              asChild
-                              className="text-blue-800 p-0"
-                            >
-                              <Link href={scholarship.link}>Details</Link>
-                            </Button>
-                          </td>
                         </tr>
                       ))}
                     </tbody>

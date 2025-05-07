@@ -105,7 +105,7 @@ export default function AboutPage() {
               <div className="md:col-span-5">
                 <div className="relative h-full min-h-[300px] overflow-hidden rounded-lg shadow-lg">
                   <Image
-                    src="/placeholder.svg?height=600&width=400"
+                    src="/team/cover.png"
                     alt="IOES History"
                     fill
                     className="object-cover"
@@ -170,8 +170,8 @@ export default function AboutPage() {
                         Student Success
                       </h3>
                       <p className="text-gray-700">
-                        We've helped over 15,000 students achieve their dreams
-                        of studying abroad, with a 98% visa success rate and
+                        We've helped over 1,500 students achieve their dreams of
+                        studying abroad, with a 98% visa success rate and
                         countless success stories from alumni now thriving in
                         global careers.
                       </p>
