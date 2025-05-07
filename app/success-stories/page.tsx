@@ -66,47 +66,49 @@ export default function SuccessStoriesPage() {
           </div>
         </section>
 
-        {/* Featured Success Stories Section */}
         <section className="w-full py-12 md:py-24 bg-gradient-to-b from-white to-[#f0ebe6]">
-          <div className="container px-4 md:px-6">
+          <div className="container px-4 md:px-6 mx-auto">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block font-nibpro rounded-lg bg-rose-100 px-3 py-1 text-sm text-rose-800">
+                <div className="inline-block font-medium rounded-lg bg-rose-100 px-3 py-1 text-sm text-rose-800">
                   Featured Stories
                 </div>
-                <h2 className="text-4xl font-normal tracking-tighter sm:text-6xl">
+                <h2 className="text-3xl md:text-4xl lg:text-6xl font-normal tracking-tighter">
                   Inspiring Student Journeys
                 </h2>
-                <p className="max-w-[800px] text-gray-500 md:text-xl/relaxed">
+                <p className="max-w-[800px] text-gray-500 text-lg md:text-xl/relaxed mx-auto">
                   Discover how these students overcame challenges and achieved
                   their international education goals with IOES support.
                 </p>
               </div>
             </div>
-            <div className="mx-auto max-w-5xl py-12 space-y-12">
+            <div className="mx-auto max-w-5xl py-8 md:py-12 space-y-8 md:space-y-12">
               {featuredStories.map((story, index) => (
                 <div
                   key={index}
-                  className={`flex flex-col gap-8 md:flex-row items-center ${
-                    index % 2 === 1 ? "md:flex-row-reverse" : ""
-                  }`}
+                  className={`flex flex-col gap-6 md:gap-8 ${
+                    index % 2 === 1 ? "md:flex-row-reverse" : "md:flex-row"
+                  } items-center`}
                 >
-                  <div className="md:w-2/5">
-                    <div className="relative h-[400px] w-full overflow-hidden rounded-xl">
+                  <div className="w-full md:w-2/5">
+                    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl">
                       <Image
-                        src={story.image || "/placeholder.svg"}
+                        src={story.image || "/api/placeholder/600/400"}
                         alt={story.name}
                         fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         className="object-cover"
                       />
                     </div>
                   </div>
-                  <div className="flex flex-col justify-center space-y-4 md:w-3/5">
+                  <div className="flex flex-col justify-center space-y-3 md:space-y-4 w-full md:w-3/5">
                     <div className="flex items-center gap-2 text-rose-800">
-                      <Quote className="h-6 w-6" />
+                      <Quote className="h-5 w-5" />
                       <span className="text-sm font-medium">Success Story</span>
                     </div>
-                    <h3 className="text-2xl font-bold">{story.name}</h3>
+                    <h3 className="text-xl md:text-2xl font-bold">
+                      {story.name}
+                    </h3>
                     <div className="space-y-1 text-gray-500 italic">
                       <p>
                         <span>{story.course}</span>, {story.university}
@@ -116,14 +118,12 @@ export default function SuccessStoriesPage() {
                       </p>
                     </div>
                     <p className="italic text-gray-600">"{story.review}"</p>
-                    {story.achievement != "" ? (
-                      <div className="rounded-lg bg-rose-50 p-4">
+                    {story.achievement && (
+                      <div className="rounded-lg bg-rose-50 p-3 md:p-4">
                         <p className="font-medium text-rose-800">
                           Achievement: {story.achievement}
                         </p>
                       </div>
-                    ) : (
-                      ""
                     )}
                   </div>
                 </div>
