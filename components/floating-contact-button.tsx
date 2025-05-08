@@ -1,12 +1,8 @@
 "use client";
-import { MessageCircle, X } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { usePopup } from "@/hooks/use-popup";
-import { CounselingFormPopup } from "@/components/counselling-form-popup";
 
 export function FloatingContactButton() {
-  const { isOpen, openPopup, closePopup } = usePopup();
-
   return (
     <>
       <motion.div
@@ -17,7 +13,12 @@ export function FloatingContactButton() {
       >
         <motion.button
           className="flex items-center justify-center rounded-full bg-[#ED4746] p-4 text-white shadow-lg hover:bg-[#ED4746]/90 focus:outline-none focus:ring-2 focus:ring-[#ED4746] focus:ring-offset-2"
-          onClick={openPopup}
+          onClick={() => {
+            window.open(
+              "https://wa.me/+919355451451?text=Hi,%20I%20am%20interested%20in%20studying%20abroad",
+              "_blank"
+            );
+          }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
         >
@@ -50,8 +51,6 @@ export function FloatingContactButton() {
           style={{ zIndex: -1 }}
         />
       </motion.div>
-
-      <CounselingFormPopup isOpen={isOpen} onClose={closePopup} />
     </>
   );
 }
