@@ -105,7 +105,7 @@ export default function AboutPage() {
               <div className="md:col-span-5">
                 <div className="relative h-full min-h-[300px] overflow-hidden rounded-lg shadow-lg">
                   <Image
-                    src="/team/cover.png"
+                    src="/team/cover.webp"
                     alt="IOES History"
                     fill
                     className="object-cover"
