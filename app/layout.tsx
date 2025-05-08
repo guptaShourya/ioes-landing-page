@@ -3,6 +3,7 @@ import "@/app/globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { satoshi, nibpro } from "./fonts";
 import { FloatingContactButton } from "@/components/floating-contact-button";
+import Script from "next/script";
 
 export const metadata = {
   title: "IOES - Inspire Overseass Education Services",
@@ -22,7 +23,21 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${satoshi.variable} ${nibpro.variable}`}
     >
-      <head />
+      <head>
+        {/* Google tag (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-MV7RS8E2K9"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-MV7RS8E2K9');
+          `}
+        </Script>
+      </head>
       <body>
         <ThemeProvider
           attribute="class"
