@@ -144,6 +144,13 @@ export function Header() {
               <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-[#ed4746] transition-all duration-300 group-hover:w-full" />
             </Link> */}
             <Link
+              href="/blogs"
+              className="group relative hover:text-primary transition"
+            >
+              Blogs
+              <span className="absolute left-0 -bottom-0.5 h-0.5 w-0 bg-[#ed4746] transition-all duration-300 group-hover:w-full" />
+            </Link>
+            <Link
               href="/contact"
               className="group relative hover:text-primary transition"
             >
