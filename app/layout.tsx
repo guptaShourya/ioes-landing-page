@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { satoshi, nibpro } from "./fonts";
 import { FloatingContactButton } from "@/components/floating-contact-button";
 import Script from "next/script";
+import { PromotionalPopup } from "@/components/promotional-popup";
 
 export const metadata = {
   title: "IOES - Inspire Overseass Education Services",
@@ -46,6 +47,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <PromotionalPopup />
           <FloatingContactButton />
         </ThemeProvider>
       </body>
