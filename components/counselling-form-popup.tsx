@@ -21,6 +21,7 @@ export function CounselingFormPopup({
 }: CounselingFormPopupProps) {
   const [formStep, setFormStep] = useState(1);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -49,16 +50,16 @@ export function CounselingFormPopup({
     if (formStep < 3) {
       setFormStep(formStep + 1);
     } else {
-      setFormData((prev) => ({
-        ...prev,
-        time: Date().toLocaleString(),
-      }));
+      setIsSubmitting(true);
+      const time = new Date().toLocaleString();
+      const dataToSend = { ...formData, time };
       // Here you would typically send the data to your backend
       const response = await fetch("https://sheetdb.io/api/v1/ez70ogw0dbzib", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ data: formData }), // key `data` is mandatory
+        body: JSON.stringify({ data: dataToSend }), // key `data` is mandatory
       });
+      setIsSubmitting(false);
       if (!response.ok) {
         console.error("Error submitting form data");
         alert(
@@ -142,6 +143,11 @@ export function CounselingFormPopup({
             </div>
 
             <form onSubmit={handleSubmit}>
+              {isSubmitting && (
+                <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/80">
+                  <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-[#ED4746]"></div>
+                </div>
+              )}
               {formStep === 1 && (
                 <div className="space-y-4">
                   <div>
@@ -172,6 +178,8 @@ export function CounselingFormPopup({
                     <Input
                       id="phone"
                       name="phone"
+                      type="tel"
+                      pattern="[0-9]{10}"
                       value={formData.phone}
                       maxLength={10}
                       minLength={10}
