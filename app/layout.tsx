@@ -3,7 +3,7 @@ import "@/app/globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { satoshi, nibpro } from "./fonts";
 import { FloatingContactButton } from "@/components/floating-contact-button";
-import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import { PromotionalPopup } from "@/components/promotional-popup";
 
 export const metadata = {
@@ -24,6 +24,9 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${satoshi.variable} ${nibpro.variable}`}
     >
+      <head>
+        <Analytics />
+      </head>
       <body>
         <ThemeProvider
           attribute="class"
