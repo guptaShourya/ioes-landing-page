@@ -9,7 +9,7 @@ import BlogClient from "./blog-client";
 const POSTS_QUERY = `*[
   _type == "post"
   && defined(slug.current)
-]|order(publishedAt desc)[0...12]{_id, title, "slug": slug.current, publishedAt, image, excerpt, author, authorImage, timeToRead, tags, category}`;
+]|order(publishedAt desc)[0...5]{_id, title, "slug": slug.current, publishedAt, image, excerpt, author, authorImage, timeToRead, tags, category}`;
 
 const options = { next: { revalidate: 30 } };
 

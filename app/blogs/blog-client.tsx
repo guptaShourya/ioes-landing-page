@@ -35,21 +35,64 @@ interface BlogClientProps {
 
 export default function BlogClient({ initialPosts = [] }: BlogClientProps) {
   const [searchQuery, setSearchQuery] = useState("");
+  const [allPosts, setAllPosts] = useState<BlogPost[]>(initialPosts);
   const [filteredPosts, setFilteredPosts] = useState<BlogPost[]>(initialPosts);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+  const [allCategories, setAllCategories] = useState<string[]>([]);
+  const [allTags, setAllTags] = useState<string[]>([]);
 
-  // Get unique categories
-  const categories = Array.from(
-    new Set(initialPosts.map((post) => post.category))
-  );
+  // Fetch all categories and tags on component mount
+  useEffect(() => {
+    const fetchMetadata = async () => {
+      try {
+        const response = await fetch("/api/blogs/metadata");
+        const data = await response.json();
+        setAllCategories(data.categories || []);
+        setAllTags(data.tags || []);
+      } catch (error) {
+        console.error("Error fetching metadata:", error);
+        // Fallback to categories and tags from current posts
+        setAllCategories(
+          Array.from(new Set(allPosts.map((post) => post.category)))
+        );
+        setAllTags(Array.from(new Set(allPosts.flatMap((post) => post.tags))));
+      }
+    };
 
-  // Get unique tags
-  const allTags = initialPosts.flatMap((post) => post.tags);
-  const uniqueTags = Array.from(new Set(allTags));
+    fetchMetadata();
+  }, []);
+
+  // Load more posts function
+  const loadMorePosts = async () => {
+    if (isLoading || !hasMore) return;
+
+    setIsLoading(true);
+    try {
+      const response = await fetch(
+        `/api/blogs?offset=${allPosts.length}&limit=5`
+      );
+      const data = await response.json();
+
+      if (data.posts && data.posts.length > 0) {
+        setAllPosts((prev) => [...prev, ...data.posts]);
+        if (data.posts.length < 5) {
+          setHasMore(false);
+        }
+      } else {
+        setHasMore(false);
+      }
+    } catch (error) {
+      console.error("Error loading more posts:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
-    let result = initialPosts;
+    let result = allPosts;
 
     // Filter by search query
     if (searchQuery) {
@@ -58,7 +101,6 @@ export default function BlogClient({ initialPosts = [] }: BlogClientProps) {
         (post) =>
           post.title.toLowerCase().includes(query) ||
           post.excerpt.toLowerCase().includes(query) ||
-          post.content.toLowerCase().includes(query) ||
           post.tags.some((tag: string) => tag.toLowerCase().includes(query))
       );
     }
@@ -74,7 +116,7 @@ export default function BlogClient({ initialPosts = [] }: BlogClientProps) {
     }
 
     setFilteredPosts(result);
-  }, [searchQuery, selectedCategory, selectedTag]);
+  }, [searchQuery, selectedCategory, selectedTag, allPosts]);
 
   const clearFilters = () => {
     setSearchQuery("");
@@ -141,7 +183,7 @@ export default function BlogClient({ initialPosts = [] }: BlogClientProps) {
       {/* Blog Content Section */}
       <section className="w-full py-12 md:py-24 bg-gradient-to-b from-[#f0ebe6] to-white">
         <div className="container px-4 md:px-6">
-          <div className="grid gap-10 md:grid-cols-[1fr_300px]">
+          <div className="grid gap-10 md:grid-cols-[1fr_300px] items-start">
             {/* Main Content */}
             <div className="space-y-10">
               {/* Filter Status */}
@@ -189,80 +231,110 @@ export default function BlogClient({ initialPosts = [] }: BlogClientProps) {
 
               {/* Blog Posts */}
               {filteredPosts.length > 0 ? (
-                <motion.div
-                  className="space-y-10"
-                  variants={staggerContainer}
-                  initial="hidden"
-                  animate="visible"
-                >
-                  {filteredPosts.map((post) => (
-                    <motion.article
-                      key={post.id || post.slug}
-                      className="group rounded-xl border bg-white shadow-sm transition-all hover:shadow-md"
-                      variants={itemFadeIn}
-                    >
-                      <Link
-                        href={`/blogs/${post.slug}`}
-                        className="block overflow-hidden"
+                <>
+                  <motion.div
+                    className="space-y-10"
+                    variants={staggerContainer}
+                    initial="hidden"
+                    animate="visible"
+                  >
+                    {filteredPosts.map((post) => (
+                      <motion.article
+                        key={post.id || post.slug}
+                        className="group rounded-xl border bg-white shadow-sm transition-all hover:shadow-md"
+                        variants={itemFadeIn}
                       >
-                        <div className="relative h-[200px] w-full overflow-hidden sm:h-[300px]">
-                          <Image
-                            src={
-                              post.image ||
-                              "/placeholder.svg?height=600&width=800"
-                            }
-                            alt={post.title}
-                            fill
-                            className="object-cover transition-transform duration-300 group-hover:scale-105"
-                          />
-                        </div>
-                        <div className="p-6">
-                          <div className="flex flex-wrap items-center gap-2 text-sm text-gray-500">
-                            <span className="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800">
-                              {post.category}
-                            </span>
-                            <span className="flex items-center gap-1">
-                              <Calendar className="h-4 w-4" />
-                              {formatDate(post.publishedAt)}
-                            </span>
-                            <span className="flex items-center gap-1">
-                              <Clock className="h-4 w-4" />
-                              {post.timeToRead}
-                            </span>
+                        <Link
+                          href={`/blogs/${post.slug}`}
+                          className="block overflow-hidden"
+                        >
+                          <div className="relative h-[200px] w-full overflow-hidden sm:h-[300px]">
+                            <Image
+                              src={
+                                post.image ||
+                                "/placeholder.svg?height=600&width=800"
+                              }
+                              alt={post.title}
+                              fill
+                              className="object-cover transition-transform duration-300 group-hover:scale-105"
+                            />
                           </div>
-                          <h2 className="mt-4 text-2xl font-bold tracking-tight text-gray-900 group-hover:text-blue-600">
-                            {post.title}
-                          </h2>
-                          <p className="mt-2 line-clamp-3 text-gray-600">
-                            {post.excerpt}
-                          </p>
-                          <div className="mt-4 flex items-center gap-4">
-                            <div className="flex items-center gap-2">
-                              <div className="relative h-8 w-8 overflow-hidden rounded-full">
-                                <Image
-                                  src={
-                                    post.authorImage ||
-                                    "/placeholder.svg?height=32&width=32"
-                                  }
-                                  alt={post.author}
-                                  fill
-                                  className="object-cover"
-                                />
-                              </div>
-                              <span className="text-sm font-medium">
-                                {post.author}
+                          <div className="p-6">
+                            <div className="flex flex-wrap items-center gap-2 text-sm text-gray-500">
+                              <span className="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800">
+                                {post.category}
+                              </span>
+                              <span className="flex items-center gap-1">
+                                <Calendar className="h-4 w-4" />
+                                {formatDate(post.publishedAt)}
+                              </span>
+                              <span className="flex items-center gap-1">
+                                <Clock className="h-4 w-4" />
+                                {post.timeToRead}
                               </span>
                             </div>
-                            <div className="ml-auto text-sm font-medium text-blue-600 group-hover:text-blue-800">
-                              Read more
-                              <ChevronRight className="ml-1 inline-block h-4 w-4" />
+                            <h2 className="mt-4 text-2xl font-bold tracking-tight text-gray-900 group-hover:text-blue-600">
+                              {post.title}
+                            </h2>
+                            <p className="mt-2 line-clamp-3 text-gray-600">
+                              {post.excerpt}
+                            </p>
+                            <div className="mt-4 flex items-center gap-4">
+                              <div className="flex items-center gap-2">
+                                <div className="relative h-8 w-8 overflow-hidden rounded-full">
+                                  <Image
+                                    src={
+                                      post.authorImage ||
+                                      "/placeholder.svg?height=32&width=32"
+                                    }
+                                    alt={post.author}
+                                    fill
+                                    className="object-cover"
+                                  />
+                                </div>
+                                <span className="text-sm font-medium">
+                                  {post.author}
+                                </span>
+                              </div>
+                              <div className="ml-auto text-sm font-medium text-blue-600 group-hover:text-blue-800">
+                                Read more
+                                <ChevronRight className="ml-1 inline-block h-4 w-4" />
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </Link>
-                    </motion.article>
-                  ))}
-                </motion.div>
+                        </Link>
+                      </motion.article>
+                    ))}
+                  </motion.div>
+
+                  {/* Load More Button */}
+                  {hasMore &&
+                    !searchQuery &&
+                    !selectedCategory &&
+                    !selectedTag && (
+                      <motion.div
+                        className="flex justify-center mt-8"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        <Button
+                          onClick={loadMorePosts}
+                          disabled={isLoading}
+                          className="px-8 py-2 bg-[#102324] hover:bg-[#1c3638] text-white"
+                        >
+                          {isLoading ? (
+                            <>
+                              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                              Loading...
+                            </>
+                          ) : (
+                            "Load More Articles"
+                          )}
+                        </Button>
+                      </motion.div>
+                    )}
+                </>
               ) : (
                 <motion.div
                   className="flex flex-col items-center justify-center rounded-lg border border-dashed p-12 text-center"
@@ -289,104 +361,66 @@ export default function BlogClient({ initialPosts = [] }: BlogClientProps) {
             </div>
 
             {/* Sidebar */}
-            <div className="space-y-8">
-              {/* Categories */}
-              <motion.div
-                className="rounded-lg border bg-white p-6 shadow-sm"
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.7, delay: 0.3 }}
-              >
-                <h3 className="text-lg font-bold">Categories</h3>
-                <div className="mt-4 space-y-2">
-                  {categories.map((category) => (
-                    <button
-                      key={category}
-                      onClick={() =>
-                        setSelectedCategory(
-                          selectedCategory === category ? null : category
-                        )
-                      }
-                      className={`block w-full rounded-md px-3 py-2 text-left text-sm transition-colors ${
-                        selectedCategory === category
-                          ? "bg-blue-100 text-blue-800"
-                          : "text-gray-700 hover:bg-gray-100"
-                      }`}
-                    >
-                      {category}
-                    </button>
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* Popular Tags */}
-              <motion.div
-                className="rounded-lg border bg-white p-6 shadow-sm"
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.7, delay: 0.4 }}
-              >
-                <h3 className="text-lg font-bold">Popular Tags</h3>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {uniqueTags.map((tag) => (
-                    <button
-                      key={tag}
-                      onClick={() =>
-                        setSelectedTag(selectedTag === tag ? null : tag)
-                      }
-                      className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium transition-colors ${
-                        selectedTag === tag
-                          ? "bg-green-100 text-green-800"
-                          : "bg-gray-100 text-gray-800 hover:bg-gray-200"
-                      }`}
-                    >
-                      <Tag className="mr-1 h-3 w-3" />
-                      {tag}
-                    </button>
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* Featured Article */}
-              <motion.div
-                className="rounded-lg border bg-white shadow-sm overflow-hidden"
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.7, delay: 0.5 }}
-              >
-                <div className="relative h-[150px] w-full">
-                  <Image
-                    src="/blogs/featured-post.jpg"
-                    alt="Featured article"
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <div className="absolute bottom-0 w-full p-4">
-                    <span className="inline-flex items-center rounded-full bg-white/20 backdrop-blur-sm px-2.5 py-0.5 text-xs font-medium text-white">
-                      Featured
-                    </span>
+            <aside className="md:sticky md:top-8 md:self-start md:pt-16">
+              <div className="space-y-8">
+                {/* Categories */}
+                <motion.div
+                  className="rounded-lg border bg-white p-6 shadow-sm"
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.7, delay: 0.3 }}
+                >
+                  <h3 className="text-lg font-bold">Categories</h3>
+                  <div className="mt-4 space-y-2 max-h-60 overflow-y-auto">
+                    {allCategories.map((category: string) => (
+                      <button
+                        key={category}
+                        onClick={() =>
+                          setSelectedCategory(
+                            selectedCategory === category ? null : category
+                          )
+                        }
+                        className={`block w-full rounded-md px-3 py-2 text-left text-sm transition-colors ${
+                          selectedCategory === category
+                            ? "bg-blue-100 text-blue-800"
+                            : "text-gray-700 hover:bg-gray-100"
+                        }`}
+                      >
+                        {category}
+                      </button>
+                    ))}
                   </div>
-                </div>
-                <div className="p-4">
-                  <h4 className="font-bold">Subscribe to Our Newsletter</h4>
-                  <p className="mt-1 text-sm text-gray-600">
-                    Get the latest articles, resources, and updates delivered to
-                    your inbox.
-                  </p>
-                  <div className="mt-4 space-y-2">
-                    <Input
-                      type="email"
-                      placeholder="Your email address"
-                      className="w-full"
-                    />
-                    <Button className="w-full bg-[#ED4746] hover:bg-[#ED4746]/90">
-                      Subscribe
-                    </Button>
+                </motion.div>
+
+                {/* Popular Tags */}
+                <motion.div
+                  className="rounded-lg border bg-white p-6 shadow-sm"
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.7, delay: 0.4 }}
+                >
+                  <h3 className="text-lg font-bold">Popular Tags</h3>
+                  <div className="mt-4 flex flex-wrap gap-2 max-h-60 overflow-y-auto">
+                    {allTags.map((tag: string) => (
+                      <button
+                        key={tag}
+                        onClick={() =>
+                          setSelectedTag(selectedTag === tag ? null : tag)
+                        }
+                        className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium transition-colors ${
+                          selectedTag === tag
+                            ? "bg-green-100 text-green-800"
+                            : "bg-gray-100 text-gray-800 hover:bg-gray-200"
+                        }`}
+                      >
+                        <Tag className="mr-1 h-3 w-3" />
+                        {tag}
+                      </button>
+                    ))}
                   </div>
-                </div>
-              </motion.div>
-            </div>
+                </motion.div>
+              </div>
+            </aside>
           </div>
         </div>
       </section>
