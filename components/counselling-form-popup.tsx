@@ -60,7 +60,6 @@ export function CounselingFormPopup({
         body: JSON.stringify({ data: formData }), // key `data` is mandatory
       });
       if (!response.ok) {
-        console.error("Error submitting form data");
         alert(
           "There was an error submitting your form. Please try again or Contact Us."
         );

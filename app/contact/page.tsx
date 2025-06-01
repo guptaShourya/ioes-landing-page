@@ -82,7 +82,6 @@ export default function ContactPage() {
 
       if (response.ok) {
         const result = await response.json();
-        console.log("Form submitted successfully:", result);
 
         // Show success alert
         setAlert({
@@ -115,8 +114,6 @@ export default function ContactPage() {
         });
       }
     } catch (error) {
-      console.error("Error submitting form:", error);
-
       // Show error alert
       setAlert({
         show: true,

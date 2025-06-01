@@ -233,6 +233,13 @@ export function Header() {
               >
                 Success Stories
               </Link>
+              <Link
+                href="/blogs"
+                className="text-sm font-medium hover:text-primary"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Blogs
+              </Link>
               {/* <Link
                 href="/events"
                 className="text-sm font-medium hover:text-primary"

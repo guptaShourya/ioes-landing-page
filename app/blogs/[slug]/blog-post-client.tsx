@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import { PortableText } from "next-sanity";
 import Markdown from "react-markdown";
-import type { BlogPost } from "@/data/blog-posts";
+import type { BlogPost } from "../../../data/blog-posts";
 import type { PortableTextBlock, PortableTextComponents } from "next-sanity";
 
 // Animation variants
@@ -182,7 +182,6 @@ export default function BlogPostClient({
   const renderContent = () => {
     if (Array.isArray(post.content)) {
       // Sanity PortableText content
-      console.log("Rendering PortableText content", post.content);
       return (
         <div className="prose prose-lg max-w-none">
           <PortableText
@@ -412,7 +411,7 @@ export default function BlogPostClient({
                           <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md">
                             <Image
                               src={
-                                relatedPost.coverImage ||
+                                relatedPost.image ||
                                 "/placeholder.svg?height=64&width=64"
                               }
                               alt={relatedPost.title}

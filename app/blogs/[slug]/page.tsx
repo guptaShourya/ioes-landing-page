@@ -2,11 +2,50 @@ import { PortableText, type SanityDocument } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { client } from "@/sanity/client";
-import { blogPosts, type BlogPost } from "@/data/blog-posts";
 import { notFound } from "next/navigation";
 import BlogPostClient from "./blog-post-client";
 
-const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
+const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]{
+  _id,
+  title,
+  "slug": slug.current,
+  excerpt,
+  description,
+  body,
+  content,
+  mainImage,
+  category,
+  tags,
+  publishedAt,
+  _createdAt,
+  author,
+  readTime
+}`;
+
+const RELATED_POSTS_QUERY = `*[
+  _type == "post" 
+  && slug.current != $slug 
+  && defined(slug.current)
+  && (category == $category || tags[] in $tags)
+]|order(publishedAt desc)[0...3]{
+  _id,
+  title,
+  "slug": slug.current,
+  publishedAt,
+  mainImage,
+  excerpt
+}`;
+
+const PREV_NEXT_POSTS_QUERY = `{
+  "prev": *[_type == "post" && publishedAt < $publishedAt && defined(slug.current)]|order(publishedAt desc)[0]{
+    title,
+    "slug": slug.current
+  },
+  "next": *[_type == "post" && publishedAt > $publishedAt && defined(slug.current)]|order(publishedAt asc)[0]{
+    title,
+    "slug": slug.current
+  }
+}`;
 
 const { projectId, dataset } = client.config();
 const urlFor = (source: SanityImageSource) =>
@@ -23,70 +62,104 @@ interface BlogPostPageProps {
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug: slugParam } = await params;
 
-  // Try to fetch from Sanity first
-  let sanityPost: SanityDocument | null = null;
-  try {
-    sanityPost = await client.fetch<SanityDocument>(
-      POST_QUERY,
-      { slug: slugParam },
-      options
-    );
-  } catch (error) {
-    console.warn("Sanity fetch failed:", error);
-  }
+  // Fetch the main post from Sanity
+  const sanityPost = await client.fetch<SanityDocument>(
+    POST_QUERY,
+    { slug: slugParam },
+    options
+  );
 
-  // Fallback to local blog posts
-  const slug = Array.isArray(slugParam) ? slugParam[0] : slugParam;
-  const localPost = blogPosts.find((p) => p.slug === slug);
-
-  // If neither Sanity nor local post found, show 404
-  if (!sanityPost && !localPost) {
+  // If no post found, show 404
+  if (!sanityPost) {
     notFound();
   }
 
-  // Use Sanity post if available, otherwise use local post
-  const post = sanityPost || localPost;
+  // Fetch related posts based on category and tags
+  const relatedPosts = await client.fetch<SanityDocument[]>(
+    RELATED_POSTS_QUERY,
+    {
+      slug: slugParam,
+      category: sanityPost.category,
+      tags: sanityPost.tags || [],
+    },
+    options
+  );
 
-  // Find related posts, previous and next posts from local data
-  const relatedPosts = blogPosts
-    .filter(
-      (p) =>
-        p.id !== localPost?.id &&
-        (p.category === localPost?.category ||
-          p.tags.some((tag) => localPost?.tags.includes(tag)))
-    )
-    .slice(0, 3);
-
-  const currentIndex = blogPosts.findIndex((p) => p.id === localPost?.id);
-  const prevPost = currentIndex > 0 ? blogPosts[currentIndex - 1] : null;
-  const nextPost =
-    currentIndex < blogPosts.length - 1 ? blogPosts[currentIndex + 1] : null;
+  // Fetch previous and next posts
+  const { prev: prevPost, next: nextPost } = await client.fetch(
+    PREV_NEXT_POSTS_QUERY,
+    { publishedAt: sanityPost.publishedAt || sanityPost._createdAt },
+    options
+  );
 
   // Prepare data for client component
   const blogData = {
-    post: sanityPost
+    post: {
+      title: sanityPost.title,
+      excerpt: sanityPost.excerpt || sanityPost.description,
+      content: sanityPost.body || sanityPost.content,
+      coverImage: sanityPost.mainImage
+        ? urlFor(sanityPost.mainImage)?.url()
+        : null,
+      category: sanityPost.category || "General",
+      tags: sanityPost.tags || [],
+      publishedAt: sanityPost.publishedAt || sanityPost._createdAt,
+      author: sanityPost.author || {
+        name: "IOES Team",
+        role: "Education Consultant",
+        avatar: null,
+      },
+      slug: sanityPost.slug,
+      readTime: sanityPost.readTime || "5 min read",
+    },
+    relatedPosts: relatedPosts.map((post) => ({
+      id: post._id,
+      title: post.title,
+      slug: post.slug,
+      publishedAt: post.publishedAt,
+      image: post.mainImage
+        ? urlFor(post.mainImage)?.url() || "/placeholder.svg"
+        : "/placeholder.svg",
+      excerpt: post.excerpt || "",
+      body: "",
+      author: "IOES Team",
+      authorImage: "/placeholder.svg",
+      category: "General",
+      tags: [],
+      timeToRead: "5 min read",
+    })),
+    prevPost: prevPost
       ? {
-          title: sanityPost.title,
-          excerpt: sanityPost.excerpt || sanityPost.description,
-          content: sanityPost.body ? sanityPost.body : sanityPost.content,
-          coverImage: sanityPost.mainImage
-            ? urlFor(sanityPost.mainImage)?.url()
-            : null,
-          category: sanityPost.category || "General",
-          tags: sanityPost.tags || [],
-          publishedAt: sanityPost.publishedAt || sanityPost._createdAt,
-          author: sanityPost.author || {
-            name: "IOES Team",
-            role: "Education Consultant",
-            avatar: null,
-          },
-          slug: sanityPost.slug?.current || slug,
-          readTime: sanityPost.readTime || "5 min read",
+          id: prevPost.slug,
+          title: prevPost.title,
+          slug: prevPost.slug,
+          excerpt: "",
+          body: "",
+          image: "/placeholder.svg",
+          author: "IOES Team",
+          authorImage: "/placeholder.svg",
+          category: "General",
+          tags: [],
+          publishedAt: "",
+          timeToRead: "5 min read",
         }
-      : localPost,
-    relatedPosts,
-    prevPost,
-    nextPost,
+      : null,
+    nextPost: nextPost
+      ? {
+          id: nextPost.slug,
+          title: nextPost.title,
+          slug: nextPost.slug,
+          excerpt: "",
+          body: "",
+          image: "/placeholder.svg",
+          author: "IOES Team",
+          authorImage: "/placeholder.svg",
+          category: "General",
+          tags: [],
+          publishedAt: "",
+          timeToRead: "5 min read",
+        }
+      : null,
   };
 
   return <BlogPostClient {...blogData} />;
