@@ -19,6 +19,7 @@ const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]{
   publishedAt,
   _createdAt,
   author,
+  authorImage,
   readTime
 }`;
 
@@ -102,11 +103,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       category: sanityPost.category || "General",
       tags: sanityPost.tags || [],
       publishedAt: sanityPost.publishedAt || sanityPost._createdAt,
-      author: sanityPost.author || {
-        name: "IOES Team",
-        role: "Education Consultant",
-        avatar: null,
-      },
+      author: sanityPost.author || "IOES Team",
+      authorImage: sanityPost.authorImage
+        ? urlFor(sanityPost.authorImage)?.url() || "/placeholder.svg"
+        : "/placeholder.svg",
       slug: sanityPost.slug,
       readTime: sanityPost.readTime || "5 min read",
     },
@@ -120,8 +120,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         : "/placeholder.svg",
       excerpt: post.excerpt || "",
       body: "",
-      author: "IOES Team",
-      authorImage: "/placeholder.svg",
+      author: post.author || "IOES Team",
+      authorImage: post.authorImage
+        ? urlFor(post.authorImage)?.url() || "/placeholder.svg"
+        : "/placeholder.svg",
       category: "General",
       tags: [],
       timeToRead: "5 min read",
@@ -134,8 +136,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           excerpt: "",
           body: "",
           image: "/placeholder.svg",
-          author: "IOES Team",
-          authorImage: "/placeholder.svg",
+          author: prevPost.author || "IOES Team",
+          authorImage: prevPost.authorImage
+            ? urlFor(prevPost.authorImage)?.url() || "/placeholder.svg"
+            : "/placeholder.svg",
           category: "General",
           tags: [],
           publishedAt: "",

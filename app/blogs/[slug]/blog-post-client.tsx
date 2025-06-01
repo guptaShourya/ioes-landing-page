@@ -492,20 +492,22 @@ export default function BlogPostClient({
                     <div className="relative h-16 w-16 overflow-hidden rounded-full">
                       <Image
                         src={
-                          post.author?.avatar ||
+                          post.authorImage ||
                           "/placeholder.svg?height=64&width=64"
                         }
-                        alt={post.author?.name || "Author"}
+                        alt={post.author || "Author"}
                         fill
                         className="object-cover"
                       />
                     </div>
                     <div>
                       <div className="font-medium">
-                        {post.author?.name || "IOES Team"}
+                        {post.author || "IOES Team"}
                       </div>
                       <div className="text-sm text-gray-500">
-                        {post.author?.role || "Education Consultant"}
+                        {post.author == "Shourya"
+                          ? "Marketing Associate"
+                          : "Education Consultant"}
                       </div>
                     </div>
                   </div>
