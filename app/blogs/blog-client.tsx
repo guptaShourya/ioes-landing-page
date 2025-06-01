@@ -137,10 +137,15 @@ export default function BlogClient({ initialPosts = [] }: BlogClientProps) {
     <>
       {/* Hero Section */}
       <motion.section
-        className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-[#102324] to-[#1c3638]"
+        className="w-full py-12 md:py-24 lg:py-32"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
+        style={{
+          backgroundColor: "#102324",
+          backgroundImage:
+            "radial-gradient(circle farthest-corner at 140% -10%, #2d737b 10%, #102324 100%)",
+        }}
       >
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
@@ -152,7 +157,7 @@ export default function BlogClient({ initialPosts = [] }: BlogClientProps) {
             >
               <h1 className="text-5xl font-normal font-satoshi tracking-tighter text-white sm:text-7xl font-normal">
                 IOES
-                <span className="font-nibpro font-light italic"> Blog </span>
+                <span className="font-nibpro font-light italic"> Blogs </span>
               </h1>
               <p className="max-w-[700px] text-white/80 md:text-xl font-light">
                 Insights, guides, and expert advice for your international

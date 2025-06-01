@@ -15,11 +15,16 @@ import {
   Linkedin,
   ChevronRight,
   ChevronLeft,
+  Search,
+  FileText,
+  Users,
+  GraduationCap,
+  Globe,
 } from "lucide-react";
 import { PortableText } from "next-sanity";
 import Markdown from "react-markdown";
 import type { BlogPost } from "../../../data/blog-posts";
-import type { PortableTextBlock, PortableTextComponents } from "next-sanity";
+import type { PortableTextComponents } from "next-sanity";
 
 // Animation variants
 const fadeIn = {
@@ -179,22 +184,140 @@ export default function BlogPostClient({
     );
   }
 
+  // CTA Component to be inserted within content
+  const CTAComponent = () => (
+    <motion.div
+      className="my-12 p-6 md:p-8 bg-gradient-to-t from-white to-[#f0ebe6] rounded-xl not-prose"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+    >
+      <div className="bg-[#b82b35] rounded-xl p-6 md:p-8 text-white">
+        <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
+          <div className="flex flex-col justify-center space-y-6">
+            <div className="space-y-2">
+              <h3 className="text-3xl md:text-4xl font-normal tracking-tighter">
+                How IOES Helps You
+                <span className="my-2 block font-light font-nibpro italic">
+                  Achieve Your Dreams
+                </span>
+              </h3>
+            </div>
+            <ul className="grid gap-4 md:gap-3">
+              <li className="flex items-start gap-3">
+                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-white flex-shrink-0">
+                  <GraduationCap className="h-4 w-4" />
+                </div>
+                <span className="text-sm md:text-base">
+                  Personalized university and program matching based on your
+                  profile and aspirations
+                </span>
+              </li>
+              <li className="flex items-start gap-3">
+                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-white flex-shrink-0">
+                  <FileText className="h-4 w-4" />
+                </div>
+                <span className="text-sm md:text-base">
+                  Expert guidance on applications, SOPs, and document
+                  preparation
+                </span>
+              </li>
+              <li className="flex items-start gap-3">
+                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-white flex-shrink-0">
+                  <Users className="h-4 w-4" />
+                </div>
+                <span className="text-sm md:text-base">
+                  Interview preparation and visa counseling support
+                </span>
+              </li>
+              <li className="flex items-start gap-3">
+                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-white flex-shrink-0">
+                  <Search className="h-4 w-4" />
+                </div>
+                <span className="text-sm md:text-base">
+                  Scholarship search and financial aid guidance
+                </span>
+              </li>
+              <li className="flex items-start gap-3">
+                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-white flex-shrink-0">
+                  <Globe className="h-4 w-4" />
+                </div>
+                <span className="text-sm md:text-base">
+                  Pre-departure orientation and ongoing support throughout your
+                  journey
+                </span>
+              </li>
+            </ul>
+            <div className="w-full flex justify-center items-center lg:block">
+              <Button
+                size="lg"
+                className="bg-[#1c1a1a] text-white hover:bg-[#1c1a1a]/90 transition-all duration-300"
+                asChild
+              >
+                <Link href="/contact">Book a Free Consultation</Link>
+              </Button>
+            </div>
+          </div>
+          <div className="items-center justify-center hidden md:flex">
+            <Image
+              src="/ioes-counseling-session.webp"
+              width={500}
+              height={400}
+              alt="IOES counseling session"
+              className="rounded-xl object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+
   const renderContent = () => {
     if (Array.isArray(post.content)) {
       // Sanity PortableText content
+      const contentLength = post.content.length;
+      // Place CTA at 30% of content instead of 50%
+      const ctaPosition = Math.max(1, Math.floor(contentLength * 0.3));
+
       return (
         <div className="prose prose-lg max-w-none">
+          {/* First 30% of content */}
           <PortableText
-            value={post.content}
+            value={post.content.slice(0, ctaPosition)}
+            components={portableTextComponents}
+          />
+
+          {/* Spacing before CTA */}
+          <div className="my-16">
+            <CTAComponent />
+          </div>
+
+          {/* Remaining 70% of content */}
+          <PortableText
+            value={post.content.slice(ctaPosition)}
             components={portableTextComponents}
           />
         </div>
       );
     }
-    // Markdown content
+
+    // Markdown content - split by paragraphs and insert CTA at 30%
+    const content = post.content || "";
+    const paragraphs = content.split("\n\n");
+    // Place CTA at 30% of paragraphs instead of 50%
+    const ctaPosition = Math.max(1, Math.floor(paragraphs.length * 0.3));
+
     return (
       <div className="prose prose-lg max-w-none">
-        <Markdown>{post.content}</Markdown>
+        <Markdown>{paragraphs.slice(0, ctaPosition).join("\n\n")}</Markdown>
+
+        {/* Spacing before CTA */}
+        <div className="my-16">
+          <CTAComponent />
+        </div>
+
+        <Markdown>{paragraphs.slice(ctaPosition).join("\n\n")}</Markdown>
       </div>
     );
   };
@@ -469,56 +592,6 @@ export default function BlogPostClient({
             </div>
           </div>
         </section>
-
-        {/* CTA Section */}
-        <motion.section
-          className="w-full py-12 md:py-24 bg-gradient-to-r from-[#102324] to-[#1c3638] text-white"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <motion.div
-                className="space-y-2"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-              >
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                  Ready to Start Your Study Abroad Journey?
-                </h2>
-                <p className="mx-auto max-w-[700px] text-white/80 md:text-xl">
-                  Get personalized guidance from our expert counselors to make
-                  your international education dreams a reality.
-                </p>
-              </motion.div>
-              <motion.div
-                className="flex flex-col gap-2 min-[400px]:flex-row"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                <Button
-                  size="lg"
-                  className="bg-[#ED4746] text-white hover:bg-[#ED4746]/90"
-                >
-                  <Link href="/contact">Book a Free Consultation</Link>
-                </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="border-white text-white bg-transparent"
-                >
-                  <Link href="/study-abroad">Explore Programs</Link>
-                </Button>
-              </motion.div>
-            </div>
-          </div>
-        </motion.section>
       </main>
       <Footer />
     </div>
