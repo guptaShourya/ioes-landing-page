@@ -13,7 +13,7 @@ const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]{
   description,
   body,
   content,
-  mainImage,
+  image,
   category,
   tags,
   publishedAt,
@@ -32,7 +32,7 @@ const RELATED_POSTS_QUERY = `*[
   title,
   "slug": slug.current,
   publishedAt,
-  mainImage,
+  image,
   excerpt
 }`;
 
@@ -98,9 +98,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       title: sanityPost.title,
       excerpt: sanityPost.excerpt || sanityPost.description,
       content: sanityPost.body || sanityPost.content,
-      coverImage: sanityPost.mainImage
-        ? urlFor(sanityPost.mainImage)?.url()
-        : null,
+      coverImage: sanityPost.image ? urlFor(sanityPost.image)?.url() : null,
       category: sanityPost.category || "General",
       tags: sanityPost.tags || [],
       publishedAt: sanityPost.publishedAt || sanityPost._createdAt,
@@ -117,8 +115,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       title: post.title,
       slug: post.slug,
       publishedAt: post.publishedAt,
-      image: post.mainImage
-        ? urlFor(post.mainImage)?.url() || "/placeholder.svg"
+      image: post.image
+        ? urlFor(post.image)?.url() || "/placeholder.svg"
         : "/placeholder.svg",
       excerpt: post.excerpt || "",
       body: "",
