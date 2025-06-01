@@ -23,6 +23,8 @@ import {
 } from "lucide-react";
 import { PortableText } from "next-sanity";
 import Markdown from "react-markdown";
+import { usePopup } from "@/hooks/use-popup";
+import { CounselingFormPopup } from "@/components/counselling-form-popup";
 import type { BlogPost } from "../../../data/blog-posts";
 import type { PortableTextComponents } from "next-sanity";
 
@@ -49,6 +51,7 @@ export default function BlogPostClient({
   prevPost,
   nextPost,
 }: BlogPostClientProps) {
+  const { isOpen, openPopup, closePopup } = usePopup();
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = {
       year: "numeric",
@@ -253,9 +256,9 @@ export default function BlogPostClient({
               <Button
                 size="lg"
                 className="bg-[#1c1a1a] text-white hover:bg-[#1c1a1a]/90 transition-all duration-300"
-                asChild
+                onClick={openPopup}
               >
-                <Link href="/contact">Book a Free Consultation</Link>
+                Book a Free Consultation
               </Button>
             </div>
           </div>
@@ -596,6 +599,7 @@ export default function BlogPostClient({
         </section>
       </main>
       <Footer />
+      <CounselingFormPopup isOpen={isOpen} onClose={closePopup} />
     </div>
   );
 }
