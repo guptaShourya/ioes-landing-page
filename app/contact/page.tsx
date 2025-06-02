@@ -174,7 +174,7 @@ export default function ContactPage() {
                       <div className="mt-2 space-y-2 text-gray-500">
                         <div>
                           <p className="font-medium text-gray-700">
-                            Delhi Office:
+                            IOES Study Abroad Consultants in Dwarka, New Delhi
                           </p>
                           <p>{contact["address-delhi-line1"]}</p>
                           <p>{contact["address-delhi-line2"]}</p>
@@ -182,7 +182,7 @@ export default function ContactPage() {
                         </div>
                         <div className="pt-2">
                           <p className="font-medium text-gray-700">
-                            Mumbai Office:
+                            IOES Study Abroad Consultants in Mumbai
                           </p>
                           <p>{contact["address-mumbai-line1"]}</p>
                           <p>{contact["address-mumbai-line2"]}</p>
@@ -204,13 +204,23 @@ export default function ContactPage() {
                           <p className="font-medium text-gray-700">
                             Delhi Office:
                           </p>
-                          <p>{contact["number-delhi"]}</p>
+                          <a
+                            href={`tel:${contact["number-delhi"]}`}
+                            className="text-rose-800 hover:text-rose-900 hover:underline transition-colors"
+                          >
+                            {contact["number-delhi"]}
+                          </a>
                         </div>
                         <div className="pt-2">
                           <p className="font-medium text-gray-700">
                             Mumbai Office:
                           </p>
-                          <p>{contact["number-mumbai"]}</p>
+                          <a
+                            href={`tel:${contact["number-mumbai"]}`}
+                            className="text-rose-800 hover:text-rose-900 hover:underline transition-colors"
+                          >
+                            {contact["number-mumbai"]}
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -228,7 +238,12 @@ export default function ContactPage() {
                           {/* <p className="font-medium text-gray-700"> */}
                           {/* General Inquiries: */}
                           {/* </p> */}
-                          <p>{contact["general-email"]}</p>
+                          <a
+                            href={`mailto:${contact["general-email"]}`}
+                            className="text-rose-800 hover:text-rose-900 hover:underline transition-colors"
+                          >
+                            {contact["general-email"]}
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -454,12 +469,22 @@ export default function ContactPage() {
             <div className="mx-auto max-w-5xl py-12">
               <div className="overflow-hidden rounded-xl border shadow-sm">
                 <div className="aspect-[16/9] w-full bg-gray-100">
-                  <Image
+                  {/* <Image
                     src="/contact-cover.png"
                     alt="Office location map"
                     width={800}
                     height={450}
                     className="h-full w-full object-cover"
+                  /> */}
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3503.1447927213426!2d77.03823827571867!3d28.59543277568508!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1ac3b8cbe771%3A0xe46c5fe7840dcd25!2sIOES%20Study%20Abroad%20Consultants%20in%20Dwarka%2C%20New%20Delhi!5e0!3m2!1sen!2sin!4v1748856950571!5m2!1sen!2sin"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="IOES Office Location"
                   />
                 </div>
                 <div className="grid gap-4 p-6 md:grid-cols-3">
@@ -549,11 +574,21 @@ export default function ContactPage() {
                   <div className="space-y-2 text-center">
                     <p className="flex items-center justify-center gap-2">
                       <Mail className="h-4 w-4 text-rose-800" />
-                      <span>{department.email}</span>
+                      <a
+                        href={`mailto:${contact["general-email"]}`}
+                        className="text-rose-800 hover:text-rose-900 hover:underline transition-colors"
+                      >
+                        {department.email}
+                      </a>
                     </p>
                     <p className="flex items-center justify-center gap-2">
                       <Phone className="h-4 w-4 text-rose-800" />
-                      <span>{department.phone}</span>
+                      <a
+                        href={`tel:${department.phone}`}
+                        className="text-rose-800 hover:text-rose-900 hover:underline transition-colors"
+                      >
+                        {department.phone}
+                      </a>
                     </p>
                   </div>
                 </div>
