@@ -5,19 +5,21 @@ import { satoshi, nibpro } from "./fonts";
 import { FloatingContactButton } from "@/components/floating-contact-button";
 import { Analytics } from "@vercel/analytics/next";
 import { PromotionalPopup } from "@/components/promotional-popup";
+import { StructuredData } from "@/components/structured-data";
+import { generateMetadata, generateStructuredData } from "./seo/Seo";
 
-export const metadata = {
-  title: "IOES - Inspire Overseass Education Services",
-  description:
-    "Premier overseas education consultancy based in Delhi, helping students achieve their dreams of studying abroad.",
-  generator: "v0.dev",
-};
+export const metadata = generateMetadata({
+  pageKey: 'home',
+  pathname: '/'
+});
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const organizationData = generateStructuredData('organization');
+  
   return (
     <html
       lang="en"
@@ -26,6 +28,7 @@ export default function RootLayout({
     >
       <head>
         <Analytics />
+        <StructuredData data={organizationData} />
       </head>
       <body>
         <ThemeProvider
