@@ -27,8 +27,8 @@ import { Footer } from "@/components/footer";
 import {
   courses,
   subjects,
-  cities,
-  institutions,
+  intakeYears,
+  durations,
   countries,
   type Course,
 } from "../../data/courses";
@@ -38,8 +38,8 @@ import { CounselingFormPopup } from "@/components/counselling-form-popup";
 export default function CoursesPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedSubject, setSelectedSubject] = useState("all");
-  const [selectedCity, setSelectedCity] = useState("all");
-  const [selectedInstitution, setSelectedInstitution] = useState("all");
+  const [selectedYear, setSelectedYear] = useState("all");
+  const [selectedDuration, setSelectedDuration] = useState("all");
   const [selectedCountry, setSelectedCountry] = useState("all");
   const [selectedLevel, setSelectedLevel] = useState("all");
   const [viewMode, setViewMode] = useState<"grid" | "table">("grid");
@@ -55,11 +55,14 @@ export default function CoursesPage() {
         course.subject.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesSubject =
         selectedSubject === "all" || course.subject === selectedSubject;
-      const matchesCity =
-        selectedCity === "all" || course.city === selectedCity;
-      const matchesInstitution =
-        selectedInstitution === "all" ||
-        course.institutionName === selectedInstitution;
+      const matchesYear =
+        selectedYear === "all" ||
+        course.intakes.some(
+          (intake) => intake.startYear.toString() === selectedYear
+        );
+      const matchesDuration =
+        selectedDuration === "all" ||
+        course.intakes.some((intake) => intake.duration === selectedDuration);
       const matchesCountry =
         selectedCountry === "all" || course.country === selectedCountry;
       const matchesLevel =
@@ -68,8 +71,8 @@ export default function CoursesPage() {
       return (
         matchesSearch &&
         matchesSubject &&
-        matchesCity &&
-        matchesInstitution &&
+        matchesYear &&
+        matchesDuration &&
         matchesCountry &&
         matchesLevel
       );
@@ -77,8 +80,8 @@ export default function CoursesPage() {
   }, [
     searchTerm,
     selectedSubject,
-    selectedCity,
-    selectedInstitution,
+    selectedYear,
+    selectedDuration,
     selectedCountry,
     selectedLevel,
   ]);
@@ -255,32 +258,32 @@ export default function CoursesPage() {
                   </SelectContent>
                 </Select>
 
-                <Select value={selectedCity} onValueChange={setSelectedCity}>
+                <Select value={selectedYear} onValueChange={setSelectedYear}>
                   <SelectTrigger>
-                    <SelectValue placeholder="City" />
+                    <SelectValue placeholder="Intake Year" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">All Cities</SelectItem>
-                    {cities.map((city) => (
-                      <SelectItem key={city} value={city}>
-                        {city}
+                    <SelectItem value="all">All Years</SelectItem>
+                    {intakeYears.map((year) => (
+                      <SelectItem key={year} value={year.toString()}>
+                        {year}
                       </SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
 
                 <Select
-                  value={selectedInstitution}
-                  onValueChange={setSelectedInstitution}
+                  value={selectedDuration}
+                  onValueChange={setSelectedDuration}
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="Institution" />
+                    <SelectValue placeholder="Duration" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">All Institutions</SelectItem>
-                    {institutions.map((institution) => (
-                      <SelectItem key={institution} value={institution}>
-                        {institution}
+                    <SelectItem value="all">All Durations</SelectItem>
+                    {durations.map((duration) => (
+                      <SelectItem key={duration} value={duration}>
+                        {duration}
                       </SelectItem>
                     ))}
                   </SelectContent>

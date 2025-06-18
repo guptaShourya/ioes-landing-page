@@ -388,12 +388,22 @@ export const courses: Course[] = [
 export const subjects = Array.from(
   new Set(courses.map((course) => course.subject))
 ).sort();
-export const cities = Array.from(
-  new Set(courses.map((course) => course.city))
-).sort();
-export const institutions = Array.from(
-  new Set(courses.map((course) => course.institutionName))
-).sort();
 export const countries = Array.from(
   new Set(courses.map((course) => course.country))
+).sort();
+
+// Extract unique intake years from all courses
+export const intakeYears = Array.from(
+  new Set(
+    courses.flatMap((course) =>
+      course.intakes.map((intake) => intake.startYear)
+    )
+  )
+).sort();
+
+// Extract unique durations from all courses
+export const durations = Array.from(
+  new Set(
+    courses.flatMap((course) => course.intakes.map((intake) => intake.duration))
+  )
 ).sort();
