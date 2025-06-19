@@ -10,6 +10,7 @@ import {
   GraduationCap,
   Calendar,
   DollarSign,
+  ArrowUpDown,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -42,11 +43,12 @@ export default function CoursesPage() {
   const [selectedDuration, setSelectedDuration] = useState("all");
   const [selectedCountry, setSelectedCountry] = useState("all");
   const [selectedLevel, setSelectedLevel] = useState("all");
+  const [sortBy, setSortBy] = useState("name"); // name, fees-low-high, fees-high-low
   const [viewMode, setViewMode] = useState<"grid" | "table">("grid");
   const { isOpen, openPopup, closePopup } = usePopup();
 
   const filteredCourses = useMemo(() => {
-    return courses.filter((course) => {
+    const filtered = courses.filter((course) => {
       const matchesSearch =
         course.courseName.toLowerCase().includes(searchTerm.toLowerCase()) ||
         course.institutionName
@@ -77,6 +79,19 @@ export default function CoursesPage() {
         matchesLevel
       );
     });
+
+    // Sort the filtered results
+    return filtered.sort((a, b) => {
+      switch (sortBy) {
+        case "fees-low-high":
+          return a.intakes[0].fees - b.intakes[0].fees;
+        case "fees-high-low":
+          return b.intakes[0].fees - a.intakes[0].fees;
+        case "name":
+        default:
+          return a.courseName.localeCompare(b.courseName);
+      }
+    });
   }, [
     searchTerm,
     selectedSubject,
@@ -84,6 +99,7 @@ export default function CoursesPage() {
     selectedDuration,
     selectedCountry,
     selectedLevel,
+    sortBy,
   ]);
 
   const formatFee = (course: Course) => {
@@ -311,6 +327,24 @@ export default function CoursesPage() {
                   courses
                 </p>
                 <div className="flex items-center space-x-2">
+                  {/* Sort Dropdown */}
+                  <Select value={sortBy} onValueChange={setSortBy}>
+                    <SelectTrigger className="w-[180px]">
+                      <ArrowUpDown className="h-4 w-4 mr-2" />
+                      <SelectValue placeholder="Sort by" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="name">Course Name</SelectItem>
+                      <SelectItem value="fees-low-high">
+                        Fees: Low to High
+                      </SelectItem>
+                      <SelectItem value="fees-high-low">
+                        Fees: High to Low
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+
+                  {/* View Mode Buttons */}
                   <Button
                     variant={viewMode === "grid" ? "default" : "outline"}
                     size="sm"
