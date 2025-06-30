@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect, use } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import {
@@ -10,6 +11,7 @@ import {
   BookOpen,
   Award,
   TrendingUp,
+  Loader2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -17,35 +19,191 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { courses } from "@/data/courses";
 import { usePopup } from "@/hooks/use-popup";
 import { CounselingFormPopup } from "@/components/counselling-form-popup";
 
-interface CoursePageProps {
-  params: {
-    slug: string;
+// API response interface
+interface ApiCourse {
+  id: string;
+  courseName: string;
+  courseLevel: string;
+  subject: string;
+  institutionName: string;
+  country: string;
+  description: string;
+  nextIntake: {
+    intakeMonth: string;
+    intakeYear: number;
+    fees: {
+      amount: number;
+      currency: string;
+    };
+    duration: {
+      value: number;
+      unit: string;
+    };
   };
+  intakes: Array<{
+    campusName: string;
+    startMonth: string;
+    startYear: number;
+    attendanceType: string;
+    duration: string;
+    fees: number;
+    currency: string;
+  }>;
+  englishRequirements: Array<{
+    testName: string;
+    minScore: string;
+    requirement: string | null;
+  }> | null;
+  careerProspects: string;
+}
+
+interface CoursePageProps {
+  params: Promise<{
+    slug: string;
+  }>;
 }
 
 export default function CoursePage({ params }: CoursePageProps) {
-  const course = courses.find((c) => c.slug === params.slug);
+  // Unwrap the params Promise
+  const resolvedParams = use(params);
+
+  const [course, setCourse] = useState<ApiCourse | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const { isOpen, openPopup, closePopup } = usePopup();
 
-  if (!course) {
-    notFound();
-  }
+  // Helper function to format subject names
+  const formatSubject = (subject: string) => {
+    return subject
+      .replace(/-/g, " ")
+      .replace(/\b\w/g, (l: string) => l.toUpperCase());
+  };
 
-  const relatedCourses = courses
-    .filter(
-      (c) =>
-        c.id !== course.id &&
-        (c.subject === course.subject || c.country === course.country)
-    )
-    .slice(0, 3);
+  // Helper function to format duration
+  const formatDuration = (duration: { value: number; unit: string }) => {
+    const unit = duration.unit.toLowerCase();
+    if (unit === "month") {
+      if (duration.value === 12) return "1 year";
+      if (duration.value === 24) return "2 years";
+      if (duration.value === 36) return "3 years";
+      if (duration.value === 48) return "4 years";
+      if (duration.value === 18) return "1.5 years";
+      return `${duration.value} months`;
+    }
+    return `${duration.value} ${unit}${duration.value > 1 ? "s" : ""}`;
+  };
+
+  // Helper function to get country URL slug
+  const getCountrySlug = (country: string) => {
+    const countryMap: { [key: string]: string } = {
+      "United Kingdom": "uk",
+      UK: "uk",
+      "United States": "usa",
+      USA: "usa",
+      Canada: "canada",
+      Australia: "australia",
+      "New Zealand": "new-zealand",
+      Ireland: "ireland",
+    };
+
+    return countryMap[country] || country.toLowerCase().replace(/\s+/g, "-");
+  };
+
+  // Function to fetch course data from API using course ID
+  // Note: We're using the course ID as the slug parameter for simplicity
+  const fetchCourse = async (courseId: string) => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      const response = await fetch(`/api/courses/${courseId}`, {
+        method: "GET",
+        headers: {
+          accept: "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        if (response.status === 404) {
+          notFound();
+        }
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data: ApiCourse = await response.json();
+      setCourse(data);
+    } catch (err) {
+      console.error("Error fetching course:", err);
+      setError(err instanceof Error ? err.message : "Failed to fetch course");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    // The slug parameter contains the course ID
+    fetchCourse(resolvedParams.slug);
+  }, [resolvedParams.slug]);
 
   const formatFee = (fees: number, currency: string) => {
     return `${currency} ${fees.toLocaleString()}`;
   };
+
+  // Loading state
+  if (loading) {
+    return (
+      <div className="flex min-h-screen flex-col">
+        <Header />
+        <main className="flex-1 flex items-center justify-center">
+          <div className="text-center py-12">
+            <Loader2 className="mx-auto h-12 w-12 animate-spin text-rose-600 mb-4" />
+            <h3 className="text-xl font-medium text-gray-900 mb-2">
+              Loading course details...
+            </h3>
+            <p className="text-gray-600">
+              Please wait while we fetch the course information
+            </p>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <div className="flex min-h-screen flex-col">
+        <Header />
+        <main className="flex-1 flex items-center justify-center">
+          <div className="text-center py-12">
+            <div className="mx-auto w-24 h-24 bg-red-100 rounded-full flex items-center justify-center mb-4">
+              <BookOpen className="h-8 w-8 text-red-400" />
+            </div>
+            <h3 className="text-xl font-medium text-gray-900 mb-2">
+              Error loading course
+            </h3>
+            <p className="text-gray-600 mb-6">{error}</p>
+            <Button
+              onClick={() => window.location.reload()}
+              className="bg-rose-600 hover:bg-rose-700 text-white"
+            >
+              Try Again
+            </Button>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  // Course not found
+  if (!course) {
+    notFound();
+  }
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -64,7 +222,7 @@ export default function CoursePage({ params }: CoursePageProps) {
                   {course.courseLevel}
                 </Badge>
                 <Badge variant="outline" className="border-gray-300">
-                  {course.subject}
+                  {formatSubject(course.subject)}
                 </Badge>
               </div>
               <h1 className="text-4xl font-normal tracking-tighter sm:text-5xl font-nibpro mb-4">
@@ -77,13 +235,14 @@ export default function CoursePage({ params }: CoursePageProps) {
                 </div>
                 <div className="flex items-center">
                   <MapPin className="h-5 w-5 mr-2" />
-                  <span>
-                    {course.city}, {course.country}
-                  </span>
+                  <span>{course.country}</span>
                 </div>
                 <div className="flex items-center">
-                  <Award className="h-5 w-5 mr-2" />
-                  <span>{course.degreeAwarded}</span>
+                  <Calendar className="h-5 w-5 mr-2" />
+                  <span>
+                    Next Intake: {course.nextIntake.intakeMonth}{" "}
+                    {course.nextIntake.intakeYear}
+                  </span>
                 </div>
               </div>
               <p className="text-lg text-gray-600 mb-8 max-w-3xl">
@@ -109,26 +268,6 @@ export default function CoursePage({ params }: CoursePageProps) {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Main Content */}
             <div className="lg:col-span-2 space-y-8">
-              {/* Course Highlights */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center">
-                    <BookOpen className="h-5 w-5 mr-2 text-rose-600" />
-                    Course Highlights
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-3">
-                    {course.highlights.map((highlight, index) => (
-                      <li key={index} className="flex items-start">
-                        <div className="w-2 h-2 bg-rose-600 rounded-full mt-2 mr-3 flex-shrink-0" />
-                        <span className="text-gray-700">{highlight}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-
               {/* Intakes */}
               <Card>
                 <CardHeader>
@@ -141,7 +280,7 @@ export default function CoursePage({ params }: CoursePageProps) {
                   <div className="space-y-4">
                     {course.intakes.map((intake, index) => (
                       <div
-                        key={intake.id}
+                        key={index}
                         className="border rounded-lg p-4 hover:shadow-md transition-shadow"
                       >
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -182,41 +321,43 @@ export default function CoursePage({ params }: CoursePageProps) {
               </Card>
 
               {/* English Requirements */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center">
-                    <Globe className="h-5 w-5 mr-2 text-rose-600" />
-                    English Language Requirements
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {course.englishRequirements.map((req, index) => (
-                      <div key={index} className="border rounded-lg p-4">
-                        <h4 className="font-medium text-lg mb-2">
-                          {req.testName}
-                        </h4>
-                        <div className="space-y-2 text-sm">
-                          <div className="flex justify-between">
-                            <span className="text-gray-600">
-                              Overall Score:
-                            </span>
-                            <span className="font-medium">
-                              {req.overallScore}
-                            </span>
+              {course.englishRequirements &&
+                course.englishRequirements.length > 0 && (
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center">
+                        <Globe className="h-5 w-5 mr-2 text-rose-600" />
+                        English Language Requirements
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {course.englishRequirements.map((req, index) => (
+                          <div key={index} className="border rounded-lg p-4">
+                            <h4 className="font-medium text-lg mb-2">
+                              {req.testName}
+                            </h4>
+                            <div className="space-y-2 text-sm">
+                              <div className="flex justify-between">
+                                <span className="text-gray-600">
+                                  Minimum Score:
+                                </span>
+                                <span className="font-medium">
+                                  {req.minScore}
+                                </span>
+                              </div>
+                              {req.requirement && (
+                                <div className="text-gray-600 text-sm">
+                                  {req.requirement}
+                                </div>
+                              )}
+                            </div>
                           </div>
-                          <div className="flex justify-between">
-                            <span className="text-gray-600">Score Range:</span>
-                            <span className="font-medium">
-                              {req.minScore} - {req.maxScore || "Max"}
-                            </span>
-                          </div>
-                        </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+                    </CardContent>
+                  </Card>
+                )}
 
               {/* Career Prospects */}
               <Card>
@@ -227,17 +368,9 @@ export default function CoursePage({ params }: CoursePageProps) {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    {course.careerProspects.map((career, index) => (
-                      <div
-                        key={index}
-                        className="flex items-center p-3 bg-gray-50 rounded-lg"
-                      >
-                        <div className="w-2 h-2 bg-rose-600 rounded-full mr-3" />
-                        <span className="text-gray-700">{career}</span>
-                      </div>
-                    ))}
-                  </div>
+                  <p className="text-gray-700 leading-relaxed">
+                    {course.careerProspects}
+                  </p>
                 </CardContent>
               </Card>
             </div>
@@ -257,19 +390,39 @@ export default function CoursePage({ params }: CoursePageProps) {
                   <Separator />
                   <div className="flex justify-between">
                     <span className="text-gray-600">Subject:</span>
-                    <span className="font-medium">{course.subject}</span>
-                  </div>
-                  <Separator />
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Location:</span>
                     <span className="font-medium">
-                      {course.city}, {course.country}
+                      {formatSubject(course.subject)}
                     </span>
                   </div>
                   <Separator />
                   <div className="flex justify-between">
+                    <span className="text-gray-600">Location:</span>
+                    <span className="font-medium">{course.country}</span>
+                  </div>
+                  <Separator />
+                  <div className="flex justify-between">
                     <span className="text-gray-600">Next Intake:</span>
-                    <span className="font-medium">{course.nextIntake}</span>
+                    <span className="font-medium">
+                      {course.nextIntake.intakeMonth}{" "}
+                      {course.nextIntake.intakeYear}
+                    </span>
+                  </div>
+                  <Separator />
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Duration:</span>
+                    <span className="font-medium">
+                      {formatDuration(course.nextIntake.duration)}
+                    </span>
+                  </div>
+                  <Separator />
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Tuition Fee:</span>
+                    <span className="font-medium text-rose-600">
+                      {formatFee(
+                        course.nextIntake.fees.amount,
+                        course.nextIntake.fees.currency
+                      )}
+                    </span>
                   </div>
                 </CardContent>
               </Card>
@@ -299,7 +452,11 @@ export default function CoursePage({ params }: CoursePageProps) {
                   <p className="text-gray-600 mb-4 text-sm">
                     Discover study opportunities, culture, and lifestyle
                   </p>
-                  <Link href={`/destinations/${course.country.toLowerCase()}`}>
+                  <Link
+                    href={`/study-in-${getCountrySlug(course.country)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <Button variant="outline" className="w-full">
                       Explore {course.country}
                     </Button>
@@ -308,49 +465,6 @@ export default function CoursePage({ params }: CoursePageProps) {
               </Card>
             </div>
           </div>
-
-          {/* Related Courses */}
-          {relatedCourses.length > 0 && (
-            <section className="mt-16">
-              <h2 className="text-2xl font-medium mb-8">Related Courses</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {relatedCourses.map((relatedCourse) => (
-                  <Card
-                    key={relatedCourse.id}
-                    className="hover:shadow-lg transition-shadow"
-                  >
-                    <CardHeader>
-                      <CardTitle className="text-lg line-clamp-2">
-                        {relatedCourse.courseName}
-                      </CardTitle>
-                      <p className="text-sm text-gray-600">
-                        {relatedCourse.institutionName}
-                      </p>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-2 text-sm text-gray-600 mb-4">
-                        <div className="flex items-center">
-                          <MapPin className="h-4 w-4 mr-2" />
-                          <span>
-                            {relatedCourse.city}, {relatedCourse.country}
-                          </span>
-                        </div>
-                        <div className="flex items-center">
-                          <Calendar className="h-4 w-4 mr-2" />
-                          <span>Next: {relatedCourse.nextIntake}</span>
-                        </div>
-                      </div>
-                      <Link href={`/courses/${relatedCourse.slug}`}>
-                        <Button className="w-full bg-rose-600 hover:bg-rose-700 text-white">
-                          View Details
-                        </Button>
-                      </Link>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </section>
-          )}
         </div>
       </main>
 

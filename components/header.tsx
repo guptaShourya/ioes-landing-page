@@ -160,13 +160,22 @@ export function Header() {
           </nav>
 
           {/* Buttons */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
+            <Link href="/courses">
+              <Button
+                size="sm"
+                variant="outline"
+                className="hidden lg:flex bg-gradient-to-r from-rose-50 to-orange-50 border-rose-200 text-rose-700 hover:bg-gradient-to-r hover:from-rose-100 hover:to-orange-100 animate-pulse hover:animate-none relative before:absolute before:inset-0 before:rounded-md before:bg-gradient-to-r before:from-rose-200/30 before:to-orange-200/30 before:animate-ping before:opacity-75"
+              >
+                <span className="relative z-10">🎯 Course Finder</span>
+              </Button>
+            </Link>
             <Button
               size="sm"
               className="hidden lg:flex bg-[#ED4746]"
               onClick={openPopup}
             >
-              Get Free Consultation
+              Free Consultation
             </Button>
             <Button
               variant="ghost"
@@ -211,6 +220,13 @@ export function Header() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 Services
+              </Link>
+              <Link
+                href="/courses"
+                className="text-sm font-medium hover:text-primary"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Course Finder
               </Link>
               <Link
                 href="/study-abroad"

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import {
   Search,
@@ -25,18 +25,18 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import {
-  courses,
-  subjects,
-  intakeYears,
-  durations,
-  countries,
-  type Course,
-} from "../../data/courses";
+import { type Course } from "../../data/courses";
 import { usePopup } from "@/hooks/use-popup";
 import { CounselingFormPopup } from "@/components/counselling-form-popup";
 
 export default function CoursesPage() {
+  const [courses, setCourses] = useState<Course[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+  const [totalCourses, setTotalCourses] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedSubject, setSelectedSubject] = useState("all");
   const [selectedYear, setSelectedYear] = useState("all");
@@ -45,43 +45,283 @@ export default function CoursesPage() {
   const [selectedLevel, setSelectedLevel] = useState("all");
   const [sortBy, setSortBy] = useState("name"); // name, fees-low-high, fees-high-low
   const [viewMode, setViewMode] = useState<"grid" | "table">("grid");
+
+  // Filter options from API
+  const [filterOptions, setFilterOptions] = useState({
+    subjects: [] as string[],
+    countries: [] as string[],
+    intakeYears: [] as number[],
+    durations: [] as string[],
+    courseLevels: [] as string[],
+  });
+  const [filtersLoading, setFiltersLoading] = useState(true);
+  const [filtersError, setFiltersError] = useState<string | null>(null);
+
   const { isOpen, openPopup, closePopup } = usePopup();
 
-  const filteredCourses = useMemo(() => {
-    const filtered = courses.filter((course) => {
-      const matchesSearch =
-        course.courseName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        course.institutionName
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase()) ||
-        course.subject.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesSubject =
-        selectedSubject === "all" || course.subject === selectedSubject;
-      const matchesYear =
-        selectedYear === "all" ||
-        course.intakes.some(
-          (intake) => intake.startYear.toString() === selectedYear
-        );
-      const matchesDuration =
-        selectedDuration === "all" ||
-        course.intakes.some((intake) => intake.duration === selectedDuration);
-      const matchesCountry =
-        selectedCountry === "all" || course.country === selectedCountry;
-      const matchesLevel =
-        selectedLevel === "all" || course.courseLevel === selectedLevel;
+  // Helper function to format subject names consistently
+  const formatSubject = (subject: string) => {
+    return subject
+      .replace(/-/g, " ")
+      .replace(/\b\w/g, (l: string) => l.toUpperCase());
+  };
 
-      return (
-        matchesSearch &&
-        matchesSubject &&
-        matchesYear &&
-        matchesDuration &&
-        matchesCountry &&
-        matchesLevel
+  // Transform API data to match our Course interface
+  const transformApiCourse = (apiCourse: any): Course => {
+    const intake = apiCourse.upcomingIntake;
+    const durationValue = intake.duration.value;
+    const durationUnit = intake.duration.unit.toLowerCase();
+
+    // Convert duration to a readable format
+    let durationString = "";
+    if (durationUnit === "month") {
+      if (durationValue === 12) {
+        durationString = "1 year";
+      } else if (durationValue === 24) {
+        durationString = "2 years";
+      } else if (durationValue === 36) {
+        durationString = "3 years";
+      } else if (durationValue === 48) {
+        durationString = "4 years";
+      } else if (durationValue === 18) {
+        durationString = "1.5 years";
+      } else {
+        durationString = `${durationValue} months`;
+      }
+    } else {
+      durationString = `${durationValue} ${durationUnit}${
+        durationValue > 1 ? "s" : ""
+      }`;
+    }
+
+    return {
+      id: apiCourse.id,
+      courseName: apiCourse.courseName,
+      institutionName: apiCourse.institutionName,
+      degreeAwarded: apiCourse.courseName,
+      subject: formatSubject(apiCourse.primarySubject),
+      city: "Unknown",
+      country: apiCourse.country,
+      courseLevel: apiCourse.courseLevel as
+        | "Undergraduate"
+        | "Postgraduate"
+        | "Diploma"
+        | "Certificate",
+      nextIntake: `${intake.intakeMonth} ${intake.intakeYear}`,
+      intakes: [
+        {
+          id: `${apiCourse.id}-1`,
+          campusName: "Main Campus",
+          fees: intake.fees.amount,
+          currency: intake.fees.currency,
+          duration: durationString,
+          startMonth: intake.intakeMonth,
+          startYear: intake.intakeYear,
+          attendanceType: "Full-time" as const,
+        },
+      ],
+      englishRequirements: [],
+      description: `A comprehensive ${apiCourse.courseLevel.toLowerCase()} program in ${apiCourse.primarySubject.replace(
+        /-/g,
+        " "
+      )}.`,
+      highlights: [
+        "Top-tier education",
+        "Industry-relevant curriculum",
+        "Expert faculty",
+        "Career support",
+      ],
+      careerProspects: [
+        "Industry Professional",
+        "Research Specialist",
+        "Consultant",
+        "Manager",
+      ],
+      slug: apiCourse.id, // Use the API ID directly as the slug
+    };
+  };
+
+  // Fetch filter options from API
+  const fetchFilters = async () => {
+    try {
+      setFiltersLoading(true);
+      setFiltersError(null);
+
+      const response = await fetch("/api/courses/filters", {
+        method: "GET",
+        headers: {
+          accept: "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      // Transform and set filter options based on API response structure
+      setFilterOptions({
+        subjects: (data.subjects || []).map(formatSubject),
+        countries: data.countries || [],
+        intakeYears: data.years || [],
+        durations: data.durations || [],
+        courseLevels: data.levels || [],
+      });
+    } catch (err) {
+      console.error("Error fetching filters:", err);
+      setFiltersError(
+        err instanceof Error ? err.message : "Failed to fetch filters"
       );
-    });
+    } finally {
+      setFiltersLoading(false);
+    }
+  };
 
-    // Sort the filtered results
-    return filtered.sort((a, b) => {
+  // Fetch courses from API
+  const fetchCourses = async (
+    page: number = 1,
+    isLoadMore: boolean = false
+  ) => {
+    try {
+      if (isLoadMore) {
+        setLoadingMore(true);
+      } else {
+        setLoading(true);
+        setError(null);
+        setCourses([]);
+        setCurrentPage(1);
+      }
+
+      const pageSize = 15; // Set page size to 15 as requested
+
+      // Build query parameters
+      const params = new URLSearchParams({
+        page: page.toString(),
+        page_size: pageSize.toString(),
+      });
+
+      // Add filter parameters if they're not "all"
+      if (searchTerm.trim()) {
+        params.append("search", searchTerm.trim());
+      }
+      if (selectedSubject !== "all") {
+        // Convert formatted subject back to API format (e.g., "Computer Science" -> "computer-science")
+        const apiSubject = selectedSubject.toLowerCase().replace(/\s+/g, "-");
+        params.append("subject", apiSubject);
+      }
+      if (selectedCountry !== "all") {
+        params.append("country", selectedCountry);
+      }
+      if (selectedYear !== "all") {
+        params.append("year", selectedYear);
+      }
+      if (selectedDuration !== "all") {
+        params.append("duration", selectedDuration);
+      }
+      if (selectedLevel !== "all") {
+        params.append("level", selectedLevel);
+      }
+      if (sortBy !== "name") {
+        params.append("sort", sortBy);
+      }
+
+      const response = await fetch(`/api/courses/?${params.toString()}`, {
+        method: "GET",
+        headers: {
+          accept: "application/json",
+        },
+      });
+
+      console.log("API Request URL:", `/api/courses/?${params.toString()}`);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      // Assuming the API returns either an array or an object with pagination info
+      // Adjust this based on your actual API response structure
+      let coursesData, total;
+
+      if (Array.isArray(data)) {
+        coursesData = data;
+        total = data.length; // If no pagination info, assume we got all data
+        setHasMore(data.length === pageSize); // Has more if we got a full page
+      } else {
+        // If API returns pagination object like { results: [...], count: 100, next: "..." }
+        coursesData = data.results || data.courses || data.data || [];
+        total = data.count || data.total || coursesData.length;
+        setHasMore(!!data.next || page * pageSize < total);
+      }
+
+      // Transform API data to match our Course interface
+      const transformedCourses = coursesData.map(transformApiCourse);
+
+      if (isLoadMore) {
+        setCourses((prev) => [...prev, ...transformedCourses]);
+        setCurrentPage(page);
+      } else {
+        setCourses(transformedCourses);
+        setCurrentPage(1);
+      }
+
+      setTotalCourses(total);
+    } catch (err) {
+      console.error("Error fetching courses:", err);
+      setError(err instanceof Error ? err.message : "Failed to fetch courses");
+    } finally {
+      setLoading(false);
+      setLoadingMore(false);
+    }
+  };
+
+  // Initial fetch
+  useEffect(() => {
+    fetchCourses(1, false);
+    fetchFilters(); // Fetch filter options on component mount
+  }, []);
+
+  // Debounced search effect
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      fetchCourses(1, false);
+    }, 500); // 500ms delay for search
+
+    return () => clearTimeout(timeoutId);
+  }, [searchTerm]);
+
+  // Reset pagination when filters change (except search which is debounced above)
+  useEffect(() => {
+    fetchCourses(1, false);
+  }, [
+    selectedSubject,
+    selectedYear,
+    selectedDuration,
+    selectedCountry,
+    selectedLevel,
+    sortBy,
+  ]);
+
+  // Load more function
+  const handleLoadMore = () => {
+    if (!loadingMore && hasMore) {
+      fetchCourses(currentPage + 1, true);
+    }
+  };
+
+  // Generate filter options from API data
+  const subjects = filterOptions.subjects;
+  const countries = filterOptions.countries;
+  const intakeYears = filterOptions.intakeYears;
+  const durations = filterOptions.durations;
+
+  // Since we're doing server-side filtering, we can use courses directly
+  // Keep minimal client-side sorting as fallback if needed
+  const filteredCourses = useMemo(() => {
+    // The API should handle most filtering and sorting, but we can add fallback sorting here if needed
+    return [...courses].sort((a, b) => {
       switch (sortBy) {
         case "fees-low-high":
           return a.intakes[0].fees - b.intakes[0].fees;
@@ -92,15 +332,7 @@ export default function CoursesPage() {
           return a.courseName.localeCompare(b.courseName);
       }
     });
-  }, [
-    searchTerm,
-    selectedSubject,
-    selectedYear,
-    selectedDuration,
-    selectedCountry,
-    selectedLevel,
-    sortBy,
-  ]);
+  }, [courses, sortBy]);
 
   const formatFee = (course: Course) => {
     const intake = course.intakes[0];
@@ -131,9 +363,7 @@ export default function CoursesPage() {
         <div className="space-y-3">
           <div className="flex items-center text-sm text-gray-600">
             <MapPin className="h-4 w-4 mr-2 text-gray-400" />
-            <span>
-              {course.city}, {course.country}
-            </span>
+            <span>{course.country}</span>
           </div>
           <div className="flex items-center text-sm text-gray-600">
             <GraduationCap className="h-4 w-4 mr-2 text-gray-400" />
@@ -172,9 +402,7 @@ export default function CoursesPage() {
           <p className="text-sm text-gray-600 mt-1">{course.institutionName}</p>
         </div>
       </td>
-      <td className="py-4 px-4 text-sm text-gray-600">
-        {course.city}, {course.country}
-      </td>
+      <td className="py-4 px-4 text-sm text-gray-600">{course.country}</td>
       <td className="py-4 px-4 text-sm text-gray-600">{course.subject}</td>
       <td className="py-4 px-4">
         <Badge
@@ -243,9 +471,12 @@ export default function CoursesPage() {
                 <Select
                   value={selectedSubject}
                   onValueChange={setSelectedSubject}
+                  disabled={filtersLoading}
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="Subject" />
+                    <SelectValue
+                      placeholder={filtersLoading ? "Loading..." : "Subject"}
+                    />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="all">All Subjects</SelectItem>
@@ -260,9 +491,12 @@ export default function CoursesPage() {
                 <Select
                   value={selectedCountry}
                   onValueChange={setSelectedCountry}
+                  disabled={filtersLoading}
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="Country" />
+                    <SelectValue
+                      placeholder={filtersLoading ? "Loading..." : "Country"}
+                    />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="all">All Countries</SelectItem>
@@ -274,9 +508,17 @@ export default function CoursesPage() {
                   </SelectContent>
                 </Select>
 
-                <Select value={selectedYear} onValueChange={setSelectedYear}>
+                <Select
+                  value={selectedYear}
+                  onValueChange={setSelectedYear}
+                  disabled={filtersLoading}
+                >
                   <SelectTrigger>
-                    <SelectValue placeholder="Intake Year" />
+                    <SelectValue
+                      placeholder={
+                        filtersLoading ? "Loading..." : "Intake Year"
+                      }
+                    />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="all">All Years</SelectItem>
@@ -291,9 +533,12 @@ export default function CoursesPage() {
                 <Select
                   value={selectedDuration}
                   onValueChange={setSelectedDuration}
+                  disabled={filtersLoading}
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="Duration" />
+                    <SelectValue
+                      placeholder={filtersLoading ? "Loading..." : "Duration"}
+                    />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="all">All Durations</SelectItem>
@@ -305,26 +550,42 @@ export default function CoursesPage() {
                   </SelectContent>
                 </Select>
 
-                <Select value={selectedLevel} onValueChange={setSelectedLevel}>
+                <Select
+                  value={selectedLevel}
+                  onValueChange={setSelectedLevel}
+                  disabled={filtersLoading}
+                >
                   <SelectTrigger>
-                    <SelectValue placeholder="Level" />
+                    <SelectValue
+                      placeholder={filtersLoading ? "Loading..." : "Level"}
+                    />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="all">All Levels</SelectItem>
-                    <SelectItem value="Undergraduate">Undergraduate</SelectItem>
-                    <SelectItem value="Postgraduate">Postgraduate</SelectItem>
-                    <SelectItem value="Diploma">Diploma</SelectItem>
-                    <SelectItem value="Certificate">Certificate</SelectItem>
+                    {filterOptions.courseLevels.map((level) => (
+                      <SelectItem key={level} value={level}>
+                        {level}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </div>
+
+              {/* Filter Error */}
+              {filtersError && (
+                <div className="text-center py-2">
+                  <p className="text-sm text-red-600">
+                    Unable to load filter options: {filtersError}
+                  </p>
+                </div>
+              )}
 
               {/* View Toggle and Results Count */}
               <div className="flex items-center justify-between">
                 <p className="text-gray-600">
                   Showing{" "}
                   <span className="font-medium">{filteredCourses.length}</span>{" "}
-                  courses
+                  {hasMore ? "courses (more available)" : "courses"}
                 </p>
                 <div className="flex items-center space-x-2">
                   {/* Sort Dropdown */}
@@ -376,7 +637,35 @@ export default function CoursesPage() {
         {/* Results */}
         <section className="py-12 bg-gradient-to-t from-[#f0ebe6] to-white">
           <div className="container px-4 md:px-6">
-            {filteredCourses.length === 0 ? (
+            {loading ? (
+              <div className="text-center py-12">
+                <div className="mx-auto w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-rose-600"></div>
+                </div>
+                <h3 className="text-xl font-medium text-gray-900 mb-2">
+                  Loading courses...
+                </h3>
+                <p className="text-gray-600">
+                  Please wait while we fetch the latest courses
+                </p>
+              </div>
+            ) : error ? (
+              <div className="text-center py-12">
+                <div className="mx-auto w-24 h-24 bg-red-100 rounded-full flex items-center justify-center mb-4">
+                  <Search className="h-8 w-8 text-red-400" />
+                </div>
+                <h3 className="text-xl font-medium text-gray-900 mb-2">
+                  Error loading courses
+                </h3>
+                <p className="text-gray-600 mb-6">{error}</p>
+                <Button
+                  onClick={() => window.location.reload()}
+                  className="bg-rose-600 hover:bg-rose-700 text-white"
+                >
+                  Try Again
+                </Button>
+              </div>
+            ) : filteredCourses.length === 0 ? (
               <div className="text-center py-12">
                 <div className="mx-auto w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-4">
                   <Search className="h-8 w-8 text-gray-400" />
@@ -436,11 +725,43 @@ export default function CoursesPage() {
                 </table>
               </div>
             )}
+
+            {/* Load More Button */}
+            {!loading && !error && filteredCourses.length > 0 && hasMore && (
+              <div className="text-center mt-12">
+                <Button
+                  onClick={handleLoadMore}
+                  disabled={loadingMore}
+                  size="lg"
+                  className="bg-rose-600 hover:bg-rose-700 text-white min-w-[200px]"
+                >
+                  {loadingMore ? (
+                    <>
+                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                      Loading more...
+                    </>
+                  ) : (
+                    "Load More Courses"
+                  )}
+                </Button>
+              </div>
+            )}
+
+            {/* Show courses info */}
+            {!loading && !error && filteredCourses.length > 0 && (
+              <div className="text-center mt-6">
+                <p className="text-sm text-gray-600">
+                  {hasMore
+                    ? `Loaded ${filteredCourses.length} courses so far`
+                    : `All ${filteredCourses.length} matching courses loaded`}
+                </p>
+              </div>
+            )}
           </div>
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 bg-gradient-to-br from-rose-600 to-indigo-600 text-white">
+        {/* <section className="py-16 bg-gradient-to-br from-rose-600 to-indigo-600 text-white">
           <div className="container px-4 md:px-6 text-center">
             <h2 className="text-3xl font-normal tracking-tighter sm:text-4xl mb-4">
               Need Help Choosing the Right Course?
@@ -457,7 +778,7 @@ export default function CoursesPage() {
               Get Free Consultation
             </Button>
           </div>
-        </section>
+        </section> */}
       </main>
 
       <CounselingFormPopup isOpen={isOpen} onClose={closePopup} />
