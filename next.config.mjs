@@ -48,7 +48,15 @@ const nextConfig = {
     unoptimized: true,
   },
   async rewrites() {
-    return generateRewrites();
+    return [
+      // API proxy to avoid CORS issues
+      {
+        source: "/api/courses/:path*",
+        destination: "http://127.0.0.1:8000/courses/:path*",
+      },
+      // Existing country routes
+      ...generateRewrites(),
+    ];
   },
   async redirects() {
     return generateRedirects();

@@ -9,8 +9,8 @@ import { StructuredData } from "@/components/structured-data";
 import { generateMetadata, generateStructuredData } from "./seo/Seo";
 
 export const metadata = generateMetadata({
-  pageKey: 'home',
-  pathname: '/'
+  pageKey: "home",
+  pathname: "/",
 });
 
 export default function RootLayout({
@@ -18,8 +18,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const organizationData = generateStructuredData('organization');
-  
+  const organizationData = generateStructuredData("organization");
+
   return (
     <html
       lang="en"
@@ -27,6 +27,10 @@ export default function RootLayout({
       className={`${satoshi.variable} ${nibpro.variable}`}
     >
       <head>
+        <meta name="theme-color" content="#f0ebe6" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="msapplication-navbutton-color" content="#f0ebe6" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
         <Analytics />
         <StructuredData data={organizationData} />
       </head>
