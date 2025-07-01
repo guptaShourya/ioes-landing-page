@@ -28,6 +28,7 @@ import { Footer } from "@/components/footer";
 import { type Course } from "../../data/courses";
 import { usePopup } from "@/hooks/use-popup";
 import { CounselingFormPopup } from "@/components/counselling-form-popup";
+import { API_CONFIG, buildApiUrl } from "@/lib/constants";
 
 export default function CoursesPage() {
   const [courses, setCourses] = useState<Course[]>([]);
@@ -147,12 +148,15 @@ export default function CoursesPage() {
       setFiltersLoading(true);
       setFiltersError(null);
 
-      const response = await fetch("/api/courses/filters", {
-        method: "GET",
-        headers: {
-          accept: "application/json",
-        },
-      });
+      const response = await fetch(
+        buildApiUrl(API_CONFIG.ENDPOINTS.COURSES_FILTERS),
+        {
+          method: "GET",
+          headers: {
+            accept: "application/json",
+          },
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -214,7 +218,7 @@ export default function CoursesPage() {
         params.append("country", selectedCountry);
       }
       if (selectedYear !== "all") {
-        params.append("year", selectedYear);
+        params.append("years", selectedYear);
       }
       if (selectedDuration !== "all") {
         params.append("duration", selectedDuration);
@@ -226,14 +230,16 @@ export default function CoursesPage() {
         params.append("sort", sortBy);
       }
 
-      const response = await fetch(`/api/courses/?${params.toString()}`, {
+      const apiUrl = `${buildApiUrl(
+        API_CONFIG.ENDPOINTS.COURSES
+      )}?${params.toString()}`;
+
+      const response = await fetch(apiUrl, {
         method: "GET",
         headers: {
           accept: "application/json",
         },
       });
-
-      console.log("API Request URL:", `/api/courses/?${params.toString()}`);
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -379,7 +385,12 @@ export default function CoursesPage() {
               <span>{formatFee(course)}</span>
             </div>
           </div>
-          <Link href={`/courses/${course.slug}`} className="block">
+          <Link
+            href={`/courses/${course.slug}`}
+            className="block"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Button className="w-full mt-4 bg-rose-600 hover:bg-rose-700 text-white">
               View Details
             </Button>
@@ -396,6 +407,8 @@ export default function CoursesPage() {
           <Link
             href={`/courses/${course.slug}`}
             className="font-medium text-gray-900 hover:text-rose-600 transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             {course.courseName}
           </Link>
@@ -417,7 +430,11 @@ export default function CoursesPage() {
         {formatFee(course)}
       </td>
       <td className="py-4 px-4">
-        <Link href={`/courses/${course.slug}`}>
+        <Link
+          href={`/courses/${course.slug}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <Button
             size="sm"
             className="bg-rose-600 hover:bg-rose-700 text-white"

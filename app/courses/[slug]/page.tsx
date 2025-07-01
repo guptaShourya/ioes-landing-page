@@ -21,6 +21,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { usePopup } from "@/hooks/use-popup";
 import { CounselingFormPopup } from "@/components/counselling-form-popup";
+import { buildCourseDetailUrl } from "@/lib/constants";
 
 // API response interface
 interface ApiCourse {
@@ -119,7 +120,7 @@ export default function CoursePage({ params }: CoursePageProps) {
       setLoading(true);
       setError(null);
 
-      const response = await fetch(`/api/courses/${courseId}`, {
+      const response = await fetch(buildCourseDetailUrl(courseId), {
         method: "GET",
         headers: {
           accept: "application/json",
