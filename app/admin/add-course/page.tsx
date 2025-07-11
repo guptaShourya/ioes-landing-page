@@ -1,199 +1,307 @@
-"use client"
+"use client";
 
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
-import { toast } from 'sonner'
-import { Plus, Trash2, Loader2 } from 'lucide-react'
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { toast } from "sonner";
+import { Plus, Trash2, Loader2, CheckCircle } from "lucide-react";
 
 // Schema for form validation
 const courseIntakeSchema = z.object({
   intakeYear: z.number().min(2024).max(2030),
-  intakeMonth: z.string().min(1, 'Intake month is required'),
+  intakeMonth: z.string().min(1, "Intake month is required"),
   campus: z.object({
-    name: z.string().min(1, 'Campus name is required'),
+    name: z.string().min(1, "Campus name is required"),
   }),
-  attendanceType: z.string().min(1, 'Attendance type is required'),
+  attendanceType: z.string().min(1, "Attendance type is required"),
   duration: z.object({
-    value: z.number().min(1, 'Duration value must be at least 1'),
-    unit: z.string().min(1, 'Duration unit is required'),
+    value: z.number().min(1, "Duration value must be at least 1"),
+    unit: z.string().min(1, "Duration unit is required"),
   }),
   fees: z.object({
-    amount: z.number().min(0, 'Fee amount cannot be negative'),
-    currency: z.string().min(1, 'Currency is required'),
+    amount: z.number().min(0, "Fee amount cannot be negative"),
+    currency: z.string().min(1, "Currency is required"),
   }),
   notes: z.string().optional(),
-})
+});
 
 const courseSchema = z.object({
-  courseName: z.string().min(1, 'Course name is required'),
-  courseLevel: z.string().min(1, 'Course level is required'),
-  institutionName: z.string().min(1, 'Institution name is required'),
-  country: z.string().min(1, 'Country is required'),
-  subjects: z.array(z.string()).min(1, 'At least one subject is required'),
+  courseName: z.string().min(1, "Course name is required"),
+  courseLevel: z.string().min(1, "Course level is required"),
+  institutionName: z.string().min(1, "Institution name is required"),
+  country: z.string().min(1, "Country is required"),
+  subjects: z.array(z.string()).min(1, "At least one subject is required"),
   categories: z.array(z.string()),
-  courseIntakes: z.array(courseIntakeSchema).min(1, 'At least one intake is required'),
+  courseIntakes: z
+    .array(courseIntakeSchema)
+    .min(1, "At least one intake is required"),
   description: z.string().optional(),
-  passkey: z.string().min(1, 'Passkey is required'),
-})
+  passkey: z.string().min(1, "Passkey is required"),
+});
 
-type CourseFormData = z.infer<typeof courseSchema>
+type CourseFormData = z.infer<typeof courseSchema>;
 
 const months = [
-  'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December'
-]
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 
-const courseLevels = [
-  'Certificate', 'Diploma', 'Bachelor', 'Master', 'PhD', 'Professional'
-]
+const attendanceTypes = ["Full-time", "Part-time", "Online", "Hybrid"];
 
-const attendanceTypes = [
-  'Full-time', 'Part-time', 'Online', 'Hybrid'
-]
+const durationUnits = ["weeks", "months", "years"];
 
-const durationUnits = [
-  'weeks', 'months', 'years'
-]
-
-const currencies = [
-  'USD', 'EUR', 'GBP', 'CAD', 'AUD', 'NZD', 'INR'
-]
+const currencies = ["USD", "EUR", "GBP", "CAD", "AUD", "NZD", "INR"];
 
 const countries = [
-  'United States', 'United Kingdom', 'Canada', 'Australia', 'New Zealand', 
-  'Germany', 'Ireland', 'France', 'Netherlands', 'Switzerland'
-]
+  "United States",
+  "United Kingdom",
+  "Canada",
+  "Australia",
+  "New Zealand",
+  "Germany",
+  "Ireland",
+  "France",
+  "Netherlands",
+  "Switzerland",
+];
 
 export default function AddCoursePage() {
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [subjects, setSubjects] = useState<string[]>([''])
-  const [intakes, setIntakes] = useState([{
-    intakeYear: new Date().getFullYear(),
-    intakeMonth: '',
-    campus: { name: '' },
-    attendanceType: '',
-    duration: { value: 1, unit: '' },
-    fees: { amount: 0, currency: '' },
-    notes: '',
-  }])
-  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [subjects, setSubjects] = useState<string[]>([""]);
+  const [intakes, setIntakes] = useState([
+    {
+      intakeYear: new Date().getFullYear(),
+      intakeMonth: "",
+      campus: { name: "" },
+      attendanceType: "",
+      duration: { value: 1, unit: "years" },
+      fees: { amount: 0, currency: "" },
+      notes: "",
+    },
+  ]);
+
   const form = useForm<CourseFormData>({
     resolver: zodResolver(courseSchema),
     defaultValues: {
-      courseName: '',
-      courseLevel: '',
-      institutionName: '',
-      country: '',
-      subjects: [''],
+      courseName: "",
+      courseLevel: "",
+      institutionName: "",
+      country: "",
+      subjects: [""],
       categories: [],
-      courseIntakes: [{
-        intakeYear: new Date().getFullYear(),
-        intakeMonth: '',
-        campus: {
-          name: '',
+      courseIntakes: [
+        {
+          intakeYear: new Date().getFullYear(),
+          intakeMonth: "",
+          campus: {
+            name: "",
+          },
+          attendanceType: "",
+          duration: {
+            value: 1,
+            unit: "years",
+          },
+          fees: {
+            amount: 0,
+            currency: "",
+          },
+          notes: "",
         },
-        attendanceType: '',
-        duration: {
-          value: 1,
-          unit: '',
-        },
-        fees: {
-          amount: 0,
-          currency: '',
-        },
-        notes: '',
-      }],
-      description: '',
-      passkey: '',
+      ],
+      description: "",
+      passkey: "",
     },
-  })
+  });
 
   const addSubject = () => {
-    setSubjects([...subjects, ''])
-  }
+    setSubjects([...subjects, ""]);
+  };
 
   const removeSubject = (index: number) => {
     if (subjects.length > 1) {
-      const newSubjects = subjects.filter((_, i) => i !== index)
-      setSubjects(newSubjects)
-      form.setValue('subjects', newSubjects)
+      const newSubjects = subjects.filter((_, i) => i !== index);
+      setSubjects(newSubjects);
+      form.setValue("subjects", newSubjects);
     }
-  }
+  };
 
   const addIntake = () => {
     const newIntake = {
       intakeYear: new Date().getFullYear(),
-      intakeMonth: '',
-      campus: { name: '' },
-      attendanceType: '',
-      duration: { value: 1, unit: '' },
-      fees: { amount: 0, currency: '' },
-      notes: '',
-    }
-    setIntakes([...intakes, newIntake])
-  }
+      intakeMonth: "",
+      campus: { name: "" },
+      attendanceType: "",
+      duration: { value: 1, unit: "years" },
+      fees: { amount: 0, currency: "" },
+      notes: "",
+    };
+    setIntakes([...intakes, newIntake]);
+  };
 
   const removeIntake = (index: number) => {
     if (intakes.length > 1) {
-      const newIntakes = intakes.filter((_, i) => i !== index)
-      setIntakes(newIntakes)
-      form.setValue('courseIntakes', newIntakes)
+      const newIntakes = intakes.filter((_, i) => i !== index);
+      setIntakes(newIntakes);
+      form.setValue("courseIntakes", newIntakes);
     }
-  }
+  };
 
   const onSubmit = async (data: CourseFormData) => {
-    setIsSubmitting(true)
+    setIsSubmitting(true);
+    setIsSuccess(false);
     try {
       // Filter out empty subjects
       const filteredData = {
         ...data,
-        subjects: data.subjects.filter(subject => subject.trim() !== ''),
-      }
+        subjects: data.subjects.filter((subject) => subject.trim() !== ""),
+      };
 
-      const response = await fetch('/api/courses', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(filteredData),
-      })
+      const response = await fetch(
+        "https://ioes-coursefinder-api-simple.ashyplant-dd552f72.eastus.azurecontainerapps.io/courses/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(filteredData),
+        }
+      );
 
       if (response.ok) {
-        toast.success('Course added successfully!')
-        form.reset()
-        setSubjects([''])
-        setIntakes([{
-          intakeYear: new Date().getFullYear(),
-          intakeMonth: '',
-          campus: { name: '' },
-          attendanceType: '',
-          duration: { value: 1, unit: '' },
-          fees: { amount: 0, currency: '' },
-          notes: '',
-        }])
+        setIsSuccess(true);
+        toast.success("Course added successfully! ✅", {
+          description: `Course "${data.courseName}" has been added to the database.`,
+          duration: 5000,
+        });
+
+        // Set success state briefly
+        setIsSuccess(true);
+        setTimeout(() => setIsSuccess(false), 3000);
+
+        // Reset form and state
+        form.reset({
+          courseName: "",
+          courseLevel: "",
+          institutionName: "",
+          country: "",
+          subjects: [""],
+          categories: [],
+          courseIntakes: [
+            {
+              intakeYear: new Date().getFullYear(),
+              intakeMonth: "",
+              campus: {
+                name: "",
+              },
+              attendanceType: "",
+              duration: {
+                value: 1,
+                unit: "years",
+              },
+              fees: {
+                amount: 0,
+                currency: "",
+              },
+              notes: "",
+            },
+          ],
+          description: "",
+          passkey: "",
+        });
+
+        setSubjects([""]);
+        setIntakes([
+          {
+            intakeYear: new Date().getFullYear(),
+            intakeMonth: "",
+            campus: { name: "" },
+            attendanceType: "",
+            duration: { value: 1, unit: "years" },
+            fees: { amount: 0, currency: "" },
+            notes: "",
+          },
+        ]);
+
+        // Scroll to top to show success message
+        window.scrollTo({ top: 0, behavior: "smooth" });
       } else {
-        const errorData = await response.json()
-        toast.error(errorData.error || 'Failed to add course')
+        const errorData = await response.json();
+        toast.error("Failed to add course ❌", {
+          description:
+            errorData.error || "Please check your inputs and try again.",
+          duration: 5000,
+        });
       }
     } catch (error) {
-      toast.error('An error occurred while adding the course')
-      console.error('Error adding course:', error)
+      console.error("Error adding course:", error);
+      toast.error("Network error ❌", {
+        description:
+          "Could not connect to the server. Please check your internet connection and try again.",
+        duration: 5000,
+      });
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-4xl mx-auto px-4">
+        {/* Success Banner */}
+        {isSuccess && (
+          <div className="mb-6 bg-green-50 border border-green-200 rounded-lg p-4">
+            <div className="flex items-center">
+              <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
+              <div>
+                <h3 className="text-sm font-medium text-green-800">
+                  Course Added Successfully!
+                </h3>
+                <p className="text-sm text-green-700 mt-1">
+                  The course has been added to the database and is now
+                  available.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
         <Card>
           <CardHeader>
             <CardTitle className="text-2xl font-bold">Add New Course</CardTitle>
@@ -203,7 +311,18 @@ export default function AddCoursePage() {
           </CardHeader>
           <CardContent>
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-6"
+                onKeyDown={(e) => {
+                  if (
+                    e.key === "Enter" &&
+                    (e.target as HTMLInputElement).type !== "submit"
+                  ) {
+                    e.preventDefault();
+                  }
+                }}
+              >
                 {/* Basic Course Information */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <FormField
@@ -226,21 +345,17 @@ export default function AddCoursePage() {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Course Level</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl>
-                            <SelectTrigger>
-                              <SelectValue placeholder="Select course level" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            {courseLevels.map((level) => (
-                              <SelectItem key={level} value={level}>
-                                {level}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
+                        <FormControl>
+                          <Input
+                            placeholder="Enter course level (e.g., Bachelor, Master, PhD)"
+                            {...field}
+                          />
+                        </FormControl>
                         <FormMessage />
+                        <p className="text-xs text-gray-500 mt-1">
+                          Examples: Certificate, Diploma, Bachelor, Master, PhD,
+                          Professional
+                        </p>
                       </FormItem>
                     )}
                   />
@@ -252,7 +367,10 @@ export default function AddCoursePage() {
                       <FormItem>
                         <FormLabel>Institution Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="Enter institution name" {...field} />
+                          <Input
+                            placeholder="Enter institution name"
+                            {...field}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -265,7 +383,10 @@ export default function AddCoursePage() {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Country</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
                           <FormControl>
                             <SelectTrigger>
                               <SelectValue placeholder="Select country" />
@@ -335,10 +456,10 @@ export default function AddCoursePage() {
                     <FormItem>
                       <FormLabel>Description</FormLabel>
                       <FormControl>
-                        <Textarea 
-                          placeholder="Enter course description" 
+                        <Textarea
+                          placeholder="Enter course description"
                           rows={4}
-                          {...field} 
+                          {...field}
                         />
                       </FormControl>
                       <FormMessage />
@@ -348,13 +469,17 @@ export default function AddCoursePage() {
 
                 {/* Course Intakes */}
                 <div>
-                  <FormLabel className="text-lg font-semibold">Course Intakes</FormLabel>
+                  <FormLabel className="text-lg font-semibold">
+                    Course Intakes
+                  </FormLabel>
                   <div className="space-y-6 mt-4">
                     {intakes.map((_, index) => (
                       <Card key={index}>
                         <CardHeader className="pb-4">
                           <div className="flex justify-between items-center">
-                            <CardTitle className="text-lg">Intake {index + 1}</CardTitle>
+                            <CardTitle className="text-lg">
+                              Intake {index + 1}
+                            </CardTitle>
                             {intakes.length > 1 && (
                               <Button
                                 type="button"
@@ -377,12 +502,14 @@ export default function AddCoursePage() {
                                 <FormItem>
                                   <FormLabel>Intake Year</FormLabel>
                                   <FormControl>
-                                    <Input 
-                                      type="number" 
-                                      min="2024" 
+                                    <Input
+                                      type="number"
+                                      min="2024"
                                       max="2030"
                                       {...field}
-                                      onChange={(e) => field.onChange(parseInt(e.target.value))}
+                                      onChange={(e) =>
+                                        field.onChange(parseInt(e.target.value))
+                                      }
                                     />
                                   </FormControl>
                                   <FormMessage />
@@ -396,7 +523,10 @@ export default function AddCoursePage() {
                               render={({ field }) => (
                                 <FormItem>
                                   <FormLabel>Intake Month</FormLabel>
-                                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                  <Select
+                                    onValueChange={field.onChange}
+                                    defaultValue={field.value}
+                                  >
                                     <FormControl>
                                       <SelectTrigger>
                                         <SelectValue placeholder="Select month" />
@@ -421,7 +551,10 @@ export default function AddCoursePage() {
                               render={({ field }) => (
                                 <FormItem>
                                   <FormLabel>Attendance Type</FormLabel>
-                                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                  <Select
+                                    onValueChange={field.onChange}
+                                    defaultValue={field.value}
+                                  >
                                     <FormControl>
                                       <SelectTrigger>
                                         <SelectValue placeholder="Select attendance type" />
@@ -443,7 +576,9 @@ export default function AddCoursePage() {
 
                           {/* Campus Information */}
                           <div>
-                            <FormLabel className="text-base font-medium">Campus Information</FormLabel>
+                            <FormLabel className="text-base font-medium">
+                              Campus Information
+                            </FormLabel>
                             <div className="grid grid-cols-1 gap-4 mt-2">
                               <FormField
                                 control={form.control}
@@ -452,7 +587,10 @@ export default function AddCoursePage() {
                                   <FormItem>
                                     <FormLabel>Campus Name</FormLabel>
                                     <FormControl>
-                                      <Input placeholder="Campus name" {...field} />
+                                      <Input
+                                        placeholder="Campus name"
+                                        {...field}
+                                      />
                                     </FormControl>
                                     <FormMessage />
                                   </FormItem>
@@ -463,7 +601,9 @@ export default function AddCoursePage() {
 
                           {/* Duration */}
                           <div>
-                            <FormLabel className="text-base font-medium">Duration</FormLabel>
+                            <FormLabel className="text-base font-medium">
+                              Duration
+                            </FormLabel>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
                               <FormField
                                 control={form.control}
@@ -472,12 +612,16 @@ export default function AddCoursePage() {
                                   <FormItem>
                                     <FormLabel>Duration Value</FormLabel>
                                     <FormControl>
-                                      <Input 
-                                        type="number" 
+                                      <Input
+                                        type="number"
                                         min="1"
                                         placeholder="Duration value"
                                         {...field}
-                                        onChange={(e) => field.onChange(parseInt(e.target.value))}
+                                        onChange={(e) =>
+                                          field.onChange(
+                                            parseInt(e.target.value)
+                                          )
+                                        }
                                       />
                                     </FormControl>
                                     <FormMessage />
@@ -491,7 +635,10 @@ export default function AddCoursePage() {
                                 render={({ field }) => (
                                   <FormItem>
                                     <FormLabel>Duration Unit</FormLabel>
-                                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                    <Select
+                                      onValueChange={field.onChange}
+                                      defaultValue={field.value}
+                                    >
                                       <FormControl>
                                         <SelectTrigger>
                                           <SelectValue placeholder="Select unit" />
@@ -514,7 +661,9 @@ export default function AddCoursePage() {
 
                           {/* Fees */}
                           <div>
-                            <FormLabel className="text-base font-medium">Fees</FormLabel>
+                            <FormLabel className="text-base font-medium">
+                              Fees
+                            </FormLabel>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
                               <FormField
                                 control={form.control}
@@ -523,13 +672,17 @@ export default function AddCoursePage() {
                                   <FormItem>
                                     <FormLabel>Fee Amount</FormLabel>
                                     <FormControl>
-                                      <Input 
-                                        type="number" 
+                                      <Input
+                                        type="number"
                                         min="0"
                                         step="0.01"
                                         placeholder="Fee amount"
                                         {...field}
-                                        onChange={(e) => field.onChange(parseFloat(e.target.value))}
+                                        onChange={(e) =>
+                                          field.onChange(
+                                            parseFloat(e.target.value)
+                                          )
+                                        }
                                       />
                                     </FormControl>
                                     <FormMessage />
@@ -543,7 +696,10 @@ export default function AddCoursePage() {
                                 render={({ field }) => (
                                   <FormItem>
                                     <FormLabel>Currency</FormLabel>
-                                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                    <Select
+                                      onValueChange={field.onChange}
+                                      defaultValue={field.value}
+                                    >
                                       <FormControl>
                                         <SelectTrigger>
                                           <SelectValue placeholder="Select currency" />
@@ -551,7 +707,10 @@ export default function AddCoursePage() {
                                       </FormControl>
                                       <SelectContent>
                                         {currencies.map((currency) => (
-                                          <SelectItem key={currency} value={currency}>
+                                          <SelectItem
+                                            key={currency}
+                                            value={currency}
+                                          >
                                             {currency}
                                           </SelectItem>
                                         ))}
@@ -572,10 +731,10 @@ export default function AddCoursePage() {
                               <FormItem>
                                 <FormLabel>Notes (Optional)</FormLabel>
                                 <FormControl>
-                                  <Textarea 
+                                  <Textarea
                                     placeholder="Additional notes for this intake"
                                     rows={3}
-                                    {...field} 
+                                    {...field}
                                   />
                                 </FormControl>
                                 <FormMessage />
@@ -585,12 +744,8 @@ export default function AddCoursePage() {
                         </CardContent>
                       </Card>
                     ))}
-                    
-                    <Button
-                      type="button"
-                      variant="outline"
-                      onClick={addIntake}
-                    >
+
+                    <Button type="button" variant="outline" onClick={addIntake}>
                       <Plus className="h-4 w-4 mr-2" />
                       Add Another Intake
                     </Button>
@@ -605,27 +760,39 @@ export default function AddCoursePage() {
                     <FormItem>
                       <FormLabel>Passkey</FormLabel>
                       <FormControl>
-                        <Input 
-                          type="password" 
-                          placeholder="Enter passkey for authorization" 
-                          {...field} 
+                        <Input
+                          type="password"
+                          placeholder="Enter passkey for authorization"
+                          {...field}
                         />
                       </FormControl>
                       <FormMessage />
+                      <p className="text-xs text-gray-500 mt-1">
+                        Required for authorization to add courses to the
+                        database
+                      </p>
                     </FormItem>
                   )}
                 />
 
                 {/* Submit Button */}
                 <div className="flex justify-end">
-                  <Button type="submit" disabled={isSubmitting} className="min-w-32">
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting || isSuccess}
+                    className={`min-w-32 transition-colors ${
+                      isSuccess ? "bg-green-600 hover:bg-green-700" : ""
+                    }`}
+                  >
                     {isSubmitting ? (
                       <>
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                         Adding...
                       </>
+                    ) : isSuccess ? (
+                      <>✅ Added Successfully</>
                     ) : (
-                      'Add Course'
+                      "Add Course"
                     )}
                   </Button>
                 </div>
@@ -635,5 +802,5 @@ export default function AddCoursePage() {
         </Card>
       </div>
     </div>
-  )
+  );
 }

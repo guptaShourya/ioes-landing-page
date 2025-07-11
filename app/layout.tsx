@@ -7,6 +7,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { PromotionalPopup } from "@/components/promotional-popup";
 import { StructuredData } from "@/components/structured-data";
 import { generateMetadata, generateStructuredData } from "./seo/Seo";
+import { Toaster } from "sonner";
 
 export const metadata = generateMetadata({
   pageKey: "home",
@@ -44,6 +45,12 @@ export default function RootLayout({
           {children}
           <PromotionalPopup />
           <FloatingContactButton />
+          <Toaster
+            position="top-right"
+            richColors
+            expand={false}
+            duration={4000}
+          />
         </ThemeProvider>
       </body>
     </html>
