@@ -33,6 +33,12 @@ import { toast } from "sonner";
 import { Plus, Trash2, Loader2, CheckCircle } from "lucide-react";
 
 // Schema for form validation
+const englishTestSchema = z.object({
+  courseLevel: z.string().min(1, "Course level is required"),
+  name: z.string().min(1, "Test name is required"),
+  minScore: z.number().min(0, "Minimum score must be at least 0"),
+});
+
 const courseIntakeSchema = z.object({
   intakeYear: z.number().min(2024).max(2030),
   intakeMonth: z.string().min(1, "Intake month is required"),
@@ -61,6 +67,7 @@ const courseSchema = z.object({
   courseIntakes: z
     .array(courseIntakeSchema)
     .min(1, "At least one intake is required"),
+  englishTests: z.array(englishTestSchema).optional(),
   description: z.string().optional(),
   passkey: z.string().min(1, "Passkey is required"),
 });
@@ -98,6 +105,25 @@ const courseLevels = [
   "PhD",
 ];
 
+const englishTestNames = [
+  "IELTS_ACADEMIC",
+  "IELTS_GENERAL",
+  "TOEFL_IBT",
+  "TOEFL_PBT",
+  "PTE_ACADEMIC",
+  "DUOLINGO",
+  "CAMBRIDGE_ENGLISH",
+  "OET",
+];
+
+const englishTestCourseLevels = [
+  "Undergraduate",
+  "Postgraduate",
+  "Foundation",
+  "Diploma",
+  "All Levels",
+];
+
 const countries = [
   "United States",
   "United Kingdom",
@@ -115,6 +141,13 @@ export default function AddCoursePage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [subjects, setSubjects] = useState<string[]>([""]);
+  const [englishTests, setEnglishTests] = useState([
+    {
+      courseLevel: "",
+      name: "",
+      minScore: 0,
+    },
+  ]);
   const [intakes, setIntakes] = useState([
     {
       intakeYear: new Date().getFullYear(),
@@ -155,6 +188,13 @@ export default function AddCoursePage() {
           notes: "",
         },
       ],
+      englishTests: [
+        {
+          courseLevel: "",
+          name: "",
+          minScore: 0,
+        },
+      ],
       description: "",
       passkey: "",
     },
@@ -169,6 +209,23 @@ export default function AddCoursePage() {
       const newSubjects = subjects.filter((_, i) => i !== index);
       setSubjects(newSubjects);
       form.setValue("subjects", newSubjects);
+    }
+  };
+
+  const addEnglishTest = () => {
+    const newTest = {
+      courseLevel: "",
+      name: "",
+      minScore: 0,
+    };
+    setEnglishTests([...englishTests, newTest]);
+  };
+
+  const removeEnglishTest = (index: number) => {
+    if (englishTests.length > 1) {
+      const newTests = englishTests.filter((_, i) => i !== index);
+      setEnglishTests(newTests);
+      form.setValue("englishTests", newTests);
     }
   };
 
@@ -252,11 +309,25 @@ export default function AddCoursePage() {
               notes: "",
             },
           ],
+          englishTests: [
+            {
+              courseLevel: "",
+              name: "",
+              minScore: 0,
+            },
+          ],
           description: "",
           passkey: "",
         });
 
         setSubjects([""]);
+        setEnglishTests([
+          {
+            courseLevel: "",
+            name: "",
+            minScore: 0,
+          },
+        ]);
         setIntakes([
           {
             intakeYear: new Date().getFullYear(),
@@ -461,6 +532,125 @@ export default function AddCoursePage() {
                     >
                       <Plus className="h-4 w-4 mr-2" />
                       Add Subject
+                    </Button>
+                  </div>
+                </div>
+
+                {/* English Tests */}
+                <div>
+                  <FormLabel>English Tests</FormLabel>
+                  <div className="space-y-4 mt-2">
+                    {englishTests.map((_, index) => (
+                      <Card key={index} className="p-4">
+                        <div className="flex justify-between items-center mb-4">
+                          <h4 className="text-sm font-medium">
+                            English Test {index + 1}
+                          </h4>
+                          {englishTests.length > 1 && (
+                            <Button
+                              type="button"
+                              variant="outline"
+                              size="sm"
+                              onClick={() => removeEnglishTest(index)}
+                            >
+                              <Trash2 className="h-4 w-4 mr-2" />
+                              Remove
+                            </Button>
+                          )}
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                          <FormField
+                            control={form.control}
+                            name={`englishTests.${index}.courseLevel`}
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Course Level</FormLabel>
+                                <Select
+                                  onValueChange={field.onChange}
+                                  defaultValue={field.value}
+                                >
+                                  <FormControl>
+                                    <SelectTrigger>
+                                      <SelectValue placeholder="Select level" />
+                                    </SelectTrigger>
+                                  </FormControl>
+                                  <SelectContent>
+                                    {englishTestCourseLevels.map((level) => (
+                                      <SelectItem key={level} value={level}>
+                                        {level}
+                                      </SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+
+                          <FormField
+                            control={form.control}
+                            name={`englishTests.${index}.name`}
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Test Name</FormLabel>
+                                <Select
+                                  onValueChange={field.onChange}
+                                  defaultValue={field.value}
+                                >
+                                  <FormControl>
+                                    <SelectTrigger>
+                                      <SelectValue placeholder="Select test" />
+                                    </SelectTrigger>
+                                  </FormControl>
+                                  <SelectContent>
+                                    {englishTestNames.map((testName) => (
+                                      <SelectItem
+                                        key={testName}
+                                        value={testName}
+                                      >
+                                        {testName.replace(/_/g, " ")}
+                                      </SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+
+                          <FormField
+                            control={form.control}
+                            name={`englishTests.${index}.minScore`}
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Minimum Score</FormLabel>
+                                <FormControl>
+                                  <Input
+                                    type="number"
+                                    min="0"
+                                    step="0.5"
+                                    placeholder="Min score"
+                                    {...field}
+                                    onChange={(e) =>
+                                      field.onChange(parseFloat(e.target.value))
+                                    }
+                                  />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        </div>
+                      </Card>
+                    ))}
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={addEnglishTest}
+                    >
+                      <Plus className="h-4 w-4 mr-2" />
+                      Add English Test
                     </Button>
                   </div>
                 </div>
