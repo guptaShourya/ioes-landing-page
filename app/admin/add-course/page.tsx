@@ -141,13 +141,9 @@ export default function AddCoursePage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [subjects, setSubjects] = useState<string[]>([""]);
-  const [englishTests, setEnglishTests] = useState([
-    {
-      courseLevel: "",
-      name: "",
-      minScore: 0,
-    },
-  ]);
+  const [englishTests, setEnglishTests] = useState<
+    { courseLevel: string; name: string; minScore: number }[]
+  >([]);
   const [intakes, setIntakes] = useState([
     {
       intakeYear: new Date().getFullYear(),
@@ -188,20 +184,16 @@ export default function AddCoursePage() {
           notes: "",
         },
       ],
-      englishTests: [
-        {
-          courseLevel: "",
-          name: "",
-          minScore: 0,
-        },
-      ],
+      englishTests: [],
       description: "",
       passkey: "",
     },
   });
 
   const addSubject = () => {
-    setSubjects([...subjects, ""]);
+    const newSubjects = [...subjects, ""];
+    setSubjects(newSubjects);
+    form.setValue("subjects", newSubjects);
   };
 
   const removeSubject = (index: number) => {
@@ -218,15 +210,15 @@ export default function AddCoursePage() {
       name: "",
       minScore: 0,
     };
-    setEnglishTests([...englishTests, newTest]);
+    const newTests = [...englishTests, newTest];
+    setEnglishTests(newTests);
+    form.setValue("englishTests", newTests);
   };
 
   const removeEnglishTest = (index: number) => {
-    if (englishTests.length > 1) {
-      const newTests = englishTests.filter((_, i) => i !== index);
-      setEnglishTests(newTests);
-      form.setValue("englishTests", newTests);
-    }
+    const newTests = englishTests.filter((_, i) => i !== index);
+    setEnglishTests(newTests);
+    form.setValue("englishTests", newTests);
   };
 
   const addIntake = () => {
@@ -239,7 +231,9 @@ export default function AddCoursePage() {
       fees: { amount: 0, currency: "" },
       notes: "",
     };
-    setIntakes([...intakes, newIntake]);
+    const newIntakes = [...intakes, newIntake];
+    setIntakes(newIntakes);
+    form.setValue("courseIntakes", newIntakes);
   };
 
   const removeIntake = (index: number) => {
@@ -283,7 +277,7 @@ export default function AddCoursePage() {
         setTimeout(() => setIsSuccess(false), 3000);
 
         // Reset form and state
-        form.reset({
+        const resetFormData = {
           courseName: "",
           courseLevel: "",
           institutionName: "",
@@ -309,25 +303,16 @@ export default function AddCoursePage() {
               notes: "",
             },
           ],
-          englishTests: [
-            {
-              courseLevel: "",
-              name: "",
-              minScore: 0,
-            },
-          ],
+          englishTests: [],
           description: "",
           passkey: "",
-        });
+        };
 
+        form.reset(resetFormData);
+
+        // Reset local state to match form reset
         setSubjects([""]);
-        setEnglishTests([
-          {
-            courseLevel: "",
-            name: "",
-            minScore: 0,
-          },
-        ]);
+        setEnglishTests([]);
         setIntakes([
           {
             intakeYear: new Date().getFullYear(),
@@ -428,7 +413,7 @@ export default function AddCoursePage() {
                         <FormLabel>Course Level</FormLabel>
                         <Select
                           onValueChange={field.onChange}
-                          defaultValue={field.value}
+                          value={field.value}
                         >
                           <FormControl>
                             <SelectTrigger>
@@ -473,7 +458,7 @@ export default function AddCoursePage() {
                         <FormLabel>Country</FormLabel>
                         <Select
                           onValueChange={field.onChange}
-                          defaultValue={field.value}
+                          value={field.value}
                         >
                           <FormControl>
                             <SelectTrigger>
@@ -538,15 +523,21 @@ export default function AddCoursePage() {
 
                 {/* English Tests */}
                 <div>
-                  <FormLabel>English Tests</FormLabel>
+                  <FormLabel>English Tests (Optional)</FormLabel>
                   <div className="space-y-4 mt-2">
-                    {englishTests.map((_, index) => (
-                      <Card key={index} className="p-4">
-                        <div className="flex justify-between items-center mb-4">
-                          <h4 className="text-sm font-medium">
-                            English Test {index + 1}
-                          </h4>
-                          {englishTests.length > 1 && (
+                    {englishTests.length === 0 ? (
+                      <div className="text-center py-8 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
+                        <p className="text-gray-600 text-sm">
+                          No English tests added yet. This section is optional.
+                        </p>
+                      </div>
+                    ) : (
+                      englishTests.map((_, index) => (
+                        <Card key={index} className="p-4">
+                          <div className="flex justify-between items-center mb-4">
+                            <h4 className="text-sm font-medium">
+                              English Test {index + 1}
+                            </h4>
                             <Button
                               type="button"
                               variant="outline"
@@ -556,93 +547,93 @@ export default function AddCoursePage() {
                               <Trash2 className="h-4 w-4 mr-2" />
                               Remove
                             </Button>
-                          )}
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                          <FormField
-                            control={form.control}
-                            name={`englishTests.${index}.courseLevel`}
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel>Course Level</FormLabel>
-                                <Select
-                                  onValueChange={field.onChange}
-                                  defaultValue={field.value}
-                                >
-                                  <FormControl>
-                                    <SelectTrigger>
-                                      <SelectValue placeholder="Select level" />
-                                    </SelectTrigger>
-                                  </FormControl>
-                                  <SelectContent>
-                                    {englishTestCourseLevels.map((level) => (
-                                      <SelectItem key={level} value={level}>
-                                        {level}
-                                      </SelectItem>
-                                    ))}
-                                  </SelectContent>
-                                </Select>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
+                          </div>
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <FormField
+                              control={form.control}
+                              name={`englishTests.${index}.courseLevel`}
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Course Level</FormLabel>
+                                  <Select
+                                    onValueChange={field.onChange}
+                                    value={field.value}
+                                  >
+                                    <FormControl>
+                                      <SelectTrigger>
+                                        <SelectValue placeholder="Select level" />
+                                      </SelectTrigger>
+                                    </FormControl>
+                                    <SelectContent>
+                                      {englishTestCourseLevels.map((level) => (
+                                        <SelectItem key={level} value={level}>
+                                          {level}
+                                        </SelectItem>
+                                      ))}
+                                    </SelectContent>
+                                  </Select>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
 
-                          <FormField
-                            control={form.control}
-                            name={`englishTests.${index}.name`}
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel>Test Name</FormLabel>
-                                <Select
-                                  onValueChange={field.onChange}
-                                  defaultValue={field.value}
-                                >
-                                  <FormControl>
-                                    <SelectTrigger>
-                                      <SelectValue placeholder="Select test" />
-                                    </SelectTrigger>
-                                  </FormControl>
-                                  <SelectContent>
-                                    {englishTestNames.map((testName) => (
-                                      <SelectItem
-                                        key={testName}
-                                        value={testName}
-                                      >
-                                        {testName.replace(/_/g, " ")}
-                                      </SelectItem>
-                                    ))}
-                                  </SelectContent>
-                                </Select>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
+                            <FormField
+                              control={form.control}
+                              name={`englishTests.${index}.name`}
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Test Name</FormLabel>
+                                  <Select
+                                    onValueChange={field.onChange}
+                                    value={field.value}
+                                  >
+                                    <FormControl>
+                                      <SelectTrigger>
+                                        <SelectValue placeholder="Select test" />
+                                      </SelectTrigger>
+                                    </FormControl>
+                                    <SelectContent>
+                                      {englishTestNames.map((testName) => (
+                                        <SelectItem
+                                          key={testName}
+                                          value={testName}
+                                        >
+                                          {testName.replace(/_/g, " ")}
+                                        </SelectItem>
+                                      ))}
+                                    </SelectContent>
+                                  </Select>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
 
-                          <FormField
-                            control={form.control}
-                            name={`englishTests.${index}.minScore`}
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel>Minimum Score</FormLabel>
-                                <FormControl>
-                                  <Input
-                                    type="number"
-                                    min="0"
-                                    step="0.5"
-                                    placeholder="Min score"
-                                    {...field}
-                                    onChange={(e) =>
-                                      field.onChange(parseFloat(e.target.value))
-                                    }
-                                  />
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-                        </div>
-                      </Card>
-                    ))}
+                            <FormField
+                              control={form.control}
+                              name={`englishTests.${index}.minScore`}
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Minimum Score</FormLabel>
+                                  <FormControl>
+                                    <Input
+                                      type="number"
+                                      min="0"
+                                      step="0.5"
+                                      placeholder="Min score"
+                                      {...field}
+                                      onChange={(e) =>
+                                        field.onChange(parseFloat(e.target.value))
+                                      }
+                                    />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                          </div>
+                        </Card>
+                      ))
+                    )}
                     <Button
                       type="button"
                       variant="outline"
@@ -732,7 +723,7 @@ export default function AddCoursePage() {
                                   <FormLabel>Intake Month</FormLabel>
                                   <Select
                                     onValueChange={field.onChange}
-                                    defaultValue={field.value}
+                                    value={field.value}
                                   >
                                     <FormControl>
                                       <SelectTrigger>
@@ -760,7 +751,7 @@ export default function AddCoursePage() {
                                   <FormLabel>Attendance Type</FormLabel>
                                   <Select
                                     onValueChange={field.onChange}
-                                    defaultValue={field.value}
+                                    value={field.value}
                                   >
                                     <FormControl>
                                       <SelectTrigger>
@@ -845,7 +836,7 @@ export default function AddCoursePage() {
                                     <FormLabel>Duration Unit</FormLabel>
                                     <Select
                                       onValueChange={field.onChange}
-                                      defaultValue={field.value}
+                                      value={field.value}
                                     >
                                       <FormControl>
                                         <SelectTrigger>
@@ -906,7 +897,7 @@ export default function AddCoursePage() {
                                     <FormLabel>Currency</FormLabel>
                                     <Select
                                       onValueChange={field.onChange}
-                                      defaultValue={field.value}
+                                      value={field.value}
                                     >
                                       <FormControl>
                                         <SelectTrigger>

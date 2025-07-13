@@ -69,31 +69,55 @@ export default function CoursesPage() {
 
   // Transform API data to match our Course interface
   const transformApiCourse = (apiCourse: any): Course => {
-    const intake = apiCourse.upcomingIntake;
-    const durationValue = intake.duration.value;
-    const durationUnit = intake.duration.unit.toLowerCase();
+    // Handle up to 3 next intakes
+    const upcomingIntakes =
+      apiCourse.upcomingIntakes ||
+      (apiCourse.upcomingIntake ? [apiCourse.upcomingIntake] : []);
+    const intakes = upcomingIntakes
+      .slice(0, 3)
+      .map((intake: any, index: number) => {
+        const durationValue = intake.duration.value;
+        const durationUnit = intake.duration.unit.toLowerCase();
 
-    // Convert duration to a readable format
-    let durationString = "";
-    if (durationUnit === "month") {
-      if (durationValue === 12) {
-        durationString = "1 year";
-      } else if (durationValue === 24) {
-        durationString = "2 years";
-      } else if (durationValue === 36) {
-        durationString = "3 years";
-      } else if (durationValue === 48) {
-        durationString = "4 years";
-      } else if (durationValue === 18) {
-        durationString = "1.5 years";
-      } else {
-        durationString = `${durationValue} months`;
-      }
-    } else {
-      durationString = `${durationValue} ${durationUnit}${
-        durationValue > 1 ? "s" : ""
-      }`;
-    }
+        // Convert duration to a readable format
+        let durationString = "";
+        if (durationUnit === "month") {
+          if (durationValue === 12) {
+            durationString = "1 year";
+          } else if (durationValue === 24) {
+            durationString = "2 years";
+          } else if (durationValue === 36) {
+            durationString = "3 years";
+          } else if (durationValue === 48) {
+            durationString = "4 years";
+          } else if (durationValue === 18) {
+            durationString = "1.5 years";
+          } else {
+            durationString = `${durationValue} months`;
+          }
+        } else {
+          durationString = `${durationValue} ${durationUnit}${
+            durationValue > 1 ? "s" : ""
+          }`;
+        }
+
+        return {
+          id: `${apiCourse.id}-${index + 1}`,
+          campusName: intake.campus?.name || "Main Campus",
+          fees: intake.fees.amount,
+          currency: intake.fees.currency,
+          duration: durationString,
+          startMonth: intake.intakeMonth,
+          startYear: intake.intakeYear,
+          attendanceType: intake.attendanceType || ("Full-time" as const),
+        };
+      });
+
+    // Create nextIntake display string from the first intake
+    const nextIntake =
+      intakes.length > 0
+        ? `${intakes[0].startMonth} ${intakes[0].startYear}`
+        : "TBD";
 
     return {
       id: apiCourse.id,
@@ -108,19 +132,8 @@ export default function CoursesPage() {
         | "Postgraduate"
         | "Diploma"
         | "Certificate",
-      nextIntake: `${intake.intakeMonth} ${intake.intakeYear}`,
-      intakes: [
-        {
-          id: `${apiCourse.id}-1`,
-          campusName: "Main Campus",
-          fees: intake.fees.amount,
-          currency: intake.fees.currency,
-          duration: durationString,
-          startMonth: intake.intakeMonth,
-          startYear: intake.intakeYear,
-          attendanceType: "Full-time" as const,
-        },
-      ],
+      nextIntake,
+      intakes,
       englishRequirements: [],
       description: `A comprehensive ${apiCourse.courseLevel.toLowerCase()} program in ${apiCourse.primarySubject.replace(
         /-/g,
@@ -330,9 +343,13 @@ export default function CoursesPage() {
     return [...courses].sort((a, b) => {
       switch (sortBy) {
         case "fees-low-high":
-          return a.intakes[0].fees - b.intakes[0].fees;
+          const aFees = a.intakes.length > 0 ? a.intakes[0].fees : 0;
+          const bFees = b.intakes.length > 0 ? b.intakes[0].fees : 0;
+          return aFees - bFees;
         case "fees-high-low":
-          return b.intakes[0].fees - a.intakes[0].fees;
+          const aFeesHigh = a.intakes.length > 0 ? a.intakes[0].fees : 0;
+          const bFeesHigh = b.intakes.length > 0 ? b.intakes[0].fees : 0;
+          return bFeesHigh - aFeesHigh;
         case "name":
         default:
           return a.courseName.localeCompare(b.courseName);
@@ -341,6 +358,7 @@ export default function CoursesPage() {
   }, [courses, sortBy]);
 
   const formatFee = (course: Course) => {
+    if (course.intakes.length === 0) return "TBD";
     const intake = course.intakes[0];
     return `${intake.currency} ${intake.fees.toLocaleString()}`;
   };
@@ -375,16 +393,33 @@ export default function CoursesPage() {
             <GraduationCap className="h-4 w-4 mr-2 text-gray-400" />
             <span>{course.subject}</span>
           </div>
-          <div className="flex items-center justify-between">
+
+          {/* Next Intakes - up to 3 */}
+          <div className="space-y-2">
             <div className="flex items-center text-sm text-gray-600">
-              <Calendar className="h-4 w-4 mr-2 text-gray-400" />
-              <span>Next: {course.nextIntake}</span>
+              <Calendar className="h-4 w-4 mr-2 text-gray-400 flex-shrink-0" />
+              <span className="font-medium">Next Intakes:</span>
             </div>
-            <div className="flex items-center text-sm font-medium text-gray-900">
-              <DollarSign className="h-4 w-4 mr-1 text-gray-400" />
-              <span>{formatFee(course)}</span>
+            <div className="ml-6 space-y-1">
+              {course.intakes.slice(0, 3).map((intake, index) => (
+                <div
+                  key={intake.id}
+                  className="flex items-center justify-between text-sm"
+                >
+                  <span className="text-gray-700">
+                    {intake.startMonth} {intake.startYear}
+                  </span>
+                  <span className="text-gray-900 font-medium">
+                    {intake.currency} {intake.fees.toLocaleString()}
+                  </span>
+                </div>
+              ))}
+              {course.intakes.length === 0 && (
+                <span className="text-gray-500 text-sm">TBD</span>
+              )}
             </div>
           </div>
+
           <Link
             href={`/courses/${course.slug}`}
             className="block"
@@ -425,9 +460,29 @@ export default function CoursesPage() {
           {course.courseLevel}
         </Badge>
       </td>
-      <td className="py-4 px-4 text-sm text-gray-600">{course.nextIntake}</td>
-      <td className="py-4 px-4 text-sm font-medium text-gray-900">
-        {formatFee(course)}
+      <td className="py-4 px-4">
+        <div className="space-y-1">
+          {course.intakes.slice(0, 3).map((intake, index) => (
+            <div key={intake.id} className="text-sm text-gray-600">
+              {intake.startMonth} {intake.startYear}
+            </div>
+          ))}
+          {course.intakes.length === 0 && (
+            <span className="text-sm text-gray-500">TBD</span>
+          )}
+        </div>
+      </td>
+      <td className="py-4 px-4">
+        <div className="space-y-1">
+          {course.intakes.slice(0, 3).map((intake, index) => (
+            <div key={intake.id} className="text-sm font-medium text-gray-900">
+              {intake.currency} {intake.fees.toLocaleString()}
+            </div>
+          ))}
+          {course.intakes.length === 0 && (
+            <span className="text-sm text-gray-500">-</span>
+          )}
+        </div>
       </td>
       <td className="py-4 px-4">
         <Link
@@ -724,10 +779,10 @@ export default function CoursesPage() {
                         Level
                       </th>
                       <th className="py-3 px-4 text-left text-sm font-medium text-gray-900">
-                        Next Intake
+                        Next Intakes
                       </th>
                       <th className="py-3 px-4 text-left text-sm font-medium text-gray-900">
-                        Fee
+                        Fees
                       </th>
                       <th className="py-3 px-4 text-left text-sm font-medium text-gray-900">
                         Action
