@@ -41,7 +41,7 @@ const courseIntakeSchema = z.object({
   }),
   attendanceType: z.string().min(1, "Attendance type is required"),
   duration: z.object({
-    value: z.number().min(1, "Duration value must be at least 1"),
+    value: z.number().min(0.1, "Duration value must be at least 0.1"),
     unit: z.string().min(1, "Duration unit is required"),
   }),
   fees: z.object({
@@ -88,6 +88,16 @@ const durationUnits = ["weeks", "months", "years"];
 
 const currencies = ["USD", "EUR", "GBP", "CAD", "AUD", "NZD", "INR"];
 
+const courseLevels = [
+  "Foundation",
+  "Diploma",
+  "Bachelors",
+  "Graduate Diploma",
+  "Master",
+  "Research",
+  "PhD",
+];
+
 const countries = [
   "United States",
   "United Kingdom",
@@ -111,7 +121,7 @@ export default function AddCoursePage() {
       intakeMonth: "",
       campus: { name: "" },
       attendanceType: "",
-      duration: { value: 1, unit: "years" },
+      duration: { value: 1.0, unit: "years" },
       fees: { amount: 0, currency: "" },
       notes: "",
     },
@@ -135,7 +145,7 @@ export default function AddCoursePage() {
           },
           attendanceType: "",
           duration: {
-            value: 1,
+            value: 1.0,
             unit: "years",
           },
           fees: {
@@ -168,7 +178,7 @@ export default function AddCoursePage() {
       intakeMonth: "",
       campus: { name: "" },
       attendanceType: "",
-      duration: { value: 1, unit: "years" },
+      duration: { value: 1.0, unit: "years" },
       fees: { amount: 0, currency: "" },
       notes: "",
     };
@@ -232,7 +242,7 @@ export default function AddCoursePage() {
               },
               attendanceType: "",
               duration: {
-                value: 1,
+                value: 1.0,
                 unit: "years",
               },
               fees: {
@@ -253,7 +263,7 @@ export default function AddCoursePage() {
             intakeMonth: "",
             campus: { name: "" },
             attendanceType: "",
-            duration: { value: 1, unit: "years" },
+            duration: { value: 1.0, unit: "years" },
             fees: { amount: 0, currency: "" },
             notes: "",
           },
@@ -345,17 +355,24 @@ export default function AddCoursePage() {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Course Level</FormLabel>
-                        <FormControl>
-                          <Input
-                            placeholder="Enter course level (e.g., Bachelor, Master, PhD)"
-                            {...field}
-                          />
-                        </FormControl>
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select course level" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            {courseLevels.map((level) => (
+                              <SelectItem key={level} value={level}>
+                                {level}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
                         <FormMessage />
-                        <p className="text-xs text-gray-500 mt-1">
-                          Examples: Certificate, Diploma, Bachelor, Master, PhD,
-                          Professional
-                        </p>
                       </FormItem>
                     )}
                   />
@@ -605,6 +622,7 @@ export default function AddCoursePage() {
                               Duration
                             </FormLabel>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                              {" "}
                               <FormField
                                 control={form.control}
                                 name={`courseIntakes.${index}.duration.value`}
@@ -614,12 +632,13 @@ export default function AddCoursePage() {
                                     <FormControl>
                                       <Input
                                         type="number"
-                                        min="1"
-                                        placeholder="Duration value"
+                                        min="0.1"
+                                        step="0.1"
+                                        placeholder="Duration value (e.g., 1.5)"
                                         {...field}
                                         onChange={(e) =>
                                           field.onChange(
-                                            parseInt(e.target.value)
+                                            parseFloat(e.target.value)
                                           )
                                         }
                                       />
@@ -628,7 +647,6 @@ export default function AddCoursePage() {
                                   </FormItem>
                                 )}
                               />
-
                               <FormField
                                 control={form.control}
                                 name={`courseIntakes.${index}.duration.unit`}
