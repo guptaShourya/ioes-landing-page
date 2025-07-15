@@ -105,25 +105,6 @@ const courseLevels = [
   "PhD",
 ];
 
-const englishTestNames = [
-  "IELTS_ACADEMIC",
-  "IELTS_GENERAL",
-  "TOEFL_IBT",
-  "TOEFL_PBT",
-  "PTE_ACADEMIC",
-  "DUOLINGO",
-  "CAMBRIDGE_ENGLISH",
-  "OET",
-];
-
-const englishTestCourseLevels = [
-  "Undergraduate",
-  "Postgraduate",
-  "Foundation",
-  "Diploma",
-  "All Levels",
-];
-
 const countries = [
   "United States",
   "United Kingdom",
@@ -191,55 +172,82 @@ export default function AddCoursePage() {
   });
 
   const addSubject = () => {
-    const newSubjects = [...subjects, ""];
+    const currentSubjects = form.getValues("subjects");
+    const newSubjects = [...currentSubjects, ""];
     setSubjects(newSubjects);
     form.setValue("subjects", newSubjects);
   };
 
   const removeSubject = (index: number) => {
     if (subjects.length > 1) {
-      const newSubjects = subjects.filter((_, i) => i !== index);
+      const currentSubjects = form.getValues("subjects");
+      const newSubjects = currentSubjects.filter((_, i) => i !== index);
       setSubjects(newSubjects);
       form.setValue("subjects", newSubjects);
     }
   };
 
   const addEnglishTest = () => {
+    const currentTests = form.getValues("englishTests") || [];
+    const currentCourseLevel = form.getValues("courseLevel");
     const newTest = {
-      courseLevel: "",
+      courseLevel: currentCourseLevel || "",
       name: "",
       minScore: 0,
     };
-    const newTests = [...englishTests, newTest];
+    const newTests = [...currentTests, newTest];
     setEnglishTests(newTests);
     form.setValue("englishTests", newTests);
   };
 
   const removeEnglishTest = (index: number) => {
-    const newTests = englishTests.filter((_, i) => i !== index);
+    const currentTests = form.getValues("englishTests") || [];
+    const newTests = currentTests.filter((_, i) => i !== index);
     setEnglishTests(newTests);
     form.setValue("englishTests", newTests);
   };
 
+  // Update all English tests when course level changes
+  const updateEnglishTestsWithCourseLevel = (newCourseLevel: string) => {
+    const currentTests = form.getValues("englishTests") || [];
+    const updatedTests = currentTests.map((test) => ({
+      ...test,
+      courseLevel: newCourseLevel,
+    }));
+    setEnglishTests(updatedTests);
+    form.setValue("englishTests", updatedTests);
+  };
+
   const addIntake = () => {
+    const currentIntakes = form.getValues("courseIntakes");
+    const lastIntake = currentIntakes[currentIntakes.length - 1];
+
+    // Carry over all values except intake year and month
     const newIntake = {
       intakeYear: new Date().getFullYear(),
       intakeMonth: "",
-      campus: { name: "" },
-      attendanceType: "",
-      duration: { value: 1.0, unit: "years" },
-      fees: { amount: 0, currency: "" },
-      notes: "",
+      campus: { name: lastIntake?.campus?.name || "" },
+      attendanceType: lastIntake?.attendanceType || "",
+      duration: {
+        value: lastIntake?.duration?.value || 1.0,
+        unit: lastIntake?.duration?.unit || "years",
+      },
+      fees: {
+        amount: lastIntake?.fees?.amount || 0,
+        currency: lastIntake?.fees?.currency || "",
+      },
+      notes: lastIntake?.notes || "",
     };
-    const newIntakes = [...intakes, newIntake];
-    setIntakes(newIntakes);
+    const newIntakes = [...currentIntakes, newIntake];
+    setIntakes(newIntakes as any);
     form.setValue("courseIntakes", newIntakes);
   };
 
   const removeIntake = (index: number) => {
     if (intakes.length > 1) {
-      const newIntakes = intakes.filter((_, i) => i !== index);
-      setIntakes(newIntakes);
+      const currentIntakes = form.getValues("courseIntakes");
+      const newIntakes = currentIntakes.filter((_, i) => i !== index);
+      setIntakes(newIntakes as any);
       form.setValue("courseIntakes", newIntakes);
     }
   };
@@ -412,7 +420,10 @@ export default function AddCoursePage() {
                       <FormItem>
                         <FormLabel>Course Level</FormLabel>
                         <Select
-                          onValueChange={field.onChange}
+                          onValueChange={(value) => {
+                            field.onChange(value);
+                            updateEnglishTestsWithCourseLevel(value);
+                          }}
                           value={field.value}
                         >
                           <FormControl>
@@ -548,61 +559,19 @@ export default function AddCoursePage() {
                               Remove
                             </Button>
                           </div>
-                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <FormField
-                              control={form.control}
-                              name={`englishTests.${index}.courseLevel`}
-                              render={({ field }) => (
-                                <FormItem>
-                                  <FormLabel>Course Level</FormLabel>
-                                  <Select
-                                    onValueChange={field.onChange}
-                                    value={field.value}
-                                  >
-                                    <FormControl>
-                                      <SelectTrigger>
-                                        <SelectValue placeholder="Select level" />
-                                      </SelectTrigger>
-                                    </FormControl>
-                                    <SelectContent>
-                                      {englishTestCourseLevels.map((level) => (
-                                        <SelectItem key={level} value={level}>
-                                          {level}
-                                        </SelectItem>
-                                      ))}
-                                    </SelectContent>
-                                  </Select>
-                                  <FormMessage />
-                                </FormItem>
-                              )}
-                            />
-
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <FormField
                               control={form.control}
                               name={`englishTests.${index}.name`}
                               render={({ field }) => (
                                 <FormItem>
                                   <FormLabel>Test Name</FormLabel>
-                                  <Select
-                                    onValueChange={field.onChange}
-                                    value={field.value}
-                                  >
-                                    <FormControl>
-                                      <SelectTrigger>
-                                        <SelectValue placeholder="Select test" />
-                                      </SelectTrigger>
-                                    </FormControl>
-                                    <SelectContent>
-                                      {englishTestNames.map((testName) => (
-                                        <SelectItem
-                                          key={testName}
-                                          value={testName}
-                                        >
-                                          {testName.replace(/_/g, " ")}
-                                        </SelectItem>
-                                      ))}
-                                    </SelectContent>
-                                  </Select>
+                                  <FormControl>
+                                    <Input
+                                      placeholder="Enter test name (e.g., IELTS Academic, TOEFL IBT)"
+                                      {...field}
+                                    />
+                                  </FormControl>
                                   <FormMessage />
                                 </FormItem>
                               )}
@@ -622,7 +591,9 @@ export default function AddCoursePage() {
                                       placeholder="Min score"
                                       {...field}
                                       onChange={(e) =>
-                                        field.onChange(parseFloat(e.target.value))
+                                        field.onChange(
+                                          parseFloat(e.target.value)
+                                        )
                                       }
                                     />
                                   </FormControl>
