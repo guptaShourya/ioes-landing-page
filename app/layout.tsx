@@ -3,7 +3,7 @@ import "@/app/globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { satoshi, nibpro } from "./fonts";
 import { FloatingContactButton } from "@/components/floating-contact-button";
-import { Analytics } from "@vercel/analytics/next";
+import { ConditionalAnalytics } from "@/components/conditional-analytics";
 import { PromotionalPopup } from "@/components/promotional-popup";
 import { StructuredData } from "@/components/structured-data";
 import { generateMetadata, generateStructuredData } from "./seo/Seo";
@@ -32,7 +32,6 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="msapplication-navbutton-color" content="#f0ebe6" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <Analytics />
         <StructuredData data={organizationData} />
       </head>
       <body>
@@ -45,6 +44,7 @@ export default function RootLayout({
           {children}
           <PromotionalPopup />
           <FloatingContactButton />
+          <ConditionalAnalytics />
           <Toaster
             position="top-right"
             richColors
