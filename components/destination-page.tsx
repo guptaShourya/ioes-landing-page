@@ -121,7 +121,8 @@ export function DestinationPage({ data }: DestinationPageProps) {
                   Study in
                 </span>
               </div>
-              <h1 className="text-5xl font-light italic font-nibpro tracking-tighter text-white sm:text-7xl font-light">
+              <h1 className="text-5xl font-light italic font-nibpro tracking-tighter text-white sm:text-7xl">
+                <span className="sr-only">Study in </span>
                 {data.name}
               </h1>
             </div>

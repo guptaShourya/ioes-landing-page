@@ -96,7 +96,8 @@ export function ScholarshipCountryPage({ data }: ScholarshipCountryPageProps) {
               />
               <span className="text-normal font-medium">Scholarships in</span>
             </div>
-            <h1 className="text-5xl font-light italic font-nibpro tracking-tighter text-white sm:text-7xl font-light">
+            <h1 className="text-5xl font-light italic font-nibpro tracking-tighter text-white sm:text-7xl">
+              <span className="sr-only">Scholarships in </span>
               {data.country}
             </h1>
             <p className="mt-4 max-w-[800px] text-lg text-white/90 md:text-xl">
