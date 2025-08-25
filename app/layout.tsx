@@ -6,13 +6,15 @@ import { FloatingContactButton } from "@/components/floating-contact-button";
 import { ConditionalAnalytics } from "@/components/conditional-analytics";
 import { PromotionalPopup } from "@/components/promotional-popup";
 import { StructuredData } from "@/components/structured-data";
-import { generateMetadata, generateStructuredData } from "./seo/Seo";
+import { generateMetadataWithAzure, generateStructuredData } from "./seo/Seo";
 import { Toaster } from "sonner";
 
-export const metadata = generateMetadata({
-  pageKey: "home",
-  pathname: "/",
-});
+export async function generateMetadata() {
+  return await generateMetadataWithAzure({
+    pageKey: "home",
+    pathname: "/",
+  });
+}
 
 export default function RootLayout({
   children,

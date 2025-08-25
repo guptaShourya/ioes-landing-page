@@ -1,14 +1,24 @@
-import Link from 'next/link'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Plus, BookOpen, Users, Settings } from 'lucide-react'
+import Link from "next/link";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Plus, BookOpen, Users, Settings, Search } from "lucide-react";
 
 export default function AdminDashboard() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Admin Dashboard</h1>
-        <p className="text-gray-600">Manage courses, content, and system settings</p>
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">
+          Admin Dashboard
+        </h1>
+        <p className="text-gray-600">
+          Manage courses, content, and system settings
+        </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -20,14 +30,13 @@ export default function AdminDashboard() {
               <CardTitle>Add Course</CardTitle>
             </div>
             <CardDescription>
-              Add new courses to the database with detailed information including intakes, fees, and campus details.
+              Add new courses to the database with detailed information
+              including intakes, fees, and campus details.
             </CardDescription>
           </CardHeader>
           <CardContent>
             <Link href="/admin/add-course">
-              <Button className="w-full">
-                Add New Course
-              </Button>
+              <Button className="w-full">Add New Course</Button>
             </Link>
           </CardContent>
         </Card>
@@ -85,11 +94,32 @@ export default function AdminDashboard() {
             </Button>
           </CardContent>
         </Card>
+
+        {/* SEO Management Card */}
+        <Card className="hover:shadow-lg transition-shadow">
+          <CardHeader>
+            <div className="flex items-center space-x-2">
+              <Search className="h-6 w-6 text-blue-500" />
+              <CardTitle>SEO Management</CardTitle>
+            </div>
+            <CardDescription>
+              Manage SEO meta data, titles, descriptions, and keywords for all
+              pages.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Link href="/admin/seo">
+              <Button className="w-full">Manage SEO</Button>
+            </Link>
+          </CardContent>
+        </Card>
       </div>
 
       {/* Quick Stats */}
       <div className="mt-12">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6">Quick Stats</h2>
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6">
+          Quick Stats
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <Card>
             <CardContent className="p-6">
@@ -118,5 +148,5 @@ export default function AdminDashboard() {
         </div>
       </div>
     </div>
-  )
+  );
 }

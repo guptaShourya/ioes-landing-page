@@ -1,41 +1,101 @@
 import { Metadata } from "next";
 import seoConfig, { SEOConfig } from "./seo.config";
+import { getSEODataWithFallbacks, SEOData } from "@/lib/azure-seo";
 
 interface GenerateMetadataProps {
   pageKey?: string;
   customSEO?: Partial<SEOConfig>;
   pathname?: string;
+  pageSlug?: string; // For Azure integration
 }
 
+/**
+ * Generate metadata synchronously (for static usage like layout.tsx)
+ * Falls back to defaults when Azure data is not available
+ */
 export function generateMetadata({
   pageKey,
   customSEO = {},
   pathname = "",
+  pageSlug,
 }: GenerateMetadataProps = {}): Metadata {
-  // Get page-specific config or use defaults
-  const pageConfig =
-    pageKey && seoConfig.pages[pageKey as keyof typeof seoConfig.pages]
-      ? seoConfig.pages[pageKey as keyof typeof seoConfig.pages]
-      : ({} as any);
-
-  // Merge configurations with priority: customSEO > pageConfig > defaults
+  // Merge configurations with priority: customSEO > defaults
   const config = {
-    title: customSEO.title || pageConfig?.title || seoConfig.defaultTitle,
-    description:
-      customSEO.description ||
-      pageConfig?.description ||
-      seoConfig.defaultDescription,
-    keywords:
-      customSEO.keywords || pageConfig?.keywords || seoConfig.defaultKeywords,
-    ogImage:
-      customSEO.ogImage || pageConfig?.ogImage || seoConfig.defaultOgImage,
+    title: customSEO.title || seoConfig.defaultTitle,
+    description: customSEO.description || seoConfig.defaultDescription,
+    keywords: customSEO.keywords || seoConfig.defaultKeywords,
+    ogImage: customSEO.ogImage || seoConfig.defaultOgImage,
     ogType: customSEO.ogType || seoConfig.defaultOgType,
     canonical: customSEO.canonical || `${seoConfig.siteUrl}${pathname}`,
     noindex: customSEO.noindex || false,
     nofollow: customSEO.nofollow || false,
   };
 
+  const metadata: Metadata = generateMetadataFromConfig(config);
+  return metadata;
+}
+
+/**
+ * Generate metadata with Azure integration (async)
+ * Use this for pages that can use async metadata generation
+ */
+export async function generateMetadataWithAzure({
+  pageKey,
+  customSEO = {},
+  pathname = "",
+  pageSlug,
+}: GenerateMetadataProps = {}): Promise<Metadata> {
+  let azureSEO: Partial<SEOConfig> = {};
+
+  // Try to get Azure SEO data using pageSlug or pageKey
+  const slugToUse = pageSlug || pageKey || pathname.replace('/', '') || 'home';
+  
+  try {
+    const azureData = await getSEODataWithFallbacks(slugToUse);
+    if (azureData) {
+      azureSEO = convertAzureDataToSEOConfig(azureData);
+    }
+  } catch (error) {
+    console.warn('Failed to fetch Azure SEO data, using fallbacks:', error);
+  }
+
+  // Merge configurations with priority: customSEO > azureSEO > defaults
+  const config = {
+    title: customSEO.title || azureSEO.title || seoConfig.defaultTitle,
+    description: customSEO.description || azureSEO.description || seoConfig.defaultDescription,
+    keywords: customSEO.keywords || azureSEO.keywords || seoConfig.defaultKeywords,
+    ogImage: customSEO.ogImage || azureSEO.ogImage || seoConfig.defaultOgImage,
+    ogType: customSEO.ogType || azureSEO.ogType || seoConfig.defaultOgType,
+    canonical: customSEO.canonical || azureSEO.canonical || `${seoConfig.siteUrl}${pathname}`,
+    noindex: customSEO.noindex || azureSEO.noindex || false,
+    nofollow: customSEO.nofollow || azureSEO.nofollow || false,
+  };
+
+  const metadata: Metadata = generateMetadataFromConfig(config);
+  return metadata;
+}
+
+/**
+ * Convert Azure SEO data to SEOConfig format
+ */
+function convertAzureDataToSEOConfig(azureData: SEOData): Partial<SEOConfig> {
+  return {
+    title: azureData.title,
+    description: azureData.description,
+    keywords: azureData.keywords,
+    ogImage: azureData.ogImage,
+    canonical: azureData.canonical,
+    noindex: azureData.noindex,
+    nofollow: azureData.nofollow,
+  };
+}
+
+/**
+ * Generate metadata object from config
+ */
+function generateMetadataFromConfig(config: any): Metadata {
   const metadata: Metadata = {
+    metadataBase: new URL(seoConfig.siteUrl),
     title: config.title,
     description: config.description,
     keywords: config.keywords,

@@ -1,10 +1,12 @@
-import { generateMetadata, generateStructuredData } from "../../seo/Seo";
+import { generateMetadataWithAzure, generateStructuredData } from "../../seo/Seo";
 import { StructuredData } from "@/components/structured-data";
 
-export const metadata = generateMetadata({
-  pageKey: "destinations-usa",
-  pathname: "/destinations/usa",
-});
+export async function generateMetadata() {
+  return await generateMetadataWithAzure({
+    pageKey: "destinations-usa",
+    pathname: "/destinations/usa",
+  });
+}
 
 export default function USADestinationLayout({
   children,
