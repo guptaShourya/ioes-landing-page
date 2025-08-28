@@ -16,7 +16,17 @@ export function useSEO() {
     }
 
     if (segments[0] === "scholarships" && segments[1]) {
-      return `scholarships-${segments[1]}`;
+      return `scholarships/${segments[1]}`;
+    }
+
+    // Handle study-in-country routes  
+    if (segments[0].startsWith("study-in-") && segments[1]) {
+      return `${segments[0]}/${segments[1]}`;
+    }
+
+    // Handle main study-in-country pages
+    if (segments[0].startsWith("study-in-")) {
+      return segments[0];
     }
 
     if (segments[0] === "destinations" && segments[1]) {

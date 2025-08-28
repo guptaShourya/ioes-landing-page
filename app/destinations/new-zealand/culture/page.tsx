@@ -1,4 +1,13 @@
 import { CountrySpecificPage } from "@/components/country-specific-page";
+import { generateMetadataWithAzure } from "@/app/seo/Seo";
+
+export async function generateMetadata() {
+  return await generateMetadataWithAzure({
+    pageSlug: "study-in-new-zealand/culture",
+    pageKey: "destinations-new-zealand-culture", 
+    pathname: "/study-in-new-zealand/culture",
+  });
+}
 
 const newZealandCultureContent = {
   title: "Experience New Zealand's Vibrant Culture & Lifestyle",

@@ -342,11 +342,52 @@ function getDefaultSEOData(pageSlug: string): SEOData {
 
   // Page-specific defaults based on slug patterns
   if (pageSlug.startsWith("study-in-")) {
-    const country = pageSlug.replace("study-in-", "").replace("-", " ");
-    defaultData.title = `Study in ${
-      country.charAt(0).toUpperCase() + country.slice(1)
-    } - Expert Guidance | IOES`;
-    defaultData.description = `Discover quality education opportunities in ${country}. Expert guidance for admissions, visas, and career prospects.`;
+    const countryPart = pageSlug.replace("study-in-", "");
+    const [country, subpage] = countryPart.split("/");
+    const countryName = country.replace("-", " ").replace(/\b\w/g, l => l.toUpperCase());
+    
+    if (subpage) {
+      // Handle sub-pages like study-in-uk/programs
+      const subpageMap: Record<string, { title: string; description: string; keywords: string[] }> = {
+        programs: {
+          title: `Top Study Programs in ${countryName} | Academic Courses & Degrees | IOES`,
+          description: `Explore prestigious academic programs and university courses in ${countryName}. Find the best degrees, admission requirements, and career prospects for international students.`,
+          keywords: [`study programs ${country}`, `university courses ${country}`, `degrees ${country}`, "academic programs", "international students", "university admission"]
+        },
+        culture: {
+          title: `Life & Culture in ${countryName} | Student Experience Guide | IOES`,
+          description: `Discover student life, culture, traditions, and lifestyle in ${countryName}. Complete guide for international students planning their study abroad journey.`,
+          keywords: [`student life ${country}`, `culture ${country}`, `lifestyle ${country}`, "international students", "study abroad experience", "campus life"]
+        },
+        careers: {
+          title: `Career Opportunities in ${countryName} | Jobs for International Graduates | IOES`,
+          description: `Explore career prospects and job opportunities in ${countryName} for international graduates. Post-study work visas, top industries, and employment guidance.`,
+          keywords: [`careers ${country}`, `jobs ${country}`, `post study work visa ${country}`, "international graduates", "employment opportunities", "work permit"]
+        },
+        cost: {
+          title: `Cost of Living & Study in ${countryName} | Budget Guide for Students | IOES`,
+          description: `Complete cost breakdown for studying and living in ${countryName}. Tuition fees, accommodation, food, and living expenses guide for international students.`,
+          keywords: [`cost of living ${country}`, `study cost ${country}`, `tuition fees ${country}`, "student budget", "living expenses", "accommodation costs"]
+        },
+        scholarships: {
+          title: `Scholarships in ${countryName} | Financial Aid for International Students | IOES`,
+          description: `Find scholarships, grants, and financial aid opportunities for studying in ${countryName}. Government and university scholarships for international students.`,
+          keywords: [`scholarships ${country}`, `financial aid ${country}`, `grants ${country}`, "international student funding", "study abroad scholarships", "education funding"]
+        }
+      };
+
+      const subpageData = subpageMap[subpage];
+      if (subpageData) {
+        defaultData.title = subpageData.title;
+        defaultData.description = subpageData.description;
+        defaultData.keywords = subpageData.keywords;
+      }
+    } else {
+      // Main country page
+      defaultData.title = `Study in ${countryName} - Expert Guidance | IOES`;
+      defaultData.description = `Discover quality education opportunities in ${countryName}. Expert guidance for admissions, visas, and career prospects.`;
+      defaultData.keywords = [`study in ${country}`, `education ${country}`, `universities ${country}`, "study abroad", "international education", "overseas education"];
+    }
   }
 
   return defaultData;

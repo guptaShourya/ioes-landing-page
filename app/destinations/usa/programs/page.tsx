@@ -1,4 +1,13 @@
 import { CountrySpecificPage } from "@/components/country-specific-page";
+import { generateMetadataWithAzure } from "@/app/seo/Seo";
+
+export async function generateMetadata() {
+  return await generateMetadataWithAzure({
+    pageSlug: "study-in-usa/programs",
+    pageKey: "destinations-usa-programs", 
+    pathname: "/study-in-usa/programs",
+  });
+}
 
 const usaStudyProgramsContent = {
   title: "Top Study Programs in the United States",

@@ -1,4 +1,13 @@
 import { CountrySpecificPage } from "@/components/country-specific-page";
+import { generateMetadataWithAzure } from "@/app/seo/Seo";
+
+export async function generateMetadata() {
+  return await generateMetadataWithAzure({
+    pageSlug: "study-in-australia/cost",
+    pageKey: "destinations-australia-cost", 
+    pathname: "/study-in-australia/cost",
+  });
+}
 
 const australiaCostContent = {
   title: "Understanding the Cost of Living in Australia",

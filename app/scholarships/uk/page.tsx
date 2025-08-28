@@ -1,4 +1,5 @@
 import { ScholarshipCountryPage } from "@/components/scholarship-country-page";
+import { generateMetadataWithAzure } from "@/app/seo/Seo";
 import {
   Award,
   BookOpen,
@@ -10,6 +11,14 @@ import {
   Search,
   Users,
 } from "lucide-react";
+
+export async function generateMetadata() {
+  return await generateMetadataWithAzure({
+    pageSlug: "scholarships/uk",
+    pageKey: "scholarships-uk", 
+    pathname: "/scholarships/uk",
+  });
+}
 
 const ukScholarshipData = {
   country: "United Kingdom",

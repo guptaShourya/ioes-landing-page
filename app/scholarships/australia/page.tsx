@@ -10,6 +10,15 @@ import {
   Search,
   Users,
 } from "lucide-react";
+import { generateMetadataWithAzure } from "@/app/seo/Seo";
+
+export async function generateMetadata() {
+  return await generateMetadataWithAzure({
+    pageSlug: "scholarships/australia",
+    pageKey: "scholarships-australia", 
+    pathname: "/scholarships/australia",
+  });
+}
 
 const australiaScholarshipData = {
   country: "Australia",

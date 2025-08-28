@@ -1,4 +1,13 @@
 import { CountrySpecificPage } from "@/components/country-specific-page";
+import { generateMetadataWithAzure } from "@/app/seo/Seo";
+
+export async function generateMetadata() {
+  return await generateMetadataWithAzure({
+    pageSlug: "study-in-ireland/careers",
+    pageKey: "destinations-ireland-careers", 
+    pathname: "/study-in-ireland/careers",
+  });
+}
 
 const irelandCareerOptionsContent = {
   title: "Career Opportunities in Ireland",

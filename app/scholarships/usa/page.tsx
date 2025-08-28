@@ -11,6 +11,15 @@ import {
   Search,
   Users,
 } from "lucide-react";
+import { generateMetadataWithAzure } from "@/app/seo/Seo";
+
+export async function generateMetadata() {
+  return await generateMetadataWithAzure({
+    pageSlug: "scholarships/usa",
+    pageKey: "scholarships-usa", 
+    pathname: "/scholarships/usa",
+  });
+}
 
 const usaScholarshipData = {
   country: "United States",
