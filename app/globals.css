@@ -111,3 +111,12 @@ body {
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.5);
 }
+
+.college-gradient-bg {
+  background-color: #102324;
+  background-image: radial-gradient(
+    circle farthest-corner at 140% -10%,
+    #2d737b 10%,
+    #102324 100%
+  );
+}

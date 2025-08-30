@@ -7,7 +7,15 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Plus, BookOpen, Users, Settings, Search } from "lucide-react";
+import {
+  Plus,
+  BookOpen,
+  Users,
+  Settings,
+  Search,
+  School,
+  GraduationCap,
+} from "lucide-react";
 
 export default function AdminDashboard() {
   return (
@@ -22,6 +30,25 @@ export default function AdminDashboard() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Add College Card */}
+        <Card className="hover:shadow-lg transition-shadow">
+          <CardHeader>
+            <div className="flex items-center space-x-2">
+              <School className="h-6 w-6 text-indigo-600" />
+              <CardTitle>Add College</CardTitle>
+            </div>
+            <CardDescription>
+              Add new colleges to the database with comprehensive information
+              including programs, admissions, and SEO metadata.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Link href="/admin/add-college">
+              <Button className="w-full">Add New College</Button>
+            </Link>
+          </CardContent>
+        </Card>
+
         {/* Add Course Card */}
         <Card className="hover:shadow-lg transition-shadow">
           <CardHeader>
@@ -37,6 +64,25 @@ export default function AdminDashboard() {
           <CardContent>
             <Link href="/admin/add-course">
               <Button className="w-full">Add New Course</Button>
+            </Link>
+          </CardContent>
+        </Card>
+
+        {/* Manage Colleges Card */}
+        <Card className="hover:shadow-lg transition-shadow">
+          <CardHeader>
+            <div className="flex items-center space-x-2">
+              <GraduationCap className="h-6 w-6 text-emerald-600" />
+              <CardTitle>Manage Colleges</CardTitle>
+            </div>
+            <CardDescription>
+              View, edit, and manage existing colleges and their information.
+              Search, filter, and update college data with SEO optimization.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Link href="/admin/manage-colleges">
+              <Button className="w-full">Manage Colleges</Button>
             </Link>
           </CardContent>
         </Card>
@@ -121,6 +167,12 @@ export default function AdminDashboard() {
           Quick Stats
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <Card>
+            <CardContent className="p-6">
+              <div className="text-2xl font-bold text-indigo-600">--</div>
+              <p className="text-sm text-gray-600">Total Colleges</p>
+            </CardContent>
+          </Card>
           <Card>
             <CardContent className="p-6">
               <div className="text-2xl font-bold text-blue-600">--</div>
