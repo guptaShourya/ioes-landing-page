@@ -34,6 +34,9 @@ import {
   BookOpen,
   Trash2,
   AlertCircle,
+  Star,
+  HelpCircle,
+  Building,
 } from "lucide-react";
 import type {
   College,
@@ -123,6 +126,53 @@ export function AddCollegeForm({
         email: "",
         mapUrl: "",
       },
+      statistics: {
+        rating: 4.5,
+        reviewCount: "1,000+",
+        studentCount: "10,000+",
+        programCount: "100+",
+        establishedDisplay: "",
+        worldRanking: "",
+      },
+      whyChoose: [
+        {
+          icon: "Award",
+          title: "World-Class Rankings",
+          description: "Consistently ranked among the top universities globally.",
+        },
+        {
+          icon: "Users",
+          title: "Distinguished Faculty",
+          description: "Learn from industry leaders and renowned researchers.",
+        },
+        {
+          icon: "BookOpen",
+          title: "Innovative Programs",
+          description: "Access cutting-edge curriculum designed for future challenges.",
+        },
+      ],
+      importantDates: {
+        applicationOpen: "",
+        applicationDeadline: "",
+        semesterStart: "",
+      },
+      placement: {
+        placementRate: "",
+        averagePackage: "",
+        highestPackage: "",
+        placementDescription: "",
+        averageDescription: "",
+        highestDescription: "",
+        topRecruiters: [],
+        industryDistribution: [],
+      },
+      similarColleges: [],
+      faqs: [
+        {
+          question: "What are the admission requirements?",
+          answer: "Please check our detailed admission requirements section.",
+        },
+      ],
       seoData: {
         title: "",
         description: "",
@@ -358,11 +408,14 @@ export function AddCollegeForm({
   return (
     <div className="space-y-6">
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-6">
+        <TabsList className="grid w-full grid-cols-9 gap-1">
           <TabsTrigger value="basic">Basic Info</TabsTrigger>
+          <TabsTrigger value="statistics">Statistics</TabsTrigger>
           <TabsTrigger value="programs">Programs</TabsTrigger>
           <TabsTrigger value="requirements">Requirements</TabsTrigger>
+          <TabsTrigger value="placement">Placement</TabsTrigger>
           <TabsTrigger value="rankings">Rankings</TabsTrigger>
+          <TabsTrigger value="features">Features</TabsTrigger>
           <TabsTrigger value="contact">Contact</TabsTrigger>
           <TabsTrigger value="seo">SEO</TabsTrigger>
         </TabsList>
@@ -602,6 +655,92 @@ export function AddCollegeForm({
           </Card>
         </TabsContent>
 
+        {/* Statistics Tab */}
+        <TabsContent value="statistics" className="space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Award className="h-5 w-5" />
+                College Statistics
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="rating">Rating</Label>
+                  <Input
+                    id="rating"
+                    type="number"
+                    step="0.1"
+                    min="0"
+                    max="5"
+                    value={formData.statistics?.rating || ""}
+                    onChange={(e) =>
+                      updateNestedFormData("statistics", "rating", parseFloat(e.target.value))
+                    }
+                    placeholder="4.8"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="reviewCount">Review Count</Label>
+                  <Input
+                    id="reviewCount"
+                    value={formData.statistics?.reviewCount || ""}
+                    onChange={(e) =>
+                      updateNestedFormData("statistics", "reviewCount", e.target.value)
+                    }
+                    placeholder="2,500+"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="studentCount">Student Count</Label>
+                  <Input
+                    id="studentCount"
+                    value={formData.statistics?.studentCount || ""}
+                    onChange={(e) =>
+                      updateNestedFormData("statistics", "studentCount", e.target.value)
+                    }
+                    placeholder="50,000+"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="programCount">Program Count</Label>
+                  <Input
+                    id="programCount"
+                    value={formData.statistics?.programCount || ""}
+                    onChange={(e) =>
+                      updateNestedFormData("statistics", "programCount", e.target.value)
+                    }
+                    placeholder="200+"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="establishedDisplay">Established Display</Label>
+                  <Input
+                    id="establishedDisplay"
+                    value={formData.statistics?.establishedDisplay || ""}
+                    onChange={(e) =>
+                      updateNestedFormData("statistics", "establishedDisplay", e.target.value)
+                    }
+                    placeholder="1827"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="worldRanking">World Ranking</Label>
+                  <Input
+                    id="worldRanking"
+                    value={formData.statistics?.worldRanking || ""}
+                    onChange={(e) =>
+                      updateNestedFormData("statistics", "worldRanking", e.target.value)
+                    }
+                    placeholder="QS #21"
+                  />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
         {/* Programs Tab */}
         <TabsContent value="programs" className="space-y-6">
           <ProgramsSection
@@ -610,6 +749,193 @@ export function AddCollegeForm({
               updateFormData("programs", programs)
             }
           />
+        </TabsContent>
+
+        {/* Placement Tab */}
+        <TabsContent value="placement" className="space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Users className="h-5 w-5" />
+                Placement & Career Information
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              {/* Placement Statistics */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                  <Label htmlFor="placementRate">Placement Rate</Label>
+                  <Input
+                    id="placementRate"
+                    value={formData.placement?.placementRate || ""}
+                    onChange={(e) =>
+                      updateNestedFormData("placement", "placementRate", e.target.value)
+                    }
+                    placeholder="97%"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="averagePackage">Average Package</Label>
+                  <Input
+                    id="averagePackage"
+                    value={formData.placement?.averagePackage || ""}
+                    onChange={(e) =>
+                      updateNestedFormData("placement", "averagePackage", e.target.value)
+                    }
+                    placeholder="$85K"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="highestPackage">Highest Package</Label>
+                  <Input
+                    id="highestPackage"
+                    value={formData.placement?.highestPackage || ""}
+                    onChange={(e) =>
+                      updateNestedFormData("placement", "highestPackage", e.target.value)
+                    }
+                    placeholder="$180K"
+                  />
+                </div>
+              </div>
+
+              {/* Placement Descriptions */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                  <Label htmlFor="placementDescription">Placement Description</Label>
+                  <Input
+                    id="placementDescription"
+                    value={formData.placement?.placementDescription || ""}
+                    onChange={(e) =>
+                      updateNestedFormData("placement", "placementDescription", e.target.value)
+                    }
+                    placeholder="Graduates placed within 6 months"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="averageDescription">Average Description</Label>
+                  <Input
+                    id="averageDescription"
+                    value={formData.placement?.averageDescription || ""}
+                    onChange={(e) =>
+                      updateNestedFormData("placement", "averageDescription", e.target.value)
+                    }
+                    placeholder="Annual starting salary"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="highestDescription">Highest Description</Label>
+                  <Input
+                    id="highestDescription"
+                    value={formData.placement?.highestDescription || ""}
+                    onChange={(e) =>
+                      updateNestedFormData("placement", "highestDescription", e.target.value)
+                    }
+                    placeholder="Record placement achieved"
+                  />
+                </div>
+              </div>
+
+              {/* Top Recruiters */}
+              <div>
+                <Label>Top Recruiters</Label>
+                <div className="space-y-2">
+                  {(formData.placement?.topRecruiters || []).map((recruiter, index) => (
+                    <div key={index} className="flex gap-2">
+                      <Input
+                        value={recruiter}
+                        onChange={(e) => {
+                          const newRecruiters = [...(formData.placement?.topRecruiters || [])];
+                          newRecruiters[index] = e.target.value;
+                          updateNestedFormData("placement", "topRecruiters", newRecruiters);
+                        }}
+                        placeholder="Company name"
+                      />
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="icon"
+                        onClick={() => {
+                          const newRecruiters = [...(formData.placement?.topRecruiters || [])];
+                          newRecruiters.splice(index, 1);
+                          updateNestedFormData("placement", "topRecruiters", newRecruiters);
+                        }}
+                      >
+                        <Minus className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  ))}
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => {
+                      const newRecruiters = [...(formData.placement?.topRecruiters || []), ""];
+                      updateNestedFormData("placement", "topRecruiters", newRecruiters);
+                    }}
+                    className="w-full"
+                  >
+                    <Plus className="h-4 w-4 mr-2" />
+                    Add Recruiter
+                  </Button>
+                </div>
+              </div>
+
+              {/* Industry Distribution */}
+              <div>
+                <Label>Industry Distribution</Label>
+                <div className="space-y-2">
+                  {(formData.placement?.industryDistribution || []).map((industry, index) => (
+                    <div key={index} className="flex gap-2">
+                      <Input
+                        value={industry.sector}
+                        onChange={(e) => {
+                          const newDistribution = [...(formData.placement?.industryDistribution || [])];
+                          newDistribution[index] = { ...newDistribution[index], sector: e.target.value };
+                          updateNestedFormData("placement", "industryDistribution", newDistribution);
+                        }}
+                        placeholder="Industry sector"
+                        className="flex-1"
+                      />
+                      <Input
+                        type="number"
+                        value={industry.percentage}
+                        onChange={(e) => {
+                          const newDistribution = [...(formData.placement?.industryDistribution || [])];
+                          newDistribution[index] = { ...newDistribution[index], percentage: parseInt(e.target.value) };
+                          updateNestedFormData("placement", "industryDistribution", newDistribution);
+                        }}
+                        placeholder="Percentage"
+                        className="w-24"
+                      />
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="icon"
+                        onClick={() => {
+                          const newDistribution = [...(formData.placement?.industryDistribution || [])];
+                          newDistribution.splice(index, 1);
+                          updateNestedFormData("placement", "industryDistribution", newDistribution);
+                        }}
+                      >
+                        <Minus className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  ))}
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => {
+                      const newDistribution = [...(formData.placement?.industryDistribution || []), { sector: "", percentage: 0 }];
+                      updateNestedFormData("placement", "industryDistribution", newDistribution);
+                    }}
+                    className="w-full"
+                  >
+                    <Plus className="h-4 w-4 mr-2" />
+                    Add Industry
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </TabsContent>
 
         {/* Requirements Tab */}
@@ -640,6 +966,288 @@ export function AddCollegeForm({
               updateFormData("rankings", rankings)
             }
           />
+        </TabsContent>
+
+        {/* Features Tab */}
+        <TabsContent value="features" className="space-y-6">
+          {/* Why Choose Features */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Star className="h-5 w-5" />
+                Why Choose This College
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {(formData.whyChoose || []).map((item, index) => (
+                <div key={index} className="space-y-2 p-4 border rounded-lg">
+                  <div className="flex gap-2">
+                    <Input
+                      value={item.title}
+                      onChange={(e) => {
+                        const newWhyChoose = [...(formData.whyChoose || [])];
+                        newWhyChoose[index] = { ...newWhyChoose[index], title: e.target.value };
+                        updateFormData("whyChoose", newWhyChoose);
+                      }}
+                      placeholder="Feature title"
+                      className="flex-1"
+                    />
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="icon"
+                      onClick={() => {
+                        const newWhyChoose = [...(formData.whyChoose || [])];
+                        newWhyChoose.splice(index, 1);
+                        updateFormData("whyChoose", newWhyChoose);
+                      }}
+                    >
+                      <Minus className="h-4 w-4" />
+                    </Button>
+                  </div>
+                  <Textarea
+                    value={item.description}
+                    onChange={(e) => {
+                      const newWhyChoose = [...(formData.whyChoose || [])];
+                      newWhyChoose[index] = { ...newWhyChoose[index], description: e.target.value };
+                      updateFormData("whyChoose", newWhyChoose);
+                    }}
+                    placeholder="Feature description"
+                    rows={3}
+                  />
+                </div>
+              ))}
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => {
+                  const newWhyChoose = [...(formData.whyChoose || []), { title: "", description: "" }];
+                  updateFormData("whyChoose", newWhyChoose);
+                }}
+                className="w-full"
+              >
+                <Plus className="h-4 w-4 mr-2" />
+                Add Feature
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* Important Dates */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Calendar className="h-5 w-5" />
+                Important Dates
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {Object.entries(formData.importantDates || {}).map(([key, value], index) => (
+                <div key={key} className="flex gap-2">
+                  <Input
+                    value={key}
+                    onChange={(e) => {
+                      const newDates = { ...(formData.importantDates || {}) };
+                      delete newDates[key];
+                      newDates[e.target.value] = value;
+                      updateFormData("importantDates", newDates);
+                    }}
+                    placeholder="Date name (e.g., Application Deadline)"
+                    className="flex-1"
+                  />
+                  <Input
+                    value={value}
+                    onChange={(e) => {
+                      const newDates = { ...(formData.importantDates || {}) };
+                      newDates[key] = e.target.value;
+                      updateFormData("importantDates", newDates);
+                    }}
+                    placeholder="Date value"
+                    className="flex-1"
+                  />
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="icon"
+                    onClick={() => {
+                      const newDates = { ...(formData.importantDates || {}) };
+                      delete newDates[key];
+                      updateFormData("importantDates", newDates);
+                    }}
+                  >
+                    <Minus className="h-4 w-4" />
+                  </Button>
+                </div>
+              ))}
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => {
+                  const newDates = { ...(formData.importantDates || {}), "": "" };
+                  updateFormData("importantDates", newDates);
+                }}
+                className="w-full"
+              >
+                <Plus className="h-4 w-4 mr-2" />
+                Add Important Date
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* FAQs */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <HelpCircle className="h-5 w-5" />
+                Frequently Asked Questions
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {(formData.faqs || []).map((faq, index) => (
+                <div key={index} className="space-y-2 p-4 border rounded-lg">
+                  <div className="flex gap-2">
+                    <Input
+                      value={faq.question}
+                      onChange={(e) => {
+                        const newFaqs = [...(formData.faqs || [])];
+                        newFaqs[index] = { ...newFaqs[index], question: e.target.value };
+                        updateFormData("faqs", newFaqs);
+                      }}
+                      placeholder="Question"
+                      className="flex-1"
+                    />
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="icon"
+                      onClick={() => {
+                        const newFaqs = [...(formData.faqs || [])];
+                        newFaqs.splice(index, 1);
+                        updateFormData("faqs", newFaqs);
+                      }}
+                    >
+                      <Minus className="h-4 w-4" />
+                    </Button>
+                  </div>
+                  <Textarea
+                    value={faq.answer}
+                    onChange={(e) => {
+                      const newFaqs = [...(formData.faqs || [])];
+                      newFaqs[index] = { ...newFaqs[index], answer: e.target.value };
+                      updateFormData("faqs", newFaqs);
+                    }}
+                    placeholder="Answer"
+                    rows={3}
+                  />
+                </div>
+              ))}
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => {
+                  const newFaqs = [...(formData.faqs || []), { question: "", answer: "" }];
+                  updateFormData("faqs", newFaqs);
+                }}
+                className="w-full"
+              >
+                <Plus className="h-4 w-4 mr-2" />
+                Add FAQ
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* Similar Colleges */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Building className="h-5 w-5" />
+                Similar Colleges
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {(formData.similarColleges || []).map((college, index) => (
+                <div key={index} className="space-y-2 p-4 border rounded-lg">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                    <Input
+                      value={college.name}
+                      onChange={(e) => {
+                        const newSimilar = [...(formData.similarColleges || [])];
+                        newSimilar[index] = { ...newSimilar[index], name: e.target.value };
+                        updateFormData("similarColleges", newSimilar);
+                      }}
+                      placeholder="College name"
+                    />
+                    <Input
+                      value={college.location}
+                      onChange={(e) => {
+                        const newSimilar = [...(formData.similarColleges || [])];
+                        newSimilar[index] = { ...newSimilar[index], location: e.target.value };
+                        updateFormData("similarColleges", newSimilar);
+                      }}
+                      placeholder="Location"
+                    />
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                    <Input
+                      type="number"
+                      step="0.1"
+                      value={college.rating}
+                      onChange={(e) => {
+                        const newSimilar = [...(formData.similarColleges || [])];
+                        newSimilar[index] = { ...newSimilar[index], rating: parseFloat(e.target.value) };
+                        updateFormData("similarColleges", newSimilar);
+                      }}
+                      placeholder="Rating"
+                    />
+                    <Input
+                      value={college.fees}
+                      onChange={(e) => {
+                        const newSimilar = [...(formData.similarColleges || [])];
+                        newSimilar[index] = { ...newSimilar[index], fees: e.target.value };
+                        updateFormData("similarColleges", newSimilar);
+                      }}
+                      placeholder="Fees"
+                    />
+                    <Input
+                      value={college.link}
+                      onChange={(e) => {
+                        const newSimilar = [...(formData.similarColleges || [])];
+                        newSimilar[index] = { ...newSimilar[index], link: e.target.value };
+                        updateFormData("similarColleges", newSimilar);
+                      }}
+                      placeholder="Link/slug"
+                    />
+                  </div>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      const newSimilar = [...(formData.similarColleges || [])];
+                      newSimilar.splice(index, 1);
+                      updateFormData("similarColleges", newSimilar);
+                    }}
+                    className="w-full"
+                  >
+                    <Minus className="h-4 w-4 mr-2" />
+                    Remove College
+                  </Button>
+                </div>
+              ))}
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => {
+                  const newSimilar = [...(formData.similarColleges || []), 
+                    { name: "", location: "", rating: 0, fees: "", link: "", highlights: [] }];
+                  updateFormData("similarColleges", newSimilar);
+                }}
+                className="w-full"
+              >
+                <Plus className="h-4 w-4 mr-2" />
+                Add Similar College
+              </Button>
+            </CardContent>
+          </Card>
         </TabsContent>
 
         {/* Contact Tab */}

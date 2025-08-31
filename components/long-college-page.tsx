@@ -109,12 +109,12 @@ export default function CollegePage({ data }: CollegePageProps) {
                   <div className="flex items-center gap-6 text-white">
                     <div className="flex items-center gap-1">
                       <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-                      <span className="font-medium text-lg">4.8</span>
-                      <span className="text-white/70">/5 (2,500+ Reviews)</span>
+                      <span className="font-medium text-lg">{data.statistics?.rating || "4.8"}</span>
+                      <span className="text-white/70">/5 ({data.statistics?.reviewCount || "2,500+"} Reviews)</span>
                     </div>
                     <div className="flex items-center gap-1">
                       <Users className="h-5 w-5 text-green-400" />
-                      <span className="text-white/70">50,000+ Students</span>
+                      <span className="text-white/70">{data.statistics?.studentCount || "50,000+"} Students</span>
                     </div>
                   </div>
                 </div>
@@ -197,7 +197,7 @@ export default function CollegePage({ data }: CollegePageProps) {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="text-center p-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl">
                     <div className="text-3xl font-bold text-blue-600 mb-2">
-                      {data.established || "1850"}
+                      {data.statistics?.establishedDisplay || data.established || "1850"}
                     </div>
                     <div className="text-sm text-gray-600 font-medium">
                       Established
@@ -205,7 +205,7 @@ export default function CollegePage({ data }: CollegePageProps) {
                   </div>
                   <div className="text-center p-6 bg-gradient-to-br from-green-50 to-green-100 rounded-xl">
                     <div className="text-3xl font-bold text-green-600 mb-2">
-                      {data.programs?.length || "200+"}
+                      {data.statistics?.programCount || data.programs?.length || "200+"}
                     </div>
                     <div className="text-sm text-gray-600 font-medium">
                       Programs
@@ -213,7 +213,7 @@ export default function CollegePage({ data }: CollegePageProps) {
                   </div>
                   <div className="text-center p-6 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl">
                     <div className="text-3xl font-bold text-purple-600 mb-2">
-                      50K+
+                      {data.statistics?.studentCount || "50K+"}
                     </div>
                     <div className="text-sm text-gray-600 font-medium">
                       Students
@@ -221,7 +221,7 @@ export default function CollegePage({ data }: CollegePageProps) {
                   </div>
                   <div className="text-center p-6 bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl">
                     <div className="text-3xl font-bold text-orange-600 mb-2">
-                      QS #15
+                      {data.statistics?.worldRanking || "QS #15"}
                     </div>
                     <div className="text-sm text-gray-600 font-medium">
                       World Ranking
@@ -298,59 +298,68 @@ export default function CollegePage({ data }: CollegePageProps) {
             </div>
 
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {[
+              {(data.whyChoose || [
                 {
-                  icon: <Award className="h-8 w-8 text-yellow-500" />,
+                  icon: "Award",
                   title: "World-Class Rankings",
                   description:
                     "Consistently ranked among the top universities globally with excellence across multiple disciplines and research areas.",
                 },
                 {
-                  icon: <Users className="h-8 w-8 text-blue-500" />,
+                  icon: "Users",
                   title: "Distinguished Faculty",
                   description:
                     "Learn from Nobel laureates, industry leaders, and renowned researchers who are pioneers in their respective fields.",
                 },
                 {
-                  icon: <BookOpen className="h-8 w-8 text-green-500" />,
+                  icon: "BookOpen",
                   title: "Innovative Programs",
                   description:
                     "Access cutting-edge curriculum designed to meet industry demands and prepare you for future challenges.",
                 },
                 {
-                  icon: <TrendingUp className="h-8 w-8 text-purple-500" />,
+                  icon: "TrendingUp",
                   title: "Outstanding Placements",
                   description:
                     "97% placement rate with graduates securing positions at top companies worldwide with competitive packages.",
                 },
                 {
-                  icon: <Globe className="h-8 w-8 text-orange-500" />,
+                  icon: "Globe",
                   title: "Global Network",
                   description:
                     "Join an extensive alumni network spanning 190+ countries, opening doors to international opportunities.",
                 },
                 {
-                  icon: <Building className="h-8 w-8 text-red-500" />,
+                  icon: "Building",
                   title: "State-of-Art Facilities",
                   description:
                     "World-class infrastructure including modern labs, libraries, sports complexes, and research centers.",
                 },
-              ].map((feature, index) => (
-                <Card
-                  key={index}
-                  className="group hover:shadow-lg transition-all duration-300 border-0 shadow-md"
-                >
-                  <CardContent className="p-6 space-y-4">
-                    <div className="rounded-lg bg-gray-50 p-3 w-fit group-hover:scale-110 transition-transform duration-300">
-                      {feature.icon}
-                    </div>
-                    <h3 className="text-xl font-semibold">{feature.title}</h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
+              ]).map((feature, index) => {
+                const IconComponent = feature.icon === "Award" ? Award :
+                                   feature.icon === "Users" ? Users :
+                                   feature.icon === "BookOpen" ? BookOpen :
+                                   feature.icon === "TrendingUp" ? TrendingUp :
+                                   feature.icon === "Globe" ? Globe :
+                                   feature.icon === "Building" ? Building : Award;
+                
+                return (
+                  <Card
+                    key={index}
+                    className="group hover:shadow-lg transition-all duration-300 border-0 shadow-md"
+                  >
+                    <CardContent className="p-6 space-y-4">
+                      <div className="rounded-lg bg-gray-50 p-3 w-fit group-hover:scale-110 transition-transform duration-300">
+                        <IconComponent className="h-8 w-8 text-yellow-500" />
+                      </div>
+                      <h3 className="text-xl font-semibold">{feature.title}</h3>
+                      <p className="text-gray-600 leading-relaxed">
+                        {feature.description}
+                      </p>
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -610,7 +619,7 @@ export default function CollegePage({ data }: CollegePageProps) {
                           Application Opens
                         </span>
                         <span className="text-sm font-bold text-blue-600">
-                          January 15, 2025
+                          {data.importantDates?.applicationOpen || "January 15, 2025"}
                         </span>
                       </div>
                       <div className="flex justify-between items-center p-3 bg-orange-50 rounded-lg">
@@ -618,7 +627,7 @@ export default function CollegePage({ data }: CollegePageProps) {
                           Application Deadline
                         </span>
                         <span className="text-sm font-bold text-orange-600">
-                          June 30, 2025
+                          {data.importantDates?.applicationDeadline || "June 30, 2025"}
                         </span>
                       </div>
                       <div className="flex justify-between items-center p-3 bg-green-50 rounded-lg">
@@ -626,7 +635,7 @@ export default function CollegePage({ data }: CollegePageProps) {
                           Semester Starts
                         </span>
                         <span className="text-sm font-bold text-green-600">
-                          September 1, 2025
+                          {data.importantDates?.semesterStart || "September 1, 2025"}
                         </span>
                       </div>
                     </div>
@@ -676,35 +685,35 @@ export default function CollegePage({ data }: CollegePageProps) {
             <div className="grid gap-8 md:grid-cols-3 mb-12">
               <div className="text-center p-8 bg-gradient-to-br from-green-50 to-green-100 rounded-2xl">
                 <div className="text-5xl font-bold text-green-600 mb-3">
-                  97%
+                  {data.placement?.placementRate || "97%"}
                 </div>
                 <div className="text-lg font-semibold text-gray-900 mb-2">
                   Placement Rate
                 </div>
                 <div className="text-sm text-gray-600">
-                  Graduates placed within 6 months
+                  {data.placement?.placementDescription || "Graduates placed within 6 months"}
                 </div>
               </div>
               <div className="text-center p-8 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl">
                 <div className="text-5xl font-bold text-blue-600 mb-3">
-                  $85K
+                  {data.placement?.averagePackage || "$85K"}
                 </div>
                 <div className="text-lg font-semibold text-gray-900 mb-2">
                   Average Package
                 </div>
                 <div className="text-sm text-gray-600">
-                  Annual starting salary
+                  {data.placement?.averageDescription || "Annual starting salary"}
                 </div>
               </div>
               <div className="text-center p-8 bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl">
                 <div className="text-5xl font-bold text-purple-600 mb-3">
-                  $180K
+                  {data.placement?.highestPackage || "$180K"}
                 </div>
                 <div className="text-lg font-semibold text-gray-900 mb-2">
                   Highest Package
                 </div>
                 <div className="text-sm text-gray-600">
-                  Record placement achieved
+                  {data.placement?.highestDescription || "Record placement achieved"}
                 </div>
               </div>
             </div>
@@ -719,7 +728,7 @@ export default function CollegePage({ data }: CollegePageProps) {
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-2 gap-4">
-                    {[
+                    {(data.placement?.topRecruiters || [
                       "Google",
                       "Microsoft",
                       "Amazon",
@@ -728,7 +737,7 @@ export default function CollegePage({ data }: CollegePageProps) {
                       "McKinsey",
                       "Deloitte",
                       "JP Morgan",
-                    ].map((company, index) => (
+                    ]).map((company, index) => (
                       <div
                         key={index}
                         className="flex items-center gap-2 p-3 bg-gray-50 rounded-lg"
@@ -750,13 +759,13 @@ export default function CollegePage({ data }: CollegePageProps) {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    {[
+                    {(data.placement?.industryDistribution || [
                       { sector: "Technology", percentage: 35 },
                       { sector: "Finance & Banking", percentage: 25 },
                       { sector: "Consulting", percentage: 20 },
                       { sector: "Healthcare", percentage: 15 },
                       { sector: "Other Industries", percentage: 5 },
-                    ].map((item, index) => (
+                    ]).map((item, index) => (
                       <div key={index} className="space-y-2">
                         <div className="flex justify-between text-sm">
                           <span className="font-medium">{item.sector}</span>
@@ -769,12 +778,16 @@ export default function CollegePage({ data }: CollegePageProps) {
                             className={`bg-gradient-to-r from-green-500 to-blue-500 h-2 rounded-full transition-all duration-300 ${
                               item.percentage >= 35
                                 ? "w-[35%]"
+                                : item.percentage >= 30
+                                ? "w-[30%]"
                                 : item.percentage >= 25
                                 ? "w-[25%]"
                                 : item.percentage >= 20
                                 ? "w-[20%]"
                                 : item.percentage >= 15
                                 ? "w-[15%]"
+                                : item.percentage >= 10
+                                ? "w-[10%]"
                                 : "w-[5%]"
                             }`}
                           ></div>
@@ -836,7 +849,7 @@ export default function CollegePage({ data }: CollegePageProps) {
             </div>
 
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {[
+              {(data.similarColleges || [
                 {
                   name: "Harvard University",
                   location: "Cambridge, USA",
@@ -870,7 +883,7 @@ export default function CollegePage({ data }: CollegePageProps) {
                     "Industry partnerships",
                   ],
                 },
-              ].map((college, index) => (
+              ]).map((college, index) => (
                 <Card
                   key={index}
                   className="group hover:shadow-xl transition-all duration-300 cursor-pointer"
@@ -947,7 +960,7 @@ export default function CollegePage({ data }: CollegePageProps) {
             </div>
 
             <div className="max-w-4xl mx-auto space-y-6">
-              {[
+              {(data.faqs || [
                 {
                   question: `What are the admission requirements for ${data.name}?`,
                   answer:
@@ -978,7 +991,7 @@ export default function CollegePage({ data }: CollegePageProps) {
                   answer:
                     "Our expert education consultants provide comprehensive application support including document preparation, essay writing assistance, interview coaching, and visa guidance. Contact us for personalized assistance.",
                 },
-              ].map((faq, index) => (
+              ]).map((faq, index) => (
                 <Card
                   key={index}
                   className="group hover:shadow-md transition-all duration-300"
@@ -987,7 +1000,7 @@ export default function CollegePage({ data }: CollegePageProps) {
                     <details className="group">
                       <summary className="flex items-center justify-between cursor-pointer list-none">
                         <h3 className="text-lg font-semibold text-gray-900 group-hover:text-[#ED4746] transition-colors">
-                          {faq.question}
+                          {faq.question.replace('{collegeName}', data.name)}
                         </h3>
                         <ChevronRight className="h-5 w-5 text-gray-500 group-open:rotate-90 transition-transform duration-200" />
                       </summary>

@@ -45,6 +45,58 @@ export type CollegeContact = {
   mapUrl?: string;
 };
 
+export type CollegeStatistics = {
+  rating?: number;
+  reviewCount?: string;
+  studentCount?: string;
+  programCount?: string;
+  establishedDisplay?: string;
+  worldRanking?: string;
+};
+
+export type WhyChooseItem = {
+  icon: string;
+  title: string;
+  description: string;
+};
+
+export type ImportantDates = {
+  applicationOpen?: string;
+  applicationDeadline?: string;
+  semesterStart?: string;
+  [key: string]: string | undefined;
+};
+
+export type PlacementData = {
+  placementRate?: string;
+  averagePackage?: string;
+  highestPackage?: string;
+  placementDescription?: string;
+  averageDescription?: string;
+  highestDescription?: string;
+  topRecruiters?: string[];
+  industryDistribution?: {
+    sector: string;
+    percentage: number;
+  }[];
+};
+
+export type SimilarCollege = {
+  name: string;
+  location: string;
+  rating?: number;
+  fees?: string;
+  link?: string;
+  ranking?: string;
+  logo?: string;
+  highlights?: string[];
+};
+
+export type FAQ = {
+  question: string;
+  answer: string;
+};
+
 export type College = {
   slug: string;
   name: string;
@@ -69,4 +121,10 @@ export type College = {
   scholarships?: Scholarship[];
   gallery?: string[];
   contact?: CollegeContact;
+  statistics?: CollegeStatistics;
+  whyChoose?: WhyChooseItem[];
+  importantDates?: ImportantDates;
+  placement?: PlacementData;
+  similarColleges?: SimilarCollege[];
+  faqs?: FAQ[];
 };
