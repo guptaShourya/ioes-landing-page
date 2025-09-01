@@ -18,6 +18,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ImageUpload } from "@/components/ui/image-upload";
+import { MultipleImageUpload } from "@/components/ui/multiple-image-upload";
 import {
   Plus,
   Minus,
@@ -82,9 +84,37 @@ export function AddCollegeForm({
 
   // Form state
   const [formData, setFormData] = useState<CollegeWithSEO>(() => {
+    const defaultStats = {
+      rating: 4.5,
+      reviewCount: "1,000+",
+      studentCount: "10,000+",
+      programCount: "100+",
+      establishedDisplay: "",
+      worldRanking: "",
+    };
+
+    const defaultPlacement = {
+      placementRate: "",
+      averagePackage: "",
+      highestPackage: "",
+      placementDescription: "",
+      averageDescription: "",
+      highestDescription: "",
+      topRecruiters: [],
+      industryDistribution: [],
+    };
+
     if (initialData) {
       return {
         ...initialData,
+        statistics: {
+          ...defaultStats,
+          ...(initialData.statistics || {}),
+        },
+        placement: {
+          ...defaultPlacement,
+          ...(initialData.placement || {}),
+        },
         seoData: {
           title: "",
           description: "",
@@ -138,7 +168,8 @@ export function AddCollegeForm({
         {
           icon: "Award",
           title: "World-Class Rankings",
-          description: "Consistently ranked among the top universities globally.",
+          description:
+            "Consistently ranked among the top universities globally.",
         },
         {
           icon: "Users",
@@ -148,7 +179,8 @@ export function AddCollegeForm({
         {
           icon: "BookOpen",
           title: "Innovative Programs",
-          description: "Access cutting-edge curriculum designed for future challenges.",
+          description:
+            "Access cutting-edge curriculum designed for future challenges.",
         },
       ],
       importantDates: {
@@ -355,7 +387,10 @@ export function AddCollegeForm({
           "Content-Type": "application/json",
           Authorization: `Bearer ioes-seo-admin-2025-secure-key`,
         },
-        body: JSON.stringify([collegeData]),
+        body: JSON.stringify({
+          action: isEditing ? "upload_college" : "upload_college",
+          data: collegeData,
+        }),
       });
 
       if (!collegeResponse.ok) {
@@ -545,29 +580,28 @@ export function AddCollegeForm({
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="logo">Logo URL</Label>
-                  <Input
-                    id="logo"
-                    type="url"
-                    value={formData.logo}
-                    onChange={(e) => updateFormData("logo", e.target.value)}
-                    placeholder="https://example.com/logo.png"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="bannerImage">Banner Image URL</Label>
-                  <Input
-                    id="bannerImage"
-                    type="url"
-                    value={formData.bannerImage}
-                    onChange={(e) =>
-                      updateFormData("bannerImage", e.target.value)
-                    }
-                    placeholder="https://example.com/banner.jpg"
-                  />
-                </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <ImageUpload
+                  label="College Logo"
+                  currentImageUrl={formData.logo}
+                  onImageUpload={(imageUrl) => updateFormData("logo", imageUrl)}
+                  onImageRemove={() => updateFormData("logo", "")}
+                  collegeSlug={formData.slug}
+                  imageType="logo"
+                  description="Upload the college's official logo"
+                />
+
+                <ImageUpload
+                  label="Banner Image"
+                  currentImageUrl={formData.bannerImage}
+                  onImageUpload={(imageUrl) =>
+                    updateFormData("bannerImage", imageUrl)
+                  }
+                  onImageRemove={() => updateFormData("bannerImage", "")}
+                  collegeSlug={formData.slug}
+                  imageType="banner"
+                  description="Upload a high-quality banner image for the college"
+                />
               </div>
 
               <div>
@@ -676,7 +710,11 @@ export function AddCollegeForm({
                     max="5"
                     value={formData.statistics?.rating || ""}
                     onChange={(e) =>
-                      updateNestedFormData("statistics", "rating", parseFloat(e.target.value))
+                      updateNestedFormData(
+                        "statistics",
+                        "rating",
+                        parseFloat(e.target.value)
+                      )
                     }
                     placeholder="4.8"
                   />
@@ -687,7 +725,11 @@ export function AddCollegeForm({
                     id="reviewCount"
                     value={formData.statistics?.reviewCount || ""}
                     onChange={(e) =>
-                      updateNestedFormData("statistics", "reviewCount", e.target.value)
+                      updateNestedFormData(
+                        "statistics",
+                        "reviewCount",
+                        e.target.value
+                      )
                     }
                     placeholder="2,500+"
                   />
@@ -698,7 +740,11 @@ export function AddCollegeForm({
                     id="studentCount"
                     value={formData.statistics?.studentCount || ""}
                     onChange={(e) =>
-                      updateNestedFormData("statistics", "studentCount", e.target.value)
+                      updateNestedFormData(
+                        "statistics",
+                        "studentCount",
+                        e.target.value
+                      )
                     }
                     placeholder="50,000+"
                   />
@@ -709,18 +755,28 @@ export function AddCollegeForm({
                     id="programCount"
                     value={formData.statistics?.programCount || ""}
                     onChange={(e) =>
-                      updateNestedFormData("statistics", "programCount", e.target.value)
+                      updateNestedFormData(
+                        "statistics",
+                        "programCount",
+                        e.target.value
+                      )
                     }
                     placeholder="200+"
                   />
                 </div>
                 <div>
-                  <Label htmlFor="establishedDisplay">Established Display</Label>
+                  <Label htmlFor="establishedDisplay">
+                    Established Display
+                  </Label>
                   <Input
                     id="establishedDisplay"
                     value={formData.statistics?.establishedDisplay || ""}
                     onChange={(e) =>
-                      updateNestedFormData("statistics", "establishedDisplay", e.target.value)
+                      updateNestedFormData(
+                        "statistics",
+                        "establishedDisplay",
+                        e.target.value
+                      )
                     }
                     placeholder="1827"
                   />
@@ -731,7 +787,11 @@ export function AddCollegeForm({
                     id="worldRanking"
                     value={formData.statistics?.worldRanking || ""}
                     onChange={(e) =>
-                      updateNestedFormData("statistics", "worldRanking", e.target.value)
+                      updateNestedFormData(
+                        "statistics",
+                        "worldRanking",
+                        e.target.value
+                      )
                     }
                     placeholder="QS #21"
                   />
@@ -769,7 +829,11 @@ export function AddCollegeForm({
                     id="placementRate"
                     value={formData.placement?.placementRate || ""}
                     onChange={(e) =>
-                      updateNestedFormData("placement", "placementRate", e.target.value)
+                      updateNestedFormData(
+                        "placement",
+                        "placementRate",
+                        e.target.value
+                      )
                     }
                     placeholder="97%"
                   />
@@ -780,7 +844,11 @@ export function AddCollegeForm({
                     id="averagePackage"
                     value={formData.placement?.averagePackage || ""}
                     onChange={(e) =>
-                      updateNestedFormData("placement", "averagePackage", e.target.value)
+                      updateNestedFormData(
+                        "placement",
+                        "averagePackage",
+                        e.target.value
+                      )
                     }
                     placeholder="$85K"
                   />
@@ -791,7 +859,11 @@ export function AddCollegeForm({
                     id="highestPackage"
                     value={formData.placement?.highestPackage || ""}
                     onChange={(e) =>
-                      updateNestedFormData("placement", "highestPackage", e.target.value)
+                      updateNestedFormData(
+                        "placement",
+                        "highestPackage",
+                        e.target.value
+                      )
                     }
                     placeholder="$180K"
                   />
@@ -801,34 +873,52 @@ export function AddCollegeForm({
               {/* Placement Descriptions */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
-                  <Label htmlFor="placementDescription">Placement Description</Label>
+                  <Label htmlFor="placementDescription">
+                    Placement Description
+                  </Label>
                   <Input
                     id="placementDescription"
                     value={formData.placement?.placementDescription || ""}
                     onChange={(e) =>
-                      updateNestedFormData("placement", "placementDescription", e.target.value)
+                      updateNestedFormData(
+                        "placement",
+                        "placementDescription",
+                        e.target.value
+                      )
                     }
                     placeholder="Graduates placed within 6 months"
                   />
                 </div>
                 <div>
-                  <Label htmlFor="averageDescription">Average Description</Label>
+                  <Label htmlFor="averageDescription">
+                    Average Description
+                  </Label>
                   <Input
                     id="averageDescription"
                     value={formData.placement?.averageDescription || ""}
                     onChange={(e) =>
-                      updateNestedFormData("placement", "averageDescription", e.target.value)
+                      updateNestedFormData(
+                        "placement",
+                        "averageDescription",
+                        e.target.value
+                      )
                     }
                     placeholder="Annual starting salary"
                   />
                 </div>
                 <div>
-                  <Label htmlFor="highestDescription">Highest Description</Label>
+                  <Label htmlFor="highestDescription">
+                    Highest Description
+                  </Label>
                   <Input
                     id="highestDescription"
                     value={formData.placement?.highestDescription || ""}
                     onChange={(e) =>
-                      updateNestedFormData("placement", "highestDescription", e.target.value)
+                      updateNestedFormData(
+                        "placement",
+                        "highestDescription",
+                        e.target.value
+                      )
                     }
                     placeholder="Record placement achieved"
                   />
@@ -839,37 +929,58 @@ export function AddCollegeForm({
               <div>
                 <Label>Top Recruiters</Label>
                 <div className="space-y-2">
-                  {(formData.placement?.topRecruiters || []).map((recruiter, index) => (
-                    <div key={index} className="flex gap-2">
-                      <Input
-                        value={recruiter}
-                        onChange={(e) => {
-                          const newRecruiters = [...(formData.placement?.topRecruiters || [])];
-                          newRecruiters[index] = e.target.value;
-                          updateNestedFormData("placement", "topRecruiters", newRecruiters);
-                        }}
-                        placeholder="Company name"
-                      />
-                      <Button
-                        type="button"
-                        variant="outline"
-                        size="icon"
-                        onClick={() => {
-                          const newRecruiters = [...(formData.placement?.topRecruiters || [])];
-                          newRecruiters.splice(index, 1);
-                          updateNestedFormData("placement", "topRecruiters", newRecruiters);
-                        }}
-                      >
-                        <Minus className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  ))}
+                  {(formData.placement?.topRecruiters || []).map(
+                    (recruiter, index) => (
+                      <div key={index} className="flex gap-2">
+                        <Input
+                          value={recruiter}
+                          onChange={(e) => {
+                            const newRecruiters = [
+                              ...(formData.placement?.topRecruiters || []),
+                            ];
+                            newRecruiters[index] = e.target.value;
+                            updateNestedFormData(
+                              "placement",
+                              "topRecruiters",
+                              newRecruiters
+                            );
+                          }}
+                          placeholder="Company name"
+                        />
+                        <Button
+                          type="button"
+                          variant="outline"
+                          size="icon"
+                          onClick={() => {
+                            const newRecruiters = [
+                              ...(formData.placement?.topRecruiters || []),
+                            ];
+                            newRecruiters.splice(index, 1);
+                            updateNestedFormData(
+                              "placement",
+                              "topRecruiters",
+                              newRecruiters
+                            );
+                          }}
+                        >
+                          <Minus className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    )
+                  )}
                   <Button
                     type="button"
                     variant="outline"
                     onClick={() => {
-                      const newRecruiters = [...(formData.placement?.topRecruiters || []), ""];
-                      updateNestedFormData("placement", "topRecruiters", newRecruiters);
+                      const newRecruiters = [
+                        ...(formData.placement?.topRecruiters || []),
+                        "",
+                      ];
+                      updateNestedFormData(
+                        "placement",
+                        "topRecruiters",
+                        newRecruiters
+                      );
                     }}
                     className="w-full"
                   >
@@ -883,49 +994,85 @@ export function AddCollegeForm({
               <div>
                 <Label>Industry Distribution</Label>
                 <div className="space-y-2">
-                  {(formData.placement?.industryDistribution || []).map((industry, index) => (
-                    <div key={index} className="flex gap-2">
-                      <Input
-                        value={industry.sector}
-                        onChange={(e) => {
-                          const newDistribution = [...(formData.placement?.industryDistribution || [])];
-                          newDistribution[index] = { ...newDistribution[index], sector: e.target.value };
-                          updateNestedFormData("placement", "industryDistribution", newDistribution);
-                        }}
-                        placeholder="Industry sector"
-                        className="flex-1"
-                      />
-                      <Input
-                        type="number"
-                        value={industry.percentage}
-                        onChange={(e) => {
-                          const newDistribution = [...(formData.placement?.industryDistribution || [])];
-                          newDistribution[index] = { ...newDistribution[index], percentage: parseInt(e.target.value) };
-                          updateNestedFormData("placement", "industryDistribution", newDistribution);
-                        }}
-                        placeholder="Percentage"
-                        className="w-24"
-                      />
-                      <Button
-                        type="button"
-                        variant="outline"
-                        size="icon"
-                        onClick={() => {
-                          const newDistribution = [...(formData.placement?.industryDistribution || [])];
-                          newDistribution.splice(index, 1);
-                          updateNestedFormData("placement", "industryDistribution", newDistribution);
-                        }}
-                      >
-                        <Minus className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  ))}
+                  {(formData.placement?.industryDistribution || []).map(
+                    (industry, index) => (
+                      <div key={index} className="flex gap-2">
+                        <Input
+                          value={industry.sector}
+                          onChange={(e) => {
+                            const newDistribution = [
+                              ...(formData.placement?.industryDistribution ||
+                                []),
+                            ];
+                            newDistribution[index] = {
+                              ...newDistribution[index],
+                              sector: e.target.value,
+                            };
+                            updateNestedFormData(
+                              "placement",
+                              "industryDistribution",
+                              newDistribution
+                            );
+                          }}
+                          placeholder="Industry sector"
+                          className="flex-1"
+                        />
+                        <Input
+                          type="number"
+                          value={industry.percentage}
+                          onChange={(e) => {
+                            const newDistribution = [
+                              ...(formData.placement?.industryDistribution ||
+                                []),
+                            ];
+                            newDistribution[index] = {
+                              ...newDistribution[index],
+                              percentage: parseInt(e.target.value),
+                            };
+                            updateNestedFormData(
+                              "placement",
+                              "industryDistribution",
+                              newDistribution
+                            );
+                          }}
+                          placeholder="Percentage"
+                          className="w-24"
+                        />
+                        <Button
+                          type="button"
+                          variant="outline"
+                          size="icon"
+                          onClick={() => {
+                            const newDistribution = [
+                              ...(formData.placement?.industryDistribution ||
+                                []),
+                            ];
+                            newDistribution.splice(index, 1);
+                            updateNestedFormData(
+                              "placement",
+                              "industryDistribution",
+                              newDistribution
+                            );
+                          }}
+                        >
+                          <Minus className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    )
+                  )}
                   <Button
                     type="button"
                     variant="outline"
                     onClick={() => {
-                      const newDistribution = [...(formData.placement?.industryDistribution || []), { sector: "", percentage: 0 }];
-                      updateNestedFormData("placement", "industryDistribution", newDistribution);
+                      const newDistribution = [
+                        ...(formData.placement?.industryDistribution || []),
+                        { sector: "", percentage: 0 },
+                      ];
+                      updateNestedFormData(
+                        "placement",
+                        "industryDistribution",
+                        newDistribution
+                      );
                     }}
                     className="w-full"
                   >
@@ -986,7 +1133,10 @@ export function AddCollegeForm({
                       value={item.title}
                       onChange={(e) => {
                         const newWhyChoose = [...(formData.whyChoose || [])];
-                        newWhyChoose[index] = { ...newWhyChoose[index], title: e.target.value };
+                        newWhyChoose[index] = {
+                          ...newWhyChoose[index],
+                          title: e.target.value,
+                        };
                         updateFormData("whyChoose", newWhyChoose);
                       }}
                       placeholder="Feature title"
@@ -1009,7 +1159,10 @@ export function AddCollegeForm({
                     value={item.description}
                     onChange={(e) => {
                       const newWhyChoose = [...(formData.whyChoose || [])];
-                      newWhyChoose[index] = { ...newWhyChoose[index], description: e.target.value };
+                      newWhyChoose[index] = {
+                        ...newWhyChoose[index],
+                        description: e.target.value,
+                      };
                       updateFormData("whyChoose", newWhyChoose);
                     }}
                     placeholder="Feature description"
@@ -1021,7 +1174,10 @@ export function AddCollegeForm({
                 type="button"
                 variant="outline"
                 onClick={() => {
-                  const newWhyChoose = [...(formData.whyChoose || []), { title: "", description: "" }];
+                  const newWhyChoose = [
+                    ...(formData.whyChoose || []),
+                    { title: "", description: "" },
+                  ];
                   updateFormData("whyChoose", newWhyChoose);
                 }}
                 className="w-full"
@@ -1041,55 +1197,55 @@ export function AddCollegeForm({
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              {Object.entries(formData.importantDates || {}).map(([key, value], index) => (
-                <div key={key} className="flex gap-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="applicationOpen">Application Opens</Label>
                   <Input
-                    value={key}
-                    onChange={(e) => {
-                      const newDates = { ...(formData.importantDates || {}) };
-                      delete newDates[key];
-                      newDates[e.target.value] = value;
-                      updateFormData("importantDates", newDates);
-                    }}
-                    placeholder="Date name (e.g., Application Deadline)"
-                    className="flex-1"
+                    id="applicationOpen"
+                    value={formData.importantDates?.applicationOpen || ""}
+                    onChange={(e) =>
+                      updateNestedFormData(
+                        "importantDates",
+                        "applicationOpen",
+                        e.target.value
+                      )
+                    }
+                    placeholder="January 15, 2025"
                   />
-                  <Input
-                    value={value}
-                    onChange={(e) => {
-                      const newDates = { ...(formData.importantDates || {}) };
-                      newDates[key] = e.target.value;
-                      updateFormData("importantDates", newDates);
-                    }}
-                    placeholder="Date value"
-                    className="flex-1"
-                  />
-                  <Button
-                    type="button"
-                    variant="outline"
-                    size="icon"
-                    onClick={() => {
-                      const newDates = { ...(formData.importantDates || {}) };
-                      delete newDates[key];
-                      updateFormData("importantDates", newDates);
-                    }}
-                  >
-                    <Minus className="h-4 w-4" />
-                  </Button>
                 </div>
-              ))}
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => {
-                  const newDates = { ...(formData.importantDates || {}), "": "" };
-                  updateFormData("importantDates", newDates);
-                }}
-                className="w-full"
-              >
-                <Plus className="h-4 w-4 mr-2" />
-                Add Important Date
-              </Button>
+                <div>
+                  <Label htmlFor="applicationDeadline">
+                    Application Deadline
+                  </Label>
+                  <Input
+                    id="applicationDeadline"
+                    value={formData.importantDates?.applicationDeadline || ""}
+                    onChange={(e) =>
+                      updateNestedFormData(
+                        "importantDates",
+                        "applicationDeadline",
+                        e.target.value
+                      )
+                    }
+                    placeholder="June 30, 2025"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="semesterStart">Semester Starts</Label>
+                  <Input
+                    id="semesterStart"
+                    value={formData.importantDates?.semesterStart || ""}
+                    onChange={(e) =>
+                      updateNestedFormData(
+                        "importantDates",
+                        "semesterStart",
+                        e.target.value
+                      )
+                    }
+                    placeholder="September 1, 2025"
+                  />
+                </div>
+              </div>
             </CardContent>
           </Card>
 
@@ -1109,7 +1265,10 @@ export function AddCollegeForm({
                       value={faq.question}
                       onChange={(e) => {
                         const newFaqs = [...(formData.faqs || [])];
-                        newFaqs[index] = { ...newFaqs[index], question: e.target.value };
+                        newFaqs[index] = {
+                          ...newFaqs[index],
+                          question: e.target.value,
+                        };
                         updateFormData("faqs", newFaqs);
                       }}
                       placeholder="Question"
@@ -1132,7 +1291,10 @@ export function AddCollegeForm({
                     value={faq.answer}
                     onChange={(e) => {
                       const newFaqs = [...(formData.faqs || [])];
-                      newFaqs[index] = { ...newFaqs[index], answer: e.target.value };
+                      newFaqs[index] = {
+                        ...newFaqs[index],
+                        answer: e.target.value,
+                      };
                       updateFormData("faqs", newFaqs);
                     }}
                     placeholder="Answer"
@@ -1144,7 +1306,10 @@ export function AddCollegeForm({
                 type="button"
                 variant="outline"
                 onClick={() => {
-                  const newFaqs = [...(formData.faqs || []), { question: "", answer: "" }];
+                  const newFaqs = [
+                    ...(formData.faqs || []),
+                    { question: "", answer: "" },
+                  ];
                   updateFormData("faqs", newFaqs);
                 }}
                 className="w-full"
@@ -1170,8 +1335,13 @@ export function AddCollegeForm({
                     <Input
                       value={college.name}
                       onChange={(e) => {
-                        const newSimilar = [...(formData.similarColleges || [])];
-                        newSimilar[index] = { ...newSimilar[index], name: e.target.value };
+                        const newSimilar = [
+                          ...(formData.similarColleges || []),
+                        ];
+                        newSimilar[index] = {
+                          ...newSimilar[index],
+                          name: e.target.value,
+                        };
                         updateFormData("similarColleges", newSimilar);
                       }}
                       placeholder="College name"
@@ -1179,8 +1349,13 @@ export function AddCollegeForm({
                     <Input
                       value={college.location}
                       onChange={(e) => {
-                        const newSimilar = [...(formData.similarColleges || [])];
-                        newSimilar[index] = { ...newSimilar[index], location: e.target.value };
+                        const newSimilar = [
+                          ...(formData.similarColleges || []),
+                        ];
+                        newSimilar[index] = {
+                          ...newSimilar[index],
+                          location: e.target.value,
+                        };
                         updateFormData("similarColleges", newSimilar);
                       }}
                       placeholder="Location"
@@ -1192,8 +1367,13 @@ export function AddCollegeForm({
                       step="0.1"
                       value={college.rating}
                       onChange={(e) => {
-                        const newSimilar = [...(formData.similarColleges || [])];
-                        newSimilar[index] = { ...newSimilar[index], rating: parseFloat(e.target.value) };
+                        const newSimilar = [
+                          ...(formData.similarColleges || []),
+                        ];
+                        newSimilar[index] = {
+                          ...newSimilar[index],
+                          rating: parseFloat(e.target.value),
+                        };
                         updateFormData("similarColleges", newSimilar);
                       }}
                       placeholder="Rating"
@@ -1201,8 +1381,13 @@ export function AddCollegeForm({
                     <Input
                       value={college.fees}
                       onChange={(e) => {
-                        const newSimilar = [...(formData.similarColleges || [])];
-                        newSimilar[index] = { ...newSimilar[index], fees: e.target.value };
+                        const newSimilar = [
+                          ...(formData.similarColleges || []),
+                        ];
+                        newSimilar[index] = {
+                          ...newSimilar[index],
+                          fees: e.target.value,
+                        };
                         updateFormData("similarColleges", newSimilar);
                       }}
                       placeholder="Fees"
@@ -1210,8 +1395,13 @@ export function AddCollegeForm({
                     <Input
                       value={college.link}
                       onChange={(e) => {
-                        const newSimilar = [...(formData.similarColleges || [])];
-                        newSimilar[index] = { ...newSimilar[index], link: e.target.value };
+                        const newSimilar = [
+                          ...(formData.similarColleges || []),
+                        ];
+                        newSimilar[index] = {
+                          ...newSimilar[index],
+                          link: e.target.value,
+                        };
                         updateFormData("similarColleges", newSimilar);
                       }}
                       placeholder="Link/slug"
@@ -1237,8 +1427,17 @@ export function AddCollegeForm({
                 type="button"
                 variant="outline"
                 onClick={() => {
-                  const newSimilar = [...(formData.similarColleges || []), 
-                    { name: "", location: "", rating: 0, fees: "", link: "", highlights: [] }];
+                  const newSimilar = [
+                    ...(formData.similarColleges || []),
+                    {
+                      name: "",
+                      location: "",
+                      rating: 0,
+                      fees: "",
+                      link: "",
+                      highlights: [],
+                    },
+                  ];
                   updateFormData("similarColleges", newSimilar);
                 }}
                 className="w-full"
@@ -1262,6 +1461,7 @@ export function AddCollegeForm({
               }
             }
             gallery={formData.gallery || []}
+            collegeSlug={formData.slug}
             onContactChange={(contact) => updateFormData("contact", contact)}
             onGalleryChange={(gallery) => updateFormData("gallery", gallery)}
           />
@@ -1272,6 +1472,7 @@ export function AddCollegeForm({
           <SEOSection
             seoData={formData.seoData}
             collegeName={formData.name}
+            collegeSlug={formData.slug}
             onSEODataChange={(seoData) => updateFormData("seoData", seoData)}
           />
         </TabsContent>
@@ -1642,7 +1843,7 @@ function RequirementsSection({
         <CardHeader>
           <CardTitle>Admissions Information</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-6">
           <div>
             <Label>Application Fee</Label>
             <Input
@@ -1655,6 +1856,89 @@ function RequirementsSection({
               }
               placeholder="e.g., $100"
             />
+          </div>
+
+          {/* Admission Steps */}
+          <div className="space-y-4">
+            <Label className="text-base font-semibold">
+              Admission Process Steps
+            </Label>
+            {(admissions.steps || []).map(
+              (
+                step: { title: string; description?: string },
+                index: number
+              ) => (
+                <div key={index} className="p-4 border rounded-lg space-y-3">
+                  <div className="flex gap-2 items-center">
+                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-semibold text-sm">
+                      {index + 1}
+                    </div>
+                    <Input
+                      value={step.title}
+                      onChange={(e) => {
+                        const updatedSteps = [...(admissions.steps || [])];
+                        updatedSteps[index] = {
+                          ...updatedSteps[index],
+                          title: e.target.value,
+                        };
+                        onAdmissionsChange({
+                          ...admissions,
+                          steps: updatedSteps,
+                        });
+                      }}
+                      placeholder="Step title (e.g., Online Application)"
+                      className="flex-1"
+                    />
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="icon"
+                      onClick={() => {
+                        const updatedSteps = [...(admissions.steps || [])];
+                        updatedSteps.splice(index, 1);
+                        onAdmissionsChange({
+                          ...admissions,
+                          steps: updatedSteps,
+                        });
+                      }}
+                    >
+                      <Minus className="h-4 w-4" />
+                    </Button>
+                  </div>
+                  <Textarea
+                    value={step.description || ""}
+                    onChange={(e) => {
+                      const updatedSteps = [...(admissions.steps || [])];
+                      updatedSteps[index] = {
+                        ...updatedSteps[index],
+                        description: e.target.value,
+                      };
+                      onAdmissionsChange({
+                        ...admissions,
+                        steps: updatedSteps,
+                      });
+                    }}
+                    placeholder="Step description (optional)"
+                    rows={2}
+                  />
+                </div>
+              )
+            )}
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => {
+                const newStep = { title: "", description: "" };
+                onAdmissionsChange({
+                  ...admissions,
+                  steps: [...(admissions.steps || []), newStep],
+                });
+              }}
+              className="w-full"
+            >
+              <Plus className="h-4 w-4 mr-2" />
+              Add Admission Step
+            </Button>
           </div>
         </CardContent>
       </Card>
@@ -1880,11 +2164,13 @@ function RankingsSection({
 function ContactSection({
   contact,
   gallery,
+  collegeSlug,
   onContactChange,
   onGalleryChange,
 }: {
   contact: any;
   gallery: string[];
+  collegeSlug?: string;
   onContactChange: (contact: any) => void;
   onGalleryChange: (gallery: string[]) => void;
 }) {
@@ -1965,49 +2251,15 @@ function ContactSection({
       </Card>
 
       {/* Gallery */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Gallery Images</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            {gallery.map((image, index) => (
-              <div key={index} className="flex gap-2">
-                <Input
-                  type="url"
-                  value={image}
-                  onChange={(e) => {
-                    const updated = [...gallery];
-                    updated[index] = e.target.value;
-                    onGalleryChange(updated);
-                  }}
-                  placeholder="https://example.com/image.jpg"
-                />
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="icon"
-                  onClick={() =>
-                    onGalleryChange(gallery.filter((_, i) => i !== index))
-                  }
-                >
-                  <Minus className="h-4 w-4" />
-                </Button>
-              </div>
-            ))}
-
-            <Button
-              type="button"
-              variant="outline"
-              onClick={addGalleryImage}
-              className="w-full"
-            >
-              <Plus className="h-4 w-4 mr-2" />
-              Add Gallery Image
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
+      <MultipleImageUpload
+        label="Gallery Images"
+        currentImages={gallery}
+        onImagesChange={onGalleryChange}
+        collegeSlug={collegeSlug}
+        imageType="gallery"
+        maxImages={20}
+        description="Upload multiple images to showcase the college campus, facilities, and student life"
+      />
     </div>
   );
 }
@@ -2016,10 +2268,12 @@ function ContactSection({
 function SEOSection({
   seoData,
   collegeName,
+  collegeSlug,
   onSEODataChange,
 }: {
   seoData: SEOData;
   collegeName: string;
+  collegeSlug?: string;
   onSEODataChange: (seoData: SEOData) => void;
 }) {
   const updateSEOData = (field: string, value: any) => {
@@ -2142,17 +2396,17 @@ function SEOSection({
               placeholder="Leave empty to use SEO title"
             />
           </div>
-          <div>
-            <Label htmlFor="ogImage">Open Graph Image URL</Label>
-            <Input
-              id="ogImage"
-              type="url"
-              value={seoData.ogImage}
-              onChange={(e) => updateSEOData("ogImage", e.target.value)}
-              placeholder="https://example.com/og-image.jpg"
-            />
-          </div>
         </div>
+
+        <ImageUpload
+          label="Open Graph Image"
+          currentImageUrl={seoData.ogImage}
+          onImageUpload={(imageUrl) => updateSEOData("ogImage", imageUrl)}
+          onImageRemove={() => updateSEOData("ogImage", "")}
+          collegeSlug={collegeSlug}
+          imageType="og-image"
+          description="Upload an image for social media sharing (recommended: 1200x630px)"
+        />
 
         <div>
           <Label htmlFor="ogDescription">Open Graph Description</Label>

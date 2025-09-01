@@ -11,6 +11,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { SEOData } from "@/lib/azure-seo";
+import Link from "next/link";
 import {
   Eye,
   Save,
@@ -19,6 +20,7 @@ import {
   AlertCircle,
   CheckCircle,
   RefreshCw,
+  Home,
 } from "lucide-react";
 
 interface SEOAdminPanelProps {
@@ -106,9 +108,9 @@ export function SEOAdminPanel({
         headers: {
           Authorization: `Bearer ${localStorage.getItem("seo-admin-key")}`,
           "Cache-Control": "no-cache",
-          "Pragma": "no-cache"
+          Pragma: "no-cache",
         },
-        cache: 'reload'
+        cache: "reload",
       });
 
       if (response.ok) {
@@ -195,7 +197,7 @@ export function SEOAdminPanel({
 
   const refreshData = async () => {
     if (!selectedPage) return;
-    
+
     setMessage({ type: "success", text: "Refreshing data..." });
     await loadSEOData(selectedPage);
     await loadPages();
@@ -265,12 +267,26 @@ export function SEOAdminPanel({
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">
-            SEO Management Panel
-          </h1>
-          <p className="text-gray-600 mt-2">
-            Manage SEO meta data for all pages
-          </p>
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900">
+                SEO Management Panel
+              </h1>
+              <p className="text-gray-600 mt-2">
+                Manage SEO meta data for all pages
+              </p>
+            </div>
+            <Link href="/admin">
+              <Button
+                variant="outline"
+                size="sm"
+                className="flex items-center gap-2"
+              >
+                <Home className="h-4 w-4" />
+                Admin Home
+              </Button>
+            </Link>
+          </div>
         </div>
 
         {/* Step-by-step Guide */}
@@ -285,7 +301,9 @@ export function SEOAdminPanel({
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
               <div className="space-y-2">
                 <div className="font-semibold flex items-center">
-                  <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-2 text-xs">1</span>
+                  <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-2 text-xs">
+                    1
+                  </span>
                   Select or Create Page
                 </div>
                 <ul className="text-xs space-y-1 ml-8">
@@ -297,31 +315,53 @@ export function SEOAdminPanel({
               </div>
               <div className="space-y-2">
                 <div className="font-semibold flex items-center">
-                  <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-2 text-xs">2</span>
+                  <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-2 text-xs">
+                    2
+                  </span>
                   Fill SEO Details
                 </div>
                 <ul className="text-xs space-y-1 ml-8">
-                  <li>• <strong>Title:</strong> 50-60 characters</li>
-                  <li>• <strong>Description:</strong> 150-160 characters</li>
-                  <li>• <strong>Keywords:</strong> 5-10 relevant terms</li>
-                  <li>• <strong>OG Image:</strong> Social media preview</li>
+                  <li>
+                    • <strong>Title:</strong> 50-60 characters
+                  </li>
+                  <li>
+                    • <strong>Description:</strong> 150-160 characters
+                  </li>
+                  <li>
+                    • <strong>Keywords:</strong> 5-10 relevant terms
+                  </li>
+                  <li>
+                    • <strong>OG Image:</strong> Social media preview
+                  </li>
                 </ul>
               </div>
               <div className="space-y-2">
                 <div className="font-semibold flex items-center">
-                  <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-2 text-xs">3</span>
+                  <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-2 text-xs">
+                    3
+                  </span>
                   Advanced Settings
                 </div>
                 <ul className="text-xs space-y-1 ml-8">
-                  <li>• <strong>Canonical URL:</strong> Avoid duplicate content</li>
-                  <li>• <strong>NoIndex:</strong> Hide from search engines</li>
-                  <li>• <strong>NoFollow:</strong> Don't follow links</li>
-                  <li>• <strong>Schema:</strong> Structured data markup</li>
+                  <li>
+                    • <strong>Canonical URL:</strong> Avoid duplicate content
+                  </li>
+                  <li>
+                    • <strong>NoIndex:</strong> Hide from search engines
+                  </li>
+                  <li>
+                    • <strong>NoFollow:</strong> Don't follow links
+                  </li>
+                  <li>
+                    • <strong>Schema:</strong> Structured data markup
+                  </li>
                 </ul>
               </div>
               <div className="space-y-2">
                 <div className="font-semibold flex items-center">
-                  <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-2 text-xs">4</span>
+                  <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-2 text-xs">
+                    4
+                  </span>
                   Save & Preview
                 </div>
                 <ul className="text-xs space-y-1 ml-8">
@@ -332,10 +372,12 @@ export function SEOAdminPanel({
                 </ul>
               </div>
             </div>
-            
+
             {/* Page Slug Examples */}
             <div className="mb-4 p-3 bg-blue-100 rounded border-l-4 border-blue-500">
-              <div className="font-semibold text-blue-800 mb-2">� Page Slug Examples:</div>
+              <div className="font-semibold text-blue-800 mb-2">
+                � Page Slug Examples:
+              </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
                 <div>
                   <div className="font-medium mb-1">Basic Pages:</div>
@@ -361,13 +403,30 @@ export function SEOAdminPanel({
 
             {/* Pro Tips */}
             <div className="p-3 bg-blue-100 rounded border-l-4 border-blue-500">
-              <div className="font-semibold text-blue-800 mb-1">💡 SEO Best Practices:</div>
+              <div className="font-semibold text-blue-800 mb-1">
+                💡 SEO Best Practices:
+              </div>
               <div className="text-xs space-y-1">
-                <p>• <strong>Title:</strong> Include target keywords early, make it compelling for clicks</p>
-                <p>• <strong>Description:</strong> Summarize page content, include call-to-action, avoid duplication</p>
-                <p>• <strong>Keywords:</strong> Use specific long-tail keywords, avoid keyword stuffing</p>
-                <p>• <strong>URLs:</strong> For subpages, use format "parent-page/subpage" for better organization</p>
-                <p>• <strong>Testing:</strong> Use Google's Rich Results Test to validate your changes</p>
+                <p>
+                  • <strong>Title:</strong> Include target keywords early, make
+                  it compelling for clicks
+                </p>
+                <p>
+                  • <strong>Description:</strong> Summarize page content,
+                  include call-to-action, avoid duplication
+                </p>
+                <p>
+                  • <strong>Keywords:</strong> Use specific long-tail keywords,
+                  avoid keyword stuffing
+                </p>
+                <p>
+                  • <strong>URLs:</strong> For subpages, use format
+                  "parent-page/subpage" for better organization
+                </p>
+                <p>
+                  • <strong>Testing:</strong> Use Google's Rich Results Test to
+                  validate your changes
+                </p>
               </div>
             </div>
           </CardContent>

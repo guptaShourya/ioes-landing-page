@@ -148,6 +148,29 @@ export async function GET(request: NextRequest) {
         });
       }
 
+      case "get_college": {
+        const slug = searchParams.get("slug");
+        if (!slug) {
+          return NextResponse.json(
+            { error: "College slug is required" },
+            { status: 400 }
+          );
+        }
+
+        const college = await collegeAzureService.getCollege(slug);
+        if (!college) {
+          return NextResponse.json(
+            { error: "College not found" },
+            { status: 404 }
+          );
+        }
+
+        return NextResponse.json({
+          success: true,
+          college,
+        });
+      }
+
       case "get_index": {
         const index = await collegeAzureService.getCollegeIndex();
         return NextResponse.json({

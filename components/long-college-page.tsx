@@ -109,12 +109,18 @@ export default function CollegePage({ data }: CollegePageProps) {
                   <div className="flex items-center gap-6 text-white">
                     <div className="flex items-center gap-1">
                       <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-                      <span className="font-medium text-lg">{data.statistics?.rating || "4.8"}</span>
-                      <span className="text-white/70">/5 ({data.statistics?.reviewCount || "2,500+"} Reviews)</span>
+                      <span className="font-medium text-lg">
+                        {data.statistics?.rating || "4.8"}
+                      </span>
+                      <span className="text-white/70">
+                        /5 ({data.statistics?.reviewCount || "2,500+"} Reviews)
+                      </span>
                     </div>
                     <div className="flex items-center gap-1">
                       <Users className="h-5 w-5 text-green-400" />
-                      <span className="text-white/70">{data.statistics?.studentCount || "50,000+"} Students</span>
+                      <span className="text-white/70">
+                        {data.statistics?.studentCount || "50,000+"} Students
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -160,7 +166,7 @@ export default function CollegePage({ data }: CollegePageProps) {
         </section>
 
         {/* Overview Section */}
-        <section className="w-full py-16 md:py-20 bg-white">
+        <section className="w-full py-16 md:py-20 bg-gradient-to-b from-[#f0ebe6] to-white">
           <div className="container px-4 md:px-6">
             <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
               <div className="space-y-6">
@@ -197,7 +203,9 @@ export default function CollegePage({ data }: CollegePageProps) {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="text-center p-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl">
                     <div className="text-3xl font-bold text-blue-600 mb-2">
-                      {data.statistics?.establishedDisplay || data.established || "1850"}
+                      {data.statistics?.establishedDisplay ||
+                        data.established ||
+                        "1850"}
                     </div>
                     <div className="text-sm text-gray-600 font-medium">
                       Established
@@ -205,7 +213,9 @@ export default function CollegePage({ data }: CollegePageProps) {
                   </div>
                   <div className="text-center p-6 bg-gradient-to-br from-green-50 to-green-100 rounded-xl">
                     <div className="text-3xl font-bold text-green-600 mb-2">
-                      {data.statistics?.programCount || data.programs?.length || "200+"}
+                      {data.statistics?.programCount ||
+                        data.programs?.length ||
+                        "200+"}
                     </div>
                     <div className="text-sm text-gray-600 font-medium">
                       Programs
@@ -282,7 +292,7 @@ export default function CollegePage({ data }: CollegePageProps) {
         </section>
 
         {/* Why Choose This College Section */}
-        <section className="w-full py-16 md:py-20 bg-gray-50">
+        <section className="w-full py-16 md:py-20 bg-gradient-to-t from-[#f0ebe6] to-white">
           <div className="container px-4 md:px-6">
             <div className="text-center space-y-4 mb-12">
               <div className="inline-block rounded-lg bg-green-100 px-3 py-1 text-sm text-green-800 font-medium">
@@ -298,59 +308,69 @@ export default function CollegePage({ data }: CollegePageProps) {
             </div>
 
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {(data.whyChoose || [
-                {
-                  icon: "Award",
-                  title: "World-Class Rankings",
-                  description:
-                    "Consistently ranked among the top universities globally with excellence across multiple disciplines and research areas.",
-                },
-                {
-                  icon: "Users",
-                  title: "Distinguished Faculty",
-                  description:
-                    "Learn from Nobel laureates, industry leaders, and renowned researchers who are pioneers in their respective fields.",
-                },
-                {
-                  icon: "BookOpen",
-                  title: "Innovative Programs",
-                  description:
-                    "Access cutting-edge curriculum designed to meet industry demands and prepare you for future challenges.",
-                },
-                {
-                  icon: "TrendingUp",
-                  title: "Outstanding Placements",
-                  description:
-                    "97% placement rate with graduates securing positions at top companies worldwide with competitive packages.",
-                },
-                {
-                  icon: "Globe",
-                  title: "Global Network",
-                  description:
-                    "Join an extensive alumni network spanning 190+ countries, opening doors to international opportunities.",
-                },
-                {
-                  icon: "Building",
-                  title: "State-of-Art Facilities",
-                  description:
-                    "World-class infrastructure including modern labs, libraries, sports complexes, and research centers.",
-                },
-              ]).map((feature, index) => {
-                const IconComponent = feature.icon === "Award" ? Award :
-                                   feature.icon === "Users" ? Users :
-                                   feature.icon === "BookOpen" ? BookOpen :
-                                   feature.icon === "TrendingUp" ? TrendingUp :
-                                   feature.icon === "Globe" ? Globe :
-                                   feature.icon === "Building" ? Building : Award;
-                
+              {(
+                data.whyChoose || [
+                  {
+                    icon: "Award",
+                    title: "World-Class Rankings",
+                    description:
+                      "Consistently ranked among the top universities globally with excellence across multiple disciplines and research areas.",
+                  },
+                  {
+                    icon: "Users",
+                    title: "Distinguished Faculty",
+                    description:
+                      "Learn from Nobel laureates, industry leaders, and renowned researchers who are pioneers in their respective fields.",
+                  },
+                  {
+                    icon: "BookOpen",
+                    title: "Innovative Programs",
+                    description:
+                      "Access cutting-edge curriculum designed to meet industry demands and prepare you for future challenges.",
+                  },
+                  {
+                    icon: "TrendingUp",
+                    title: "Outstanding Placements",
+                    description:
+                      "97% placement rate with graduates securing positions at top companies worldwide with competitive packages.",
+                  },
+                  {
+                    icon: "Globe",
+                    title: "Global Network",
+                    description:
+                      "Join an extensive alumni network spanning 190+ countries, opening doors to international opportunities.",
+                  },
+                  {
+                    icon: "Building",
+                    title: "State-of-Art Facilities",
+                    description:
+                      "World-class infrastructure including modern labs, libraries, sports complexes, and research centers.",
+                  },
+                ]
+              ).map((feature, index) => {
+                const IconComponent =
+                  feature.icon === "Award"
+                    ? Award
+                    : feature.icon === "Users"
+                    ? Users
+                    : feature.icon === "BookOpen"
+                    ? BookOpen
+                    : feature.icon === "TrendingUp"
+                    ? TrendingUp
+                    : feature.icon === "Globe"
+                    ? Globe
+                    : feature.icon === "Building"
+                    ? Building
+                    : Award;
+
                 return (
                   <Card
                     key={index}
-                    className="group hover:shadow-lg transition-all duration-300 border-0 shadow-md"
+                    className="transition-all duration-300 border-0 shadow-md bg-gradient-to-br from-blue-50 to-indigo-100"
                   >
                     <CardContent className="p-6 space-y-4">
-                      <div className="rounded-lg bg-gray-50 p-3 w-fit group-hover:scale-110 transition-transform duration-300">
-                        <IconComponent className="h-8 w-8 text-yellow-500" />
+                      <div className="rounded-lg bg-white p-3 w-fit transition-transform duration-300 shadow-sm">
+                        <IconComponent className="h-8 w-8 text-blue-600" />
                       </div>
                       <h3 className="text-xl font-semibold">{feature.title}</h3>
                       <p className="text-gray-600 leading-relaxed">
@@ -365,10 +385,10 @@ export default function CollegePage({ data }: CollegePageProps) {
         </section>
 
         {/* CTA Section 1 */}
-        <section className="w-full py-16 bg-gradient-to-r from-[#ED4746] to-[#d63384] text-white">
-          <div className="container px-4 md:px-6">
-            <div className="text-center space-y-6">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+        <section className="w-full py-16 bg-gradient-to-b from-[#f0ebe6] to-white">
+          <div className="container px-4 md:px-6 max-w-5xl">
+            <div className="text-center space-y-6 py-8 px-6 md:px-12 bg-gradient-to-r from-[#ED4746] to-[#d63384] rounded-2xl">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-white">
                 Ready to Begin Your Journey?
               </h2>
               <p className="mx-auto max-w-2xl text-lg text-white/90">
@@ -378,7 +398,7 @@ export default function CollegePage({ data }: CollegePageProps) {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
                   size="lg"
-                  className="bg-white text-[#ED4746] hover:bg-gray-100 transition-all duration-300"
+                  className="bg-white text-[#ED4746] hover:bg-gray-100 transition-all duration-300 px-8"
                   onClick={openPopup}
                 >
                   Get Free Consultation
@@ -386,9 +406,11 @@ export default function CollegePage({ data }: CollegePageProps) {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="border-white text-white hover:bg-white/10 transition-all duration-300"
+                  className="bg-white/10 transition-all duration-300 px-8 text-white"
                 >
-                  <Link href="/courses">Explore All Courses</Link>
+                  <Link href="/courses" target="_blank">
+                    Explore All Courses
+                  </Link>
                 </Button>
               </div>
             </div>
@@ -396,7 +418,7 @@ export default function CollegePage({ data }: CollegePageProps) {
         </section>
 
         {/* Top Courses Section */}
-        <section className="w-full py-16 md:py-20 bg-white">
+        <section className="w-full py-16 md:py-20 bg-gradient-to-t from-[#f0ebe6] to-white">
           <div className="container px-4 md:px-6">
             <div className="text-center space-y-4 mb-12">
               <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800 font-medium">
@@ -416,9 +438,9 @@ export default function CollegePage({ data }: CollegePageProps) {
                 {data.programs.slice(0, 6).map((program, index) => (
                   <Card
                     key={index}
-                    className="group hover:shadow-xl transition-all duration-300 border-0 shadow-md overflow-hidden"
+                    className="transition-all duration-300 border-0 shadow-md overflow-hidden bg-gradient-to-br from-blue-50 to-indigo-100"
                   >
-                    <CardHeader className="bg-gradient-to-r from-blue-50 to-purple-50 group-hover:from-blue-100 group-hover:to-purple-100 transition-all duration-300">
+                    <CardHeader className="bg-gradient-to-r from-blue-100 to-purple-100 transition-all duration-300">
                       <div className="flex justify-between items-start">
                         <div>
                           <CardTitle className="text-lg mb-2">
@@ -449,7 +471,10 @@ export default function CollegePage({ data }: CollegePageProps) {
                           Next Intake: {program.nextIntake}
                         </div>
                       )}
-                      <Button className="w-full group-hover:bg-[#ED4746] transition-all duration-300">
+                      <Button
+                        className="w-full bg-[#ED4746] hover:bg-[#ED4746]/90 transition-all duration-300"
+                        onClick={openPopup}
+                      >
                         Apply Now
                       </Button>
                     </CardContent>
@@ -481,7 +506,7 @@ export default function CollegePage({ data }: CollegePageProps) {
         </section>
 
         {/* Admissions Overview Section */}
-        <section className="w-full py-16 md:py-20 bg-gray-50">
+        <section className="w-full py-16 md:py-20 bg-gradient-to-b from-[#f0ebe6] to-white">
           <div className="container px-4 md:px-6">
             <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
               <div className="space-y-6">
@@ -503,9 +528,9 @@ export default function CollegePage({ data }: CollegePageProps) {
                     {data.admissions.steps.map((step, index) => (
                       <div
                         key={index}
-                        className="flex gap-4 p-4 bg-white rounded-lg shadow-sm"
+                        className="flex gap-4 p-4 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-lg shadow-md border border-blue-200/50"
                       >
-                        <div className="flex-shrink-0 w-8 h-8 bg-[#ED4746] rounded-full flex items-center justify-center text-white font-bold text-sm">
+                        <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md">
                           {index + 1}
                         </div>
                         <div>
@@ -552,9 +577,9 @@ export default function CollegePage({ data }: CollegePageProps) {
                     ].map((step, index) => (
                       <div
                         key={index}
-                        className="flex gap-4 p-4 bg-white rounded-lg shadow-sm"
+                        className="flex gap-4 p-4 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-lg shadow-md border border-blue-200/50"
                       >
-                        <div className="flex-shrink-0 w-8 h-8 bg-[#ED4746] rounded-full flex items-center justify-center text-white font-bold text-sm">
+                        <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md">
                           {index + 1}
                         </div>
                         <div>
@@ -619,7 +644,8 @@ export default function CollegePage({ data }: CollegePageProps) {
                           Application Opens
                         </span>
                         <span className="text-sm font-bold text-blue-600">
-                          {data.importantDates?.applicationOpen || "January 15, 2025"}
+                          {data.importantDates?.applicationOpen ||
+                            "January 15, 2025"}
                         </span>
                       </div>
                       <div className="flex justify-between items-center p-3 bg-orange-50 rounded-lg">
@@ -627,7 +653,8 @@ export default function CollegePage({ data }: CollegePageProps) {
                           Application Deadline
                         </span>
                         <span className="text-sm font-bold text-orange-600">
-                          {data.importantDates?.applicationDeadline || "June 30, 2025"}
+                          {data.importantDates?.applicationDeadline ||
+                            "June 30, 2025"}
                         </span>
                       </div>
                       <div className="flex justify-between items-center p-3 bg-green-50 rounded-lg">
@@ -635,7 +662,8 @@ export default function CollegePage({ data }: CollegePageProps) {
                           Semester Starts
                         </span>
                         <span className="text-sm font-bold text-green-600">
-                          {data.importantDates?.semesterStart || "September 1, 2025"}
+                          {data.importantDates?.semesterStart ||
+                            "September 1, 2025"}
                         </span>
                       </div>
                     </div>
@@ -667,7 +695,7 @@ export default function CollegePage({ data }: CollegePageProps) {
         </section>
 
         {/* Placement Overview Section */}
-        <section className="w-full py-16 md:py-20 bg-white">
+        <section className="w-full py-16 md:py-20 bg-gradient-to-t from-[#f0ebe6] to-white">
           <div className="container px-4 md:px-6">
             <div className="text-center space-y-4 mb-12">
               <div className="inline-block rounded-lg bg-purple-100 px-3 py-1 text-sm text-purple-800 font-medium">
@@ -691,7 +719,8 @@ export default function CollegePage({ data }: CollegePageProps) {
                   Placement Rate
                 </div>
                 <div className="text-sm text-gray-600">
-                  {data.placement?.placementDescription || "Graduates placed within 6 months"}
+                  {data.placement?.placementDescription ||
+                    "Graduates placed within 6 months"}
                 </div>
               </div>
               <div className="text-center p-8 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl">
@@ -702,7 +731,8 @@ export default function CollegePage({ data }: CollegePageProps) {
                   Average Package
                 </div>
                 <div className="text-sm text-gray-600">
-                  {data.placement?.averageDescription || "Annual starting salary"}
+                  {data.placement?.averageDescription ||
+                    "Annual starting salary"}
                 </div>
               </div>
               <div className="text-center p-8 bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl">
@@ -713,7 +743,8 @@ export default function CollegePage({ data }: CollegePageProps) {
                   Highest Package
                 </div>
                 <div className="text-sm text-gray-600">
-                  {data.placement?.highestDescription || "Record placement achieved"}
+                  {data.placement?.highestDescription ||
+                    "Record placement achieved"}
                 </div>
               </div>
             </div>
@@ -728,16 +759,18 @@ export default function CollegePage({ data }: CollegePageProps) {
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-2 gap-4">
-                    {(data.placement?.topRecruiters || [
-                      "Google",
-                      "Microsoft",
-                      "Amazon",
-                      "Apple",
-                      "Goldman Sachs",
-                      "McKinsey",
-                      "Deloitte",
-                      "JP Morgan",
-                    ]).map((company, index) => (
+                    {(
+                      data.placement?.topRecruiters || [
+                        "Google",
+                        "Microsoft",
+                        "Amazon",
+                        "Apple",
+                        "Goldman Sachs",
+                        "McKinsey",
+                        "Deloitte",
+                        "JP Morgan",
+                      ]
+                    ).map((company, index) => (
                       <div
                         key={index}
                         className="flex items-center gap-2 p-3 bg-gray-50 rounded-lg"
@@ -759,13 +792,15 @@ export default function CollegePage({ data }: CollegePageProps) {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    {(data.placement?.industryDistribution || [
-                      { sector: "Technology", percentage: 35 },
-                      { sector: "Finance & Banking", percentage: 25 },
-                      { sector: "Consulting", percentage: 20 },
-                      { sector: "Healthcare", percentage: 15 },
-                      { sector: "Other Industries", percentage: 5 },
-                    ]).map((item, index) => (
+                    {(
+                      data.placement?.industryDistribution || [
+                        { sector: "Technology", percentage: 35 },
+                        { sector: "Finance & Banking", percentage: 25 },
+                        { sector: "Consulting", percentage: 20 },
+                        { sector: "Healthcare", percentage: 15 },
+                        { sector: "Other Industries", percentage: 5 },
+                      ]
+                    ).map((item, index) => (
                       <div key={index} className="space-y-2">
                         <div className="flex justify-between text-sm">
                           <span className="font-medium">{item.sector}</span>
@@ -802,10 +837,10 @@ export default function CollegePage({ data }: CollegePageProps) {
         </section>
 
         {/* CTA Section 2 */}
-        <section className="w-full py-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
-          <div className="container px-4 md:px-6">
-            <div className="text-center space-y-6">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+        <section className="w-full py-16 bg-gradient-to-b from-[#f0ebe6] to-white">
+          <div className="container px-4 md:px-6 max-w-5xl">
+            <div className="text-center space-y-6 py-8 px-6 md:px-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-white">
                 Start Your Application Today
               </h2>
               <p className="mx-auto max-w-2xl text-lg text-white/90">
@@ -815,7 +850,7 @@ export default function CollegePage({ data }: CollegePageProps) {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
                   size="lg"
-                  className="bg-white text-blue-600 hover:bg-gray-100 transition-all duration-300"
+                  className="bg-white text-blue-600 hover:bg-gray-100 transition-all duration-300 px-8"
                   onClick={openPopup}
                 >
                   Apply Now
@@ -823,9 +858,11 @@ export default function CollegePage({ data }: CollegePageProps) {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="border-white text-white hover:bg-white/10 transition-all duration-300"
+                  className="bg-white/10 transition-all duration-300 px-8 text-white"
                 >
-                  <Link href="/scholarships">Explore Scholarships</Link>
+                  <Link href="/scholarships" target="_blank">
+                    Explore Scholarships
+                  </Link>
                 </Button>
               </div>
             </div>
@@ -833,7 +870,7 @@ export default function CollegePage({ data }: CollegePageProps) {
         </section>
 
         {/* Similar Colleges Section */}
-        <section className="w-full py-16 md:py-20 bg-gray-50">
+        <section className="w-full py-16 md:py-20 bg-gradient-to-t from-[#f0ebe6] to-white">
           <div className="container px-4 md:px-6">
             <div className="text-center space-y-4 mb-12">
               <div className="inline-block rounded-lg bg-orange-100 px-3 py-1 text-sm text-orange-800 font-medium">
@@ -849,41 +886,43 @@ export default function CollegePage({ data }: CollegePageProps) {
             </div>
 
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {(data.similarColleges || [
-                {
-                  name: "Harvard University",
-                  location: "Cambridge, USA",
-                  ranking: "#1 Global",
-                  logo: "/placeholder-logo.png",
-                  highlights: [
-                    "World's top university",
-                    "Nobel laureate faculty",
-                    "Prestigious alumni network",
-                  ],
-                },
-                {
-                  name: "Stanford University",
-                  location: "California, USA",
-                  ranking: "#2 Global",
-                  logo: "/placeholder-logo.png",
-                  highlights: [
-                    "Innovation hub",
-                    "Silicon Valley connections",
-                    "Entrepreneurship focus",
-                  ],
-                },
-                {
-                  name: "MIT",
-                  location: "Boston, USA",
-                  ranking: "#3 Global",
-                  logo: "/placeholder-logo.png",
-                  highlights: [
-                    "Technology leader",
-                    "Research excellence",
-                    "Industry partnerships",
-                  ],
-                },
-              ]).map((college, index) => (
+              {(
+                data.similarColleges || [
+                  {
+                    name: "Harvard University",
+                    location: "Cambridge, USA",
+                    ranking: "#1 Global",
+                    logo: "/placeholder-logo.png",
+                    highlights: [
+                      "World's top university",
+                      "Nobel laureate faculty",
+                      "Prestigious alumni network",
+                    ],
+                  },
+                  {
+                    name: "Stanford University",
+                    location: "California, USA",
+                    ranking: "#2 Global",
+                    logo: "/placeholder-logo.png",
+                    highlights: [
+                      "Innovation hub",
+                      "Silicon Valley connections",
+                      "Entrepreneurship focus",
+                    ],
+                  },
+                  {
+                    name: "MIT",
+                    location: "Boston, USA",
+                    ranking: "#3 Global",
+                    logo: "/placeholder-logo.png",
+                    highlights: [
+                      "Technology leader",
+                      "Research excellence",
+                      "Industry partnerships",
+                    ],
+                  },
+                ]
+              ).map((college, index) => (
                 <Card
                   key={index}
                   className="group hover:shadow-xl transition-all duration-300 cursor-pointer"
@@ -932,20 +971,11 @@ export default function CollegePage({ data }: CollegePageProps) {
                 </Card>
               ))}
             </div>
-
-            <div className="text-center mt-12">
-              <Button variant="outline" size="lg" asChild>
-                <Link href="/colleges">
-                  View All Colleges
-                  <ChevronRight className="h-4 w-4 ml-2" />
-                </Link>
-              </Button>
-            </div>
           </div>
         </section>
 
         {/* FAQs Section */}
-        <section className="w-full py-16 md:py-20 bg-white">
+        <section className="w-full py-16 md:py-20 bg-gradient-to-b from-[#f0ebe6] to-white">
           <div className="container px-4 md:px-6">
             <div className="text-center space-y-4 mb-12">
               <div className="inline-block rounded-lg bg-green-100 px-3 py-1 text-sm text-green-800 font-medium">
@@ -960,38 +990,40 @@ export default function CollegePage({ data }: CollegePageProps) {
             </div>
 
             <div className="max-w-4xl mx-auto space-y-6">
-              {(data.faqs || [
-                {
-                  question: `What are the admission requirements for ${data.name}?`,
-                  answer:
-                    "Admission requirements typically include completed application forms, academic transcripts, English proficiency test scores (IELTS/TOEFL), letters of recommendation, and a statement of purpose. Specific requirements may vary by program.",
-                },
-                {
-                  question: "When is the application deadline?",
-                  answer:
-                    "Application deadlines vary by program and intake. Generally, applications for the fall semester are due by June 30th, while spring semester applications are due by November 30th. Early applications are encouraged.",
-                },
-                {
-                  question: "What scholarships are available?",
-                  answer:
-                    "The university offers various merit-based and need-based scholarships for international students. These include academic excellence scholarships, diversity scholarships, and program-specific funding opportunities.",
-                },
-                {
-                  question: "What is campus life like?",
-                  answer:
-                    "Campus life is vibrant and diverse, with numerous student organizations, cultural events, sports activities, and academic societies. The university provides comprehensive support services including accommodation, dining, healthcare, and career counseling.",
-                },
-                {
-                  question: "What are the career prospects after graduation?",
-                  answer:
-                    "Graduates have excellent career prospects with a 97% placement rate. The university has strong industry connections and provides career services including internship opportunities, job placement assistance, and alumni networking events.",
-                },
-                {
-                  question: "How can I get help with my application?",
-                  answer:
-                    "Our expert education consultants provide comprehensive application support including document preparation, essay writing assistance, interview coaching, and visa guidance. Contact us for personalized assistance.",
-                },
-              ]).map((faq, index) => (
+              {(
+                data.faqs || [
+                  {
+                    question: `What are the admission requirements for ${data.name}?`,
+                    answer:
+                      "Admission requirements typically include completed application forms, academic transcripts, English proficiency test scores (IELTS/TOEFL), letters of recommendation, and a statement of purpose. Specific requirements may vary by program.",
+                  },
+                  {
+                    question: "When is the application deadline?",
+                    answer:
+                      "Application deadlines vary by program and intake. Generally, applications for the fall semester are due by June 30th, while spring semester applications are due by November 30th. Early applications are encouraged.",
+                  },
+                  {
+                    question: "What scholarships are available?",
+                    answer:
+                      "The university offers various merit-based and need-based scholarships for international students. These include academic excellence scholarships, diversity scholarships, and program-specific funding opportunities.",
+                  },
+                  {
+                    question: "What is campus life like?",
+                    answer:
+                      "Campus life is vibrant and diverse, with numerous student organizations, cultural events, sports activities, and academic societies. The university provides comprehensive support services including accommodation, dining, healthcare, and career counseling.",
+                  },
+                  {
+                    question: "What are the career prospects after graduation?",
+                    answer:
+                      "Graduates have excellent career prospects with a 97% placement rate. The university has strong industry connections and provides career services including internship opportunities, job placement assistance, and alumni networking events.",
+                  },
+                  {
+                    question: "How can I get help with my application?",
+                    answer:
+                      "Our expert education consultants provide comprehensive application support including document preparation, essay writing assistance, interview coaching, and visa guidance. Contact us for personalized assistance.",
+                  },
+                ]
+              ).map((faq, index) => (
                 <Card
                   key={index}
                   className="group hover:shadow-md transition-all duration-300"
@@ -1000,7 +1032,7 @@ export default function CollegePage({ data }: CollegePageProps) {
                     <details className="group">
                       <summary className="flex items-center justify-between cursor-pointer list-none">
                         <h3 className="text-lg font-semibold text-gray-900 group-hover:text-[#ED4746] transition-colors">
-                          {faq.question.replace('{collegeName}', data.name)}
+                          {faq.question.replace("{collegeName}", data.name)}
                         </h3>
                         <ChevronRight className="h-5 w-5 text-gray-500 group-open:rotate-90 transition-transform duration-200" />
                       </summary>
@@ -1025,50 +1057,97 @@ export default function CollegePage({ data }: CollegePageProps) {
         </section>
 
         {/* Final CTA Section */}
-        <section className="w-full py-16 bg-gradient-to-r from-[#ED4746] to-[#d63384] text-white">
-          <div className="container px-4 md:px-6">
-            <div className="text-center space-y-6">
-              <div className="inline-flex items-center gap-2 text-white/90 text-lg">
-                <Sparkles className="h-5 w-5" />
-                Your Academic Journey Starts Here
-                <Sparkles className="h-5 w-5" />
-              </div>
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-                Ready to Transform Your Future?
-              </h2>
-              <p className="mx-auto max-w-2xl text-lg text-white/90">
-                Join thousands of successful students who achieved their dreams
-                with our expert guidance. Your journey to {data.name} starts
-                with a single conversation.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button
-                  size="lg"
-                  className="bg-white text-[#ED4746] hover:bg-gray-100 transition-all duration-300 text-lg px-8 py-4"
-                  onClick={openPopup}
-                >
-                  Start Your Application Journey
-                </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="border-white text-white hover:bg-white/10 transition-all duration-300 text-lg px-8 py-4"
-                >
-                  <Link href="/success-stories">View Success Stories</Link>
-                </Button>
-              </div>
-              <div className="flex items-center justify-center gap-8 text-white/80 text-sm mt-8">
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4" />
-                  Free Consultation
+        <section className="w-full p-6 md:p-12 lg:p-24 bg-gradient-to-t from-[#f0ebe6] to-white">
+          <div className="container p-6 md:p-12 bg-gradient-to-r from-[#ED4746] to-[#d63384] rounded-2xl text-white">
+            <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
+              <div className="flex flex-col justify-center space-y-6">
+                <div className="space-y-4">
+                  <div className="inline-flex items-center gap-2 text-white/90 text-lg">
+                    <Sparkles className="h-5 w-5" />
+                    Your Academic Journey Starts Here
+                    <Sparkles className="h-5 w-5" />
+                  </div>
+                  <h2 className="text-4xl font-bold tracking-tighter sm:text-5xl">
+                    Ready to Transform Your Future?
+                  </h2>
+                  <p className="text-lg text-white/90 leading-relaxed">
+                    Join thousands of successful students who achieved their
+                    dreams with our expert guidance. Your journey to {data.name}{" "}
+                    starts with a single conversation.
+                  </p>
                 </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4" />
-                  Expert Guidance
+
+                <ul className="grid gap-3">
+                  <li className="flex items-center gap-3">
+                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white/20">
+                      <CheckCircle2 className="h-4 w-4 text-white" />
+                    </div>
+                    <span className="text-white/90">
+                      Free Consultation & Application Guidance
+                    </span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white/20">
+                      <CheckCircle2 className="h-4 w-4 text-white" />
+                    </div>
+                    <span className="text-white/90">
+                      Expert Counselors with 100% Success Rate
+                    </span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white/20">
+                      <CheckCircle2 className="h-4 w-4 text-white" />
+                    </div>
+                    <span className="text-white/90">
+                      Personalized University & Course Matching
+                    </span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white/20">
+                      <CheckCircle2 className="h-4 w-4 text-white" />
+                    </div>
+                    <span className="text-white/90">
+                      Scholarship & Financial Aid Support
+                    </span>
+                  </li>
+                </ul>
+
+                <div className="space-y-4">
+                  <Button
+                    size="lg"
+                    className="w-full lg:w-auto bg-white text-[#ED4746] hover:bg-gray-100 transition-all duration-300 text-lg px-8 py-4"
+                    onClick={openPopup}
+                  >
+                    Start Your Application Journey
+                  </Button>
+                  <div className="lg:hidden p-4 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">
+                    <p className="text-sm text-white/80 text-center">
+                      🎯 <strong>Limited Time:</strong> Get priority processing
+                      for your {data.name} application
+                    </p>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4" />
-                  100% Success Rate
+              </div>
+
+              <div className="flex flex-col justify-center items-center space-y-6">
+                <div className="relative w-full max-w-md">
+                  <Image
+                    src="/scholarship-ioes-help.webp"
+                    width={500}
+                    height={400}
+                    alt="IOES counseling session"
+                    className="w-full h-auto rounded-xl object-cover shadow-lg"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-xl"></div>
+                </div>
+
+                <div className="w-full space-y-4">
+                  <div className="hidden lg:block p-4 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">
+                    <p className="text-sm text-white/80 text-center">
+                      🎯 <strong>Limited Time:</strong> Get priority processing
+                      for your {data.name} application
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
