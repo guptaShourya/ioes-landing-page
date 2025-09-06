@@ -15,6 +15,7 @@ import {
   Search,
   School,
   GraduationCap,
+  Globe,
 } from "lucide-react";
 
 export default function AdminDashboard() {
@@ -102,6 +103,25 @@ export default function AdminDashboard() {
             <Button variant="outline" className="w-full" disabled>
               Coming Soon
             </Button>
+          </CardContent>
+        </Card>
+
+        {/* Study in Country Pages Card */}
+        <Card className="hover:shadow-lg transition-shadow">
+          <CardHeader>
+            <div className="flex items-center space-x-2">
+              <Globe className="h-6 w-6 text-indigo-600" />
+              <CardTitle>Study in Country Pages</CardTitle>
+            </div>
+            <CardDescription>
+              Create and manage SEO-optimized study in country landing pages
+              with customizable content and metadata.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Link href="/admin/manage-study-in-country">
+              <Button className="w-full">Manage Pages</Button>
+            </Link>
           </CardContent>
         </Card>
 

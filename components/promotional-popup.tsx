@@ -27,7 +27,6 @@ export function PromotionalPopup() {
   useEffect(() => {
     // Check if the popup has been closed in this session
     const hasBeenClosed = sessionStorage.getItem("promoPopupClosed");
-    console.log(isVisible);
 
     if (!hasBeenClosed) {
       // Select a random promotional message
