@@ -8,7 +8,7 @@ const AZURE_STORAGE_CONNECTION_STRING =
   process.env.AZURE_STORAGE_CONNECTION_STRING;
 const AZURE_STORAGE_ACCOUNT_NAME = process.env.AZURE_STORAGE_ACCOUNT_NAME;
 const AZURE_STORAGE_ACCOUNT_KEY = process.env.AZURE_STORAGE_ACCOUNT_KEY;
-const IMAGES_CONTAINER_NAME = "college-images";
+const IMAGES_CONTAINER_NAME = "college-data";
 
 // Initialize Azure Blob Service Client
 let blobServiceClient: BlobServiceClient | null = null;
@@ -16,10 +16,12 @@ let blobServiceClient: BlobServiceClient | null = null;
 function getBlobServiceClient(): BlobServiceClient {
   if (!blobServiceClient) {
     if (AZURE_STORAGE_CONNECTION_STRING) {
+      console.log("Using Azure Storage connection string");
       blobServiceClient = BlobServiceClient.fromConnectionString(
         AZURE_STORAGE_CONNECTION_STRING
       );
     } else if (AZURE_STORAGE_ACCOUNT_NAME && AZURE_STORAGE_ACCOUNT_KEY) {
+      console.log("Using Azure Storage account name and key");
       const credential = new StorageSharedKeyCredential(
         AZURE_STORAGE_ACCOUNT_NAME,
         AZURE_STORAGE_ACCOUNT_KEY
@@ -29,6 +31,10 @@ function getBlobServiceClient(): BlobServiceClient {
         credential
       );
     } else {
+      console.error("Azure Storage configuration missing:");
+      console.error("- AZURE_STORAGE_CONNECTION_STRING:", !!AZURE_STORAGE_CONNECTION_STRING);
+      console.error("- AZURE_STORAGE_ACCOUNT_NAME:", !!AZURE_STORAGE_ACCOUNT_NAME);
+      console.error("- AZURE_STORAGE_ACCOUNT_KEY:", !!AZURE_STORAGE_ACCOUNT_KEY);
       throw new Error("Azure Storage credentials not configured");
     }
   }
@@ -38,6 +44,16 @@ function getBlobServiceClient(): BlobServiceClient {
 // Image upload service for college assets
 export class ImageUploadService {
   private containerName = IMAGES_CONTAINER_NAME;
+
+  // Sanitize metadata values for Azure Storage
+  private sanitizeMetadata(value: string): string {
+    // Azure metadata values must be ASCII and cannot contain certain characters
+    return value
+      .replace(/[^\x20-\x7E]/g, '') // Remove non-ASCII characters
+      .replace(/['"\\]/g, '') // Remove quotes and backslashes
+      .trim()
+      .substring(0, 256); // Azure metadata values have a 256 character limit
+  }
 
   // Ensure container exists
   private async ensureContainer() {
@@ -109,18 +125,37 @@ export class ImageUploadService {
           blobCacheControl: "public, max-age=31536000", // Cache for 1 year
         },
         metadata: {
-          originalName: file.name,
+          originalName: this.sanitizeMetadata(file.name),
           uploadedAt: new Date().toISOString(),
-          collegeSlug: collegeSlug || "",
-          imageType: imageType || "general",
+          collegeSlug: this.sanitizeMetadata(collegeSlug || ""),
+          imageType: this.sanitizeMetadata(imageType || "general"),
         },
       });
 
       // Return the public URL
+      console.log("Image uploaded successfully:", fileName);
       return blobClient.url;
     } catch (error) {
       console.error("Error uploading image:", error);
-      throw new Error(`Failed to upload image: ${error}`);
+      console.error("File details:", {
+        name: file.name,
+        size: file.size,
+        type: file.type,
+        collegeSlug,
+        imageType,
+      });
+      
+      if (error instanceof Error) {
+        if (error.message.includes("credentials")) {
+          throw new Error("Azure Storage authentication failed. Check credentials.");
+        } else if (error.message.includes("network") || error.message.includes("ENOTFOUND")) {
+          throw new Error("Network connection to Azure Storage failed.");
+        } else if (error.message.includes("container")) {
+          throw new Error("Azure Storage container access failed.");
+        }
+      }
+      
+      throw new Error(`Failed to upload image: ${error instanceof Error ? error.message : error}`);
     }
   }
 

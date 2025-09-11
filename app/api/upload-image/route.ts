@@ -53,8 +53,23 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     console.error("Image upload error:", error);
+    
+    // Provide more specific error messages
+    let errorMessage = "Failed to upload image";
+    if (error instanceof Error) {
+      if (error.message.includes("Azure Storage credentials not configured")) {
+        errorMessage = "Azure Storage is not properly configured. Please check environment variables.";
+      } else if (error.message.includes("network") || error.message.includes("connection")) {
+        errorMessage = "Network error while uploading to Azure Storage.";
+      } else if (error.message.includes("authentication") || error.message.includes("unauthorized")) {
+        errorMessage = "Authentication failed. Please check Azure Storage credentials.";
+      } else {
+        errorMessage = `Upload failed: ${error.message}`;
+      }
+    }
+    
     return NextResponse.json(
-      { error: "Failed to upload image" },
+      { error: errorMessage },
       { status: 500 }
     );
   }
