@@ -1,26 +1,26 @@
 import type { Metadata } from "next";
 import CollegePage from "@/components/long-college-page";
 import type { College } from "@/types/college";
+import { fetchCollegeFromAzure } from "@/lib/azure-college";
 
-type Params = { params: { slug: string } };
+type Params = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   try {
     // Await params in Next.js 15
     const { slug } = await params;
-    // For metadata generation, we need to construct the full URL
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-    const res = await fetch(`${baseUrl}/api/college/${slug}`, {
-      cache: "no-store",
-    });
-    if (!res.ok) {
+    
+    // Try to fetch from Azure directly
+    const data = await fetchCollegeFromAzure(slug);
+    
+    if (!data) {
       return {
         title: "College | IOES",
         description:
           "Find the perfect college for your education journey with IOES.",
       };
     }
-    const data = (await res.json()) as College;
+    
     return {
       title: `${data.name} | IOES`,
       description:
@@ -63,17 +63,16 @@ export default async function Page({ params }: Params) {
   try {
     // Await params in Next.js 15
     const { slug } = await params;
-    // For server-side fetch, we need the full URL in production
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-    const res = await fetch(`${baseUrl}/api/college/${slug}`, {
-      cache: "no-store",
-    });
-    if (!res.ok) {
+    
+    // Fetch directly from Azure Storage
+    const data = await fetchCollegeFromAzure(slug);
+    
+    if (!data) {
       return (
         <div className="container px-4 md:px-6 py-20">
           <h1 className="text-2xl font-semibold">College not found</h1>
           <p className="text-gray-600 mt-2">
-            Please check the URL or explore other colleges.
+            The college "{slug}" could not be found. Please check the URL or explore other colleges.
           </p>
           <div className="mt-4">
             <a href="/colleges" className="text-blue-600 hover:underline">
@@ -83,10 +82,9 @@ export default async function Page({ params }: Params) {
         </div>
       );
     }
-    const data = (await res.json()) as College;
 
     // Additional validation to ensure we have the required data
-    if (!data || !data.name || !data.slug) {
+    if (!data.name || !data.slug) {
       return (
         <div className="container px-4 md:px-6 py-20">
           <h1 className="text-2xl font-semibold">Invalid college data</h1>
@@ -107,6 +105,9 @@ export default async function Page({ params }: Params) {
           Something went wrong while loading the college information. Please try
           again later.
         </p>
+        <div className="mt-4 text-sm text-gray-500">
+          Error details: {error instanceof Error ? error.message : 'Unknown error'}
+        </div>
       </div>
     );
   }

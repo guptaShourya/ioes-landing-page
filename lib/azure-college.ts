@@ -269,19 +269,29 @@ export const collegeAzureService = new CollegeAzureService();
 export async function fetchCollegeFromAzure(
   slug: string
 ): Promise<College | null> {
+  // Check if we have the required environment variables
+  if (!AZURE_STORAGE_ACCOUNT_NAME) {
+    console.error("AZURE_STORAGE_ACCOUNT_NAME not configured");
+    return null;
+  }
+
   const publicUrl = `https://${AZURE_STORAGE_ACCOUNT_NAME}.blob.core.windows.net/${COLLEGE_CONTAINER_NAME}/${slug}.json`;
 
   try {
+    console.log(`Fetching college data from: ${publicUrl}`);
     const response = await fetch(publicUrl, {
       cache: "force-cache", // Cache college data
       next: { revalidate: 3600 }, // Revalidate every hour
     });
 
     if (!response.ok) {
+      console.log(`College ${slug} not found in Azure (${response.status})`);
       return null;
     }
 
-    return await response.json();
+    const data = await response.json();
+    console.log(`Successfully fetched college ${slug} from Azure`);
+    return data;
   } catch (error) {
     console.error(`Error fetching college ${slug} from Azure:`, error);
     return null;
