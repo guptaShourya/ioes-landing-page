@@ -44,6 +44,7 @@ import type {
   College,
   Program,
   EnglishRequirement,
+  EnglishRequirements,
   Scholarship,
   RankingItem,
 } from "@/types/college";
@@ -143,7 +144,10 @@ export function AddCollegeForm({
       highlights: [],
       subjects: [],
       programs: [],
-      englishRequirements: [],
+      englishRequirements: {
+        undergraduate: [],
+        postgraduate: [],
+      },
       admissions: {
         applicationFee: "",
         steps: [],
@@ -1088,7 +1092,7 @@ export function AddCollegeForm({
         {/* Requirements Tab */}
         <TabsContent value="requirements" className="space-y-6">
           <RequirementsSection
-            englishRequirements={formData.englishRequirements || []}
+            englishRequirements={formData.englishRequirements || { undergraduate: [], postgraduate: [] }}
             admissions={
               formData.admissions || { applicationFee: "", steps: [] }
             }
@@ -1698,21 +1702,46 @@ function RequirementsSection({
   onAdmissionsChange,
   onScholarshipsChange,
 }: {
-  englishRequirements: EnglishRequirement[];
+  englishRequirements: EnglishRequirements;
   admissions: any;
   scholarships: Scholarship[];
-  onEnglishRequirementsChange: (requirements: EnglishRequirement[]) => void;
+  onEnglishRequirementsChange: (requirements: EnglishRequirements) => void;
   onAdmissionsChange: (admissions: any) => void;
   onScholarshipsChange: (scholarships: Scholarship[]) => void;
 }) {
-  const addEnglishRequirement = () => {
+  const addEnglishRequirement = (level: 'undergraduate' | 'postgraduate') => {
     const newRequirement: EnglishRequirement = {
       test: "",
       min: 0,
       max: 0,
       bandBreakdown: "",
     };
-    onEnglishRequirementsChange([...englishRequirements, newRequirement]);
+    
+    const updated = { ...englishRequirements };
+    if (!updated[level]) {
+      updated[level] = [];
+    }
+    updated[level] = [...(updated[level] || []), newRequirement];
+    onEnglishRequirementsChange(updated);
+  };
+
+  const removeEnglishRequirement = (level: 'undergraduate' | 'postgraduate', index: number) => {
+    const updated = { ...englishRequirements };
+    if (updated[level]) {
+      updated[level] = updated[level]!.filter((_, i) => i !== index);
+    }
+    onEnglishRequirementsChange(updated);
+  };
+
+  const updateEnglishRequirement = (level: 'undergraduate' | 'postgraduate', index: number, field: keyof EnglishRequirement, value: any) => {
+    const updated = { ...englishRequirements };
+    if (updated[level] && updated[level]![index]) {
+      updated[level]![index] = {
+        ...updated[level]![index],
+        [field]: value,
+      };
+      onEnglishRequirementsChange(updated);
+    }
   };
 
   const addScholarship = () => {
@@ -1725,115 +1754,114 @@ function RequirementsSection({
     onScholarshipsChange([...scholarships, newScholarship]);
   };
 
+  const renderEnglishRequirements = (level: 'undergraduate' | 'postgraduate', title: string) => {
+    const requirements = englishRequirements[level] || [];
+    
+    return (
+      <div className="space-y-4">
+        <div className="flex justify-between items-center">
+          <h4 className="font-semibold text-lg">{title}</h4>
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            onClick={() => addEnglishRequirement(level)}
+          >
+            <Plus className="h-4 w-4 mr-2" />
+            Add {title} Requirement
+          </Button>
+        </div>
+        
+        {requirements.map((req, index) => (
+          <div key={index} className="p-4 border rounded-lg space-y-4 bg-gray-50">
+            <div className="flex justify-between items-center">
+              <h5 className="font-medium">{title} Requirement {index + 1}</h5>
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={() => removeEnglishRequirement(level, index)}
+              >
+                <Trash2 className="h-4 w-4" />
+              </Button>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div>
+                <Label>Test Type</Label>
+                <Select
+                  value={req.test}
+                  onValueChange={(value) => updateEnglishRequirement(level, index, 'test', value)}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select test" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="IELTS">IELTS</SelectItem>
+                    <SelectItem value="TOEFL">TOEFL</SelectItem>
+                    <SelectItem value="PTE">PTE</SelectItem>
+                    <SelectItem value="Duolingo">Duolingo</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <Label>Minimum Score</Label>
+                <Input
+                  type="number"
+                  step="0.5"
+                  value={req.min || ''}
+                  onChange={(e) => updateEnglishRequirement(level, index, 'min', parseFloat(e.target.value) || 0)}
+                />
+              </div>
+              <div>
+                <Label>Maximum Score</Label>
+                <Input
+                  type="number"
+                  step="0.5"
+                  value={req.max || ''}
+                  onChange={(e) => updateEnglishRequirement(level, index, 'max', parseFloat(e.target.value) || 0)}
+                />
+              </div>
+              <div className="md:col-span-1">
+                <Label>Band Breakdown</Label>
+                <Input
+                  value={req.bandBreakdown || ''}
+                  onChange={(e) => updateEnglishRequirement(level, index, 'bandBreakdown', e.target.value)}
+                  placeholder="e.g., 6.0 in each band"
+                />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
   return (
     <div className="space-y-6">
       {/* English Requirements */}
       <Card>
         <CardHeader>
           <CardTitle>English Language Requirements</CardTitle>
+          <p className="text-sm text-gray-600">
+            Add English language requirements for undergraduate and postgraduate programs separately.
+          </p>
         </CardHeader>
         <CardContent>
-          <div className="space-y-4">
-            {englishRequirements.map((req, index) => (
-              <div key={index} className="p-4 border rounded-lg space-y-4">
-                <div className="flex justify-between items-center">
-                  <h4 className="font-medium">Requirement {index + 1}</h4>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    size="sm"
-                    onClick={() =>
-                      onEnglishRequirementsChange(
-                        englishRequirements.filter((_, i) => i !== index)
-                      )
-                    }
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </Button>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                  <div>
-                    <Label>Test Type</Label>
-                    <Select
-                      value={req.test}
-                      onValueChange={(value) => {
-                        const updated = [...englishRequirements];
-                        updated[index] = { ...updated[index], test: value };
-                        onEnglishRequirementsChange(updated);
-                      }}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select test" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="IELTS">IELTS</SelectItem>
-                        <SelectItem value="TOEFL">TOEFL</SelectItem>
-                        <SelectItem value="PTE">PTE</SelectItem>
-                        <SelectItem value="Duolingo">Duolingo</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div>
-                    <Label>Minimum Score</Label>
-                    <Input
-                      type="number"
-                      step="0.5"
-                      value={req.min}
-                      onChange={(e) => {
-                        const updated = [...englishRequirements];
-                        updated[index] = {
-                          ...updated[index],
-                          min: parseFloat(e.target.value),
-                        };
-                        onEnglishRequirementsChange(updated);
-                      }}
-                    />
-                  </div>
-                  <div>
-                    <Label>Maximum Score</Label>
-                    <Input
-                      type="number"
-                      step="0.5"
-                      value={req.max}
-                      onChange={(e) => {
-                        const updated = [...englishRequirements];
-                        updated[index] = {
-                          ...updated[index],
-                          max: parseFloat(e.target.value),
-                        };
-                        onEnglishRequirementsChange(updated);
-                      }}
-                    />
-                  </div>
-                  <div className="md:col-span-1">
-                    <Label>Band Breakdown</Label>
-                    <Input
-                      value={req.bandBreakdown}
-                      onChange={(e) => {
-                        const updated = [...englishRequirements];
-                        updated[index] = {
-                          ...updated[index],
-                          bandBreakdown: e.target.value,
-                        };
-                        onEnglishRequirementsChange(updated);
-                      }}
-                      placeholder="e.g., 6.0 in each band"
-                    />
-                  </div>
+          <div className="space-y-8">
+            {renderEnglishRequirements('undergraduate', 'Undergraduate Programs')}
+            <Separator />
+            {renderEnglishRequirements('postgraduate', 'Postgraduate Programs')}
+            
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div className="flex items-start gap-2">
+                <AlertCircle className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                <div className="text-sm text-blue-800">
+                  <p className="font-medium">Note:</p>
+                  <p>A disclaimer will be automatically added: "Please note some courses require higher scores, refer to specific course requirements"</p>
                 </div>
               </div>
-            ))}
-
-            <Button
-              type="button"
-              variant="outline"
-              onClick={addEnglishRequirement}
-              className="w-full"
-            >
-              <Plus className="h-4 w-4 mr-2" />
-              Add English Requirement
-            </Button>
+            </div>
           </div>
         </CardContent>
       </Card>

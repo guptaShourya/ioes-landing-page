@@ -40,6 +40,7 @@ import {
   Heart,
   MessageCircle,
   Sparkles,
+  AlertCircle,
 } from "lucide-react";
 import type { College } from "@/types/college";
 
@@ -598,8 +599,9 @@ export default function CollegePage({ data }: CollegePageProps) {
 
               <div className="space-y-6">
                 {/* English Requirements */}
-                {data.englishRequirements &&
-                  data.englishRequirements.length > 0 && (
+                {data.englishRequirements && 
+                  ((data.englishRequirements.undergraduate && data.englishRequirements.undergraduate.length > 0) || 
+                   (data.englishRequirements.postgraduate && data.englishRequirements.postgraduate.length > 0)) && (
                     <Card>
                       <CardHeader>
                         <CardTitle className="flex items-center gap-2">
@@ -608,22 +610,70 @@ export default function CollegePage({ data }: CollegePageProps) {
                         </CardTitle>
                       </CardHeader>
                       <CardContent>
-                        <div className="space-y-4">
-                          {data.englishRequirements.map((req, index) => (
-                            <div
-                              key={index}
-                              className="border rounded-lg p-4 bg-gray-50"
-                            >
-                              <div className="font-semibold text-gray-900 mb-1">
-                                {req.test}
-                              </div>
-                              <div className="text-sm text-gray-600">
-                                {req.min !== undefined &&
-                                  `Minimum Score: ${req.min}`}
-                                {req.bandBreakdown && ` • ${req.bandBreakdown}`}
+                        <div className="space-y-6">
+                          {/* Undergraduate Requirements */}
+                          {data.englishRequirements.undergraduate && 
+                            data.englishRequirements.undergraduate.length > 0 && (
+                            <div>
+                              <h4 className="font-semibold text-lg text-gray-900 mb-3">
+                                Undergraduate Programs
+                              </h4>
+                              <div className="space-y-3">
+                                {data.englishRequirements.undergraduate.map((req, index) => (
+                                  <div
+                                    key={index}
+                                    className="border rounded-lg p-4 bg-gray-50"
+                                  >
+                                    <div className="font-semibold text-gray-900 mb-1">
+                                      {req.test}
+                                    </div>
+                                    <div className="text-sm text-gray-600">
+                                      {req.min !== undefined &&
+                                        `Minimum Score: ${req.min}`}
+                                      {req.bandBreakdown && ` • ${req.bandBreakdown}`}
+                                    </div>
+                                  </div>
+                                ))}
                               </div>
                             </div>
-                          ))}
+                          )}
+
+                          {/* Postgraduate Requirements */}
+                          {data.englishRequirements.postgraduate && 
+                            data.englishRequirements.postgraduate.length > 0 && (
+                            <div>
+                              <h4 className="font-semibold text-lg text-gray-900 mb-3">
+                                Postgraduate Programs
+                              </h4>
+                              <div className="space-y-3">
+                                {data.englishRequirements.postgraduate.map((req, index) => (
+                                  <div
+                                    key={index}
+                                    className="border rounded-lg p-4 bg-gray-50"
+                                  >
+                                    <div className="font-semibold text-gray-900 mb-1">
+                                      {req.test}
+                                    </div>
+                                    <div className="text-sm text-gray-600">
+                                      {req.min !== undefined &&
+                                        `Minimum Score: ${req.min}`}
+                                      {req.bandBreakdown && ` • ${req.bandBreakdown}`}
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+
+                          {/* Important Note */}
+                          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                            <div className="flex items-start gap-2">
+                              <AlertCircle className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                              <p className="text-sm text-blue-800">
+                                <span className="font-medium">*</span> Please note some courses require higher scores, refer to specific course requirements
+                              </p>
+                            </div>
+                          </div>
                         </div>
                       </CardContent>
                     </Card>
@@ -951,7 +1001,7 @@ export default function CollegePage({ data }: CollegePageProps) {
                       </Badge>
                     </div>
                     <ul className="space-y-2">
-                      {college.highlights.map((highlight, idx) => (
+                      {college.highlights?.map((highlight, idx) => (
                         <li
                           key={idx}
                           className="flex items-center gap-2 text-sm text-gray-600"

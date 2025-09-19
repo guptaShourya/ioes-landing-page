@@ -5,6 +5,11 @@ export type EnglishRequirement = {
   bandBreakdown?: string;
 };
 
+export type EnglishRequirements = {
+  undergraduate?: EnglishRequirement[];
+  postgraduate?: EnglishRequirement[];
+};
+
 export type Intake = {
   campus: string;
   fees: string;
@@ -113,7 +118,7 @@ export type College = {
   highlights?: string[];
   subjects?: string[];
   programs?: Program[];
-  englishRequirements?: EnglishRequirement[];
+  englishRequirements?: EnglishRequirements;
   admissions?: {
     applicationFee?: string;
     steps?: { title: string; description?: string }[];
