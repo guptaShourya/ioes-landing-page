@@ -69,98 +69,85 @@ export default function CollegePage({ data }: CollegePageProps) {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="w-full py-12 md:py-20 lg:py-28 bg-[linear-gradient(61deg,_#132e31c7,_#132e318f_38%,_#132e3170_50%,_#132e3100_60%),_linear-gradient(180deg,_#0000_81%,_#132e31_94%),_linear-gradient(to_bottom,_#192b2d80,_#192b2d80)]">
-          <div className="container px-4 md:px-6">
-            <div className="grid gap-8 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_450px]">
-              <div className="flex flex-col justify-center space-y-6">
-                <div className="space-y-6">
-                  <div className="space-y-4">
-                    <div className="inline-block font-nibpro rounded-lg bg-rose-100 px-3 py-1 text-sm text-rose-800">
-                      Top University
-                    </div>
-                    <h1 className="text-4xl font-light italic font-nibpro tracking-tighter text-white sm:text-6xl lg:text-7xl">
-                      {data.name}
-                    </h1>
-                    <div className="flex flex-wrap items-center gap-4 text-white/80">
-                      <span className="inline-flex items-center gap-2">
-                        <MapPin className="h-4 w-4 text-red-400" />
-                        {data.city}
-                        {data.state ? `, ${data.state}` : ""}, {data.country}
-                      </span>
-                      {data.established && (
-                        <span className="inline-flex items-center gap-2">
-                          <School className="h-4 w-4 text-blue-400" />
-                          Estd. {data.established}
-                        </span>
-                      )}
-                      {data.type && (
-                        <Badge
-                          variant="secondary"
-                          className="bg-white/20 text-white border-white/30"
-                        >
-                          {data.type} Institute
-                        </Badge>
-                      )}
-                    </div>
-                  </div>
-                  <p className="max-w-[600px] text-white/90 md:text-xl font-light">
-                    {data.overview ||
-                      `Discover excellence in education at ${data.name}, one of the world's leading universities offering cutting-edge programs and research opportunities.`}
-                  </p>
-                  <div className="flex items-center gap-6 text-white">
-                    <div className="flex items-center gap-1">
-                      <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-                      <span className="font-medium text-lg">
-                        {data.statistics?.rating || "4.8"}
-                      </span>
-                      <span className="text-white/70">
-                        /5 ({data.statistics?.reviewCount || "2,500+"} Reviews)
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Users className="h-5 w-5 text-green-400" />
-                      <span className="text-white/70">
-                        {data.statistics?.studentCount || "50,000+"} Students
-                      </span>
-                    </div>
-                  </div>
+        <section className="relative">
+          <div className="absolute inset-0">
+            <Image
+              src={data.bannerImage || data.logo || "/placeholder.jpg"}
+              alt={`${data.name} banner`}
+              fill
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-black/60" />
+          </div>
+          <div className="container relative flex min-h-[600px] flex-col items-center justify-center px-4 py-24 text-center text-white md:px-6">
+            <div className="max-w-4xl space-y-6">
+              <div className="space-y-4">
+                <div className="inline-block font-nibpro rounded-lg bg-rose-100/90 px-3 py-1 text-sm text-rose-800">
+                  Top University
                 </div>
-                <div className="flex flex-col gap-3 min-[400px]:flex-row">
-                  <Button
-                    size="lg"
-                    className="bg-[#ED4746] text-white hover:bg-[#ED4746]/90 transition-all duration-300"
-                    onClick={openPopup}
-                  >
-                    Get Free Consultation
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="border-white text-white bg-transparent hover:bg-white/10 transition-all duration-300"
-                  >
-                    <Download className="h-4 w-4 mr-2" />
-                    Download Brochure
-                  </Button>
-                </div>
-              </div>
-              <div className="flex items-center justify-center">
-                <div className="relative">
-                  {data.logo ? (
-                    <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
-                      <Image
-                        src={data.logo}
-                        alt={`${data.name} logo`}
-                        width={200}
-                        height={200}
-                        className="object-contain"
-                      />
-                    </div>
-                  ) : (
-                    <div className="text-white w-full max-w-sm flex justify-center">
-                      <GraduationCap className="h-32 w-32" />
-                    </div>
+                <h1 className="text-4xl font-light italic font-nibpro tracking-tighter text-white sm:text-6xl lg:text-7xl">
+                  {data.name}
+                </h1>
+                <div className="flex flex-wrap items-center justify-center gap-4 text-white/90">
+                  <span className="inline-flex items-center gap-2">
+                    <MapPin className="h-4 w-4 text-red-400" />
+                    {data.city}
+                    {data.state ? `, ${data.state}` : ""}, {data.country}
+                  </span>
+                  {data.established && (
+                    <span className="inline-flex items-center gap-2">
+                      <School className="h-4 w-4 text-blue-400" />
+                      Estd. {data.established}
+                    </span>
+                  )}
+                  {data.type && (
+                    <Badge
+                      variant="secondary"
+                      className="bg-white/20 text-white border-white/30"
+                    >
+                      {data.type} Institute
+                    </Badge>
                   )}
                 </div>
+              </div>
+              <p className="max-w-[800px] mx-auto text-white/90 text-lg md:text-xl font-light">
+                {data.overview ||
+                  `Discover excellence in education at ${data.name}, one of the world's leading universities offering cutting-edge programs and research opportunities.`}
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-6 text-white">
+                <div className="flex items-center gap-1">
+                  <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                  <span className="font-medium text-lg">
+                    {data.statistics?.rating || "4.8"}
+                  </span>
+                  <span className="text-white/70">
+                    /5 ({data.statistics?.reviewCount || "2,500+"} Reviews)
+                  </span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <Users className="h-5 w-5 text-green-400" />
+                  <span className="text-white/70">
+                    {data.statistics?.studentCount || "50,000+"} Students
+                  </span>
+                </div>
+              </div>
+              <div className="flex flex-col gap-3 min-[400px]:flex-row justify-center mt-8">
+                <Button
+                  size="lg"
+                  className="bg-[#ED4746] text-white hover:bg-[#ED4746]/90 transition-all duration-300"
+                  onClick={openPopup}
+                >
+                  Get Free Consultation
+                </Button>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="border-white text-white bg-transparent hover:bg-white/10 transition-all duration-300"
+                >
+                  <Download className="h-4 w-4 mr-2" />
+                  Download Brochure
+                </Button>
               </div>
             </div>
           </div>
