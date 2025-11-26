@@ -174,7 +174,7 @@ export default function ContactPage() {
                       <div className="mt-2 space-y-2 text-gray-500">
                         <div>
                           <p className="font-medium text-gray-700">
-                            IOES Study Abroad Consultants in Dwarka, New Delhi
+                            IOES Study Abroad Consultants in Delhi NCR
                           </p>
                           <p>{contact["address-delhi-line1"]}</p>
                           <p>{contact["address-delhi-line2"]}</p>
